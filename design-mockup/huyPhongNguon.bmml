@@ -1,0 +1,153 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="720" measuredH="439" mockupW="684" mockupH="428">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="36" y="11" w="684" h="428" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="603" y="316" w="-1" h="-1" measuredW="102" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sua%20thong%20tin</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="193" w="208" h="-1" measuredW="152" measuredH="17" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ngay%20PVan%3A%20%2026/11/2013</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="211" w="217" h="-1" measuredW="206" measuredH="17" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Nghe%20PVan%3A%20Tam%20ly%20hoc%20than%20kinh</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="602" y="358" w="-1" h="-1" measuredW="110" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Huy%20phong%20van</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::SubTitle" x="107" y="95" w="272" h="-1" measuredW="256" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>20</size>
+        <text>Hoc%20vien%20Steven%20HAWKING</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::ButtonBar" x="59" y="142" w="-1" h="-1" measuredW="547" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>1</selectedIndex>
+        <text>Thong%20tin%20co%20ban%2C%20Phong%20van%2C%20Du%20tuyen%2C%20Qua%20trinh%20lam%20viec%2C%20Qua%20trinh%20hoc%20tap</text>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::SubTitle" x="107" y="118" w="217" h="-1" measuredW="172" measuredH="19" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Ma%20luu%20ho%20so%20ABCDXYZ</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::SubTitle" x="367" y="193" w="197" h="-1" measuredW="183" measuredH="17" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ghi%20chu%20PVan%3A%20khong%20an%20hanh</text>
+      </controlProperties>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="235" w="305" h="-1" measuredW="294" measuredH="34" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ngay%20trung%20tuyen%3A%2030/11/2013%5CnNghe%20trung%20tuyen%3A%20Bac%20si%20tam%20ly%20%28Psychologist%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::SubTitle" x="367" y="275" w="279" h="-1" measuredW="173" measuredH="68" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Lop%20hoc%3A%20112%20%5CnNgay%20nhap%20hoc%3A%2012/12/2013%5CnNgay%20ket%20thuc%3A%2024/12/2013%20%5CnGhi%20chu%3A%20Cuc%20tot%20nhe</text>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="275" w="217" h="-1" measuredW="212" measuredH="51" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Nghiep%20doan%3A%20la%20gi%20ta%5CnCong%20ty%20tiep%20nhan%3A%20banh%20keo%20ABC%5CnThoi%20han%20hop%20dong%3A%202%20nam%203%20ngay</text>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::SubTitle" x="379" y="370" w="148" h="-1" measuredW="139" measuredH="34" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>true</italic>
+        <size>14</size>
+        <text>Ngay%20huy%3A%2020/11/2014%5CnLy%20do%3A%20COCC</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="334" w="232" h="-1" measuredW="220" measuredH="68" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Cong%20ty%20chung%20nghe%3A%20Ban%20lanh%20dao%5CnSo%20phieu%20tiep%20nhan%3A%202%5CnHop%20dong%20TTS%5CnNgay%20ky%3A%202/12/2013</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::SubTitle" x="367" y="235" w="173" h="-1" measuredW="155" measuredH="34" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ghi%20chu%20sau%20trung%20tuyen%3A%5CnHoc%20vien%20ten%20Florent</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::PointyButton" x="367" y="343" w="137" h="-1" measuredW="144" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <direction>right</direction>
+        <menuIcon>false</menuIcon>
+        <newLayout>true</newLayout>
+        <state>disabled</state>
+        <text>Thong%20tin%20huy%20PVan</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::Webcam" x="60" y="87" w="45" h="46" measuredW="177" measuredH="146" zOrder="16" locked="false" isInGroup="-1"/>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::FieldSet" x="186" y="180" w="384" h="178" measuredW="200" measuredH="170" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Huy%20phong%20van%20Steven%20Hawking</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Button" x="477" y="316" w="-1" h="-1" measuredW="78" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Xac%20nhan</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="201" y="199" w="-1" h="-1" measuredW="57" measuredH="21" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ly%20do%20huy</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::RadioButton" x="270" y="199" w="80" h="20" measuredW="80" measuredH="22" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+        <text>Khong%20den</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::RadioButton" x="358" y="199" w="94" h="20" measuredW="95" measuredH="22" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+        <text>Qua%20quy%20dinh</text>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::RadioButton" x="270" y="220" w="69" h="20" measuredW="55" measuredH="22" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>COCC</text>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::RadioButton" x="358" y="220" w="69" h="20" measuredW="46" measuredH="22" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+        <text>Khac</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::TextArea" x="270" y="244" w="200" h="99" measuredW="200" measuredH="140" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ly%20do%20khac</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Button" x="477" y="280" w="-1" h="-1" measuredW="71" measuredH="27" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Quay%20lai</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

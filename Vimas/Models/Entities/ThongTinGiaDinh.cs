@@ -14,8 +14,8 @@ namespace Vimas.Models.Entities
     
     public partial class ThongTinGiaDinh
     {
-        public int id { get; set; }
-        public int idThongTinCaNhan { get; set; }
+        public int Id { get; set; }
+        public int IdThongTinCaNhan { get; set; }
         public string HoTen { get; set; }
         public string QuanHe { get; set; }
         public System.DateTime NgaySinh { get; set; }
@@ -23,7 +23,7 @@ namespace Vimas.Models.Entities
         public string NoiLamViec { get; set; }
         public string DiaChi { get; set; }
         public string SoDienThoai { get; set; }
-        public bool isActive { get; set; }
+        public bool Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

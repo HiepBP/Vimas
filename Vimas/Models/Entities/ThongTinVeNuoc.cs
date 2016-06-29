@@ -14,8 +14,8 @@ namespace Vimas.Models.Entities
     
     public partial class ThongTinVeNuoc
     {
-        public int id { get; set; }
-        public int idThongTinCaNhan { get; set; }
+        public int Id { get; set; }
+        public int IdThongTinCaNhan { get; set; }
         public Nullable<System.DateTime> NgayDi { get; set; }
         public Nullable<System.DateTime> NgayVe { get; set; }
         public string LyDoVe { get; set; }
@@ -25,6 +25,7 @@ namespace Vimas.Models.Entities
         public Nullable<System.DateTime> NgayTron { get; set; }
         public Nullable<System.DateTime> NgayBiTrucXuat { get; set; }
         public string GhiChuTheoDoi { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

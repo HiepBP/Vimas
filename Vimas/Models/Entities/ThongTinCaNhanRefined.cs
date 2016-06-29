@@ -12,7 +12,7 @@ namespace Vimas.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ThongTinCaNhan : SkyWeb.DatVM.Data.IEntity
+    public partial class ThongTinCaNhan : SkyWeb.DatVM.Data.IEntity, SkyWeb.DatVM.Data.IActivable
     {
     }
 }

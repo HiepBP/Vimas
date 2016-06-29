@@ -15,14 +15,14 @@ namespace Vimas.ViewModels
     public partial class KyTucXaViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.KyTucXa>
     {
     	
-    			public virtual int id { get; set; }
-    			public virtual Nullable<int> idThongTinCaNhan { get; set; }
+    			public virtual int Id { get; set; }
+    			public virtual Nullable<int> IdThongTinCaNhan { get; set; }
     			public virtual Nullable<System.DateTime> NgayVao { get; set; }
     			public virtual Nullable<System.DateTime> NgayRa { get; set; }
     			public virtual Nullable<int> SoPhong { get; set; }
     			public virtual Nullable<int> SoHocTuDo { get; set; }
     			public virtual string GhiChu { get; set; }
-    			public virtual Nullable<bool> isActive { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
     	public KyTucXaViewModel() : base() { }
     	public KyTucXaViewModel(Vimas.Models.Entities.KyTucXa entity) : base(entity) { }

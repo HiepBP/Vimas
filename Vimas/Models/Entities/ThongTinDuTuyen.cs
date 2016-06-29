@@ -20,8 +20,8 @@ namespace Vimas.Models.Entities
             this.BangCaps = new HashSet<BangCap>();
         }
     
-        public int id { get; set; }
-        public int idThongTinCaNhan { get; set; }
+        public int Id { get; set; }
+        public int IdThongTinCaNhan { get; set; }
         public System.DateTime NgayDangKy { get; set; }
         public string UuDiem { get; set; }
         public string NhuocDiem { get; set; }
@@ -37,7 +37,7 @@ namespace Vimas.Models.Entities
         public bool DaDiNuocNgoai { get; set; }
         public bool DaDiNhat { get; set; }
         public string GhiChuSoVan { get; set; }
-        public bool isActive { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BangCap> BangCaps { get; set; }

@@ -15,10 +15,10 @@ namespace Vimas.ViewModels
     public partial class HopDongDOLABHocVienMappingViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.HopDongDOLABHocVienMapping>
     {
     	
-    			public virtual int id { get; set; }
-    			public virtual Nullable<int> idThongTinCaNhan { get; set; }
-    			public virtual Nullable<int> idHopDongDOLAB { get; set; }
-    			public virtual Nullable<bool> isActive { get; set; }
+    			public virtual int Id { get; set; }
+    			public virtual Nullable<int> IdThongTinCaNhan { get; set; }
+    			public virtual Nullable<int> IdHopDongDOLAB { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
     	public HopDongDOLABHocVienMappingViewModel() : base() { }
     	public HopDongDOLABHocVienMappingViewModel(Vimas.Models.Entities.HopDongDOLABHocVienMapping entity) : base(entity) { }

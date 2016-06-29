@@ -15,14 +15,14 @@ namespace Vimas.ViewModels
     public partial class BangCapViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.BangCap>
     {
     	
-    			public virtual int id { get; set; }
-    			public virtual int idThongTinDuTuyen { get; set; }
+    			public virtual int Id { get; set; }
+    			public virtual int IdThongTinDuTuyen { get; set; }
     			public virtual Nullable<int> Thang { get; set; }
     			public virtual Nullable<int> Nam { get; set; }
     			public virtual string BangCap1 { get; set; }
     			public virtual Nullable<bool> DaNop { get; set; }
     			public virtual string TrinhDo { get; set; }
-    			public virtual Nullable<bool> isActive { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
     	public BangCapViewModel() : base() { }
     	public BangCapViewModel(Vimas.Models.Entities.BangCap entity) : base(entity) { }

@@ -15,7 +15,7 @@ namespace Vimas.ViewModels
     public partial class ThongTinCaNhanViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.ThongTinCaNhan>
     {
     	
-    			public virtual int id { get; set; }
+    			public virtual int Id { get; set; }
     			public virtual string MaLuuHoSo { get; set; }
     			public virtual int MaNguon { get; set; }
     			public virtual string HoTen { get; set; }
@@ -42,7 +42,7 @@ namespace Vimas.ViewModels
     			public virtual string DienThoaiNha { get; set; }
     			public virtual Nullable<int> CoGiay { get; set; }
     			public virtual string SizeQuanAo { get; set; }
-    			public virtual bool isActive { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public ThongTinCaNhanViewModel() : base() { }
     	public ThongTinCaNhanViewModel(Vimas.Models.Entities.ThongTinCaNhan entity) : base(entity) { }

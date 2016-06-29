@@ -13,10 +13,10 @@ namespace Vimas.Models.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class VimasEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public VimasEntities()
+            : base("name=VimasEntities")
         {
         }
     
@@ -25,6 +25,11 @@ namespace Vimas.Models.Entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BangCap> BangCaps { get; set; }
         public virtual DbSet<CongTyChungNghe> CongTyChungNghes { get; set; }
         public virtual DbSet<CongTyTiepNhan> CongTyTiepNhans { get; set; }
@@ -43,10 +48,5 @@ namespace Vimas.Models.Entities
         public virtual DbSet<ThongTinPhongVan> ThongTinPhongVans { get; set; }
         public virtual DbSet<ThongTinVeNuoc> ThongTinVeNuocs { get; set; }
         public virtual DbSet<TrungTamGTVL> TrungTamGTVLs { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

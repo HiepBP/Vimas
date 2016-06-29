@@ -15,7 +15,7 @@ namespace Vimas.ViewModels
     public partial class CongTyTiepNhanViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.CongTyTiepNhan>
     {
     	
-    			public virtual int id { get; set; }
+    			public virtual int Id { get; set; }
     			public virtual string TenTiengAnh { get; set; }
     			public virtual string TenTiengViet { get; set; }
     			public virtual string NganhNghe { get; set; }
@@ -24,6 +24,7 @@ namespace Vimas.ViewModels
     			public virtual string DienThoai { get; set; }
     			public virtual string Fax { get; set; }
     			public virtual Nullable<int> idNghiepDoan { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
     	public CongTyTiepNhanViewModel() : base() { }
     	public CongTyTiepNhanViewModel(Vimas.Models.Entities.CongTyTiepNhan entity) : base(entity) { }

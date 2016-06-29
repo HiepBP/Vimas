@@ -15,7 +15,7 @@ namespace Vimas.ViewModels
     public partial class QuaTrinhHocTapViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.QuaTrinhHocTap>
     {
     	
-    			public virtual int id { get; set; }
+    			public virtual int Id { get; set; }
     			public virtual int idThongTinCaNhan { get; set; }
     			public virtual Nullable<int> TuNam { get; set; }
     			public virtual Nullable<int> DenNam { get; set; }
@@ -23,7 +23,7 @@ namespace Vimas.ViewModels
     			public virtual string LoaiTruong { get; set; }
     			public virtual string NganhHoc { get; set; }
     			public virtual Nullable<bool> DaTotNghiep { get; set; }
-    			public virtual bool isActive { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public QuaTrinhHocTapViewModel() : base() { }
     	public QuaTrinhHocTapViewModel(Vimas.Models.Entities.QuaTrinhHocTap entity) : base(entity) { }

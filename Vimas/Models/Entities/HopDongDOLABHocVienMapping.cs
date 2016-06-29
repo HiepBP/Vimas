@@ -14,10 +14,10 @@ namespace Vimas.Models.Entities
     
     public partial class HopDongDOLABHocVienMapping
     {
-        public int id { get; set; }
-        public Nullable<int> idThongTinCaNhan { get; set; }
-        public Nullable<int> idHopDongDOLAB { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> IdThongTinCaNhan { get; set; }
+        public Nullable<int> IdHopDongDOLAB { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual HopDongDOLAB HopDongDOLAB { get; set; }
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }

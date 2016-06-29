@@ -1,0 +1,120 @@
+﻿@model Vimas.ViewModels.ThongTinCaNhanViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Thêm thông tin cá nhân</h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <form id="createProductItemForm" method="post">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaLuuHoSo">Mã lưu hồ sơ<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.MaLuuHoSo, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaNguon">Mã Nguồn<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.MaNguon, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="HoTen">Họ Tên<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.HoTen, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TenPhienAmNhat">Tên phiên âm nhật<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.TenPhienAmNhat, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="GioiTinh">Giới Tính<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <select id="GioiTinh" name="GioiTinh">
+                                <option value="true" selected>Nam</option>
+                                <option value="false">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgaySinh">Ngày Sinh<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.NgaySinh, new { input = "date", @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NoiSinh">Nơi sinh<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.NoiSinh, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TinhTrangGiaDinh">Tình trạng gia đình<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.TinhTrangGiaDinh, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="CMND">Chứng minh nhân dân<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.CMND, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayCap">Ngày Cấp<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.NgayCap, new { input = "date", @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NoiCap">Nơi cấp<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.NoiCap, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
+            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>

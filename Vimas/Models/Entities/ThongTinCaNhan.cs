@@ -29,7 +29,7 @@ namespace Vimas.Models.Entities
             this.ThongTinVeNuocs = new HashSet<ThongTinVeNuoc>();
         }
     
-        public int id { get; set; }
+        public int Id { get; set; }
         public string MaLuuHoSo { get; set; }
         public int MaNguon { get; set; }
         public string HoTen { get; set; }
@@ -56,7 +56,7 @@ namespace Vimas.Models.Entities
         public string DienThoaiNha { get; set; }
         public Nullable<int> CoGiay { get; set; }
         public string SizeQuanAo { get; set; }
-        public bool isActive { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }
@@ -68,7 +68,6 @@ namespace Vimas.Models.Entities
         public virtual ICollection<QuaTrinhLamViec> QuaTrinhLamViecs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SucKhoe> SucKhoes { get; set; }
-        public virtual TrungTamGTVL TrungTamGTVL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongTinDuTuyen> ThongTinDuTuyens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

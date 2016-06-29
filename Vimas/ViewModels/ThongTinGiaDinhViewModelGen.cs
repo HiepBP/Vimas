@@ -15,8 +15,8 @@ namespace Vimas.ViewModels
     public partial class ThongTinGiaDinhViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.ThongTinGiaDinh>
     {
     	
-    			public virtual int id { get; set; }
-    			public virtual int idThongTinCaNhan { get; set; }
+    			public virtual int Id { get; set; }
+    			public virtual int IdThongTinCaNhan { get; set; }
     			public virtual string HoTen { get; set; }
     			public virtual string QuanHe { get; set; }
     			public virtual System.DateTime NgaySinh { get; set; }
@@ -24,7 +24,7 @@ namespace Vimas.ViewModels
     			public virtual string NoiLamViec { get; set; }
     			public virtual string DiaChi { get; set; }
     			public virtual string SoDienThoai { get; set; }
-    			public virtual bool isActive { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public ThongTinGiaDinhViewModel() : base() { }
     	public ThongTinGiaDinhViewModel(Vimas.Models.Entities.ThongTinGiaDinh entity) : base(entity) { }

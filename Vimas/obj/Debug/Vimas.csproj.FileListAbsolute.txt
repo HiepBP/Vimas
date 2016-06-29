@@ -169,3 +169,4 @@ D:\PersonalProject\Vimas\Vimas\bin\SkyWeb.DatVM.Data.dll
 D:\PersonalProject\Vimas\Vimas\bin\SkyWeb.DatVM.Mvc.dll
 D:\PersonalProject\Vimas\Vimas\bin\Autofac.xml
 D:\PersonalProject\Vimas\Vimas\bin\Autofac.Integration.Mvc.xml
+D:\PersonalProject\Vimas\Vimas\bin\AutoMapper.xml

@@ -20,7 +20,7 @@ namespace Vimas.Models.Entities
             this.ThongTinPhongVans = new HashSet<ThongTinPhongVan>();
         }
     
-        public int id { get; set; }
+        public int Id { get; set; }
         public string TenVietTat { get; set; }
         public string TenTiengAnh { get; set; }
         public string TenTiengViet { get; set; }
@@ -31,7 +31,7 @@ namespace Vimas.Models.Entities
         public string ChucDanh { get; set; }
         public Nullable<decimal> VonDieuLe { get; set; }
         public Nullable<int> SoNhanVien { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongTinPhongVan> ThongTinPhongVans { get; set; }

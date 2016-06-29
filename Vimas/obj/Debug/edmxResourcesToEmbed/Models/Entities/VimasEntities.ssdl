@@ -63,22 +63,22 @@
   </EntityType>
   <EntityType Name="BangCap">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinDuTuyen" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinDuTuyen" Type="int" Nullable="false" />
     <Property Name="Thang" Type="int" />
     <Property Name="Nam" Type="int" />
     <Property Name="BangCap" Type="nvarchar" MaxLength="50" />
     <Property Name="DaNop" Type="bit" />
     <Property Name="TrinhDo" Type="nvarchar" MaxLength="50" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="CongTyChungNghe">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenVietTat" Type="nvarchar" MaxLength="50" />
     <Property Name="TenTiengAnh" Type="nvarchar" MaxLength="100" />
     <Property Name="TenTiengViet" Type="nvarchar" MaxLength="100" />
@@ -87,15 +87,15 @@
     <Property Name="DienThoai" Type="nvarchar" MaxLength="20" />
     <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="50" />
     <Property Name="ChucDanh" Type="nvarchar" MaxLength="50" />
-    <Property Name="VonDieuLe" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="VonDieuLe" Type="money" />
     <Property Name="SoNhanVien" Type="int" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="CongTyTiepNhan">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TenTiengAnh" Type="nvarchar" MaxLength="100" />
     <Property Name="TenTiengViet" Type="nvarchar" MaxLength="100" />
     <Property Name="NganhNghe" Type="nvarchar" MaxLength="50" />
@@ -104,46 +104,47 @@
     <Property Name="DienThoai" Type="nvarchar" MaxLength="20" />
     <Property Name="Fax" Type="nvarchar" MaxLength="20" />
     <Property Name="idNghiepDoan" Type="int" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="HopDongDOLAB">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NgayDangKy" Type="date" />
-    <Property Name="NgayNhan" Type="date" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayDangKy" Type="datetime" />
+    <Property Name="NgayNhan" Type="datetime" />
     <Property Name="SoDKHopDong" Type="nvarchar" MaxLength="50" />
     <Property Name="SoCongVan" Type="nvarchar" MaxLength="50" />
     <Property Name="SoPhieuTiepNhan" Type="nvarchar" MaxLength="50" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="HopDongDOLABHocVienMapping">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" />
-    <Property Name="idHopDongDOLAB" Type="int" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" />
+    <Property Name="IdHopDongDOLAB" Type="int" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="KyTucXa">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" />
-    <Property Name="NgayVao" Type="date" />
-    <Property Name="NgayRa" Type="date" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" />
+    <Property Name="NgayVao" Type="datetime" />
+    <Property Name="NgayRa" Type="datetime" />
     <Property Name="SoPhong" Type="int" />
     <Property Name="SoHocTuDo" Type="int" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="NghiepDoan">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MaNghiepDoan" Type="nvarchar" MaxLength="50" />
     <Property Name="TenNghiepDoan" Type="nvarchar" MaxLength="100" />
     <Property Name="TenVietTat" Type="nvarchar" MaxLength="50" />
@@ -152,17 +153,17 @@
     <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
     <Property Name="DienThoai" Type="nvarchar" MaxLength="20" />
     <Property Name="Fax" Type="nvarchar" MaxLength="20" />
-    <Property Name="NgayKyHopDong" Type="date" />
+    <Property Name="NgayKyHopDong" Type="datetime" />
     <Property Name="LuongCoBan" Type="decimal" Precision="18" Scale="0" />
     <Property Name="PhiDichVu" Type="decimal" Precision="18" Scale="0" />
     <Property Name="PhiUTDT" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="QuaTrinhHocTap">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="TuNam" Type="int" />
     <Property Name="DenNam" Type="int" />
@@ -170,14 +171,14 @@
     <Property Name="LoaiTruong" Type="nvarchar" MaxLength="50" />
     <Property Name="NganhHoc" Type="nvarchar" MaxLength="50" />
     <Property Name="DaTotNghiep" Type="bit" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="QuaTrinhLamViec">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="TuNam" Type="int" />
     <Property Name="DenNam" Type="int" />
     <Property Name="TenCongTy" Type="nvarchar" MaxLength="200" />
@@ -185,14 +186,14 @@
     <Property Name="DiaChiCongTy" Type="nvarchar" MaxLength="300" />
     <Property Name="ChiTietCongViec" Type="nvarchar" MaxLength="500" />
     <Property Name="DangLam" Type="bit" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="SucKhoe">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="ChieuCao" Type="nchar" MaxLength="10" />
     <Property Name="CanNang" Type="nchar" MaxLength="10" />
     <Property Name="NhomMau" Type="varchar" MaxLength="2" />
@@ -200,11 +201,11 @@
     <Property Name="ThiLucMatTrai" Type="int" />
     <Property Name="ThiLucMatPhai" Type="int" />
     <Property Name="HinhXam" Type="bit" />
-    <Property Name="NgayKhamDot1" Type="date" />
+    <Property Name="NgayKhamDot1" Type="datetime" />
     <Property Name="GhiChuSucKhoeDot1" Type="nvarchar" MaxLength="800" />
-    <Property Name="NgayKhamDot2" Type="date" />
+    <Property Name="NgayKhamDot2" Type="datetime" />
     <Property Name="GhiChuSucKhoeDot2" Type="nvarchar" MaxLength="800" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="SystemLog">
     <Key>
@@ -219,20 +220,20 @@
   </EntityType>
   <EntityType Name="ThongTinCaNhan">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MaLuuHoSo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MaNguon" Type="int" Nullable="false" />
     <Property Name="HoTen" Type="nvarchar" MaxLength="80" Nullable="false" />
     <Property Name="TenPhienAmNhat" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="GioiTinh" Type="int" Nullable="false" />
-    <Property Name="NgaySinh" Type="date" Nullable="false" />
+    <Property Name="NgaySinh" Type="datetime" Nullable="false" />
     <Property Name="NoiSinh" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="TrinhDoVanHoa" Type="nvarchar" MaxLength="50" />
     <Property Name="TinhTrangGiaDinh" Type="int" Nullable="false" />
     <Property Name="CMND" Type="nvarchar" MaxLength="12" Nullable="false" />
-    <Property Name="NgayCap" Type="date" Nullable="false" />
+    <Property Name="NgayCap" Type="datetime" Nullable="false" />
     <Property Name="NoiCap" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="SoHoChieu" Type="nvarchar" MaxLength="12" />
     <Property Name="NgayCapHC" Type="date" />
@@ -248,15 +249,15 @@
     <Property Name="DienThoaiNha" Type="varchar" MaxLength="20" />
     <Property Name="CoGiay" Type="int" />
     <Property Name="SizeQuanAo" Type="varchar" MaxLength="5" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ThongTinDuTuyen">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
-    <Property Name="NgayDangKy" Type="date" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="NgayDangKy" Type="datetime" Nullable="false" />
     <Property Name="UuDiem" Type="nvarchar" MaxLength="500" />
     <Property Name="NhuocDiem" Type="nvarchar" MaxLength="500" />
     <Property Name="KyNangKhac" Type="nvarchar" MaxLength="500" />
@@ -271,47 +272,47 @@
     <Property Name="DaDiNuocNgoai" Type="bit" Nullable="false" />
     <Property Name="DaDiNhat" Type="bit" Nullable="false" />
     <Property Name="GhiChuSoVan" Type="nvarchar" MaxLength="500" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ThongTinGiaDinh">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="QuanHe" Type="nvarchar" MaxLength="50" />
-    <Property Name="NgaySinh" Type="date" Nullable="false" />
+    <Property Name="NgaySinh" Type="datetime" Nullable="false" />
     <Property Name="NgheNghiep" Type="nvarchar" MaxLength="50" />
     <Property Name="NoiLamViec" Type="nvarchar" MaxLength="50" />
     <Property Name="DiaChi" Type="nvarchar" MaxLength="300" />
     <Property Name="SoDienThoai" Type="nvarchar" MaxLength="20" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ThongTinNopTien">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="LoaiTien" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="SoPhieu" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="NgayLapPhieu" Type="date" Nullable="false" />
+    <Property Name="NgayLapPhieu" Type="datetime" Nullable="false" />
     <Property Name="ThuHayChi" Type="int" Nullable="false" />
     <Property Name="SoTien" Type="decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="LyDo" Type="nvarchar" MaxLength="50" />
-    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ThongTinPhongVan">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
-    <Property Name="NgayPhongVan" Type="date" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="NgayPhongVan" Type="datetime" />
     <Property Name="NghePhongVan" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChuPV" Type="nvarchar" MaxLength="500" />
-    <Property Name="NgayTrungTuyen" Type="date" />
+    <Property Name="NgayTrungTuyen" Type="datetime" />
     <Property Name="DotTrungTuyen" Type="nvarchar" MaxLength="50" />
     <Property Name="NgheTrungTuyenTiengAnh" Type="nvarchar" MaxLength="50" />
     <Property Name="NgheTrungTuyenTiengViet" Type="nvarchar" MaxLength="50" />
@@ -320,60 +321,61 @@
     <Property Name="ThoiHanHopDong" Type="int" />
     <Property Name="GhiChuSauTrungTuyen" Type="nvarchar" MaxLength="500" />
     <Property Name="LopHoc" Type="nvarchar" MaxLength="50" />
-    <Property Name="NgayNhapHoc" Type="date" />
-    <Property Name="NgayKetThucKhoaHoc" Type="date" />
+    <Property Name="NgayNhapHoc" Type="datetime" />
+    <Property Name="NgayKetThucKhoaHoc" Type="datetime" />
     <Property Name="GhiChuKhenThuongKyLuat" Type="nvarchar" MaxLength="500" />
     <Property Name="CongTyChungNghe" Type="int" />
     <Property Name="SoPhieuTiepNhan" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChuPhaiCu" Type="nvarchar" MaxLength="500" />
     <Property Name="HopDongTTS" Type="int" />
-    <Property Name="NgayKyHopDong" Type="date" />
+    <Property Name="NgayKyHopDong" Type="datetime" />
     <Property Name="HinhAnh" Type="nvarchar" MaxLength="2083" />
-    <Property Name="NgayHuySauKhiTrungTuyen" Type="date" />
+    <Property Name="NgayHuySauKhiTrungTuyen" Type="datetime" />
     <Property Name="LyDoHuy" Type="nvarchar" MaxLength="500" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="ThongTinVeNuoc">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
-    <Property Name="NgayDi" Type="date" />
-    <Property Name="NgayVe" Type="date" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="NgayDi" Type="datetime" />
+    <Property Name="NgayVe" Type="datetime" />
     <Property Name="LyDoVe" Type="nvarchar" MaxLength="500" />
     <Property Name="ThanhLyHopDong" Type="bit" />
-    <Property Name="NgayThanhLy" Type="date" />
+    <Property Name="NgayThanhLy" Type="datetime" />
     <Property Name="SoHopDongThanhLy" Type="nvarchar" MaxLength="50" />
-    <Property Name="NgayTron" Type="date" />
-    <Property Name="NgayBiTrucXuat" Type="date" />
+    <Property Name="NgayTron" Type="datetime" />
+    <Property Name="NgayBiTrucXuat" Type="datetime" />
     <Property Name="GhiChuTheoDoi" Type="nvarchar" MaxLength="500" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="TrungTamGTVL">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MaNguon" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="TenCoSo" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="DiaChi" Type="nvarchar" MaxLength="500" />
     <Property Name="DienThoai" Type="nvarchar" MaxLength="20" />
     <Property Name="Fax" Type="nvarchar" MaxLength="20" />
     <Property Name="SoHDLK" Type="nvarchar" MaxLength="50" />
-    <Property Name="NgayKyHopDong" Type="date" />
-    <Property Name="NgayHetHan" Type="date" />
+    <Property Name="NgayKyHopDong" Type="datetime" />
+    <Property Name="NgayHetHan" Type="datetime" />
     <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="50" />
-    <Property Name="isActive" Type="bit" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <Association Name="FK_BangCap_ThongTinDuTuyen">
     <End Role="ThongTinDuTuyen" Type="Self.ThongTinDuTuyen" Multiplicity="1" />
     <End Role="BangCap" Type="Self.BangCap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinDuTuyen">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="BangCap">
-        <PropertyRef Name="idThongTinDuTuyen" />
+        <PropertyRef Name="IdThongTinDuTuyen" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -382,7 +384,7 @@
     <End Role="CongTyTiepNhan" Type="Self.CongTyTiepNhan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NghiepDoan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="CongTyTiepNhan">
         <PropertyRef Name="idNghiepDoan" />
@@ -450,10 +452,10 @@
     <End Role="HopDongDOLABHocVienMapping" Type="Self.HopDongDOLABHocVienMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="HopDongDOLAB">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="HopDongDOLABHocVienMapping">
-        <PropertyRef Name="idHopDongDOLAB" />
+        <PropertyRef Name="IdHopDongDOLAB" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -462,10 +464,10 @@
     <End Role="HopDongDOLABHocVienMapping" Type="Self.HopDongDOLABHocVienMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="HopDongDOLABHocVienMapping">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -474,10 +476,10 @@
     <End Role="KyTucXa" Type="Self.KyTucXa" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="KyTucXa">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -486,7 +488,7 @@
     <End Role="QuaTrinhHocTap" Type="Self.QuaTrinhHocTap" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="QuaTrinhHocTap">
         <PropertyRef Name="idThongTinCaNhan" />
@@ -498,10 +500,10 @@
     <End Role="QuaTrinhLamViec" Type="Self.QuaTrinhLamViec" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="QuaTrinhLamViec">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -510,22 +512,10 @@
     <End Role="SucKhoe" Type="Self.SucKhoe" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="SucKhoe">
-        <PropertyRef Name="idThongTinCaNhan" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ThongTinCaNhan_TrungTamGTVL">
-    <End Role="TrungTamGTVL" Type="Self.TrungTamGTVL" Multiplicity="1" />
-    <End Role="ThongTinCaNhan" Type="Self.ThongTinCaNhan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TrungTamGTVL">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ThongTinCaNhan">
-        <PropertyRef Name="MaNguon" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -534,10 +524,10 @@
     <End Role="ThongTinDuTuyen" Type="Self.ThongTinDuTuyen" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinDuTuyen">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -546,10 +536,10 @@
     <End Role="ThongTinGiaDinh" Type="Self.ThongTinGiaDinh" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinGiaDinh">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -558,10 +548,10 @@
     <End Role="ThongTinNopTien" Type="Self.ThongTinNopTien" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinNopTien">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -570,7 +560,7 @@
     <End Role="ThongTinPhongVan" Type="Self.ThongTinPhongVan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CongTyChungNghe">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
         <PropertyRef Name="CongTyChungNghe" />
@@ -582,7 +572,7 @@
     <End Role="ThongTinPhongVan" Type="Self.ThongTinPhongVan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CongTyTiepNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
         <PropertyRef Name="CongTyTiepNhan" />
@@ -594,10 +584,10 @@
     <End Role="ThongTinPhongVan" Type="Self.ThongTinPhongVan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -606,10 +596,10 @@
     <End Role="ThongTinVeNuoc" Type="Self.ThongTinVeNuoc" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ThongTinCaNhan">
-        <PropertyRef Name="id" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinVeNuoc">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -685,10 +675,6 @@
     <AssociationSet Name="FK_SucKhoe_ThongTinCaNhan" Association="Self.FK_SucKhoe_ThongTinCaNhan">
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
       <End Role="SucKhoe" EntitySet="SucKhoe" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ThongTinCaNhan_TrungTamGTVL" Association="Self.FK_ThongTinCaNhan_TrungTamGTVL">
-      <End Role="TrungTamGTVL" EntitySet="TrungTamGTVL" />
-      <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
     </AssociationSet>
     <AssociationSet Name="FK_ThongTinDuTuyen_ThongTinCaNhan" Association="Self.FK_ThongTinDuTuyen_ThongTinCaNhan">
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />

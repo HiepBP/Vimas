@@ -14,8 +14,8 @@ namespace Vimas.Models.Entities
     
     public partial class SucKhoe
     {
-        public int id { get; set; }
-        public int idThongTinCaNhan { get; set; }
+        public int Id { get; set; }
+        public int IdThongTinCaNhan { get; set; }
         public string ChieuCao { get; set; }
         public string CanNang { get; set; }
         public string NhomMau { get; set; }
@@ -27,7 +27,7 @@ namespace Vimas.Models.Entities
         public string GhiChuSucKhoeDot1 { get; set; }
         public Nullable<System.DateTime> NgayKhamDot2 { get; set; }
         public string GhiChuSucKhoeDot2 { get; set; }
-        public bool isActive { get; set; }
+        public bool Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

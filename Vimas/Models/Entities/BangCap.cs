@@ -14,14 +14,14 @@ namespace Vimas.Models.Entities
     
     public partial class BangCap
     {
-        public int id { get; set; }
-        public int idThongTinDuTuyen { get; set; }
+        public int Id { get; set; }
+        public int IdThongTinDuTuyen { get; set; }
         public Nullable<int> Thang { get; set; }
         public Nullable<int> Nam { get; set; }
         public string BangCap1 { get; set; }
         public Nullable<bool> DaNop { get; set; }
         public string TrinhDo { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual ThongTinDuTuyen ThongTinDuTuyen { get; set; }
     }

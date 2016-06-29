@@ -15,7 +15,7 @@ namespace Vimas.ViewModels
     public partial class TrungTamGTVLViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.TrungTamGTVL>
     {
     	
-    			public virtual int id { get; set; }
+    			public virtual int Id { get; set; }
     			public virtual string MaNguon { get; set; }
     			public virtual string TenCoSo { get; set; }
     			public virtual string DiaChi { get; set; }
@@ -25,7 +25,7 @@ namespace Vimas.ViewModels
     			public virtual Nullable<System.DateTime> NgayKyHopDong { get; set; }
     			public virtual Nullable<System.DateTime> NgayHetHan { get; set; }
     			public virtual string NguoiDaiDien { get; set; }
-    			public virtual Nullable<bool> isActive { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
     	public TrungTamGTVLViewModel() : base() { }
     	public TrungTamGTVLViewModel(Vimas.Models.Entities.TrungTamGTVL entity) : base(entity) { }

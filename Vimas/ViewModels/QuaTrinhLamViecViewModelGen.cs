@@ -15,8 +15,8 @@ namespace Vimas.ViewModels
     public partial class QuaTrinhLamViecViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.QuaTrinhLamViec>
     {
     	
-    			public virtual int id { get; set; }
-    			public virtual int idThongTinCaNhan { get; set; }
+    			public virtual int Id { get; set; }
+    			public virtual int IdThongTinCaNhan { get; set; }
     			public virtual Nullable<int> TuNam { get; set; }
     			public virtual Nullable<int> DenNam { get; set; }
     			public virtual string TenCongTy { get; set; }
@@ -24,7 +24,7 @@ namespace Vimas.ViewModels
     			public virtual string DiaChiCongTy { get; set; }
     			public virtual string ChiTietCongViec { get; set; }
     			public virtual Nullable<bool> DangLam { get; set; }
-    			public virtual bool isActive { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public QuaTrinhLamViecViewModel() : base() { }
     	public QuaTrinhLamViecViewModel(Vimas.Models.Entities.QuaTrinhLamViec entity) : base(entity) { }

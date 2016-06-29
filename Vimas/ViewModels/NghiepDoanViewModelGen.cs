@@ -15,7 +15,7 @@ namespace Vimas.ViewModels
     public partial class NghiepDoanViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.NghiepDoan>
     {
     	
-    			public virtual int id { get; set; }
+    			public virtual int Id { get; set; }
     			public virtual string MaNghiepDoan { get; set; }
     			public virtual string TenNghiepDoan { get; set; }
     			public virtual string TenVietTat { get; set; }
@@ -28,7 +28,7 @@ namespace Vimas.ViewModels
     			public virtual Nullable<decimal> LuongCoBan { get; set; }
     			public virtual Nullable<decimal> PhiDichVu { get; set; }
     			public virtual Nullable<decimal> PhiUTDT { get; set; }
-    			public virtual Nullable<bool> isActive { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
     	public NghiepDoanViewModel() : base() { }
     	public NghiepDoanViewModel(Vimas.Models.Entities.NghiepDoan entity) : base(entity) { }

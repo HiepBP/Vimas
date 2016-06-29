@@ -14,14 +14,14 @@ namespace Vimas.Models.Entities
     
     public partial class KyTucXa
     {
-        public int id { get; set; }
-        public Nullable<int> idThongTinCaNhan { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> IdThongTinCaNhan { get; set; }
         public Nullable<System.DateTime> NgayVao { get; set; }
         public Nullable<System.DateTime> NgayRa { get; set; }
         public Nullable<int> SoPhong { get; set; }
         public Nullable<int> SoHocTuDo { get; set; }
         public string GhiChu { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

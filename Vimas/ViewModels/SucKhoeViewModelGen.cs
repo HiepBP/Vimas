@@ -15,8 +15,8 @@ namespace Vimas.ViewModels
     public partial class SucKhoeViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.SucKhoe>
     {
     	
-    			public virtual int id { get; set; }
-    			public virtual int idThongTinCaNhan { get; set; }
+    			public virtual int Id { get; set; }
+    			public virtual int IdThongTinCaNhan { get; set; }
     			public virtual string ChieuCao { get; set; }
     			public virtual string CanNang { get; set; }
     			public virtual string NhomMau { get; set; }
@@ -28,7 +28,7 @@ namespace Vimas.ViewModels
     			public virtual string GhiChuSucKhoeDot1 { get; set; }
     			public virtual Nullable<System.DateTime> NgayKhamDot2 { get; set; }
     			public virtual string GhiChuSucKhoeDot2 { get; set; }
-    			public virtual bool isActive { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public SucKhoeViewModel() : base() { }
     	public SucKhoeViewModel(Vimas.Models.Entities.SucKhoe entity) : base(entity) { }

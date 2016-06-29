@@ -14,15 +14,15 @@ namespace Vimas.Models.Entities
     
     public partial class ThongTinNopTien
     {
-        public int id { get; set; }
-        public int idThongTinCaNhan { get; set; }
+        public int Id { get; set; }
+        public int IdThongTinCaNhan { get; set; }
         public string LoaiTien { get; set; }
         public string SoPhieu { get; set; }
         public System.DateTime NgayLapPhieu { get; set; }
         public int ThuHayChi { get; set; }
         public decimal SoTien { get; set; }
         public string LyDo { get; set; }
-        public bool isActive { get; set; }
+        public bool Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

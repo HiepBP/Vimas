@@ -14,7 +14,7 @@ namespace Vimas.Models.Entities
     
     public partial class QuaTrinhHocTap
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int idThongTinCaNhan { get; set; }
         public Nullable<int> TuNam { get; set; }
         public Nullable<int> DenNam { get; set; }
@@ -22,7 +22,7 @@ namespace Vimas.Models.Entities
         public string LoaiTruong { get; set; }
         public string NganhHoc { get; set; }
         public Nullable<bool> DaTotNghiep { get; set; }
-        public bool isActive { get; set; }
+        public bool Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

@@ -20,13 +20,13 @@ namespace Vimas.Models.Entities
             this.HopDongDOLABHocVienMappings = new HashSet<HopDongDOLABHocVienMapping>();
         }
     
-        public int id { get; set; }
+        public int Id { get; set; }
         public Nullable<System.DateTime> NgayDangKy { get; set; }
         public Nullable<System.DateTime> NgayNhan { get; set; }
         public string SoDKHopDong { get; set; }
         public string SoCongVan { get; set; }
         public string SoPhieuTiepNhan { get; set; }
-        public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }

@@ -7,6 +7,8 @@
     </control>
     <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="590" y="343" w="75" h="40" measuredW="71" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>phongNguon%26bm%3BphongNguon.bmml%26bm%3BphongNguon.bmml%26bm%3BphongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22568%2C343%2C643%2C383%22%20href%3D%22phongNguon.bmml%22%20alt%3D%22phongNguon%22%20id%3D%2216%22/%3E</map>
         <text>Quay%20lai</text>
       </controlProperties>
     </control>
@@ -98,13 +100,13 @@
         <text>44</text>
       </controlProperties>
     </control>
-    <control controlID="31" controlTypeID="com.balsamiq.mockups::TextInput" x="165" y="138" w="107" h="-1" measuredW="79" measuredH="26" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::TextInput" x="165" y="138" w="183" h="-1" measuredW="182" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <size>11</size>
-        <text/>
+        <text>ten%20dien%20tu%20hop%20thoai%20truoc%20neu%20co</text>
       </controlProperties>
     </control>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::TextInput" x="165" y="161" w="107" h="-1" measuredW="79" measuredH="26" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::TextInput" x="165" y="161" w="136" h="-1" measuredW="79" measuredH="26" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <size>11</size>
         <text/>

@@ -7,15 +7,11 @@
     </control>
     <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="573" y="343" w="92" h="40" measuredW="71" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>create2PhongNguon%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22551%2C343%2C643%2C383%22%20href%3D%22create2PhongNguon.bmml%22%20alt%3D%22create2PhongNguon%22%20id%3D%2216%22/%3E</map>
         <text>Quay%20lai</text>
       </controlProperties>
     </control>
     <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="574" y="289" w="91" h="41" measuredW="78" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>create33PhongNguon%26bm%3Bcreate33PhongNguon.bmml%26bm%3Bcreate33PhongNguon.bmml%26bm%3Bcreate33PhongNguon.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22552%2C289%2C643%2C330%22%20href%3D%22create33PhongNguon.bmml%22%20alt%3D%22create33PhongNguon%22%20id%3D%2217%22/%3E</map>
         <text>Xac%20nhan</text>
       </controlProperties>
     </control>
@@ -172,5 +168,33 @@
     </control>
     <control controlID="98" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="544" y="250" w="-1" h="104" measuredW="16" measuredH="100" zOrder="28" locked="false" isInGroup="-1"/>
     <control controlID="99" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="280" y="242" w="-1" h="112" measuredW="16" measuredH="100" zOrder="29" locked="false" isInGroup="-1"/>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::FieldSet" x="217" y="122" w="333" h="170" measuredW="200" measuredH="170" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>XAC%20NHAN%20HOC%20VIEN%20DANG%20KY</text>
+      </controlProperties>
+    </control>
+    <control controlID="101" controlTypeID="com.balsamiq.mockups::Label" x="239" y="151" w="278" h="-1" measuredW="428" measuredH="52" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>20</size>
+        <text>Dang%20ky%20thanh%20cong%20hoc%20vien%20Steven%20Hawking%5CnPhong%20van%20ngay%3A%2025/11/2013</text>
+      </controlProperties>
+    </control>
+    <control controlID="102" controlTypeID="com.balsamiq.mockups::Button" x="228" y="223" w="153" h="41" measuredW="150" measuredH="27" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>phongNguon%26bm%3BphongNguon.bmml%26bm%3BphongNguon.bmml%26bm%3BphongNguon.bmml</href>
+        <icon>GtIcon%7Cxsmall</icon>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22206%2C223%2C359%2C264%22%20href%3D%22phongNguon.bmml%22%20alt%3D%22phongNguon%22%20id%3D%22102%22/%3E</map>
+        <text>Quay%20lai%20trang%20chu</text>
+      </controlProperties>
+    </control>
+    <control controlID="103" controlTypeID="com.balsamiq.mockups::Button" x="388" y="223" w="150" h="41" measuredW="152" measuredH="27" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>createPhongNguon%26bm%3BcreatePhongNguon.bmml%26bm%3BcreatePhongNguon.bmml%26bm%3BcreatePhongNguon.bmml</href>
+        <icon>PlusBigIcon%7Cxsmall</icon>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22366%2C223%2C516%2C264%22%20href%3D%22createPhongNguon.bmml%22%20alt%3D%22createPhongNguon%22%20id%3D%22103%22/%3E</map>
+        <text>Them%20hoc%20vien%20moi</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>

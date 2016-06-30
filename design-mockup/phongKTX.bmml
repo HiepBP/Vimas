@@ -5,11 +5,9 @@
         <text>A%20Web%20Page%0Ahttp%3A//</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="283" y="267" w="-1" h="-1" measuredW="109" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="466" y="177" w="159" h="26" measuredW="152" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>createPhongNguon%26bm%3BcreatePhongNguon.bmml%26bm%3BcreatePhongNguon.bmml%26bm%3BcreatePhongNguon.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22247%2C262%2C356%2C289%22%20href%3D%22createPhongNguon.bmml%22%20alt%3D%22createPhongNguon%22%20id%3D%225%22/%3E</map>
-        <text>Them%20hoc%20vien</text>
+        <text>Tim%20Hop%20dong%20DOLAB</text>
       </controlProperties>
     </control>
     <control controlID="6" controlTypeID="com.balsamiq.mockups::TextInput" x="283" y="177" w="168" h="-1" measuredW="79" measuredH="26" zOrder="2" locked="false" isInGroup="-1">
@@ -24,22 +22,20 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::SubTitle" x="158" y="183" w="110" h="-1" measuredW="100" measuredH="17" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::SubTitle" x="152" y="183" w="131" h="-1" measuredW="121" measuredH="17" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <size>14</size>
-        <text>Nhap%20ma%20nguon</text>
+        <text>Nhap%20Ma%20Hop%20dong</text>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::SubTitle" x="158" y="223" w="110" h="-1" measuredW="81" measuredH="17" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::SubTitle" x="152" y="214" w="110" h="-1" measuredW="81" measuredH="17" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <size>14</size>
         <text>Ten%20hoc%20vien</text>
       </controlProperties>
     </control>
-    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="414" y="267" w="-1" h="-1" measuredW="97" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="414" y="267" w="106" h="47" measuredW="97" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>listPhongNguon%26bm%3BlistPhongNguon.bmml%26bm%3BlistPhongNguon.bmml%26bm%3BlistPhongNguon.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22378%2C262%2C475%2C289%22%20href%3D%22listPhongNguon.bmml%22%20alt%3D%22listPhongNguon%22%20id%3D%2213%22/%3E</map>
         <text>Tim%20hoc%20vien</text>
       </controlProperties>
     </control>
@@ -48,13 +44,11 @@
         <align>center</align>
         <bold>true</bold>
         <size>28</size>
-        <text>Wellcome%20Obama%20Hiraku%20back%20to%20%5Cnphong%20nguon</text>
+        <text>Wellcome%20Obama%20Hiraku%20back%20to%20%5Cnphong%20Xuat%20khau%20Lao%20dong</text>
       </controlProperties>
     </control>
     <control controlID="15" controlTypeID="com.balsamiq.mockups::Button" x="605" y="329" w="100" h="61" measuredW="74" measuredH="37" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>mock%26bm%3Bmock.bmml%26bm%3Bmock.bmml%26bm%3Bmock.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22569%2C324%2C669%2C385%22%20href%3D%22mock.bmml%22%20alt%3D%22mock%22%20id%3D%2215%22/%3E</map>
         <text>Roi%20khoi%20%5Cnhe%20thong</text>
       </controlProperties>
     </control>

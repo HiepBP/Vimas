@@ -210,5 +210,76 @@
         <text>x</text>
       </controlProperties>
     </control>
+    <control controlID="85" controlTypeID="com.balsamiq.mockups::FieldSet" x="217" y="122" w="333" h="189" measuredW="200" measuredH="170" zOrder="36" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Them%20bang%20cap</text>
+      </controlProperties>
+    </control>
+    <control controlID="86" controlTypeID="com.balsamiq.mockups::Button" x="268" y="268" w="101" h="29" measuredW="78" measuredH="27" zOrder="37" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create2PhongNguon%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22246%2C268%2C347%2C297%22%20href%3D%22create2PhongNguon.bmml%22%20alt%3D%22create2PhongNguon%22%20id%3D%2286%22/%3E</map>
+        <text>Xac%20nhan</text>
+      </controlProperties>
+    </control>
+    <control controlID="87" controlTypeID="com.balsamiq.mockups::Button" x="394" y="268" w="109" h="29" measuredW="71" measuredH="27" zOrder="38" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create2PhongNguon%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22372%2C268%2C481%2C297%22%20href%3D%22create2PhongNguon.bmml%22%20alt%3D%22create2PhongNguon%22%20id%3D%2287%22/%3E</map>
+        <text>Quay%20lai</text>
+      </controlProperties>
+    </control>
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::SubTitle" x="236" y="155" w="87" h="-1" measuredW="61" measuredH="17" zOrder="39" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Bang%20cap</text>
+      </controlProperties>
+    </control>
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="146" w="138" h="-1" measuredW="79" measuredH="26" zOrder="40" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="90" controlTypeID="com.balsamiq.mockups::SubTitle" x="237" y="176" w="129" h="-1" measuredW="51" measuredH="17" zOrder="41" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Trinh%20do</text>
+      </controlProperties>
+    </control>
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="171" w="138" h="-1" measuredW="79" measuredH="26" zOrder="42" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="94" controlTypeID="com.balsamiq.mockups::SubTitle" x="236" y="208" w="59" h="-1" measuredW="41" measuredH="17" zOrder="43" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Thang</text>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::NumericStepper" x="295" y="204" w="-1" h="-1" measuredW="47" measuredH="24" zOrder="44" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>12</text>
+      </controlProperties>
+    </control>
+    <control controlID="96" controlTypeID="com.balsamiq.mockups::SubTitle" x="352" y="208" w="42" h="-1" measuredW="30" measuredH="17" zOrder="45" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Nam</text>
+      </controlProperties>
+    </control>
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::NumericStepper" x="394" y="204" w="-1" h="-1" measuredW="66" measuredH="24" zOrder="46" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2000</text>
+      </controlProperties>
+    </control>
+    <control controlID="98" controlTypeID="com.balsamiq.mockups::CheckBox" x="250" y="235" w="87" h="18" measuredW="62" measuredH="22" zOrder="47" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Da%20nop</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>

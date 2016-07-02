@@ -172,5 +172,88 @@
     </control>
     <control controlID="98" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="544" y="250" w="-1" h="104" measuredW="16" measuredH="100" zOrder="28" locked="false" isInGroup="-1"/>
     <control controlID="99" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="280" y="242" w="-1" h="112" measuredW="16" measuredH="100" zOrder="29" locked="false" isInGroup="-1"/>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::FieldSet" x="217" y="122" w="333" h="232" measuredW="200" measuredH="170" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Them%20truong%20hoc</text>
+      </controlProperties>
+    </control>
+    <control controlID="102" controlTypeID="com.balsamiq.mockups::Button" x="273" y="305" w="101" h="29" measuredW="78" measuredH="27" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create3PhongNguon%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22251%2C305%2C352%2C334%22%20href%3D%22create3PhongNguon.bmml%22%20alt%3D%22create3PhongNguon%22%20id%3D%22102%22/%3E</map>
+        <text>Xac%20nhan</text>
+      </controlProperties>
+    </control>
+    <control controlID="103" controlTypeID="com.balsamiq.mockups::Button" x="392" y="305" w="109" h="29" measuredW="71" measuredH="27" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create3PhongNguon%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22370%2C305%2C479%2C334%22%20href%3D%22create3PhongNguon.bmml%22%20alt%3D%22create3PhongNguon%22%20id%3D%22103%22/%3E</map>
+        <text>Quay%20lai</text>
+      </controlProperties>
+    </control>
+    <control controlID="104" controlTypeID="com.balsamiq.mockups::SubTitle" x="236" y="155" w="87" h="-1" measuredW="70" measuredH="17" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ten%20truong</text>
+      </controlProperties>
+    </control>
+    <control controlID="105" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="146" w="138" h="-1" measuredW="79" measuredH="26" zOrder="34" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::SubTitle" x="237" y="176" w="129" h="-1" measuredW="73" measuredH="17" zOrder="35" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Loai%20truong</text>
+      </controlProperties>
+    </control>
+    <control controlID="107" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="171" w="138" h="-1" measuredW="79" measuredH="26" zOrder="36" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="191" w="138" h="-1" measuredW="79" measuredH="26" zOrder="37" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="109" controlTypeID="com.balsamiq.mockups::SubTitle" x="236" y="196" w="87" h="-1" measuredW="67" measuredH="17" zOrder="38" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Nganh%20hoc</text>
+      </controlProperties>
+    </control>
+    <control controlID="110" controlTypeID="com.balsamiq.mockups::SubTitle" x="237" y="233" w="59" h="-1" measuredW="47" measuredH="17" zOrder="39" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Tu%20nam</text>
+      </controlProperties>
+    </control>
+    <control controlID="111" controlTypeID="com.balsamiq.mockups::NumericStepper" x="296" y="229" w="-1" h="-1" measuredW="66" measuredH="24" zOrder="40" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2000</text>
+      </controlProperties>
+    </control>
+    <control controlID="112" controlTypeID="com.balsamiq.mockups::SubTitle" x="366" y="233" w="42" h="-1" measuredW="30" measuredH="17" zOrder="41" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Den%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="113" controlTypeID="com.balsamiq.mockups::NumericStepper" x="413" y="229" w="-1" h="-1" measuredW="66" measuredH="24" zOrder="42" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2000</text>
+      </controlProperties>
+    </control>
+    <control controlID="116" controlTypeID="com.balsamiq.mockups::CheckBox" x="237" y="256" w="101" h="30" measuredW="101" measuredH="22" zOrder="43" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Da%20tot%20nghiep</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>

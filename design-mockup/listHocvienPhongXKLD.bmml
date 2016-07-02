@@ -22,20 +22,21 @@
         <text>Tim%20theo%20ten</text>
       </controlProperties>
     </control>
-    <control controlID="15" controlTypeID="com.balsamiq.mockups::DataGrid" x="31" y="141" w="446" h="240" measuredW="425" measuredH="171" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::DataGrid" x="31" y="141" w="446" h="240" measuredW="502" measuredH="171" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Ten%20hoc%20vien%20%2C%20Ten%20tieng%20nhat%20%2C%20CMND%2C%20Ma%20luu%20ho%20so%0AGiacomo%20Guilizzoni%20%2C%20Hello%2C%20224401020%2C%20288EED123%0AMarco%20Botton%20%2C%20HowAreOuy%2C%20332912231%2C%20TY3DSS21%0AMariah%20Maclachlan%2C%20AroGaly%2C%2033291412%2C%20YHYY55112%0AValerie%20Liberty%20%2C%20Lesmi%2C%20231222552%2C%20NH7S312U%0AGuido%20Jack%20Guilizzoni%2C%20Ufycuko%2C%203766142%2C43AU1233%0A%7B65L%2C%200R%2C%2035%2C%200C%7D</text>
+        <borderStyle>square</borderStyle>
+        <text>Ten%20hoc%20vien%20%20%20%20%2C%20Dot%20trung%20tuyen%20%2C%20Hop%20dong%20DOLAB%2C%20Cong%20ty%20tiep%20nhan%0AGiacomo%20Guilizzoni%20%2C22-11%20%20%20/2015%2C%20ABC%2C%20banh%20keo%20ABC%0AMarco%20Botton%20%2C22-11%20%20%20/2015%2C%20XYZ%2C%20Kinh%20do%0AMariah%20Maclachlan%2C22-11%20%20%20/2015%2C%20Hariko%20%2C%20Kindler%20garden%0AValerie%20Liberty%20%20%2C22-11%20%20%20/2015%2C%20ABC%2C%20banh%20keo%20ABC%0AGuido%20Jack%20Guilizzoni%20%2C%2022-11%20%20%20/2015%2C%20ABC%2C%20banh%20keo%20ABC%0A%7B65L%2C%200R%2C%200C%2C%200C%7D</text>
         <verticalScrollbar>true</verticalScrollbar>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="569" y="332" w="111" h="40" measuredW="71" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="569" y="350" w="126" h="37" measuredW="71" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Quay%20lai</text>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="569" y="276" w="111" h="41" measuredW="109" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="569" y="276" w="126" h="57" measuredW="124" measuredH="37" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Them%20hoc%20vien</text>
+        <text>Xem%20danh%20sach%20%5Cnhop%20dong%20DOLAB</text>
       </controlProperties>
     </control>
     <control controlID="18" controlTypeID="com.balsamiq.mockups::Button" x="484" y="164" w="51" h="22" measuredW="50" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
@@ -61,6 +62,11 @@
     <control controlID="22" controlTypeID="com.balsamiq.mockups::Button" x="484" y="285" w="51" h="22" measuredW="50" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>View</text>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Button" x="569" y="206" w="126" h="57" measuredW="126" measuredH="37" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Xem%20danh%20sach%20%5Cncong%20ty%20tiep%20nhan</text>
       </controlProperties>
     </control>
   </controls>

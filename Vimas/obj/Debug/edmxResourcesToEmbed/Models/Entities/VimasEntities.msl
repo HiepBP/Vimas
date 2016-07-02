@@ -252,7 +252,7 @@
           <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
           <ScalarProperty Name="TenPhienAmNhat" ColumnName="TenPhienAmNhat" />
           <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="MaNguon" ColumnName="MaNguon" />
+          <ScalarProperty Name="IdTrungTamGTVL" ColumnName="IdTrungTamGTVL" />
           <ScalarProperty Name="MaLuuHoSo" ColumnName="MaLuuHoSo" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

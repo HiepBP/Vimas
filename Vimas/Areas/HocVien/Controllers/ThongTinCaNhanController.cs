@@ -60,13 +60,26 @@ namespace Vimas.Areas.HocVien.Controllers
 
         public ActionResult Create()
         {
-            var model = new ThongTinCaNhanViewModel();
+            var trungTamGTVLService = this.Service<ITrungTamGTVLService>();
+            var model = new ThongTinCaNhanEditViewModel();
+            model.Gender = (Gender)model.GioiTinh;
+            model.FamilyStatus = (FamilyStatus)model.TinhTrangGiaDinh;
+            model.AvailableMaNguon = trungTamGTVLService.GetActive().Select(q => new SelectListItem()
+            {
+                Text = q.TenCoSo,
+                Value = q.Id.ToString(),
+                Selected = false,
+            });
             return View(model);
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(ThongTinCaNhanViewModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             model.Active = true;
             await thongTinCaNhanService.CreateAsync(model.ToEntity());

@@ -72,6 +72,10 @@
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
       <End Role="SucKhoe" EntitySet="SucKhoes" />
     </AssociationSet>
+    <AssociationSet Name="FK_ThongTinCaNhan_TrungTamGTVL" Association="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL">
+      <End Role="TrungTamGTVL" EntitySet="TrungTamGTVLs" />
+      <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
+    </AssociationSet>
     <AssociationSet Name="FK_ThongTinDuTuyen_ThongTinCaNhan" Association="VimasModel.FK_ThongTinDuTuyen_ThongTinCaNhan">
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
       <End Role="ThongTinDuTuyen" EntitySet="ThongTinDuTuyens" />
@@ -331,7 +335,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MaLuuHoSo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MaNguon" Type="Int32" Nullable="false" />
+    <Property Name="IdTrungTamGTVL" Type="Int32" Nullable="false" />
     <Property Name="HoTen" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
     <Property Name="TenPhienAmNhat" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="GioiTinh" Type="Int32" Nullable="false" />
@@ -362,6 +366,7 @@
     <NavigationProperty Name="QuaTrinhHocTaps" Relationship="VimasModel.FK_QuaTrinhHocTap_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="QuaTrinhHocTap" />
     <NavigationProperty Name="QuaTrinhLamViecs" Relationship="VimasModel.FK_QuaTrinhLamViec_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="QuaTrinhLamViec" />
     <NavigationProperty Name="SucKhoes" Relationship="VimasModel.FK_SucKhoe_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="SucKhoe" />
+    <NavigationProperty Name="TrungTamGTVL" Relationship="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL" FromRole="ThongTinCaNhan" ToRole="TrungTamGTVL" />
     <NavigationProperty Name="ThongTinDuTuyens" Relationship="VimasModel.FK_ThongTinDuTuyen_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="ThongTinDuTuyen" />
     <NavigationProperty Name="ThongTinGiaDinhs" Relationship="VimasModel.FK_ThongTinGiaDinh_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="ThongTinGiaDinh" />
     <NavigationProperty Name="ThongTinNopTiens" Relationship="VimasModel.FK_ThongTinNopTien_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="ThongTinNopTien" />
@@ -491,6 +496,7 @@
     <Property Name="NgayHetHan" Type="DateTime" Precision="3" />
     <Property Name="NguoiDaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="ThongTinCaNhans" Relationship="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL" FromRole="TrungTamGTVL" ToRole="ThongTinCaNhan" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="VimasModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -637,6 +643,18 @@
       </Principal>
       <Dependent Role="SucKhoe">
         <PropertyRef Name="IdThongTinCaNhan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThongTinCaNhan_TrungTamGTVL">
+    <End Type="VimasModel.TrungTamGTVL" Role="TrungTamGTVL" Multiplicity="1" />
+    <End Type="VimasModel.ThongTinCaNhan" Role="ThongTinCaNhan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrungTamGTVL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ThongTinCaNhan">
+        <PropertyRef Name="IdTrungTamGTVL" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

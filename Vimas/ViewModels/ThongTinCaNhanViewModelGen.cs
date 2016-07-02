@@ -17,7 +17,7 @@ namespace Vimas.ViewModels
     	
     			public virtual int Id { get; set; }
     			public virtual string MaLuuHoSo { get; set; }
-    			public virtual int MaNguon { get; set; }
+    			public virtual int IdTrungTamGTVL { get; set; }
     			public virtual string HoTen { get; set; }
     			public virtual string TenPhienAmNhat { get; set; }
     			public virtual int GioiTinh { get; set; }

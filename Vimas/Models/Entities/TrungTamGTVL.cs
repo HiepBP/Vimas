@@ -14,6 +14,12 @@ namespace Vimas.Models.Entities
     
     public partial class TrungTamGTVL
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TrungTamGTVL()
+        {
+            this.ThongTinCaNhans = new HashSet<ThongTinCaNhan>();
+        }
+    
         public int Id { get; set; }
         public string MaNguon { get; set; }
         public string TenCoSo { get; set; }
@@ -25,5 +31,8 @@ namespace Vimas.Models.Entities
         public Nullable<System.DateTime> NgayHetHan { get; set; }
         public string NguoiDaiDien { get; set; }
         public Nullable<bool> Active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThongTinCaNhan> ThongTinCaNhans { get; set; }
     }
 }

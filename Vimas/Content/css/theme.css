@@ -202,3 +202,8 @@ button:focus, a:focus, input:focus, select:focus {
 @media only screen and (min-width : 1824px) {
     /* Styles */
 }
+
+/* Validate message ------------*/
+.field-validation-error {
+        color:Red;
+}

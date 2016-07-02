@@ -1,4 +1,4 @@
-﻿@model Vimas.ViewModels.ThongTinCaNhanViewModel
+﻿@model Vimas.ViewModels.ThongTinCaNhanEditViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -17,14 +17,13 @@
     <form id="createProductItemForm" method="post">
         <div class="modal-body">
             @Html.AntiForgeryToken()
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
             <div class="form-horizontal">
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="MaLuuHoSo">Mã lưu hồ sơ<span style="color:red">*</span></label>
+                        <label class="control-label col-md-4" for="MaLuuHoSo">Mã lưu hồ sơ</label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.MaLuuHoSo, new { @class = "form-control", required = "true" })
+                                @Html.TextBoxFor(q => q.MaLuuHoSo, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
@@ -32,7 +31,7 @@
                         <label class="control-label col-md-4" for="MaNguon">Mã Nguồn<span style="color:red">*</span></label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.MaNguon, new { @class = "form-control", required = "true" })
+                                @Html.DropDownListFor(q => q.IdTrungTamGTVL, this.Model.AvailableMaNguon, new { @class = "form-control", @placeholder = "Lựa trung tâm", @required = "required" })
                             </div>
                         </div>
                     </div>
@@ -40,7 +39,8 @@
                         <label class="control-label col-md-4" for="HoTen">Họ Tên<span style="color:red">*</span></label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.HoTen, new { @class = "form-control", required = "true" })
+                                @Html.TextBoxFor(q => q.HoTen, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.HoTen)
                             </div>
                         </div>
                     </div>
@@ -55,17 +55,19 @@
                     <div class="form-group">
                         <label class="control-label col-md-4" for="GioiTinh">Giới Tính<span style="color:red">*</span></label>
                         <div class="col-md-6">
-                            <select id="GioiTinh" name="GioiTinh">
-                                <option value="true" selected>Nam</option>
-                                <option value="false">Nữ</option>
-                            </select>
+                            @*<select class="form-control" id="GioiTinh" name="GioiTinh">
+                                    <option value="true" selected>Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>*@
+                            @Html.EnumDropDownListFor(q => q.Gender, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4" for="NgaySinh">Ngày Sinh<span style="color:red">*</span></label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.NgaySinh, new { input = "date", @class = "form-control", required = "true" })
+                                <input class="form-control" id="NgaySinh" type="text" value="" readonly style="background-color:white" />
+                                <input type="hidden" name="NgaySinh" value="@this.Model.NgaySinh"/>
                             </div>
                         </div>
                     </div>
@@ -81,7 +83,14 @@
                         <label class="control-label col-md-4" for="TinhTrangGiaDinh">Tình trạng gia đình<span style="color:red">*</span></label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.TinhTrangGiaDinh, new { @class = "form-control", required = "true" })
+                                @*@Html.TextBoxFor(q => q.TinhTrangGiaDinh, new { @class = "form-control", required = "true" })*@
+                                @*<select class="control-label col-sm-12" name="Type">
+                                        @foreach (var familyStatus in Enum.GetValues(typeof(Vimas.Models.FamilyStatus)))
+                                        {
+                                            <option value="@((int)familyStatus)" selected="@((int)familyStatus==this.Model.TinhTrangGiaDinh ? "":null)" }>@(Vimas.Models.Utils.GetEnumDescription((Enum)familyStatus))</option>
+                                        }
+                                    </select>*@
+                                @Html.EnumDropDownListFor(q => q.FamilyStatus, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
@@ -90,6 +99,7 @@
                         <div class="col-md-6">
                             <div class="fg-line">
                                 @Html.TextBoxFor(q => q.CMND, new { @class = "form-control", required = "true" })
+                                @Html.ValidationMessageFor(q => q.CMND)
                             </div>
                         </div>
                     </div>
@@ -97,7 +107,8 @@
                         <label class="control-label col-md-4" for="NgayCap">Ngày Cấp<span style="color:red">*</span></label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.NgayCap, new { input = "date", @class = "form-control", required = "true" })
+                                <input class="form-control" id="NgayCap" type="text" value="" readonly style="background-color:white" />
+                                <input type="hidden" name="NgayCap" value="@this.Model.NgayCap" />
                             </div>
                         </div>
                     </div>
@@ -105,7 +116,7 @@
                         <label class="control-label col-md-4" for="NoiCap">Nơi cấp<span style="color:red">*</span></label>
                         <div class="col-md-6">
                             <div class="fg-line">
-                                @Html.TextBoxFor(q => q.NoiCap, new { @class = "form-control", required = "true" })
+                                <select class="form-control" name="NoiCap" id="NoiCap"></select>
                             </div>
                         </div>
                     </div>
@@ -118,3 +129,91 @@
         </div>
     </form>
 </div>
+
+<script>
+
+    $(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        console.log(now);
+        $('#NgaySinh').val(now);
+        $('#NgaySinh').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayCap').val(now);
+        $('#NgayCap').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('input[name="NgayCap"]').val(start.format("DD/MM/YYYY"));
+        });
+
+
+        for (var i = 0; i < provinces.length; i++) {
+            $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+            //$('select[name="NoiCap"]').selectpicker('refresh');
+        }
+        //$('select[name="NoiCap"]').selectpicker();
+        //$('#NoiCap').selectpicker();
+    });
+</script>

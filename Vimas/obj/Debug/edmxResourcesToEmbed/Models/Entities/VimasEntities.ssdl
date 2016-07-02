@@ -224,7 +224,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MaLuuHoSo" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="MaNguon" Type="int" Nullable="false" />
+    <Property Name="IdTrungTamGTVL" Type="int" Nullable="false" />
     <Property Name="HoTen" Type="nvarchar" MaxLength="80" Nullable="false" />
     <Property Name="TenPhienAmNhat" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="GioiTinh" Type="int" Nullable="false" />
@@ -519,6 +519,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ThongTinCaNhan_TrungTamGTVL">
+    <End Role="TrungTamGTVL" Type="Self.TrungTamGTVL" Multiplicity="1" />
+    <End Role="ThongTinCaNhan" Type="Self.ThongTinCaNhan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrungTamGTVL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ThongTinCaNhan">
+        <PropertyRef Name="IdTrungTamGTVL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ThongTinDuTuyen_ThongTinCaNhan">
     <End Role="ThongTinCaNhan" Type="Self.ThongTinCaNhan" Multiplicity="1" />
     <End Role="ThongTinDuTuyen" Type="Self.ThongTinDuTuyen" Multiplicity="*" />
@@ -675,6 +687,10 @@
     <AssociationSet Name="FK_SucKhoe_ThongTinCaNhan" Association="Self.FK_SucKhoe_ThongTinCaNhan">
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
       <End Role="SucKhoe" EntitySet="SucKhoe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThongTinCaNhan_TrungTamGTVL" Association="Self.FK_ThongTinCaNhan_TrungTamGTVL">
+      <End Role="TrungTamGTVL" EntitySet="TrungTamGTVL" />
+      <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
     </AssociationSet>
     <AssociationSet Name="FK_ThongTinDuTuyen_ThongTinCaNhan" Association="Self.FK_ThongTinDuTuyen_ThongTinCaNhan">
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />

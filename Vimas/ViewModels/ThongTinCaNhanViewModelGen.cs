@@ -23,7 +23,7 @@ namespace Vimas.ViewModels
     			public virtual int GioiTinh { get; set; }
     			public virtual System.DateTime NgaySinh { get; set; }
     			public virtual string NoiSinh { get; set; }
-    			public virtual string TrinhDoVanHoa { get; set; }
+    			public virtual Nullable<int> TrinhDoVanHoa { get; set; }
     			public virtual int TinhTrangGiaDinh { get; set; }
     			public virtual string CMND { get; set; }
     			public virtual System.DateTime NgayCap { get; set; }

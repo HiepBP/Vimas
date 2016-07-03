@@ -52,6 +52,7 @@ namespace Vimas.ViewModels
 
         public Gender Gender { get; set; }
         public FamilyStatus FamilyStatus { get; set; }
+        public EducationLevel EducationLevel { get; set; }
         public IEnumerable<SelectListItem> AvailableMaNguon { get; set; }
     }
 

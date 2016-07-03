@@ -235,7 +235,7 @@
           <Property Name="GioiTinh" Type="int" Nullable="false" />
           <Property Name="NgaySinh" Type="datetime" Nullable="false" />
           <Property Name="NoiSinh" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TrinhDoVanHoa" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrinhDoVanHoa" Type="int" />
           <Property Name="TinhTrangGiaDinh" Type="int" Nullable="false" />
           <Property Name="CMND" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="NgayCap" Type="datetime" Nullable="false" />
@@ -1071,7 +1071,7 @@
           <Property Name="GioiTinh" Type="Int32" Nullable="false" />
           <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NoiSinh" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TrinhDoVanHoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrinhDoVanHoa" Type="Int32" />
           <Property Name="TinhTrangGiaDinh" Type="Int32" Nullable="false" />
           <Property Name="CMND" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="NgayCap" Type="DateTime" Nullable="false" Precision="3" />

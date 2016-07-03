@@ -230,7 +230,7 @@
     <Property Name="GioiTinh" Type="int" Nullable="false" />
     <Property Name="NgaySinh" Type="datetime" Nullable="false" />
     <Property Name="NoiSinh" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="TrinhDoVanHoa" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrinhDoVanHoa" Type="int" />
     <Property Name="TinhTrangGiaDinh" Type="int" Nullable="false" />
     <Property Name="CMND" Type="nvarchar" MaxLength="12" Nullable="false" />
     <Property Name="NgayCap" Type="datetime" Nullable="false" />

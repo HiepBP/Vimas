@@ -37,7 +37,7 @@ namespace Vimas.Models.Entities
         public int GioiTinh { get; set; }
         public System.DateTime NgaySinh { get; set; }
         public string NoiSinh { get; set; }
-        public string TrinhDoVanHoa { get; set; }
+        public Nullable<int> TrinhDoVanHoa { get; set; }
         public int TinhTrangGiaDinh { get; set; }
         public string CMND { get; set; }
         public System.DateTime NgayCap { get; set; }

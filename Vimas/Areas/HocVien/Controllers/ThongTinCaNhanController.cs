@@ -64,6 +64,7 @@ namespace Vimas.Areas.HocVien.Controllers
             var model = new ThongTinCaNhanEditViewModel();
             model.Gender = (Gender)model.GioiTinh;
             model.FamilyStatus = (FamilyStatus)model.TinhTrangGiaDinh;
+            model.EducationLevel = (EducationLevel)(model.TrinhDoVanHoa != null ? model.TrinhDoVanHoa : 0);
             model.AvailableMaNguon = trungTamGTVLService.GetActive().Select(q => new SelectListItem()
             {
                 Text = q.TenCoSo,
@@ -74,15 +75,68 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(ThongTinCaNhanViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(ThongTinCaNhanEditViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+                model.Active = true;
+                model.GioiTinh = (int)model.Gender;
+                model.TrinhDoVanHoa = (int)model.EducationLevel;
+                model.TinhTrangGiaDinh = (int)model.FamilyStatus;
+                await thongTinCaNhanService.CreateAsync(model.ToEntity());
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Edit(int id)
+        {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var trungTamGTVLService = this.Service<ITrungTamGTVLService>();
+            var model = new ThongTinCaNhanEditViewModel(await thongTinCaNhanService.GetAsync(id));
+            model.Gender = (Gender)model.GioiTinh;
+            model.FamilyStatus = (FamilyStatus)model.TinhTrangGiaDinh;
+            model.EducationLevel = (EducationLevel)(model.TrinhDoVanHoa != null ? model.TrinhDoVanHoa : 0);
+            model.AvailableMaNguon = trungTamGTVLService.GetActive().Select(q => new SelectListItem()
+            {
+                Text = q.TenCoSo,
+                Value = q.Id.ToString(),
+                Selected = (q.Id == model.IdTrungTamGTVL),
+            });
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ThongTinCaNhanEditViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return View(model);
             }
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
-            model.Active = true;
-            await thongTinCaNhanService.CreateAsync(model.ToEntity());
+            var entity = await thongTinCaNhanService.GetAsync(model.Id);
+            //entity.MaLuuHoSo = model.MaLuuHoSo;
+            //entity.IdTrungTamGTVL = model.IdTrungTamGTVL
+            //entity.HoTen = model.HoTen;
+            //entity.TenPhienAmNhat = model.TenPhienAmNhat;
+            //entity.GioiTinh = model.GioiTinh;
+            //entity.NgaySinh = model.NgaySinh;
+            model.CopyToEntity(entity);
+            entity.Active = true;
+            entity.GioiTinh = (int)model.Gender;
+            entity.TrinhDoVanHoa = (int)model.EducationLevel;
+            entity.TinhTrangGiaDinh = (int)model.FamilyStatus;
+            await thongTinCaNhanService.UpdateAsync(entity);
             return RedirectToAction("Index");
         }
     }

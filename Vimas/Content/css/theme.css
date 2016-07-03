@@ -207,3 +207,7 @@ button:focus, a:focus, input:focus, select:focus {
 .field-validation-error {
         color:Red;
 }
+
+input[readonly].default-cursor {
+    cursor: default;
+}

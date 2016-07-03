@@ -1935,3 +1935,27 @@ jQuery.fn.datatablevpn = function (options) {
 
     jQuery.fn.dataTable.call(this, options);
 }
+
+//function RefreshTable(tableId) {
+//    var oTable = $('#' + tableId).dataTable();
+//    oTable._fnPageChange(0);
+//    oTable._fnAjaxUpdate();
+//}
+
+////redraw datatable without reload
+//function ReDrawDatatable(tableId) {
+//    $.fn.dataTableExt.oApi.fnStandingRedraw = function (oSettings) {
+//        if (oSettings.oFeatures.bServerSide === false) {
+//            var before = oSettings._iDisplayStart;
+//            oSettings.oApi._fnReDraw(oSettings);
+
+//            //iDisplayStart has been reset to zero - so lets change it back
+//            oSettings._iDisplayStart = before;
+//            oSettings.oApi._fnCalculateEnd(oSettings);
+//        }
+
+//        //draw the 'current' page
+//        oSettings.oApi._fnDraw(oSettings);
+//    };
+//    $('#' + tableId).dataTable().fnStandingRedraw();
+//}

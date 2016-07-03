@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Danh sách tài khoản</h3>
+            </div>
+            <div class="col-md-4">
+                <a data-toggle="modal" data-target="createAccountPanel" class="btn btn-primary pull-right " onclick="showCreateAccount()">
+                    <i class="left-icon glyphicon glyphicon-plus"></i> Thêm tài khoản
+                </a>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div class="card-padding">
+        <div id="datatable">
+            <table id="taiKhoanDatatable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                    <tr>
+                        <th>
+                            <label class="">Username</label>
+                        </th>
+                        <th>
+                            <label class="">Roles</label>
+                        </th>
+                        <th>
+                            <label class=""></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="createAccountModel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editAccountModel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<script>
+    $(document).ready(function () {
+        InitOrderDatatable();
+    });
+
+    function showCreateAccount() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","TaiKhoan")',
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createAccountModel').html(result);
+                $('#createAccountModel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditAccount(id) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","TaiKhoan")',
+            data: {
+                id: id,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editAccountModel').html(result);
+                $('#editAccountModel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function InitOrderDatatable() {
+        $("#taiKhoanDatatable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadDanhSachTaiKhoan","TaiKhoan")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý..."
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [1],
+                    "mRender": function (data, type, o) {
+                        var roleTag = "";
+                        var data = o[1];
+                        for (var i = 0; i < data.length; i++) {
+                            roleTag += ($('<span/>', {
+                                'class': 'badge',
+                                'style': 'background-color: #009FFF!important;',
+                                html: data[i].Name,
+                                'data-id': data[i].Id
+                            })[0].outerHTML);
+                            roleTag += ($('<br />', {})[0].outerHTML)
+                        }
+                        return roleTag;
+                    }
+                },
+                {
+                    "aTargets": [2],
+                    "mRender": function (data, type, o) {
+                        var data = o[2];
+                        var edit = "<a class='btn btn-sm btn-primary' onclick='showEditAccount(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var del = "<a class='btn btn-sm btn-primary' onclick='deleteAccount(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        });
+    }
+
+    function deleteAccount(id) {
+        if (confirm("Bạn có muốn xóa tài khoản này")) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Delete","TaiKhoan")',
+                data: {
+                    id: id,
+                },
+                success: function (result) {
+                    alert('Xóa thành công!!!')
+                    RefreshTable()
+                },
+                error: function (error) {
+                    alert('Xóa không thành công, xin liên hệ admin!!!')
+                },
+            });
+        };
+    }
+
+    function RefreshTable() {
+        var oTable = $('#taiKhoanDatatable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+</script>

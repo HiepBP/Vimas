@@ -1,0 +1,259 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="706" measuredH="428" mockupW="684" mockupH="428">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="22" y="0" w="684" h="428" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Button" x="573" y="343" w="92" h="40" measuredW="71" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create2PhongNguon%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml%26bm%3Bcreate2PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22551%2C343%2C643%2C383%22%20href%3D%22create2PhongNguon.bmml%22%20alt%3D%22create2PhongNguon%22%20id%3D%2216%22/%3E</map>
+        <text>Quay%20lai</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="574" y="289" w="91" h="41" measuredW="78" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create33PhongNguon%26bm%3Bcreate33PhongNguon.bmml%26bm%3Bcreate33PhongNguon.bmml%26bm%3Bcreate33PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22552%2C289%2C643%2C330%22%20href%3D%22create33PhongNguon.bmml%22%20alt%3D%22create33PhongNguon%22%20id%3D%2217%22/%3E</map>
+        <text>Xac%20nhan</text>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="55" y="96" w="-1" h="-1" measuredW="596" measuredH="28" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>20</size>
+        <text>Hoc%20vien%20moi%20%3E%20thong%20tin%20nguoi%20than%2C%20qua%20trinh%20lam%20viec%20hoc%20tap</text>
+      </controlProperties>
+    </control>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="151" w="108" h="-1" measuredW="97" measuredH="17" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Nguoi%20gioi%20thieu</text>
+      </controlProperties>
+    </control>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="185" w="160" h="-1" measuredW="156" measuredH="17" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Anh%20chi%20dang%20ky%20o%20Vimas</text>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::SubTitle" x="323" y="176" w="50" h="-1" measuredW="46" measuredH="34" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <italic>false</italic>
+        <size>14</size>
+        <text>Ban%20be%20%20%5CnAnh%20chi</text>
+      </controlProperties>
+    </control>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::CheckBox" x="323" y="142" w="-1" h="-1" measuredW="126" measuredH="22" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Nguoi%20than%20o%20Nhat</text>
+      </controlProperties>
+    </control>
+    <control controlID="76" controlTypeID="com.balsamiq.mockups::TextInput" x="173" y="142" w="107" h="-1" measuredW="79" measuredH="26" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="77" controlTypeID="com.balsamiq.mockups::TextInput" x="381" y="165" w="107" h="-1" measuredW="79" measuredH="26" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::TextInput" x="381" y="187" w="107" h="-1" measuredW="79" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::TextInput" x="225" y="180" w="52" h="-1" measuredW="79" measuredH="26" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::Button" x="65" y="354" w="126" h="41" measuredW="105" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Them%20cong%20ty</text>
+      </controlProperties>
+    </control>
+    <control controlID="81" controlTypeID="com.balsamiq.mockups::Button" x="325" y="354" w="139" h="41" measuredW="123" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Them%20truong%20hoc</text>
+      </controlProperties>
+    </control>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="225" w="160" h="-1" measuredW="117" measuredH="17" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Qua%20trinh%20lam%20viec</text>
+      </controlProperties>
+    </control>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::SubTitle" x="323" y="225" w="160" h="-1" measuredW="111" measuredH="17" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Qua%20trinh%20hoc%20tap</text>
+      </controlProperties>
+    </control>
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="256" w="172" h="-1" measuredW="167" measuredH="17" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Cong%20ty%3A%20Banh%20keo%20Kinh%20do</text>
+      </controlProperties>
+    </control>
+    <control controlID="85" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="275" w="165" h="-1" measuredW="139" measuredH="17" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Tu%3A%202014%20%20%20%20%20Den%3A%202015</text>
+      </controlProperties>
+    </control>
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="292" w="172" h="-1" measuredW="167" measuredH="17" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Cong%20ty%3A%20Banh%20keo%20Kinh%20do</text>
+      </controlProperties>
+    </control>
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::SubTitle" x="65" y="311" w="165" h="-1" measuredW="139" measuredH="17" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Tu%3A%202014%20%20%20%20%20Den%3A%202015</text>
+      </controlProperties>
+    </control>
+    <control controlID="90" controlTypeID="com.balsamiq.mockups::Button" x="237" y="256" w="36" h="31" measuredW="45" measuredH="27" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+        <text>%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::Button" x="237" y="292" w="36" h="31" measuredW="45" measuredH="27" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+        <text>%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="92" controlTypeID="com.balsamiq.mockups::SubTitle" x="325" y="252" w="172" h="-1" measuredW="107" measuredH="17" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Truong%20%3A%20Harvard</text>
+      </controlProperties>
+    </control>
+    <control controlID="93" controlTypeID="com.balsamiq.mockups::SubTitle" x="325" y="271" w="165" h="-1" measuredW="139" measuredH="17" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Tu%3A%202014%20%20%20%20%20Den%3A%202015</text>
+      </controlProperties>
+    </control>
+    <control controlID="94" controlTypeID="com.balsamiq.mockups::Button" x="497" y="256" w="36" h="31" measuredW="45" measuredH="27" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+        <text>%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::SubTitle" x="325" y="289" w="172" h="-1" measuredW="107" measuredH="17" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Truong%20%3A%20Harvard</text>
+      </controlProperties>
+    </control>
+    <control controlID="96" controlTypeID="com.balsamiq.mockups::SubTitle" x="325" y="308" w="165" h="-1" measuredW="139" measuredH="17" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Tu%3A%202014%20%20%20%20%20Den%3A%202015</text>
+      </controlProperties>
+    </control>
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::Button" x="497" y="293" w="36" h="31" measuredW="45" measuredH="27" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+        <text>%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="98" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="544" y="250" w="-1" h="104" measuredW="16" measuredH="100" zOrder="28" locked="false" isInGroup="-1"/>
+    <control controlID="99" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="280" y="242" w="-1" h="112" measuredW="16" measuredH="100" zOrder="29" locked="false" isInGroup="-1"/>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::FieldSet" x="217" y="122" w="333" h="232" measuredW="200" measuredH="170" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Them%20truong%20hoc</text>
+      </controlProperties>
+    </control>
+    <control controlID="102" controlTypeID="com.balsamiq.mockups::Button" x="273" y="305" w="101" h="29" measuredW="78" measuredH="27" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create3PhongNguon%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22251%2C305%2C352%2C334%22%20href%3D%22create3PhongNguon.bmml%22%20alt%3D%22create3PhongNguon%22%20id%3D%22102%22/%3E</map>
+        <text>Xac%20nhan</text>
+      </controlProperties>
+    </control>
+    <control controlID="103" controlTypeID="com.balsamiq.mockups::Button" x="392" y="305" w="109" h="29" measuredW="71" measuredH="27" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>create3PhongNguon%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml%26bm%3Bcreate3PhongNguon.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22370%2C305%2C479%2C334%22%20href%3D%22create3PhongNguon.bmml%22%20alt%3D%22create3PhongNguon%22%20id%3D%22103%22/%3E</map>
+        <text>Quay%20lai</text>
+      </controlProperties>
+    </control>
+    <control controlID="104" controlTypeID="com.balsamiq.mockups::SubTitle" x="236" y="155" w="87" h="-1" measuredW="70" measuredH="17" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ten%20truong</text>
+      </controlProperties>
+    </control>
+    <control controlID="105" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="146" w="138" h="-1" measuredW="79" measuredH="26" zOrder="34" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="106" controlTypeID="com.balsamiq.mockups::SubTitle" x="237" y="176" w="129" h="-1" measuredW="73" measuredH="17" zOrder="35" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Loai%20truong</text>
+      </controlProperties>
+    </control>
+    <control controlID="107" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="171" w="138" h="-1" measuredW="79" measuredH="26" zOrder="36" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="108" controlTypeID="com.balsamiq.mockups::TextInput" x="366" y="191" w="138" h="-1" measuredW="79" measuredH="26" zOrder="37" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="109" controlTypeID="com.balsamiq.mockups::SubTitle" x="236" y="196" w="87" h="-1" measuredW="67" measuredH="17" zOrder="38" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Nganh%20hoc</text>
+      </controlProperties>
+    </control>
+    <control controlID="110" controlTypeID="com.balsamiq.mockups::SubTitle" x="237" y="233" w="59" h="-1" measuredW="47" measuredH="17" zOrder="39" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Tu%20nam</text>
+      </controlProperties>
+    </control>
+    <control controlID="111" controlTypeID="com.balsamiq.mockups::NumericStepper" x="296" y="229" w="-1" h="-1" measuredW="66" measuredH="24" zOrder="40" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2000</text>
+      </controlProperties>
+    </control>
+    <control controlID="112" controlTypeID="com.balsamiq.mockups::SubTitle" x="366" y="233" w="42" h="-1" measuredW="30" measuredH="17" zOrder="41" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Den%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="113" controlTypeID="com.balsamiq.mockups::NumericStepper" x="413" y="229" w="-1" h="-1" measuredW="66" measuredH="24" zOrder="42" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2000</text>
+      </controlProperties>
+    </control>
+    <control controlID="116" controlTypeID="com.balsamiq.mockups::CheckBox" x="237" y="256" w="101" h="30" measuredW="101" measuredH="22" zOrder="43" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Da%20tot%20nghiep</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

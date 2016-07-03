@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4b1913e25cc94e7ba37b576ff493f9af" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="VimasModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VimasModel.AspNetRole" Width="1.5" PointX="7.75" PointY="9.5" />
+        <EntityTypeShape EntityType="VimasModel.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="10.625" />
+        <EntityTypeShape EntityType="VimasModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="8" />
+        <EntityTypeShape EntityType="VimasModel.AspNetUser" Width="1.5" PointX="10" PointY="8.375" />
+        <EntityTypeShape EntityType="VimasModel.BangCap" Width="1.5" PointX="7.5" PointY="47" />
+        <EntityTypeShape EntityType="VimasModel.CongTyChungNghe" Width="1.5" PointX="3" PointY="34.875" />
+        <EntityTypeShape EntityType="VimasModel.CongTyTiepNhan" Width="1.5" PointX="3" PointY="30.5" />
+        <EntityTypeShape EntityType="VimasModel.HopDongDOLAB" Width="1.5" PointX="6" PointY="4" />
+        <EntityTypeShape EntityType="VimasModel.HopDongDOLABHocVienMapping" Width="1.5" PointX="8.25" PointY="23.25" />
+        <EntityTypeShape EntityType="VimasModel.KyTucXa" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="VimasModel.NghiepDoan" Width="1.5" PointX="0.75" PointY="30.25" />
+        <EntityTypeShape EntityType="VimasModel.QuaTrinhHocTap" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="VimasModel.QuaTrinhLamViec" Width="1.5" PointX="5.25" PointY="42" />
+        <EntityTypeShape EntityType="VimasModel.SucKhoe" Width="1.5" PointX="5.25" PointY="33.5" />
+        <EntityTypeShape EntityType="VimasModel.SystemLog" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinCaNhan" Width="1.5" PointX="3" PointY="20" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinDuTuyen" Width="1.5" PointX="5.25" PointY="45.875" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinGiaDinh" Width="1.5" PointX="5.25" PointY="38.125" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinNopTien" Width="1.5" PointX="5.25" PointY="15.25" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinPhongVan" Width="1.5" PointX="5.25" PointY="24" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinVeNuoc" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="VimasModel.TrungTamGTVL" Width="1.5" PointX="0.75" PointY="22.625" />
+        <AssociationConnector Association="VimasModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="VimasModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="VimasModel.FK_BangCap_ThongTinDuTuyen" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" />
+        <AssociationConnector Association="VimasModel.FK_CongTyTiepNhan_NghiepDoan" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinPhongVan_CongTyTiepNhan" />
+        <AssociationConnector Association="VimasModel.FK_HopDongDOLAB_HocVien_HopDongDOLAB" />
+        <AssociationConnector Association="VimasModel.FK_HopDongDOLAB_HocVien_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_KyTucXa_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_QuaTrinhHocTap_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_QuaTrinhLamViec_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_SucKhoe_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinDuTuyen_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinGiaDinh_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinNopTien_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinPhongVan_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.FK_ThongTinVeNuoc_ThongTinCaNhan" />
+        <AssociationConnector Association="VimasModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

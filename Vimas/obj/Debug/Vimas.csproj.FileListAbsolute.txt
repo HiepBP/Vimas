@@ -162,3 +162,11 @@ D:\PersonalProject\Vimas\Vimas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\PersonalProject\Vimas\Vimas\obj\Debug\Vimas.csprojResolveAssemblyReference.cache
 D:\PersonalProject\Vimas\Vimas\obj\Debug\Vimas.dll
 D:\PersonalProject\Vimas\Vimas\obj\Debug\Vimas.pdb
+D:\PersonalProject\Vimas\Vimas\bin\Autofac.dll
+D:\PersonalProject\Vimas\Vimas\bin\Autofac.Integration.Mvc.dll
+D:\PersonalProject\Vimas\Vimas\bin\AutoMapper.dll
+D:\PersonalProject\Vimas\Vimas\bin\SkyWeb.DatVM.Data.dll
+D:\PersonalProject\Vimas\Vimas\bin\SkyWeb.DatVM.Mvc.dll
+D:\PersonalProject\Vimas\Vimas\bin\Autofac.xml
+D:\PersonalProject\Vimas\Vimas\bin\Autofac.Integration.Mvc.xml
+D:\PersonalProject\Vimas\Vimas\bin\AutoMapper.xml

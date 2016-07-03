@@ -1,0 +1,93 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="720" measuredH="439" mockupW="684" mockupH="428">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="36" y="11" w="684" h="428" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="603" y="316" w="-1" h="-1" measuredW="102" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sua%20thong%20tin</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="602" y="358" w="-1" h="-1" measuredW="99" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Xoa%20hoc%20vien</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="193" w="208" h="-1" measuredW="205" measuredH="17" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ten%20tieng%20viet%20So%20ti%20van%20hooc%20kin</text>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="211" w="217" h="-1" measuredW="207" measuredH="17" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ten%20tieng%20nhat%20Su%20ty%20va%20na%20ho%20ku</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::SubTitle" x="121" y="89" w="272" h="-1" measuredW="256" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>20</size>
+        <text>Hoc%20vien%20Steven%20HAWKING</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::ButtonBar" x="59" y="142" w="-1" h="-1" measuredW="547" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Thong%20tin%20co%20ban%2C%20Phong%20van%2C%20Du%20tuyen%2C%20Qua%20trinh%20lam%20viec%2C%20Qua%20trinh%20hoc%20tap</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::SubTitle" x="120" y="112" w="217" h="-1" measuredW="172" measuredH="19" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Ma%20luu%20ho%20so%20ABCDXYZ</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::SubTitle" x="323" y="234" w="217" h="-1" measuredW="214" measuredH="17" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Gioi%20tinh%3A%20Nam%20%20%20Noi%20sinh%3A%20Etats%20Uni</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::SubTitle" x="323" y="210" w="148" h="-1" measuredW="139" measuredH="17" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Ngay%20sinh%3A%2025/11/1995</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="235" w="246" h="-1" measuredW="240" measuredH="34" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>CMND%3A%20%20225567011%20%5CnNgay%20cap%3A%2016/5/11%20%20%20Noi%20cap%3A%20FPT%20HCM</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::SubTitle" x="323" y="275" w="217" h="-1" measuredW="190" measuredH="34" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Trinh%20do%20van%20hoa%3A%20Tot%20%5CnTinh%20trang%20gia%20dinh%3A%201%20vo%202%20con</text>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="275" w="217" h="-1" measuredW="155" measuredH="51" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>So%20ho%20chieu%3A%20Chua%20co%5CnNgay%20cap%3A%20%20%20%20%20%20%20%20%20%20Noi%20cap%3A%5CnNgay%20het%20han%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::SubTitle" x="323" y="325" w="238" h="-1" measuredW="225" measuredH="68" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Dia%20chi%20tieng%20Anh%3A%20hey%20guy%20okay%5CnDia%20chi%20lien%20lac%3A%20Khu%20ba%20dao%20%5CnSo%20nha%3A%2012%20%20%20Phuong%3A%20tan%20chanh%20hiep%20%5CnTinh%3A%20Khanh%20Hoa</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::SubTitle" x="62" y="334" w="217" h="-1" measuredW="188" measuredH="51" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>14</size>
+        <text>Dien%20thoai%20dd%3A%20067255422%5CnDien%20thoai%20nha%3A%20045176623%5CnSize%20quan%20ao%3A%20L%20%20%20%20Co%20giay%3A%2043</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Webcam" x="60" y="87" w="45" h="46" measuredW="177" measuredH="146" zOrder="15" locked="false" isInGroup="-1"/>
+  </controls>
+</mockup>

@@ -1,0 +1,399 @@
+﻿@model Vimas.ViewModels.ThongTinCaNhanEditViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Thêm thông tin cá nhân</h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <form id="createProductItemForm" method="post">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaLuuHoSo">Mã lưu hồ sơ</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.MaLuuHoSo, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaNguon">Mã Nguồn<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DropDownListFor(q => q.IdTrungTamGTVL, this.Model.AvailableMaNguon, new { @class = "form-control", @placeholder = "Lựa trung tâm", @required = "required" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="HoTen">Họ Tên<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.HoTen, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.HoTen)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TenPhienAmNhat">Tên phiên âm nhật<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.TenPhienAmNhat, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="GioiTinh">Giới Tính<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            @*<select class="form-control" id="GioiTinh" name="GioiTinh">
+                                    <option value="true" selected>Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>*@
+                            @Html.EnumDropDownListFor(q => q.Gender, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgaySinh">Ngày Sinh<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                <input class="form-control" id="NgaySinh" type="text" value="" readonly style="background-color:white" />
+                                <input type="hidden" name="NgaySinh" value="@this.Model.NgaySinh" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TrinhDoVanHoa">Trình độ văn hóa<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.EnumDropDownListFor(q => q.EducationLevel, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NoiSinh">Nơi sinh<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.NoiSinh, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TinhTrangGiaDinh">Tình trạng gia đình<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.EnumDropDownListFor(q => q.FamilyStatus, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="CMND">Chứng minh nhân dân<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.CMND, new { @class = "form-control", required = "true" })
+                                    @Html.ValidationMessageFor(q => q.CMND)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayCap">Ngày Cấp<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control" id="NgayCap" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayCap" value="@this.Model.NgayCap" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NoiCap">Nơi cấp<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <select class="form-control" name="NoiCap" id="NoiCap" required>
+                                        <option value="">Lựa địa điểm</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="SoHoChieu">Số hộ chiếu</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.SoHoChieu, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.SoHoChieu)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayCapHC">Ngày cấp hộ chiếu</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control" id="NgayCapHC" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayCapHC" value="@this.Model.NgayCapHC" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayHetHan">Ngày hết hạn</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control" id="NgayHetHan" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayHetHan" value="@this.Model.NgayHetHan" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NoiCapHC">Nơi cấp hộ chiếu</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <select class="form-control" name="NoiCapHC" id="NoiCapHC">
+                                        <option value="0">Lựa địa điểm</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DiaChiLienLac">Địa chỉ liên lạc</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.DiaChiLienLac, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DiaChiTiengAnh">Địa chỉ tiếng anh</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.DiaChiTiengAnh, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DienThoaiDiDong">Điện thoại di động</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.DienThoaiDiDong, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DienThoaiNha">Điện thoại nhà</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.DienThoaiNha, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="CoGiay">Cỡ giầy</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.CoGiay, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="SizeQuanAo">Size quần áo</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.SizeQuanAo, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
+            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>
+
+<script>
+
+    $(function () {
+        initializeDateRangePicker();
+
+        for (var i = 0; i < provinces.length; i++) {
+            $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+            $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+            //$('select[name="NoiCap"]').selectpicker('refresh');
+        }
+        //$('select[name="NoiCap"]').selectpicker();
+        //$('#NoiCap').selectpicker();
+    });
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('input[name="NgayCap"]').val(moment().format("L"))
+        $('input[name="NgaySinh"]').val(moment().format("L"))
+        $('#NgaySinh').val(now);
+        $('#NgaySinh').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgaySinh"]').val(stảt.format('LL'));
+            $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayCap').val(now);
+        $('#NgayCap').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayCap"]').val(start.format('LL'));
+            $('input[name="NgayCap"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayCapHC').val("");
+        $('#NgayCapHC').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayCapHC').val(start.format('LL'));
+            $('input[name="NgayCapHC"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayHetHan').val("");
+        $('#NgayHetHan').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayHetHan').val(start.format('LL'));
+            $('input[name="NgayHetHan"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayCapHC').val("");
+        $('#NgayHetHan').val("");
+    }
+</script>

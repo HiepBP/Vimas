@@ -14,6 +14,7 @@ using Vimas.ViewModels;
 
 namespace Vimas.Areas.HocVien.Controllers
 {
+    [Authorize]
     public class ThongTinCaNhanController : BaseController
     {
         // GET: HocVien/ThongTinCaNhan
@@ -58,6 +59,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Create()
         {
             var trungTamGTVLService = this.Service<ITrungTamGTVLService>();
@@ -75,6 +77,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ThongTinCaNhanEditViewModel model)
         {
@@ -91,13 +94,14 @@ namespace Vimas.Areas.HocVien.Controllers
                 model.TinhTrangGiaDinh = (int)model.FamilyStatus;
                 await thongTinCaNhanService.CreateAsync(model.ToEntity());
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
         public async Task<ActionResult> Edit(int id)
         {
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
@@ -116,6 +120,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ThongTinCaNhanEditViewModel model)
         {

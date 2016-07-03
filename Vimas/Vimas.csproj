@@ -224,6 +224,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -232,6 +233,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MP5Hasher.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\AspNetRole.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
@@ -555,6 +557,7 @@
     <Compile Include="ViewModels\AspNetUserLoginViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AspNetUserViewModel.cs" />
     <Compile Include="ViewModels\AspNetUserViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2887,6 +2890,9 @@
     <Content Include="Content\plugins\bootstrap-select-1.10.0\sass\bootstrap-select.scss" />
     <Content Include="Content\plugins\bootstrap-select-1.10.0\sass\variables.scss" />
     <Content Include="Areas\HocVien\Views\ThongTinCaNhan\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -3019,7 +3025,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\HocVien\Models\" />

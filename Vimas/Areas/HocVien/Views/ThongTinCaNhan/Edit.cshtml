@@ -1,7 +1,7 @@
 ﻿@model Vimas.ViewModels.ThongTinCaNhanEditViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Chỉnh sửa thông tin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,6 +17,7 @@
     <form id="createProductItemForm" method="post">
         <div class="modal-body">
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.Id)
             <div class="form-horizontal">
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
                     <div class="form-group">
@@ -227,9 +228,20 @@
     $(function () {
         initializeDateRangePicker();
 
+
         for (var i = 0; i < provinces.length; i++) {
-            $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
-            $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+            if (provinces[i] == '@(Html.Raw(this.Model.NoiCap))') {
+                $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '" selected>' + provinces[i] + '</option>')
+            }
+            else {
+                $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '")>' + provinces[i] + '</option>')
+            }
+            if (provinces[i] == '@(Html.Raw(this.Model.NoiCapHC))') {
+                $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '" selected>' + provinces[i] + '</option>')
+            }
+            else {
+                $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+            }
             //$('select[name="NoiCap"]').selectpicker('refresh');
         }
         //$('select[name="NoiCap"]').selectpicker();
@@ -239,9 +251,10 @@
     function initializeDateRangePicker() {
         moment.locale('vi');
         var now = moment().format("LL");
-        $('input[name="NgayCap"]').val(moment().format("L"))
-        $('input[name="NgaySinh"]').val(moment().format("L"))
-        $('#NgaySinh').val(now);
+
+        $('input[name="NgayCap"]').val('@this.Model.NgayCap.ToShortDateString()')
+        $('input[name="NgaySinh"]').val('@this.Model.NgaySinh.ToShortDateString()')
+        $('#NgaySinh').val(moment('@this.Model.NgaySinh.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
         $('#NgaySinh').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -279,7 +292,7 @@
             $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
         });
 
-        $('#NgayCap').val(now);
+        $('#NgayCap').val(moment('@this.Model.NgayCap.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
         $('#NgayCap').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -393,7 +406,17 @@
             $('input[name="NgayHetHan"]').val(start.format("DD/MM/YYYY"));
         });
 
-        $('#NgayCapHC').val("");
-        $('#NgayHetHan').val("");
+        @if (this.Model.NgayCapHC.HasValue) {
+            <text>$('#NgayCapHC').val(moment('@this.Model.NgayCapHC.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayCapHC').val("");</text>
+        }
+        @if (this.Model.NgayHetHan.HasValue) {
+            <text>$('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayHetHan').val("");</text>
+        }
     }
 </script>

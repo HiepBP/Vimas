@@ -23,4 +23,16 @@ namespace Vimas.Models
         [Display(Name = "Nữ")]
         Female = 0,
     }
+
+    public enum EducationLevel
+    {
+        [Display(Name = "Trung học cơ sở")]
+        TrungHocCoSo = 0,
+        [Display(Name ="Trung học phổ thông")]
+        TrungHocPhoThong = 1,
+        [Display(Name ="Đại học")]
+        DaiHoc = 2,
+        [Display(Name ="Sau đại học")]
+        SauDaiHoc = 3,
+    }
 }

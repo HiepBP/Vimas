@@ -2897,6 +2897,7 @@
     <Content Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhHocTap\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinCaNhan\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhHocTap\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

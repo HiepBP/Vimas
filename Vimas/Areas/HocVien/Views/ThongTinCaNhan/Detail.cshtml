@@ -46,6 +46,9 @@
             <div class="tab-content">
                 <div id="quaTrinhHocTap" class="tab-pane fade in active">
                     <div class="col-md-12">
+                        <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <table id="quaTrinhHocTapTable" class="table table-hover">
@@ -88,10 +91,14 @@
     </div>
 </div>
 
-<div id="createTransactionPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
-<div id="editTransactionPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="createQTHTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editQTHTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 <script>
+    $(document).ready(function () {
+        initializeDatatable();
+    });
+
     function initializeDatatable() {
         $("#quaTrinhHocTapTable").dataTable({
             "bSort": false,
@@ -128,7 +135,7 @@
                     "aTargets": [5],
                     "mRender": function (data, type, o) {
                         var data = o[6];
-                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var edit = "<button type='button' id='editThongTinCaNhan' class='btn btn-sm btn-primary' onclick='showEditQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                         return edit;
                     }
                 }
@@ -136,5 +143,47 @@
             ],
             "bAutoWidth": false
         });
+    }
+
+    function showCreateQTHT(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","QuaTrinhHocTap")',
+            data:{
+                idThongTinCaNhan : idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTHTPanel').html(result);
+                $('#createQTHTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditQTHT(idQTHT) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","QuaTrinhHocTap")',
+            data: {
+                id: idQTHT,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editQTHTPanel').html(result);
+                $('#editQTHTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function RefreshQTHTTable() {
+        var oTable = $('#quaTrinhHocTapTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
     }
 </script>

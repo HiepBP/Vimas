@@ -6,12 +6,13 @@
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="createQuaTrinhHocTapForm" method="post" action="@Url.Action("Register","TaiKhoan")">
+        <form id="editQuaTrinhHocTapForm" method="post" action="@Url.Action("Register","TaiKhoan")">
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.Id)
             @Html.HiddenFor(q => q.IdThongTinCaNhan)
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Thêm QTHT</h4>
+                <h4 class="modal-title">Chỉnh sửa QTHT</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
@@ -52,14 +53,14 @@
                     <div class="form-group">
                         @Html.LabelFor(q => q.DaTotNghiep, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            <input type="checkbox" id="DaTotNghiep" name="DaTotNghiep" value="true"/>
+                            <input type="checkbox" checked="@(this.Model.DaTotNghiep.Value ? "":null)"/>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="createQTHT()" value="Thêm" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="editQTHT()" value="Thêm" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -67,22 +68,22 @@
 
 <script>
     $(document).ready(function () {
-        var form = $('#createQuaTrinhHocTapForm')
+        var form = $('#editQuaTrinhHocTapForm')
             .removeData("validator") /* added by the raw jquery.validate plugin */
             .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
 
         $.validator.unobtrusive.parse(form);
     })
 
-    function createQTHT() {
-        var formData = $('#createQuaTrinhHocTapForm').serialize();
+    function editQTHT() {
+        var formData = $('#editQuaTrinhHocTapForm').serialize();
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Create","QuaTrinhHocTap")',
+            url: '@Url.Action("Edit","QuaTrinhHocTap")',
             data: formData,
             success: function (result) {
                 alert(result.message);
-                $('#createQTHTPanel').modal('hide');
+                $('#editQTHTPanel').modal('hide');
                 RefreshQTHTTable();
             },
             error: function (error) {

@@ -54,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="editAccount()" value="Thêm tài khoản" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="editAccount()" value="Lưu" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -79,7 +79,7 @@
             success: function (result) {
                 alert(result.message);
                 $('#editAccountModal').modal('hide');
-                RefreshTable(taiKhoanDatatable);
+                RefreshTable();
             },
             error: function (error) {
                 alert(result.message);

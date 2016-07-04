@@ -20,17 +20,6 @@ namespace Vimas.Areas.HocVien.Controllers
             return View();
         }
 
-        public ActionResult Create(int idThongTinCaNhan)
-        {
-            var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
-            var model = new QuaTrinhHocTapEditViewModel()
-            {
-                IdThongTinCaNhan = idThongTinCaNhan,
-                EducationLevel = 0,
-            };
-            return View(model);
-        }
-
         public JsonResult LoadQuaTrinhHocTap(JQueryDataTableParamModel param)
         {
             var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
@@ -65,6 +54,77 @@ namespace Vimas.Areas.HocVien.Controllers
             catch (Exception e)
             {
                 return Json(new { success = false, message = "Error" });
+            }
+        }
+
+        public ActionResult Create(int idThongTinCaNhan)
+        {
+            var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+            var model = new QuaTrinhHocTapEditViewModel()
+            {
+                IdThongTinCaNhan = idThongTinCaNhan,
+                EducationLevel = 0,
+                DaTotNghiep = false,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> Create(QuaTrinhHocTapEditViewModel model)
+        {
+            try
+            {
+                var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+                model.Active = true;
+                model.LoaiTruong = (int)model.EducationLevel;
+                if (!model.DaTotNghiep.HasValue)
+                {
+                    model.DaTotNghiep = false;
+                }
+                await quaTrinhHocTapService.CreateAsync(model.ToEntity());
+                return Json(new { success = true, message = "Tạo thành công!" });
+            }
+            catch(Exception e)
+            {
+                return Json(new { success = false, message = "Có lỗi xảy ra, xin liên hệ admin!!!" });
+            }
+        }
+
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
+        {
+            var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+            var model = new QuaTrinhHocTapEditViewModel(await quaTrinhHocTapService.GetAsync(id));
+            if(model == null || model.Active == false)
+            {
+                return Json(new { success = false, });
+            }
+            model.EducationLevel = (EducationLevel)model.LoaiTruong;
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> Edit(QuaTrinhHocTapEditViewModel model)
+        {
+            try
+            {
+                var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+                var entity = await quaTrinhHocTapService.GetAsync(model.Id);
+                if (!model.DaTotNghiep.HasValue)
+                {
+                    model.DaTotNghiep = false;
+                }
+                model.CopyToEntity(entity);
+                entity.Active = true;
+                entity.LoaiTruong = (int)model.EducationLevel;
+                entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+                await quaTrinhHocTapService.UpdateAsync(entity);
+                return Json(new { success = true, message = "Sửa thành công!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = "Có lỗi xảy ra, xin liên hệ admin!!!" });
             }
         }
     }

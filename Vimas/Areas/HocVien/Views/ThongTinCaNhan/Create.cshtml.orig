@@ -1,7 +1,7 @@
 ﻿@model Vimas.ViewModels.ThongTinCaNhanEditViewModel
 
 @{
-    ViewBag.Title = "Chỉnh sửa thông tin";
+    ViewBag.Title = "Thêm học viên";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -10,39 +10,53 @@
         border-bottom: 1px solid #808080;
         border-right: 4px double #808080;
     }
+
     .border-all {
         border: 3px double #808080;
     }
+
     .no-margin-right {
         margin-right: 0px;
     }
+
     .first-row {
         margin-top: 15px;
     }
+
     .card-header {
         padding-bottom: 0px !important;
     }
 </style>
+
 <div class="card">
     <div class="card-header bg-info">
         <div class="row">
             <div class="col-md-10">
-                <h3 class="text-uppercase">Chỉnh sửa thông tin cá nhân</h3>
+                <h3 class="text-uppercase">Thêm thông tin cá nhân</h3>
             </div>
-            <div class="col-md-2"><h3><span><i class="pull-right glyphicon glyphicon-edit"></i></span></h3></div>
+            <div class="col-md-2"><h3><span><i class="pull-right glyphicon glyphicon-folder-close"></i></span></h3></div>
         </div>
         <hr />
     </div>
     <form id="createProductItemForm" method="post">
         <div class="modal-body">
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(q => q.Id)
             <div class="form-horizontal">
+<<<<<<< HEAD
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaLuuHoSo">Mã lưu hồ sơ</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.MaLuuHoSo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.MaLuuHoSo)
+=======
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px;">
                     <div class="col-md-6">
                         <div class="row no-margin-right">
                             <div class="title-inner col-md-12">
                                 <h4><span><i class="glyphicon glyphicon-user"></i></span> Thông tin cơ bản</h4>
+>>>>>>> origin/thanhhc
                             </div>
                         </div>
                         <hr />
@@ -63,6 +77,43 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TenPhienAmNhat">Tên phiên âm nhật<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.TenPhienAmNhat, new { @class = "form-control", required = "true" })
+                                @Html.ValidationMessageFor(q => q.TenPhienAmNhat)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="Gender">Giới Tính<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            @*<select class="form-control" id="GioiTinh" name="GioiTinh">
+                                    <option value="true" selected>Nam</option>
+                                    <option value="false">Nữ</option>
+                                </select>*@
+                            @Html.EnumDropDownListFor(q => q.Gender, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgaySinh">Ngày Sinh<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                <input class="form-control default-cursor" id="NgaySinh" type="text" value="" readonly style="background-color:white" />
+                                <input type="hidden" name="NgaySinh" value="@this.Model.NgaySinh" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="EducationLevel">Trình độ văn hóa<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.EnumDropDownListFor(q => q.EducationLevel, new { @class = "form-control" })
+=======
                             <div class="form-group">
                                 <label class="control-label col-md-5" for="HoTen">Họ Tên<span style="color:red">*</span></label>
                                 <div class="col-md-6">
@@ -84,21 +135,31 @@
                                 <label class="control-label col-md-5" for="GioiTinh">Giới Tính<span style="color:red">*</span></label>
                                 <div class="col-md-6">
                                     @*<select class="form-control" id="GioiTinh" name="GioiTinh">
-                                            <option value="true" selected>Nam</option>
-                                            <option value="false">Nữ</option>
-                                        </select>*@
+                    <option value="true" selected>Nam</option>
+                    <option value="false">Nữ</option>
+                </select>*@
                                     @Html.EnumDropDownListFor(q => q.Gender, new { @class = "form-control" })
                                 </div>
+>>>>>>> origin/thanhhc
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-5" for="NgaySinh">Ngày Sinh<span style="color:red">*</span></label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        <input class="form-control" id="NgaySinh" type="text" value="" style="background-color:white" />
+                                        <input class="form-control default-cursor" id="NgaySinh" type="text" value="" readonly style="background-color:white" />
                                         <input type="hidden" name="NgaySinh" value="@this.Model.NgaySinh" />
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="FamilyStatus">Tình trạng gia đình<span style="color:red">*</span></label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.EnumDropDownListFor(q => q.FamilyStatus, new { @class = "form-control" })
+=======
                             <div class="form-group">
                                 <label class="control-label col-md-5" for="TrinhDoVanHoa">Trình độ văn hóa<span style="color:red">*</span></label>
                                 <div class="col-md-6">
@@ -122,6 +183,7 @@
                                         @Html.EnumDropDownListFor(q => q.FamilyStatus, new { @class = "form-control" })
                                     </div>
                                 </div>
+>>>>>>> origin/thanhhc
                             </div>
                         </div>
                     </div>
@@ -147,7 +209,7 @@
                                 <label class="control-label col-md-5" for="NgayCap">Ngày Cấp<span style="color:red">*</span></label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        <input class="form-control" id="NgayCap" type="text" value="" style="background-color:white" />
+                                        <input class="form-control default-cursor" id="NgayCap" type="text" value="" readonly style="background-color:white" />
                                         <input type="hidden" name="NgayCap" value="@this.Model.NgayCap" />
                                     </div>
                                 </div>
@@ -163,7 +225,7 @@
                                 </div>
                             </div>
                         </div>
-                        <br />
+                        <br/>
                         <div class="border-all">
                             <div class="form-group first-row">
                                 <label class="control-label col-md-5" for="SoHoChieu">Số hộ chiếu</label>
@@ -178,7 +240,7 @@
                                 <label class="control-label col-md-5" for="NgayCapHC">Ngày cấp hộ chiếu</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        <input class="form-control" id="NgayCapHC" type="text" value="" style="background-color:white" />
+                                        <input class="form-control default-cursor" id="NgayCapHC" type="text" value="" readonly style="background-color:white" />
                                         <input type="hidden" name="NgayCapHC" value="@this.Model.NgayCapHC" />
                                     </div>
                                 </div>
@@ -187,7 +249,7 @@
                                 <label class="control-label col-md-5" for="NgayHetHan">Ngày hết hạn</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        <input class="form-control" id="NgayHetHan" type="text" value="" style="background-color:white" />
+                                        <input class="form-control default-cursor" id="NgayHetHan" type="text" value="" readonly style="background-color:white" />
                                         <input type="hidden" name="NgayHetHan" value="@this.Model.NgayHetHan" />
                                     </div>
                                 </div>
@@ -214,6 +276,24 @@
                                 <h4><span><i class="glyphicon glyphicon-phone-alt"></i></span> Thông tin liên lạc</h4>
                             </div>
                         </div>
+<<<<<<< HEAD
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DienThoaiDiDong">Điện thoại di động</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.DienThoaiDiDong, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.DienThoaiDiDong)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DienThoaiNha">Điện thoại nhà</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(q => q.DienThoaiNha, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.DienThoaiNha)
+=======
 
                         <hr />
                         <div class="border-all">
@@ -248,6 +328,7 @@
                                         @Html.TextBoxFor(q => q.DienThoaiNha, new { @class = "form-control" })
                                     </div>
                                 </div>
+>>>>>>> origin/thanhhc
                             </div>
                         </div>
                     </div>
@@ -261,7 +342,7 @@
                         <hr />
                         <div class="border-all">
                             <div class="form-group first-row">
-                                <label class="control-label col-md-5" for="CoGiay">Cỡ giày</label>
+                                <label class="control-label col-md-4" for="CoGiay">Cỡ giày</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
                                         @Html.TextBoxFor(q => q.CoGiay, new { @class = "form-control" })
@@ -269,7 +350,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5" for="SizeQuanAo">Size quần áo</label>
+                                <label class="control-label col-md-4" for="SizeQuanAo">Size quần áo</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
                                         @Html.TextBoxFor(q => q.SizeQuanAo, new { @class = "form-control" })
@@ -278,6 +359,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -300,20 +382,9 @@
     $(function () {
         initializeDateRangePicker();
 
-
         for (var i = 0; i < provinces.length; i++) {
-            if (provinces[i] == '@(Html.Raw(this.Model.NoiCap))') {
-                $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '" selected>' + provinces[i] + '</option>')
-            }
-            else {
-                $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '")>' + provinces[i] + '</option>')
-            }
-            if (provinces[i] == '@(Html.Raw(this.Model.NoiCapHC))') {
-                $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '" selected>' + provinces[i] + '</option>')
-            }
-            else {
-                $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
-            }
+            $('select[name="NoiCap"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
+            $('select[name="NoiCapHC"]').append('<option value="' + provinces[i] + '">' + provinces[i] + '</option>')
             //$('select[name="NoiCap"]').selectpicker('refresh');
         }
         //$('select[name="NoiCap"]').selectpicker();
@@ -323,16 +394,15 @@
     function initializeDateRangePicker() {
         moment.locale('vi');
         var now = moment().format("LL");
-
-        $('input[name="NgayCap"]').val('@this.Model.NgayCap.ToShortDateString()')
-        $('input[name="NgaySinh"]').val('@this.Model.NgaySinh.ToShortDateString()')
-        $('#NgaySinh').val(moment('@this.Model.NgaySinh.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('input[name="NgayCap"]').val(moment().format("L"))
+        $('input[name="NgaySinh"]').val(moment().format("L"))
+        $('#NgaySinh').val(now);
         $('#NgaySinh').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
             minDate: moment().add(-50, 'y'),
-            maxDate: moment().add(10, 'y'),
+            maxDate: moment().add(10,'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -366,7 +436,7 @@
             $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
         });
 
-        $('#NgayCap').val(moment('@this.Model.NgayCap.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayCap').val(now);
         $('#NgayCap').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -405,6 +475,7 @@
             $('#NgayCap').val(start.format('LL'));
             $('input[name="NgayCap"]').val(start.format("DD/MM/YYYY"));
         });
+
         $('#NgayCapHC').val("");
         $('#NgayCapHC').daterangepicker({
             singleDatePicker: true,
@@ -485,17 +556,7 @@
             $('input[name="NgayHetHan"]').val(start.format("DD/MM/YYYY"));
         });
 
-        @if (this.Model.NgayCapHC.HasValue) {
-            <text>$('#NgayCapHC').val(moment('@this.Model.NgayCapHC.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
-        }
-        else {
-            <text>$('#NgayCapHC').val("");</text>
-        }
-        @if (this.Model.NgayHetHan.HasValue) {
-            <text>$('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
-        }
-        else {
-            <text>$('#NgayHetHan').val("");</text>
-        }
+        $('#NgayCapHC').val("");
+        $('#NgayHetHan').val("");
     }
 </script>

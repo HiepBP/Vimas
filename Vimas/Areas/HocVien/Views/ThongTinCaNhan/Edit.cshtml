@@ -360,6 +360,7 @@
             }
         },
         function (start, end, label) {
+            $('#NgaySinh').val(start.format('LL'));
             $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
         });
 

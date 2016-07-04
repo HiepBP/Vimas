@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var user = HttpContext.Current.User;
+}
+
+<!DOCTYPE html>
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
 <html>
 <head>
@@ -14,7 +18,7 @@
     @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.css" />
         <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.js"></script>*@
 
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
     <!-- Vendor CSS -->
     <link href="~/Content/template/template-material/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
@@ -30,6 +34,7 @@
     @*<link href="~/Content/plugins/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css" rel="stylesheet"/>*@
     @*<link href="~/Content/plugins/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet"/>*@
     <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/DataTables-1.10.12/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <!-- CSS -->
     <link href="~/Content/template/template-material/css/app.min.1.css" rel="stylesheet">
     <link href="~/Content/template/template-material/css/app.min.2.css" rel="stylesheet">
@@ -85,13 +90,16 @@
                         <a href="#"><i class="fa fa-users"></i>Đổi mật khẩu</a>
                     </li>
                     <li>
-                        <a href="#"><i class="zmdi zmdi-time-restore"></i>Đăng xuất</a>
+                        <form id="logOffForm" action="@Url.Action("LogOff","Account", new { area = "" })" method="post">
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-sign-out"></i>Đăng xuất</a>
+                        </form>
                     </li>
                 </ul>
             </div>
             <ul class="main-menu">
                 <li class="sub-menu submenu-style">
-                    <a href="#"><i class="zmdi zmdi-globe"></i> Quản lí hệ thống</a>
+                    <a href="#"><i class="zmdi zmdi-globe"></i> Quản lí học viên</a>
                     <ul>
                         <li>
                             <a href="@Url.Action("Index","ThongTinCaNhan", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
@@ -101,20 +109,21 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sub-menu submenu-style">
-                    <a href="#"><i class="zmdi zmdi-globe"></i>Nothing</a>
-                    <ul>
-                        <li class="sub-menu">
-                            <a href="#"><i class="sub-menu zmdi zmdi-trending-up"></i> Nothing</a>
-                            <ul>
-                                <li><a href="#"><i class="zmdi zmdi-trending-flat"></i> Nothing</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="zmdi zmdi-window-restore"></i> Quản lý kho</a>
-                        </li>
-                    </ul>
-                </li>
+
+                @if (user.IsInRole("Admin"))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý hệ thống</a>
+                        <ul>
+                            <li>
+                                <a href="#"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="zmdi zmdi-window-restore"></i> Quản lý kho</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
             </ul>
         </aside>
 

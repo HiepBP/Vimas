@@ -16,8 +16,8 @@ namespace Vimas
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "ThongTinCaNhan", action = "Index", id = UrlParameter.Optional }
-            ).DataTokens = new RouteValueDictionary(new { area = "HocVien" });
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
+            );
         }
     }
 }

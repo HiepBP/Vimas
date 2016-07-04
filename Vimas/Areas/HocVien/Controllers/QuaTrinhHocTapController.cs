@@ -35,7 +35,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.TenTruong,
-                        q.LoaiTruong,
+                        q.LoaiTruong.Value,
                         q.NganhHoc,
                         q.DaTotNghiep,
                         q.TuNam.HasValue ? q.TuNam : 0,

@@ -26,13 +26,15 @@ namespace Vimas.Models
 
     public enum EducationLevel
     {
+        [Display(Name = "Tiểu học")]
+        TieuHoc = 0,
         [Display(Name = "Trung học cơ sở")]
-        TrungHocCoSo = 0,
-        [Display(Name ="Trung học phổ thông")]
-        TrungHocPhoThong = 1,
-        [Display(Name ="Đại học")]
-        DaiHoc = 2,
-        [Display(Name ="Sau đại học")]
-        SauDaiHoc = 3,
+        TrungHocCoSo = 1,
+        [Display(Name = "Trung học phổ thông")]
+        TrungHocPhoThong = 2,
+        [Display(Name = "Đại học")]
+        DaiHoc = 3,
+        [Display(Name = "Sau đại học")]
+        SauDaiHoc = 4,
     }
 }

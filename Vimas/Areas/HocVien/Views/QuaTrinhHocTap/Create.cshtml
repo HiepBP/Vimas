@@ -1,11 +1,12 @@
-﻿@model RegisterViewModel
+﻿@model QuaTrinhHocTapEditViewModel
+
 @{
     Layout = null;
 }
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="createAccountForm" method="post" action="@Url.Action("Register","TaiKhoan")">
+        <form id="createQuaTrinhHocTapForm" method="post" action="@Url.Action("Register","TaiKhoan")">
             @Html.AntiForgeryToken()
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -14,40 +15,26 @@
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        @Html.LabelFor(q => q.Email, new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(q => q.TenTruong, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.Email, new { @class = "form-control col-sm-12" })
-                            @Html.ValidationMessageFor(q => q.Email)
+                            @Html.TextBoxFor(q => q.TenTruong, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TenTruong)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(q => q.Username, new { @class="control-label col-md-4"})
+                        @Html.LabelFor(q => q.LoaiTruong, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.Username, new { @class = "form-control col-sm-12" })
-                            @Html.ValidationMessageFor(q => q.Username)
+                            @Html.TextBoxFor(q => q.LoaiTruong, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.LoaiTruong)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(q => q.Password, new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(q => q.NganhHoc, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.Password, new { @class = " form-control col-sm-12", @type="password" })
-                            @Html.ValidationMessageFor(q => q.Password)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(q => q.ConfirmPassword, new { @class = "control-label col-md-4" })
-                        <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.ConfirmPassword, new { @class = " form-control col-sm-12", @type = "password" })
-                            @Html.ValidationMessageFor(q => q.ConfirmPassword)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(q => q.RoleName, new { @class = "control-label col-md-4" })
-                        <div class="col-md-5">
-                            @Html.DropDownListFor(q => q.RoleName, this.Model.AvailableRoles, new { @class= "form-control col-sm-12"})
-                            @Html.ValidationMessageFor(q => q.RoleName)
+                            @Html.TextBoxFor(q => q.NganhHoc, new { @class = " form-control col-sm-12", @type = "password" })
+                            @Html.ValidationMessageFor(q => q.NganhHoc)
                         </div>
                     </div>
                 </div>
@@ -70,14 +57,14 @@
     })
 
     function createAccount() {
-        var formData = $('#createAccountForm').serialize();
+        var formData = $('#createQuaTrinhHocTapForm').serialize();
         $.ajax({
             type: "POST",
             url: '@Url.Action("Create","TaiKhoan")',
             data: formData,
             success: function (result) {
                 alert(result.message);
-                $('#createAccountModal').modal('hide');
+                $('#createQuaTrinhHocTapModal').modal('hide');
                 RefreshTable(taiKhoanDatatable);
             },
             error: function (error) {

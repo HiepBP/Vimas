@@ -41,8 +41,8 @@
     </div>
 </div>
 
-<div id="createAccountModel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
-<div id="editAccountModel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="createAccountModal" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editAccountModal" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 <script>
     $(document).ready(function () {
@@ -55,8 +55,8 @@
             url: '@Url.Action("Create","TaiKhoan")',
             success: function (result) {
                 //$('#myModal').modal('show');
-                $('#createAccountModel').html(result);
-                $('#createAccountModel').modal('show');
+                $('#createAccountModal').html(result);
+                $('#createAccountModal').modal('show');
             },
             error: function (error) {
                 alert("Error Occured")
@@ -73,8 +73,8 @@
             },
             success: function (result) {
                 //$('#myModal').modal('show');
-                $('#editAccountModel').html(result);
-                $('#editAccountModel').modal('show');
+                $('#editAccountModal').html(result);
+                $('#editAccountModal').modal('show');
             },
             error: function (error) {
                 alert("Error Occured")

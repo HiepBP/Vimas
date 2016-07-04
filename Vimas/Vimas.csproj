@@ -225,6 +225,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -434,6 +435,7 @@
     <Compile Include="Models\Entities\Services\NghiepDoanServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\QuaTrinhHocTapService.cs" />
     <Compile Include="Models\Entities\Services\QuaTrinhHocTapServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -585,6 +587,7 @@
     <Compile Include="ViewModels\NghiepDoanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\QuaTrinhHocTapEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhHocTapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2893,6 +2896,8 @@
     <Content Include="Areas\Admin\Views\TaiKhoan\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoan\Create.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhHocTap\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinCaNhan\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

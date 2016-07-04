@@ -130,12 +130,6 @@ namespace Vimas.Areas.HocVien.Controllers
             }
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             var entity = await thongTinCaNhanService.GetAsync(model.Id);
-            //entity.MaLuuHoSo = model.MaLuuHoSo;
-            //entity.IdTrungTamGTVL = model.IdTrungTamGTVL
-            //entity.HoTen = model.HoTen;
-            //entity.TenPhienAmNhat = model.TenPhienAmNhat;
-            //entity.GioiTinh = model.GioiTinh;
-            //entity.NgaySinh = model.NgaySinh;
             model.CopyToEntity(entity);
             entity.Active = true;
             entity.GioiTinh = (int)model.Gender;
@@ -143,6 +137,13 @@ namespace Vimas.Areas.HocVien.Controllers
             entity.TinhTrangGiaDinh = (int)model.FamilyStatus;
             await thongTinCaNhanService.UpdateAsync(entity);
             return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Detail(int id)
+        {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var model = new ThongTinCaNhanViewModel(await thongTinCaNhanService.GetAsync(id));
+            return View(model);
         }
     }
 }

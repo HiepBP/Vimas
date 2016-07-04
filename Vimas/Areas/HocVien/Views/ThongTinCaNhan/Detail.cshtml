@@ -1,0 +1,140 @@
+﻿@model ThongTinCaNhanViewModel
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="width: calc(100%)">
+
+    <div class="block-header">
+        <h2>@this.Model.HoTen <small>Tên tiếng nhật: <strong>@this.Model.TenPhienAmNhat</strong></small></h2>
+    </div>
+    <div class="card" id="profile-main">
+        <div class="pm-overview c-overflow mCustomScrollbar _mCS_3 mCS-autoHide" style="overflow: visible;">
+            <div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                <div id="mCSB_3_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+
+                    <div class="pmo-block pmo-contact hidden-xs">
+                        <h2>Contact</h2>
+
+                        <ul>
+                            <li><i class="zmdi zmdi-phone"></i> @this.Model.DienThoaiDiDong</li>
+                            <li><i class="zmdi zmdi-calendar"></i> @(this.Model.NgaySinh)</li>
+                            <li><i class="zmdi zmdi-print"></i> @this.Model.CMND</li>
+                            <li>
+                                <i class="zmdi zmdi-pin"></i>
+                                <address class="m-b-0 ng-binding">
+                                    @this.Model.DiaChiLienLac
+                                </address>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 587px; top: 0px; display: block; max-height: 695px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div>
+        </div>
+
+        <div class="pm-body clearfix">
+            <div class="col-md-12">
+                <ul class="tab-nav tn-justified">
+                    <li class="active waves-effect"><a data-toggle="tab" href="#quaTrinhHocTap">Quá trình học tập</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#quaTrinhLamViec">Quá trình làm việc</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div id="quaTrinhHocTap" class="tab-pane fade in active">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="quaTrinhHocTapTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Tên trường</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Loại trường</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ngành học</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Đã tốt nghiệp</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Từ năm - Đến năm</label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="quaTrinhLamViec" class="tab-pane fade">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="createTransactionPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editTransactionPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<script>
+    function initializeDatatable() {
+        $("#quaTrinhHocTapTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadQuaTrinhHocTap","QuaTrinhHocTap")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý..."
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function(data, type, o){
+                        var tuNam = o[4];
+                        var denNam = o[5];
+                        return tuNam + " - " + denNam;
+                    }
+                },
+                {
+                    "aTargets": [5],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        return edit;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        });
+    }
+</script>

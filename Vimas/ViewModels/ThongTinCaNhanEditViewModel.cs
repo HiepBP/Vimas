@@ -21,6 +21,20 @@ namespace Vimas.ViewModels
             mapper.Map(original, this);
         }
 
+        #region Basic Info
+        [Required(ErrorMessage = "Vui lòng nhập mã lưu hồ sơ!!!")]
+        public override string MaLuuHoSo
+        {
+            get
+            {
+                return base.MaLuuHoSo;
+            }
+
+            set
+            {
+                base.MaLuuHoSo = value;
+            }
+        }
         [Required(ErrorMessage = "Vui lòng nhập họ tên!!!")]
         public override string HoTen
         {
@@ -34,7 +48,19 @@ namespace Vimas.ViewModels
                 base.HoTen = value;
             }
         }
+        [Required(ErrorMessage = "Vui lòng nhập tên phiên âm!!!")]
+        public override string TenPhienAmNhat
+        {
+            get
+            {
+                return base.TenPhienAmNhat;
+            }
 
+            set
+            {
+                base.TenPhienAmNhat = value;
+            }
+        }
         [StringLength(12,MinimumLength = 9,ErrorMessage ="Độ dài CMND từ 9 đến 12 số!!!")]
         [IsNumeric(ErrorMessage = "Vui lòng nhập số!!!")]
         public override string CMND
@@ -49,11 +75,41 @@ namespace Vimas.ViewModels
                 base.CMND = value;
             }
         }
+        [IsNumeric]
+        public override string DienThoaiDiDong
+        {
+            get
+            {
+                return base.DienThoaiDiDong;
+            }
 
+            set
+            {
+                base.DienThoaiDiDong = value;
+            }
+        }
+        [IsNumeric]
+        public override string DienThoaiNha
+        {
+            get
+            {
+                return base.DienThoaiNha;
+            }
+
+            set
+            {
+                base.DienThoaiNha = value;
+            }
+        }
+
+        #endregion
+
+        #region Extend
         public Gender Gender { get; set; }
         public FamilyStatus FamilyStatus { get; set; }
         public EducationLevel EducationLevel { get; set; }
         public IEnumerable<SelectListItem> AvailableMaNguon { get; set; }
+        #endregion
     }
 
     public class IsNumericAttribute : ValidationAttribute

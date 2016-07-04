@@ -25,6 +25,7 @@
                         <div class="col-md-6">
                             <div class="fg-line">
                                 @Html.TextBoxFor(q => q.MaLuuHoSo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.MaLuuHoSo)
                             </div>
                         </div>
                     </div>
@@ -50,6 +51,7 @@
                         <div class="col-md-6">
                             <div class="fg-line">
                                 @Html.TextBoxFor(q => q.TenPhienAmNhat, new { @class = "form-control", required = "true" })
+                                @Html.ValidationMessageFor(q => q.TenPhienAmNhat)
                             </div>
                         </div>
                     </div>
@@ -186,6 +188,7 @@
                         <div class="col-md-6">
                             <div class="fg-line">
                                 @Html.TextBoxFor(q => q.DienThoaiDiDong, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.DienThoaiDiDong)
                             </div>
                         </div>
                     </div>
@@ -194,6 +197,7 @@
                         <div class="col-md-6">
                             <div class="fg-line">
                                 @Html.TextBoxFor(q => q.DienThoaiNha, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(q => q.DienThoaiNha)
                             </div>
                         </div>
                     </div>
@@ -259,6 +263,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -288,7 +294,7 @@
             }
         },
         function (start, end, label) {
-            $('#NgaySinh').val(stảt.format('LL'));
+            $('#NgaySinh').val(start.format('LL'));
             $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
         });
 
@@ -297,6 +303,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -335,6 +343,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -373,6 +383,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [

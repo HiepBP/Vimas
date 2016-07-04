@@ -164,7 +164,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="TuNam" Type="int" />
     <Property Name="DenNam" Type="int" />
     <Property Name="TenTruong" Type="nvarchar" MaxLength="80" />
@@ -491,7 +491,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="QuaTrinhHocTap">
-        <PropertyRef Name="idThongTinCaNhan" />
+        <PropertyRef Name="IdThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

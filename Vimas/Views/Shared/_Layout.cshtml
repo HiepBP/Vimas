@@ -19,6 +19,7 @@
         <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.js"></script>*@
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+   
 
     <!-- Vendor CSS -->
     <link href="~/Content/template/template-material/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
@@ -116,7 +117,7 @@
                         <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý hệ thống</a>
                         <ul>
                             <li>
-                                <a href="#"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
+                                <a href="@Url.Action("Index","TaiKhoan", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
                             </li>
                             <li>
                                 <a href="#"><i class="zmdi zmdi-window-restore"></i> Quản lý kho</a>

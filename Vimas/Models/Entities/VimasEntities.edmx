@@ -169,7 +169,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+          <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
           <Property Name="TuNam" Type="int" />
           <Property Name="DenNam" Type="int" />
           <Property Name="TenTruong" Type="nvarchar" MaxLength="80" />
@@ -496,7 +496,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="QuaTrinhHocTap">
-              <PropertyRef Name="idThongTinCaNhan" />
+              <PropertyRef Name="IdThongTinCaNhan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1002,7 +1002,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idThongTinCaNhan" Type="Int32" Nullable="false" />
+          <Property Name="IdThongTinCaNhan" Type="Int32" Nullable="false" />
           <Property Name="TuNam" Type="Int32" />
           <Property Name="DenNam" Type="Int32" />
           <Property Name="TenTruong" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
@@ -1348,7 +1348,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="QuaTrinhHocTap">
-              <PropertyRef Name="idThongTinCaNhan" />
+              <PropertyRef Name="IdThongTinCaNhan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1628,7 +1628,7 @@
                 <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
                 <ScalarProperty Name="DenNam" ColumnName="DenNam" />
                 <ScalarProperty Name="TuNam" ColumnName="TuNam" />
-                <ScalarProperty Name="idThongTinCaNhan" ColumnName="idThongTinCaNhan" />
+                <ScalarProperty Name="IdThongTinCaNhan" ColumnName="IdThongTinCaNhan" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -83,8 +83,9 @@
                     "aTargets": [5],
                     "mRender": function (data, type, o) {
                         var data = o[5];
+                        var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
                         var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        return edit;
+                        return detail + " " + edit;
                     }
                 }
 

@@ -171,7 +171,7 @@
           <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
           <ScalarProperty Name="DenNam" ColumnName="DenNam" />
           <ScalarProperty Name="TuNam" ColumnName="TuNam" />
-          <ScalarProperty Name="idThongTinCaNhan" ColumnName="idThongTinCaNhan" />
+          <ScalarProperty Name="IdThongTinCaNhan" ColumnName="IdThongTinCaNhan" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

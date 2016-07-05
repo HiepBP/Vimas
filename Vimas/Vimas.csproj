@@ -2899,6 +2899,7 @@
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Index.cshtml" />
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Create.cshtml" />
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Edit.cshtml" />
+    <Content Include="Areas\HeThong\Views\TrungTamGTVL\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

@@ -134,6 +134,19 @@ namespace Vimas.Areas.HeThong.Controllers
             return Json(new { success = true, message = "Chỉnh sửa thông tin thành công." });
         } 
         #endregion
+       
+        public ActionResult Detail(int id)
+        {
+            var service = this.Service<ITrungTamGTVLService>();
+            var entity = service.Get(id);
+            if(entity == null)
+            {
+                return HttpNotFound();
+            }
+            var model = Mapper.Map<TrungTamGTVLViewModel>(entity);
+
+            return this.View(model);
+        }
 
         [Authorize(Roles = "Admin, PhongNguon")]
         public async Task<JsonResult> Delete(int id)

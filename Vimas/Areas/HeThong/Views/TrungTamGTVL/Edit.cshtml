@@ -1,0 +1,213 @@
+﻿@model TrungTamGTVLViewModel
+@{
+    ViewBag.Title = "Chỉnh sửa Trung Tâm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Chỉnh sửa trung tâm: @this.Model.TenCoSo.ToUpper()</h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <form id="editTrungTamForm" method="post">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="TenCoSo">Tên Cơ Sở<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.TenCoSo, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="MaNguon">Mã Nguồn<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.MaNguon, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="DiaChi">Địa Chỉ</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.DiaChi, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayKyHopDong">Ngày kí hợp đồng</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control default-cursor" id="NgayKyHopDong" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayKyHopDong" value="@this.Model.NgayKyHopDong" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayHetHan">Ngày hết hạn</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control default-cursor" id="NgayHetHan" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayHetHan" value="@this.Model.NgayHetHan" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="DienThoai">Điện Thoại</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.DienThoai, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="Fax">Fax</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.Fax, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="SoHDLK">Số HDLK</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.SoHDLK, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.NguoiDaiDien, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        @Html.HiddenFor(q => q.Active)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
+            <button type="button" onclick="Update();" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>
+<script>
+
+    $(function () {
+        initializeDateRangePicker();
+    });
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.Value.ToShortDateString()');
+        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.Value.ToShortDateString()')
+
+        $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKyHopDong').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayKyHopDong').val(start.format('LL'));
+            $('input[name="NgayKyHopDong"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayHetHan').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayHetHan').val(start.format('LL'));
+            $('input[name="NgayHetHan"]').val(start.format("DD/MM/YYYY"));
+        });
+    }
+
+    function Update() {
+        var formData = $('#editTrungTamForm').serialize();
+
+        $.ajax({
+            url: '@this.Url.Action("Edit")',
+            data: formData,
+            method: 'POST',
+            success: function (result) {
+                alert(result.message);
+                window.location.href = "@this.Url.Action("Index")";
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+    }
+</script>

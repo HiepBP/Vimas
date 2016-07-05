@@ -226,6 +226,7 @@
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -458,6 +459,7 @@
     <Compile Include="Models\Entities\Services\ThongTinDuTuyenServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\ThongTinGiaDinhService.cs" />
     <Compile Include="Models\Entities\Services\ThongTinGiaDinhServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -3038,6 +3040,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\HeThong\Models\" />
+    <Folder Include="Areas\HeThong\Views\Shared\" />
     <Folder Include="Areas\HocVien\Models\" />
   </ItemGroup>
   <ItemGroup>

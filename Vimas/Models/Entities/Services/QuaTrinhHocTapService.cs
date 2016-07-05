@@ -14,7 +14,7 @@ namespace Vimas.Models.Entities.Services
     {
         public IQueryable<QuaTrinhHocTap> GetByIdThongTinCaNhan(int idThongTinCaNhan)
         {
-            return this.Get(q => q.IdThongTinCaNhan == idThongTinCaNhan);
+            return this.GetActive(q => q.IdThongTinCaNhan == idThongTinCaNhan);
         }
     }
 }

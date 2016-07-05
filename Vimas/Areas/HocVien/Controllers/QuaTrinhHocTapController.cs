@@ -20,10 +20,10 @@ namespace Vimas.Areas.HocVien.Controllers
             return View();
         }
 
-        public JsonResult LoadQuaTrinhHocTap(JQueryDataTableParamModel param)
+        public JsonResult LoadQuaTrinhHocTap(JQueryDataTableParamModel param, int userId)
         {
             var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
-            var listQuaTrinhHocTap = quaTrinhHocTapService.GetActive().ProjectTo<QuaTrinhHocTapViewModel>(this.MapperConfig).ToList();
+            var listQuaTrinhHocTap = quaTrinhHocTapService.GetByIdThongTinCaNhan(userId).ProjectTo<QuaTrinhHocTapViewModel>(this.MapperConfig).ToList();
             try
             {
                 var rs = listQuaTrinhHocTap

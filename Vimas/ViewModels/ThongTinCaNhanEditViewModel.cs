@@ -22,6 +22,7 @@ namespace Vimas.ViewModels
         }
 
         #region Basic Info
+        [Display(Name ="Mã Lưu Hồ Sơ")]
         [Required(ErrorMessage = "Vui lòng nhập mã lưu hồ sơ!!!")]
         public override string MaLuuHoSo
         {
@@ -35,6 +36,7 @@ namespace Vimas.ViewModels
                 base.MaLuuHoSo = value;
             }
         }
+        [Display(Name ="Họ Tên")]
         [Required(ErrorMessage = "Vui lòng nhập họ tên!!!")]
         public override string HoTen
         {
@@ -48,6 +50,7 @@ namespace Vimas.ViewModels
                 base.HoTen = value;
             }
         }
+        [Display(Name ="Tên Phiên Âm Nhật")]
         [Required(ErrorMessage = "Vui lòng nhập tên phiên âm!!!")]
         public override string TenPhienAmNhat
         {
@@ -61,6 +64,7 @@ namespace Vimas.ViewModels
                 base.TenPhienAmNhat = value;
             }
         }
+        [Display(Name ="Chứng Minh Nhân Dân")]
         [StringLength(12,MinimumLength = 9,ErrorMessage ="Độ dài CMND từ 9 đến 12 số!!!")]
         [IsNumeric(ErrorMessage = "Vui lòng nhập số!!!")]
         public override string CMND
@@ -75,6 +79,7 @@ namespace Vimas.ViewModels
                 base.CMND = value;
             }
         }
+        [Display(Name ="Điện thoại di động")]
         [IsNumeric]
         public override string DienThoaiDiDong
         {
@@ -88,6 +93,7 @@ namespace Vimas.ViewModels
                 base.DienThoaiDiDong = value;
             }
         }
+        [Display(Name ="Điện thoại nhà")]
         [IsNumeric]
         public override string DienThoaiNha
         {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Helpers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -36,7 +37,7 @@ namespace Vimas.Areas.HocVien.Controllers
                         .Select(q => new IConvertible[]
                         {
                             q.HoTen,
-                            (Relation)q.QuanHe.Value,
+                            EnumHelper<Relation>.GetDisplayValue((Relation)q.QuanHe.Value),
                             q.SoDienThoai,
                             q.DiaChi,
                             q.Id,

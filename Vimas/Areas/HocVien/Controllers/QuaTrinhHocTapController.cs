@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Helpers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -35,7 +36,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.TenTruong,
-                        (EducationLevel)q.LoaiTruong.Value,
+                        EnumHelper<EducationLevel>.GetDisplayValue((EducationLevel)q.LoaiTruong.Value),
                         q.NganhHoc,
                         q.DaTotNghiep,
                         q.TuNam.HasValue ? q.TuNam : 0,

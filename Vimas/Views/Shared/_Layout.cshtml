@@ -151,17 +151,6 @@
     </footer>
 
     @RenderSection("scripts", false)
-    <script>
-        $(document)
-          .ajaxStart(function () {
-              $('#loading-image').fadeIn(400);
-          })
-          .ajaxStop(function () {
-              $('#loading-image').fadeOut(400, function () {
-                  $(this).trigger('onFadeOutComplete');
-              });
-          });
-    </script>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
@@ -210,5 +199,17 @@
     @*<script src="~/Content/plugins/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>*@
     @*<script src="~/Content/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>*@
     <script src="~/Content/plugins/select2-4.0.3/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document)
+          .ajaxStart(function () {
+              $('#loading-image').fadeIn(400);
+          })
+          .ajaxStop(function () {
+              $('#loading-image').fadeOut(400, function () {
+                  $(this).trigger('onFadeOutComplete');
+              });
+          });
+    </script>
 </body>
 </html>

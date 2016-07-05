@@ -35,7 +35,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.TenTruong,
-                        q.LoaiTruong.Value,
+                        (EducationLevel)q.LoaiTruong.Value,
                         q.NganhHoc,
                         q.DaTotNghiep,
                         q.TuNam.HasValue ? q.TuNam : 0,
@@ -85,7 +85,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 await quaTrinhHocTapService.CreateAsync(model.ToEntity());
                 return Json(new { success = true, message = "Tạo thành công!" });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Json(new { success = false, message = "Có lỗi xảy ra, xin liên hệ admin!!!" });
             }
@@ -95,7 +95,7 @@ namespace Vimas.Areas.HocVien.Controllers
         {
             var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
             var model = new QuaTrinhHocTapEditViewModel(await quaTrinhHocTapService.GetAsync(id));
-            if(model == null || model.Active == false)
+            if (model == null || model.Active == false)
             {
                 return Json(new { success = false, });
             }
@@ -125,6 +125,26 @@ namespace Vimas.Areas.HocVien.Controllers
             catch (Exception e)
             {
                 return Json(new { success = false, message = "Có lỗi xảy ra, xin liên hệ admin!!!" });
+            }
+        }
+
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
+        {
+            try
+            {
+                var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+                var entity = await quaTrinhHocTapService.GetAsync(id);
+                if(entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                await quaTrinhHocTapService.DeleteAsync(entity);
+                return Json(new { success = false, message = "Xóa thành công" });
+            }
+            catch(Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
     }

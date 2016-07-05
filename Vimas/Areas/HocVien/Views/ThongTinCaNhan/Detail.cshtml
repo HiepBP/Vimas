@@ -125,7 +125,7 @@
                 },
                 {
                     "aTargets": [4],
-                    "mRender": function(data, type, o){
+                    "mRender": function (data, type, o) {
                         var tuNam = o[4];
                         var denNam = o[5];
                         return tuNam + " - " + denNam;
@@ -136,7 +136,8 @@
                     "mRender": function (data, type, o) {
                         var data = o[6];
                         var edit = "<button type='button' id='editThongTinCaNhan' class='btn btn-sm btn-primary' onclick='showEditQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                        return edit;
+                        var del = "<button type='button' id='deleteThongTinCaNhan' class='btn btn-sm btn-danger' onclick='deleteQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        return edit + " " + del;
                     }
                 }
 
@@ -149,8 +150,8 @@
         $.ajax({
             type: "GET",
             url: '@Url.Action("Create","QuaTrinhHocTap")',
-            data:{
-                idThongTinCaNhan : idThongTinCaNhan,
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
             },
             success: function (result) {
                 //$('#myModal').modal('show');
@@ -179,6 +180,24 @@
                 alert("Error Occured")
             }
         });
+    }
+
+    function deleteQTHT(idQTHT) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete","QuaTrinhHocTap")',
+                data: {
+                    id: idQTHT,
+                },
+                success: function (result) {
+                    alert(result.message);
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
     }
 
     function RefreshQTHTTable() {

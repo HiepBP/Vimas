@@ -260,3 +260,5 @@ D:\asp.NET\Vimas\Vimas\bin\Microsoft.Owin.Security.OAuth.xml
 D:\asp.NET\Vimas\Vimas\bin\Microsoft.Owin.Security.Google.xml
 D:\asp.NET\Vimas\Vimas\bin\Microsoft.Owin.Security.Twitter.xml
 D:\asp.NET\Vimas\Vimas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\PersonalProject\Vimas\Vimas\obj\Debug\Vimas.Resource.resources
+D:\PersonalProject\Vimas\Vimas\obj\Debug\Vimas.csproj.GenerateResource.Cache

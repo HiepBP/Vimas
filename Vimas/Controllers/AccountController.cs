@@ -60,6 +60,17 @@ namespace Vimas.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            if(this.User != null)
+            {
+                if(returnUrl == null)
+                {
+                    return RedirectToAction("Index", "ThongTinCaNhan", new { area = "HocVien" });
+                }
+                else
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+            }
             return View();
         }
 

@@ -228,6 +228,7 @@
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
     <Compile Include="Areas\HeThong\HeThongAreaRegistration.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -460,6 +461,7 @@
     <Compile Include="Models\Entities\Services\ThongTinDuTuyenServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\ThongTinGiaDinhService.cs" />
     <Compile Include="Models\Entities\Services\ThongTinGiaDinhServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>

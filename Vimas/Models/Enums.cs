@@ -42,4 +42,26 @@ namespace Vimas.Models
         [Display(Name = "Đại học")]
         DaiHoc = 5,
     }
+
+    public enum Relation
+    {
+        [Display(Name = "Ba")]
+        Ba = 0,
+        [Display(Name = "Mẹ")]
+        Me = 1,
+        [Display(Name = "Anh")]
+        Anh = 2,
+        [Display(Name = "Chị")]
+        Chi = 3,
+        [Display(Name = "Em")]
+        Em = 4,
+        [Display(Name = "Anh Họ")]
+        AnhHo = 5,
+        [Display(Name = "Chị Họ")]
+        ChiHo = 6,
+        [Display(Name = "Cậu")]
+        Cau = 7,
+        [Display(Name = "Dì")]
+        Di = 8,
+    }
 }

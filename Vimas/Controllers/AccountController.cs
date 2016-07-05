@@ -60,7 +60,7 @@ namespace Vimas.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            if(this.User != null)
+            if(System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 if(returnUrl == null)
                 {

@@ -12,6 +12,7 @@
     <EntitySet Name="HopDongDOLABs" EntityType="VimasModel.HopDongDOLAB" />
     <EntitySet Name="HopDongDOLABHocVienMappings" EntityType="VimasModel.HopDongDOLABHocVienMapping" />
     <EntitySet Name="KyTucXas" EntityType="VimasModel.KyTucXa" />
+    <EntitySet Name="KyTucXaHocVienMappings" EntityType="VimasModel.KyTucXaHocVienMapping" />
     <EntitySet Name="NghiepDoans" EntityType="VimasModel.NghiepDoan" />
     <EntitySet Name="QuaTrinhHocTaps" EntityType="VimasModel.QuaTrinhHocTap" />
     <EntitySet Name="QuaTrinhLamViecs" EntityType="VimasModel.QuaTrinhLamViec" />
@@ -247,6 +248,15 @@
     <Property Name="Active" Type="Boolean" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_KyTucXa_ThongTinCaNhan" FromRole="KyTucXa" ToRole="ThongTinCaNhan" />
   </EntityType>
+  <EntityType Name="KyTucXaHocVienMapping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idThongTinCaNhan" Type="Int32" />
+    <Property Name="idKyTucXa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Active" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
   <EntityType Name="NghiepDoan">
     <Key>
       <PropertyRef Name="Id" />
@@ -276,7 +286,7 @@
     <Property Name="TuNam" Type="Int32" />
     <Property Name="DenNam" Type="Int32" />
     <Property Name="TenTruong" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-    <Property Name="LoaiTruong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiTruong" Type="Int32" />
     <Property Name="NganhHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DaTotNghiep" Type="Boolean" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
@@ -405,7 +415,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdThongTinCaNhan" Type="Int32" Nullable="false" />
     <Property Name="HoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="QuanHe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QuanHe" Type="Int32" />
     <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="NgheNghiep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NoiLamViec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -495,6 +505,7 @@
     <Property Name="NgayKyHopDong" Type="DateTime" Precision="3" />
     <Property Name="NgayHetHan" Type="DateTime" Precision="3" />
     <Property Name="NguoiDaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChucDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Active" Type="Boolean" />
     <NavigationProperty Name="ThongTinCaNhans" Relationship="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL" FromRole="TrungTamGTVL" ToRole="ThongTinCaNhan" />
   </EntityType>

@@ -14,6 +14,9 @@ namespace Vimas.Models
 
         [Display(Name = "Có gia đình")]
         Married = 1,
+
+        [Display(Name = "Ly dị")]
+        Divorce = 2,
     }
 
     public enum Gender
@@ -32,9 +35,33 @@ namespace Vimas.Models
         TrungHocCoSo = 1,
         [Display(Name = "Trung học phổ thông")]
         TrungHocPhoThong = 2,
+        [Display(Name = "Trung cấp")]
+        TrungCap = 3,
+        [Display(Name = "Cao đẳng")]
+        CaoDang = 4,
         [Display(Name = "Đại học")]
-        DaiHoc = 3,
-        [Display(Name = "Sau đại học")]
-        SauDaiHoc = 4,
+        DaiHoc = 5,
+    }
+
+    public enum Relation
+    {
+        [Display(Name = "Ba")]
+        Ba = 0,
+        [Display(Name = "Mẹ")]
+        Me = 1,
+        [Display(Name = "Anh")]
+        Anh = 2,
+        [Display(Name = "Chị")]
+        Chi = 3,
+        [Display(Name = "Em")]
+        Em = 4,
+        [Display(Name = "Anh Họ")]
+        AnhHo = 5,
+        [Display(Name = "Chị Họ")]
+        ChiHo = 6,
+        [Display(Name = "Cậu")]
+        Cau = 7,
+        [Display(Name = "Dì")]
+        Di = 8,
     }
 }

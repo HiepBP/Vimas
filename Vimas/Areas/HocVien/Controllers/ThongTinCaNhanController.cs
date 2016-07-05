@@ -38,7 +38,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.HoTen,
-                        q.GioiTinh,
+                        q.GioiTinh == 0 ? "Nữ":"Nam",
                         q.NgaySinh.ToShortDateString(),
                         q.CMND,
                         q.DienThoaiDiDong,
@@ -64,7 +64,7 @@ namespace Vimas.Areas.HocVien.Controllers
         {
             var trungTamGTVLService = this.Service<ITrungTamGTVLService>();
             var model = new ThongTinCaNhanEditViewModel();
-            model.Gender = (Gender)model.GioiTinh;
+            model.Gender = (Gender)1;
             model.FamilyStatus = (FamilyStatus)model.TinhTrangGiaDinh;
             model.EducationLevel = (EducationLevel)(model.TrinhDoVanHoa != null ? model.TrinhDoVanHoa : 0);
             model.AvailableMaNguon = trungTamGTVLService.GetActive().Select(q => new SelectListItem()

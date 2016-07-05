@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Vimas.Models;
@@ -18,6 +19,23 @@ namespace Vimas.ViewModels
         {
             mapper.Map(original, this);
         }
+        
+        [IsNumeric]
+        [Display(Name = "Từ năm")]
+        public override Nullable<int> TuNam { get; set; }
+        [IsNumeric]
+        [Display(Name = "Đến năm")]
+        public override Nullable<int> DenNam { get; set; }
+        [Required]
+        [Display(Name = "Tên trường")]
+        public override string TenTruong { get; set; }
+        [Display(Name = "Loại trường")]
+        public override Nullable<int> LoaiTruong { get; set; }
+        [Required]
+        [Display(Name = "Ngành học")]
+        public override string NganhHoc { get; set; }
+        [Display(Name = "Đã tốt nghiệp")]
+        public override Nullable<bool> DaTotNghiep { get; set; }
         public EducationLevel EducationLevel { get; set; }
     }
 }

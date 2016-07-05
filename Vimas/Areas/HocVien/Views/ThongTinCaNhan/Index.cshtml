@@ -4,11 +4,11 @@
     ViewBag.Title = "Danh sách học viên";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
+@*<style>
     .display-initial {
         display: initial;
     }
-</style>
+</style>*@
 
 <div class="card">
     <div class="card-header">
@@ -79,7 +79,11 @@
                 "sEmptyTable": "Không có dữ liệu",
                 "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
                 "sLengthMenu": "Hiển thị _MENU_ dòng",
-                "sProcessing": "Đang xử lý..."
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
             },
             "aoColumnDefs": [
                 {
@@ -91,7 +95,7 @@
                     "mRender": function (data, type, o) {
                         var data = o[5];
                         var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
-                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-danger' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                         return detail + " " + edit;
                     }
                 }

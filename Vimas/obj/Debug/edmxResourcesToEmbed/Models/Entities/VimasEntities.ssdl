@@ -140,6 +140,15 @@
     <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
     <Property Name="Active" Type="bit" />
   </EntityType>
+  <EntityType Name="KyTucXaHocVienMapping">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="idThongTinCaNhan" Type="int" />
+    <Property Name="idKyTucXa" Type="nchar" MaxLength="10" />
+    <Property Name="Active" Type="nchar" MaxLength="10" />
+  </EntityType>
   <EntityType Name="NghiepDoan">
     <Key>
       <PropertyRef Name="Id" />
@@ -168,7 +177,7 @@
     <Property Name="TuNam" Type="int" />
     <Property Name="DenNam" Type="int" />
     <Property Name="TenTruong" Type="nvarchar" MaxLength="80" />
-    <Property Name="LoaiTruong" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoaiTruong" Type="int" />
     <Property Name="NganhHoc" Type="nvarchar" MaxLength="50" />
     <Property Name="DaTotNghiep" Type="bit" />
     <Property Name="Active" Type="bit" Nullable="false" />
@@ -281,7 +290,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
     <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="QuanHe" Type="nvarchar" MaxLength="50" />
+    <Property Name="QuanHe" Type="int" />
     <Property Name="NgaySinh" Type="datetime" Nullable="false" />
     <Property Name="NgheNghiep" Type="nvarchar" MaxLength="50" />
     <Property Name="NoiLamViec" Type="nvarchar" MaxLength="50" />
@@ -365,6 +374,7 @@
     <Property Name="NgayKyHopDong" Type="datetime" />
     <Property Name="NgayHetHan" Type="datetime" />
     <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChucDanh" Type="nvarchar" MaxLength="50" />
     <Property Name="Active" Type="bit" />
   </EntityType>
   <Association Name="FK_BangCap_ThongTinDuTuyen">
@@ -628,6 +638,7 @@
     <EntitySet Name="HopDongDOLAB" EntityType="Self.HopDongDOLAB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HopDongDOLABHocVienMapping" EntityType="Self.HopDongDOLABHocVienMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KyTucXa" EntityType="Self.KyTucXa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KyTucXaHocVienMapping" EntityType="Self.KyTucXaHocVienMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NghiepDoan" EntityType="Self.NghiepDoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuaTrinhHocTap" EntityType="Self.QuaTrinhHocTap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuaTrinhLamViec" EntityType="Self.QuaTrinhLamViec" Schema="dbo" store:Type="Tables" />

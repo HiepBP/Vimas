@@ -225,7 +225,11 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
+    <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
+    <Compile Include="Areas\HeThong\HeThongAreaRegistration.cs" />
+    <Compile Include="Areas\HocVien\Controllers\QuaTrinhLamViecController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\MP5Hasher.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\AspNetRole.cs">
@@ -303,6 +308,12 @@
     <Compile Include="Models\Entities\KyTucXa.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\KyTucXaHocVienMapping.cs">
+      <DependentUpon>VimasEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\KyTucXaHocVienMappingRefined.cs">
+      <DependentUpon>EntityRefinery.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\KyTucXaRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
@@ -352,6 +363,9 @@
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\HopDongDOLABRepositoryGen.cs">
+      <DependentUpon>Repositories.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Repositories\KyTucXaHocVienMappingRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\KyTucXaRepositoryGen.cs">
@@ -428,6 +442,9 @@
     <Compile Include="Models\Entities\Services\HopDongDOLABServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\KyTucXaHocVienMappingServiceGen.cs">
+      <DependentUpon>Services.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\Services\KyTucXaServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -438,6 +455,7 @@
     <Compile Include="Models\Entities\Services\QuaTrinhHocTapServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\QuaTrinhLamViecService.cs" />
     <Compile Include="Models\Entities\Services\QuaTrinhLamViecServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -458,6 +476,7 @@
     <Compile Include="Models\Entities\Services\ThongTinDuTuyenServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\ThongTinGiaDinhService.cs" />
     <Compile Include="Models\Entities\Services\ThongTinGiaDinhServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -548,6 +567,11 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AspNetRoleViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
@@ -580,6 +604,9 @@
     <Compile Include="ViewModels\HopDongDOLABViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\KyTucXaHocVienMappingViewModelGen.cs">
+      <DependentUpon>ViewModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\KyTucXaViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -590,6 +617,7 @@
     <Compile Include="ViewModels\QuaTrinhHocTapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\QuaTrinhLamViecEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhLamViecViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -606,6 +634,7 @@
     <Compile Include="ViewModels\ThongTinDuTuyenViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ThongTinGiaDinhEditViewModel.cs" />
     <Compile Include="ViewModels\ThongTinGiaDinhViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -634,6 +663,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\material-design-iconic-font.css" />
     <Content Include="Content\css\material-design-iconic-font.min.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\css\theme.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
@@ -2897,6 +2927,16 @@
     <Content Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhHocTap\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinCaNhan\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhHocTap\Edit.cshtml" />
+    <Content Include="Areas\HeThong\Views\web.config" />
+    <Content Include="Areas\HeThong\Views\TrungTamGTVL\Index.cshtml" />
+    <Content Include="Areas\HeThong\Views\TrungTamGTVL\Create.cshtml" />
+    <Content Include="Areas\HeThong\Views\TrungTamGTVL\Edit.cshtml" />
+    <Content Include="Areas\HeThong\Views\TrungTamGTVL\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -3031,6 +3071,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\HeThong\Models\" />
+    <Folder Include="Areas\HeThong\Views\Shared\" />
     <Folder Include="Areas\HocVien\Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -3043,6 +3085,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

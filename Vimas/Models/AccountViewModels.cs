@@ -72,22 +72,22 @@ namespace Vimas.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Username")]
+        [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Mật khẩu ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Xác nhận mật khẩu")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Mật khẩu xác nhận không giống.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Role")]
+        [Display(Name = "Chức vụ")]
         public string RoleName { get; set; }
         
         public IEnumerable<SelectListItem> AvailableRoles { get; set; } 

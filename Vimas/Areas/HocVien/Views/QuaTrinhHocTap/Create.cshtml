@@ -6,11 +6,12 @@
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="createQuaTrinhHocTapForm" method="post" action="@Url.Action("Register","TaiKhoan")">
+        <form id="createQuaTrinhHocTapForm" method="post">
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Thông tin tài khoản</h4>
+                <h4 class="modal-title">Thêm QTHT</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
@@ -21,27 +22,44 @@
                             @Html.ValidationMessageFor(q => q.TenTruong)
                         </div>
                     </div>
-
                     <div class="form-group">
                         @Html.LabelFor(q => q.LoaiTruong, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.LoaiTruong, new { @class = "form-control col-sm-12" })
-                            @Html.ValidationMessageFor(q => q.LoaiTruong)
+                            @Html.EnumDropDownListFor(q => q.EducationLevel, new { @class = "form-control col-sm-12" })
                         </div>
                     </div>
-
                     <div class="form-group">
                         @Html.LabelFor(q => q.NganhHoc, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.NganhHoc, new { @class = " form-control col-sm-12", @type = "password" })
+                            @Html.TextBoxFor(q => q.NganhHoc, new { @class = " form-control col-sm-12" })
                             @Html.ValidationMessageFor(q => q.NganhHoc)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.TuNam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TuNam, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TuNam)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DenNam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DenNam, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.DenNam)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DaTotNghiep, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            <input type="checkbox" id="DaTotNghiep" name="DaTotNghiep" value="true"/>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="createAccount()" value="Thêm tài khoản" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="createQTHT()" value="Thêm" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -49,23 +67,23 @@
 
 <script>
     $(document).ready(function () {
-        var form = $('#createAccountForm')
+        var form = $('#createQuaTrinhHocTapForm')
             .removeData("validator") /* added by the raw jquery.validate plugin */
             .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
 
         $.validator.unobtrusive.parse(form);
     })
 
-    function createAccount() {
+    function createQTHT() {
         var formData = $('#createQuaTrinhHocTapForm').serialize();
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Create","TaiKhoan")',
+            url: '@Url.Action("Create","QuaTrinhHocTap")',
             data: formData,
             success: function (result) {
                 alert(result.message);
-                $('#createQuaTrinhHocTapModal').modal('hide');
-                RefreshTable(taiKhoanDatatable);
+                $('#createQTHTPanel').modal('hide');
+                RefreshQTHTTable();
             },
             error: function (error) {
                 alert(result.message);

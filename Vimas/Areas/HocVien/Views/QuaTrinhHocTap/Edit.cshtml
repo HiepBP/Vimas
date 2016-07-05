@@ -1,0 +1,94 @@
+﻿@model QuaTrinhHocTapEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="editQuaTrinhHocTapForm" method="post" action="@Url.Action("Register","TaiKhoan")">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.Id)
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Chỉnh sửa QTHT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.TenTruong, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TenTruong, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TenTruong)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.LoaiTruong, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.EnumDropDownListFor(q => q.EducationLevel, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NganhHoc, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.NganhHoc, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.NganhHoc)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.TuNam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TuNam, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TuNam)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DenNam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DenNam, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.DenNam)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DaTotNghiep, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            <input type="checkbox" checked="@(this.Model.DaTotNghiep.Value ? "":null)"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="editQTHT()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#editQuaTrinhHocTapForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+    })
+
+    function editQTHT() {
+        var formData = $('#editQuaTrinhHocTapForm').serialize();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Edit","QuaTrinhHocTap")',
+            data: formData,
+            success: function (result) {
+                alert(result.message);
+                $('#editQTHTPanel').modal('hide');
+                RefreshQTHTTable();
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+    }
+</script>

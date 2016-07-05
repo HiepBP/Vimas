@@ -35,7 +35,9 @@ namespace Vimas.Areas.Admin.Controllers
             try
             {
                 var aspNetUserService = this.Service<IAspNetUserService>();
-                var listThongTinCaNhan = aspNetUserService.Get().ProjectTo<AspNetUserViewModel>(this.MapperConfig);
+                var listThongTinCaNhan = aspNetUserService.Get()
+                    .Where(q => q.AspNetRoles.FirstOrDefault().Name!="Admin" && q.AspNetRoles.FirstOrDefault().Name != "SysAdmin")
+                    .ProjectTo<AspNetUserViewModel>(this.MapperConfig);
 
                 var rs = (await listThongTinCaNhan
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
@@ -109,19 +111,6 @@ namespace Vimas.Areas.Admin.Controllers
                 UserManager.PasswordHasher = new MP5Hasher(FormsAuthPasswordFormat.MD5);
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
-                }
-
                 if (!result.Succeeded)
                 {
                     return Json(new { success = false, message = result.Errors });
@@ -182,6 +171,7 @@ namespace Vimas.Areas.Admin.Controllers
                 Email = user.Email,
                 Username = user.UserName,
                 Password = user.PasswordHash,
+                RoleName = user.AspNetRoles.FirstOrDefault().Name,
             };
             model.AvailableRoles = aspNetRoleService.Get(q => q.Name != "Admin" && q.Name != "SysAdmin").Select(q => new SelectListItem()
             {
@@ -215,6 +205,7 @@ namespace Vimas.Areas.Admin.Controllers
 
             if (!model.Password.Equals(user.PasswordHash))
             {
+                UserManager.PasswordHasher = new MP5Hasher(FormsAuthPasswordFormat.MD5);
                 user.PasswordHash = UserManager.PasswordHasher.HashPassword(model.Password);
                 //MembershipUser mu = Membership.GetUser(user.UserName);
                 //mu.ChangePassword(mu.ResetPassword(), model.Password);

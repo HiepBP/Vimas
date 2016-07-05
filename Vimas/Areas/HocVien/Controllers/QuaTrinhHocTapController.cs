@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Helpers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -20,21 +21,10 @@ namespace Vimas.Areas.HocVien.Controllers
             return View();
         }
 
-        public ActionResult Create(int idThongTinCaNhan)
+        public JsonResult LoadQuaTrinhHocTap(JQueryDataTableParamModel param, int userId)
         {
             var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
-            var model = new QuaTrinhHocTapEditViewModel()
-            {
-                IdThongTinCaNhan = idThongTinCaNhan,
-                EducationLevel = 0,
-            };
-            return View(model);
-        }
-
-        public JsonResult LoadQuaTrinhHocTap(JQueryDataTableParamModel param)
-        {
-            var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
-            var listQuaTrinhHocTap = quaTrinhHocTapService.GetActive().ProjectTo<QuaTrinhHocTapViewModel>(this.MapperConfig).ToList();
+            var listQuaTrinhHocTap = quaTrinhHocTapService.GetByIdThongTinCaNhan(userId).ProjectTo<QuaTrinhHocTapViewModel>(this.MapperConfig).ToList();
             try
             {
                 var rs = listQuaTrinhHocTap
@@ -46,7 +36,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.TenTruong,
-                        q.LoaiTruong,
+                        EnumHelper<EducationLevel>.GetDisplayValue((EducationLevel)q.LoaiTruong.Value),
                         q.NganhHoc,
                         q.DaTotNghiep,
                         q.TuNam.HasValue ? q.TuNam : 0,
@@ -65,6 +55,97 @@ namespace Vimas.Areas.HocVien.Controllers
             catch (Exception e)
             {
                 return Json(new { success = false, message = "Error" });
+            }
+        }
+
+        public ActionResult Create(int idThongTinCaNhan)
+        {
+            var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+            var model = new QuaTrinhHocTapEditViewModel()
+            {
+                IdThongTinCaNhan = idThongTinCaNhan,
+                EducationLevel = (EducationLevel)0,
+                DaTotNghiep = false,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> Create(QuaTrinhHocTapEditViewModel model)
+        {
+            try
+            {
+                var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+                model.Active = true;
+                model.LoaiTruong = (int)model.EducationLevel;
+                if (!model.DaTotNghiep.HasValue)
+                {
+                    model.DaTotNghiep = false;
+                }
+                await quaTrinhHocTapService.CreateAsync(model.ToEntity());
+                return Json(new { success = true, message = "Tạo thành công!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
+        {
+            var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+            var model = new QuaTrinhHocTapEditViewModel(await quaTrinhHocTapService.GetAsync(id));
+            if (model == null || model.Active == false)
+            {
+                return Json(new { success = false, });
+            }
+            model.EducationLevel = (EducationLevel)model.LoaiTruong;
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> Edit(QuaTrinhHocTapEditViewModel model)
+        {
+            try
+            {
+                var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+                var entity = await quaTrinhHocTapService.GetAsync(model.Id);
+                if (!model.DaTotNghiep.HasValue)
+                {
+                    model.DaTotNghiep = false;
+                }
+                model.CopyToEntity(entity);
+                entity.Active = true;
+                entity.LoaiTruong = (int)model.EducationLevel;
+                entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+                await quaTrinhHocTapService.UpdateAsync(entity);
+                return Json(new { success = true, message = "Sửa thành công!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
+        {
+            try
+            {
+                var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
+                var entity = await quaTrinhHocTapService.GetAsync(id);
+                if(entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                await quaTrinhHocTapService.DeleteAsync(entity);
+                return Json(new { success = false, message = "Xóa thành công" });
+            }
+            catch(Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
     }

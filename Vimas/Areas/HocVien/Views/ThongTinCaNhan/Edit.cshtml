@@ -84,9 +84,9 @@
                                 <label class="control-label col-md-5" for="GioiTinh">Giới Tính<span style="color:red">*</span></label>
                                 <div class="col-md-6">
                                     @*<select class="form-control" id="GioiTinh" name="GioiTinh">
-                        <option value="true" selected>Nam</option>
-                        <option value="false">Nữ</option>
-                    </select>*@
+                                            <option value="true" selected>Nam</option>
+                                            <option value="false">Nữ</option>
+                                        </select>*@
                                     @Html.EnumDropDownListFor(q => q.Gender, new { @class = "form-control" })
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                         </div>
-                        <br/>
+                        <br />
                         <div class="border-all">
                             <div class="form-group first-row">
                                 <label class="control-label col-md-5" for="SoHoChieu">Số hộ chiếu</label>
@@ -331,6 +331,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -369,6 +371,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -406,6 +410,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [
@@ -444,6 +450,8 @@
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
             locale: {
                 format: "LL",
                 daysOfWeek: [

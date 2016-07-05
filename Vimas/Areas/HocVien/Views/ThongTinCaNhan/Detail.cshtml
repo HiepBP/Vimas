@@ -39,12 +39,16 @@
             <div class="col-md-12">
                 <ul class="tab-nav tn-justified">
                     <li class="active waves-effect"><a data-toggle="tab" href="#quaTrinhHocTap">Quá trình học tập</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#thongTinGiaDinh">Thông tin gia đình</a></li>
                     <li class="waves-effect"><a data-toggle="tab" href="#quaTrinhLamViec">Quá trình làm việc</a></li>
                 </ul>
             </div>
 
             <div class="tab-content">
                 <div id="quaTrinhHocTap" class="tab-pane fade in active">
+                    <div class="col-md-12">
+                        <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -66,6 +70,9 @@
                                             <th>
                                                 <label class="">Từ năm - Đến năm</label>
                                             </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -74,11 +81,71 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="quaTrinhLamViec" class="tab-pane fade">
+                <div id="thongTinGiaDinh" class="tab-pane fade">
+                    <div class="col-md-12">
+                        <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
+                                <table id="thongTinGiaDinhTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Họ Tên</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Quan hệ</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Số điện thoại</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Địa chỉ</label>
+                                            </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="quaTrinhLamViec" class="tab-pane fade">
+                    <div class="col-md-12">
+                        <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="quaTrinhLamViecTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Tên công ty</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Hình thức công ty</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Chi tiết công việc</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Địa chỉ</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Đang làm</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Từ năm - Đến năm</label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -88,10 +155,21 @@
     </div>
 </div>
 
-<div id="createTransactionPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
-<div id="editTransactionPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="createQTHTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editQTHTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="createTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="createQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
 
 <script>
+    $(document).ready(function () {
+        initializeDatatable();
+    });
+
     function initializeDatatable() {
         $("#quaTrinhHocTapTable").dataTable({
             "bSort": false,
@@ -102,6 +180,9 @@
             "bProcessing": true,
             "iDisplayLength": 10,
             "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
             "oLanguage": {
                 "sSearch": "Tìm kiếm:",
                 "sZeroRecords": "Không có dữ liệu phù hợp",
@@ -109,7 +190,11 @@
                 "sEmptyTable": "Không có dữ liệu",
                 "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
                 "sLengthMenu": "Hiển thị _MENU_ dòng",
-                "sProcessing": "Đang xử lý..."
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
             },
             "aoColumnDefs": [
                 {
@@ -118,7 +203,7 @@
                 },
                 {
                     "aTargets": [4],
-                    "mRender": function(data, type, o){
+                    "mRender": function (data, type, o) {
                         var tuNam = o[4];
                         var denNam = o[5];
                         return tuNam + " - " + denNam;
@@ -128,13 +213,305 @@
                     "aTargets": [5],
                     "mRender": function (data, type, o) {
                         var data = o[6];
-                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        return edit;
+                        var edit = "<button type='button' id='editQuaTrinhHocTap' class='btn btn-sm btn-primary' onclick='showEditQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteQuaTrinhHocTap' class='btn btn-sm btn-danger' onclick='deleteQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        return edit + " " + del;
                     }
                 }
 
             ],
             "bAutoWidth": false
         });
+
+        $("#thongTinGiaDinhTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadThongTinGiaDinh", "ThongTinGiaDinh")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function (data, type, o) {
+                        var data = o[4];
+                        var edit = "<button type='button' id='editThongTinGiaDinh' class='btn btn-sm btn-primary' onclick='showEditTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteThongTinGiaDinh' class='btn btn-sm btn-danger' onclick='deleteTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        return edit + del;
+                    }
+                },
+            ],
+            "bAutoWidth": false
+        });
+
+        $("#quaTrinhLamViecTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadQuaTrinhLamViec", "QuaTrinhLamViec")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [5],
+                    "mRender": function (data, type, o) {
+                        var tuNam = o[5];
+                        var denNam = o[6];
+                        return tuNam + " - " + denNam;
+                    }
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[7];
+                        var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        });
+    }
+
+    function showCreateQTHT(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","QuaTrinhHocTap")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTHTPanel').html(result);
+                $('#createQTHTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+    function showCreateQTLV(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create", "QuaTrinhLamViec")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTLVPanel').html(result);
+                $('#createQTLVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+    function showEditQTHT(idQTHT) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","QuaTrinhHocTap")',
+            data: {
+                id: idQTHT,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editQTHTPanel').html(result);
+                $('#editQTHTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showCreateTTGD(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","ThongTinGiaDinh")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createTTGDPanel').html(result);
+                $('#createTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditTTGD(idTTGD) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit", "ThongTinGiaDinh")',
+            data: {
+                id: idTTGD,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editTTGDPanel').html(result);
+                $('#editTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showCreateQTLV(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create", "QuaTrinhLamViec")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTLVPanel').html(result);
+                $('#createQTLVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditQTLV(idQTLV) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit", "QuaTrinhLamViec")',
+            data: {
+                id: idQTLV,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editQTLVPanel').html(result);
+                $('#editQTLVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function deleteTTGD(idTTGD) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete","ThongTinGiaDinh")',
+                data: {
+                    id: idTTGD,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTGDTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function deleteQTHT(idQTLV) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
+                data: {
+                    id: idQTLV,
+                },
+                success: function (result) {
+                    alert(result.message);
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function deleteQTLT(idQTLV) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
+                data: {
+                    id: idQTLV,
+                },
+                success: function (result) {
+                    alert(result.message);
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function RefreshQTHTTable() {
+        var oTable = $('#quaTrinhHocTapTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+
+    function RefreshTTGDTable() {
+        var oTable = $('#thongTinGiaDinhTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+    function RefreshQTLVTable() {
+        var oTable = $('#quaTrinhLamViecTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
     }
 </script>

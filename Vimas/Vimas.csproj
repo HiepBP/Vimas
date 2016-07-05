@@ -630,6 +630,7 @@
     <Compile Include="ViewModels\ThongTinDuTuyenViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ThongTinGiaDinhEditViewModel.cs" />
     <Compile Include="ViewModels\ThongTinGiaDinhViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2928,6 +2929,8 @@
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Create.cshtml" />
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Edit.cshtml" />
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

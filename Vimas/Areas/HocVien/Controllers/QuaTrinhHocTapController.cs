@@ -63,7 +63,7 @@ namespace Vimas.Areas.HocVien.Controllers
             var model = new QuaTrinhHocTapEditViewModel()
             {
                 IdThongTinCaNhan = idThongTinCaNhan,
-                EducationLevel = 0,
+                EducationLevel = (EducationLevel)0,
                 DaTotNghiep = false,
             };
             return View(model);
@@ -87,7 +87,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { success = false, message = "Có lỗi xảy ra, xin liên hệ admin!!!" });
+                return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
 
@@ -124,7 +124,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { success = false, message = "Có lỗi xảy ra, xin liên hệ admin!!!" });
+                return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
 

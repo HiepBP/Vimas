@@ -25,7 +25,7 @@ namespace Vimas.Areas.HocVien.Controllers
             var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
             try
             {
-                var listQuaTrinhHocTap = thongTinGiaDinhService.GetByIdThongTinCaNhan(userId).ProjectTo<ThongTinGiaDinhViewModel>();
+                var listQuaTrinhHocTap = thongTinGiaDinhService.GetByIdThongTinCaNhan(userId).ProjectTo<ThongTinGiaDinhViewModel>(this.MapperConfig).ToList();
                 {
                     var rs = listQuaTrinhHocTap
                         .Where(q => string.IsNullOrEmpty(param.sSearch)
@@ -35,6 +35,11 @@ namespace Vimas.Areas.HocVien.Controllers
                         .Take(param.iDisplayLength)
                         .Select(q => new IConvertible[]
                         {
+                            q.HoTen,
+                            (Relation)q.QuanHe.Value,
+                            q.SoDienThoai,
+                            q.DiaChi,
+                            q.Id,
                         });
                     var totalRecords = rs.Count();
                     return Json(new
@@ -48,7 +53,89 @@ namespace Vimas.Areas.HocVien.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { success = false, message = "Error" });
+                return Json(new { success = false, message = "Error" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Create(int idThongTinCaNhan)
+        {
+            var model = new ThongTinGiaDinhEditViewModel();
+            model.Relation = (Relation)(model.QuanHe != null ? model.QuanHe : 0);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<JsonResult> Create(ThongTinGiaDinhEditViewModel model)
+        {
+            try
+            {
+                var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
+                model.QuanHe = (int)model.Relation;
+                model.Active = true;
+                await thongTinGiaDinhService.CreateAsync(model.ToEntity());
+                return Json(new { success = true, message = "Tạo thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
+        {
+            var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
+            var model = new ThongTinGiaDinhEditViewModel(await thongTinGiaDinhService.GetAsync(id));
+            if (model == null || model.Active == false)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+            model.Relation = (Relation)model.QuanHe;
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> Edit(ThongTinGiaDinhEditViewModel model)
+        {
+            try
+            {
+                var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
+                var entity = await thongTinGiaDinhService.GetAsync(model.Id);
+                if (entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                model.CopyToEntity(entity);
+                entity.Active = true;
+                entity.QuanHe = (int)model.Relation;
+                entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+                await thongTinGiaDinhService.UpdateAsync(entity);
+                return Json(new { success = true, message = "Sửa thành công!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
+        {
+            try
+            {
+                var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
+                var entity = await thongTinGiaDinhService.GetAsync(id);
+                if (entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                await thongTinGiaDinhService.DeleteAsync(entity);
+                return Json(new { success = false, message = "Xóa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
     }

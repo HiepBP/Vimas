@@ -13,7 +13,7 @@ namespace Vimas.Models.Entities.Services
     {
         public IQueryable<ThongTinGiaDinh> GetByIdThongTinCaNhan(int idThongTinCaNhan)
         {
-            return this.GetActive(q => q.IdThongTinCaNhan == idThongTinCaNhan);
+            return this.GetActive(q => q.IdThongTinCaNhan == idThongTinCaNhan && q.Active);
         }
     }
 }

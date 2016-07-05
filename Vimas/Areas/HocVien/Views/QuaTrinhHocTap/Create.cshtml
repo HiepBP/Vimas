@@ -6,7 +6,7 @@
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="createQuaTrinhHocTapForm" method="post" action="@Url.Action("Register","TaiKhoan")">
+        <form id="createQuaTrinhHocTapForm" method="post">
             @Html.AntiForgeryToken()
             @Html.HiddenFor(q => q.IdThongTinCaNhan)
             <div class="modal-header">

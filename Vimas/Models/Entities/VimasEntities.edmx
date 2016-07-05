@@ -145,6 +145,15 @@
           <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="KyTucXaHocVienMapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="idThongTinCaNhan" Type="int" />
+          <Property Name="idKyTucXa" Type="nchar" MaxLength="10" />
+          <Property Name="Active" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="NghiepDoan">
           <Key>
             <PropertyRef Name="Id" />
@@ -286,7 +295,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="QuanHe" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuanHe" Type="int" />
           <Property Name="NgaySinh" Type="datetime" Nullable="false" />
           <Property Name="NgheNghiep" Type="nvarchar" MaxLength="50" />
           <Property Name="NoiLamViec" Type="nvarchar" MaxLength="50" />
@@ -370,6 +379,7 @@
           <Property Name="NgayKyHopDong" Type="datetime" />
           <Property Name="NgayHetHan" Type="datetime" />
           <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChucDanh" Type="nvarchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <Association Name="FK_BangCap_ThongTinDuTuyen">
@@ -633,6 +643,7 @@
           <EntitySet Name="HopDongDOLAB" EntityType="Self.HopDongDOLAB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HopDongDOLABHocVienMapping" EntityType="Self.HopDongDOLABHocVienMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KyTucXa" EntityType="Self.KyTucXa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KyTucXaHocVienMapping" EntityType="Self.KyTucXaHocVienMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NghiepDoan" EntityType="Self.NghiepDoan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuaTrinhHocTap" EntityType="Self.QuaTrinhHocTap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuaTrinhLamViec" EntityType="Self.QuaTrinhLamViec" Schema="dbo" store:Type="Tables" />
@@ -742,6 +753,7 @@
           <EntitySet Name="HopDongDOLABs" EntityType="VimasModel.HopDongDOLAB" />
           <EntitySet Name="HopDongDOLABHocVienMappings" EntityType="VimasModel.HopDongDOLABHocVienMapping" />
           <EntitySet Name="KyTucXas" EntityType="VimasModel.KyTucXa" />
+          <EntitySet Name="KyTucXaHocVienMappings" EntityType="VimasModel.KyTucXaHocVienMapping" />
           <EntitySet Name="NghiepDoans" EntityType="VimasModel.NghiepDoan" />
           <EntitySet Name="QuaTrinhHocTaps" EntityType="VimasModel.QuaTrinhHocTap" />
           <EntitySet Name="QuaTrinhLamViecs" EntityType="VimasModel.QuaTrinhLamViec" />
@@ -977,6 +989,15 @@
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_KyTucXa_ThongTinCaNhan" FromRole="KyTucXa" ToRole="ThongTinCaNhan" />
         </EntityType>
+        <EntityType Name="KyTucXaHocVienMapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="idThongTinCaNhan" Type="Int32" />
+          <Property Name="idKyTucXa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Active" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="NghiepDoan">
           <Key>
             <PropertyRef Name="Id" />
@@ -1135,7 +1156,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdThongTinCaNhan" Type="Int32" Nullable="false" />
           <Property Name="HoTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="QuanHe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuanHe" Type="Int32" />
           <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NgheNghiep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NoiLamViec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1225,6 +1246,7 @@
           <Property Name="NgayKyHopDong" Type="DateTime" Precision="3" />
           <Property Name="NgayHetHan" Type="DateTime" Precision="3" />
           <Property Name="NguoiDaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChucDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="ThongTinCaNhans" Relationship="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL" FromRole="TrungTamGTVL" ToRole="ThongTinCaNhan" />
         </EntityType>
@@ -1598,6 +1620,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="KyTucXaHocVienMappings">
+            <EntityTypeMapping TypeName="VimasModel.KyTucXaHocVienMapping">
+              <MappingFragment StoreEntitySet="KyTucXaHocVienMapping">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="idKyTucXa" ColumnName="idKyTucXa" />
+                <ScalarProperty Name="idThongTinCaNhan" ColumnName="idThongTinCaNhan" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="NghiepDoans">
             <EntityTypeMapping TypeName="VimasModel.NghiepDoan">
               <MappingFragment StoreEntitySet="NghiepDoan">
@@ -1824,6 +1856,7 @@
             <EntityTypeMapping TypeName="VimasModel.TrungTamGTVL">
               <MappingFragment StoreEntitySet="TrungTamGTVL">
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
                 <ScalarProperty Name="NguoiDaiDien" ColumnName="NguoiDaiDien" />
                 <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
                 <ScalarProperty Name="NgayKyHopDong" ColumnName="NgayKyHopDong" />

@@ -306,6 +306,12 @@
     <Compile Include="Models\Entities\KyTucXa.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\KyTucXaHocVienMapping.cs">
+      <DependentUpon>VimasEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\KyTucXaHocVienMappingRefined.cs">
+      <DependentUpon>EntityRefinery.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\KyTucXaRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
@@ -355,6 +361,9 @@
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\HopDongDOLABRepositoryGen.cs">
+      <DependentUpon>Repositories.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Repositories\KyTucXaHocVienMappingRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\KyTucXaRepositoryGen.cs">
@@ -429,6 +438,9 @@
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\HopDongDOLABServiceGen.cs">
+      <DependentUpon>Services.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Services\KyTucXaHocVienMappingServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\KyTucXaServiceGen.cs">
@@ -587,6 +599,9 @@
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HopDongDOLABViewModelGen.cs">
+      <DependentUpon>ViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\KyTucXaHocVienMappingViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\KyTucXaViewModelGen.cs">

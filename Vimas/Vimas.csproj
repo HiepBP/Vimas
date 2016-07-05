@@ -227,6 +227,7 @@
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
     <Compile Include="Areas\HeThong\HeThongAreaRegistration.cs" />
+    <Compile Include="Areas\HocVien\Controllers\QuaTrinhLamViecController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
@@ -453,6 +454,7 @@
     <Compile Include="Models\Entities\Services\QuaTrinhHocTapServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\QuaTrinhLamViecService.cs" />
     <Compile Include="Models\Entities\Services\QuaTrinhLamViecServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -614,6 +616,7 @@
     <Compile Include="ViewModels\QuaTrinhHocTapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\QuaTrinhLamViecEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhLamViecViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2931,6 +2934,8 @@
     <Content Include="Areas\HeThong\Views\TrungTamGTVL\Detail.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

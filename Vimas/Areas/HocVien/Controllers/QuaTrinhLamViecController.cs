@@ -58,15 +58,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = "Error" });
             }
         }
-        //
-        // GET: /HocVien/QuaTrinhLamViec/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        //
-        // GET: /HocVien/QuaTrinhLamViec/Create
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Create(int idThongTinCaNhan)
         {
             var quaTrinhLamViecService = this.Service<IQuaTrinhLamViecService>();
@@ -77,10 +70,9 @@ namespace Vimas.Areas.HocVien.Controllers
             };
             return View(model);
         }
-
-        //
-        // POST: /HocVien/QuaTrinhLamViec/Create
+        
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> Create(QuaTrinhLamViecViewModel model)
         {
@@ -97,8 +89,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
-        //
-        // GET: /HocVien/QuaTrinhLamViec/Edit/5
+        [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {
             var quaTrinhLamViecService = this.Service<IQuaTrinhLamViecService>();
@@ -109,10 +100,9 @@ namespace Vimas.Areas.HocVien.Controllers
             }
             return View(model);
         }
-
-        //
-        // POST: /HocVien/QuaTrinhLamViec/Edit/5
+        
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> Edit(QuaTrinhLamViecEditViewModel model)
         {
@@ -136,9 +126,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
-      
-        //
-        // POST: /HocVien/QuaTrinhLamViec/Delete/5
+        [Authorize(Roles = "Admin, PhongNguon")]
         [HttpPost]
         public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
         {
@@ -150,7 +138,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
-                await quaTrinhLamViecService.DeleteAsync(deleteEntity);
+                deleteEntity.Active = false;
+                await quaTrinhLamViecService.UpdateAsync(deleteEntity);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

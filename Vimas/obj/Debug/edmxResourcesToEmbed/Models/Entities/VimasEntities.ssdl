@@ -72,7 +72,7 @@
     <Property Name="BangCap" Type="nvarchar" MaxLength="50" />
     <Property Name="DaNop" Type="bit" />
     <Property Name="TrinhDo" Type="nvarchar" MaxLength="50" />
-    <Property Name="Active" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="CongTyChungNghe">
     <Key>
@@ -89,7 +89,7 @@
     <Property Name="ChucDanh" Type="nvarchar" MaxLength="50" />
     <Property Name="VonDieuLe" Type="money" />
     <Property Name="SoNhanVien" Type="int" />
-    <Property Name="Active" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="CongTyTiepNhan">
     <Key>
@@ -125,7 +125,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdThongTinCaNhan" Type="int" />
     <Property Name="IdHopDongDOLAB" Type="int" />
-    <Property Name="Active" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="KyTucXa">
     <Key>
@@ -138,16 +138,7 @@
     <Property Name="SoPhong" Type="int" />
     <Property Name="SoHocTuDo" Type="int" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
-    <Property Name="Active" Type="bit" />
-  </EntityType>
-  <EntityType Name="KyTucXaHocVienMapping">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="int" />
-    <Property Name="idKyTucXa" Type="nchar" MaxLength="10" />
-    <Property Name="Active" Type="nchar" MaxLength="10" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="NghiepDoan">
     <Key>
@@ -341,7 +332,7 @@
     <Property Name="HinhAnh" Type="nvarchar" MaxLength="2083" />
     <Property Name="NgayHuySauKhiTrungTuyen" Type="datetime" />
     <Property Name="LyDoHuy" Type="nvarchar" MaxLength="500" />
-    <Property Name="Active" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ThongTinVeNuoc">
     <Key>
@@ -358,7 +349,7 @@
     <Property Name="NgayTron" Type="datetime" />
     <Property Name="NgayBiTrucXuat" Type="datetime" />
     <Property Name="GhiChuTheoDoi" Type="nvarchar" MaxLength="500" />
-    <Property Name="Active" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="TrungTamGTVL">
     <Key>
@@ -375,7 +366,7 @@
     <Property Name="NgayHetHan" Type="datetime" />
     <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="50" />
     <Property Name="ChucDanh" Type="nvarchar" MaxLength="50" />
-    <Property Name="Active" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_BangCap_ThongTinDuTuyen">
     <End Role="ThongTinDuTuyen" Type="Self.ThongTinDuTuyen" Multiplicity="1" />
@@ -638,7 +629,6 @@
     <EntitySet Name="HopDongDOLAB" EntityType="Self.HopDongDOLAB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HopDongDOLABHocVienMapping" EntityType="Self.HopDongDOLABHocVienMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KyTucXa" EntityType="Self.KyTucXa" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="KyTucXaHocVienMapping" EntityType="Self.KyTucXaHocVienMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NghiepDoan" EntityType="Self.NghiepDoan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuaTrinhHocTap" EntityType="Self.QuaTrinhHocTap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuaTrinhLamViec" EntityType="Self.QuaTrinhLamViec" Schema="dbo" store:Type="Tables" />

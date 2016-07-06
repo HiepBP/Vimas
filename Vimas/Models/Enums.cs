@@ -64,4 +64,12 @@ namespace Vimas.Models
         [Display(Name = "Dì")]
         Di = 8,
     }
+
+    public enum ThuChi
+    {
+        [Display(Name = "Thu")]
+        Thu = 0,
+        [Display(Name = "Chi")]
+        Chi = 1,
+    }
 }

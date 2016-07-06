@@ -26,7 +26,7 @@ namespace Vimas.ViewModels
     			public virtual string ChucDanh { get; set; }
     			public virtual Nullable<decimal> VonDieuLe { get; set; }
     			public virtual Nullable<int> SoNhanVien { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public CongTyChungNgheViewModel() : base() { }
     	public CongTyChungNgheViewModel(Vimas.Models.Entities.CongTyChungNghe entity) : base(entity) { }

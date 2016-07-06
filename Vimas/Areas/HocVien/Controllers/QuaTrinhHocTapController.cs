@@ -58,6 +58,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Create(int idThongTinCaNhan)
         {
             var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
@@ -71,6 +72,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> Create(QuaTrinhHocTapEditViewModel model)
         {
@@ -92,6 +94,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {
             var quaTrinhHocTapService = this.Service<IQuaTrinhHocTapService>();
@@ -105,6 +108,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> Edit(QuaTrinhHocTapEditViewModel model)
         {
@@ -130,6 +134,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
         {
             try
@@ -140,7 +145,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
-                await quaTrinhHocTapService.DeleteAsync(entity);
+                entity.Active = false;
+                await quaTrinhHocTapService.UpdateAsync(entity);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch(Exception e)

@@ -141,16 +141,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="KyTucXaHocVienMappings">
-      <EntityTypeMapping TypeName="VimasModel.KyTucXaHocVienMapping">
-        <MappingFragment StoreEntitySet="KyTucXaHocVienMapping">
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="idKyTucXa" ColumnName="idKyTucXa" />
-          <ScalarProperty Name="idThongTinCaNhan" ColumnName="idThongTinCaNhan" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="NghiepDoans">
       <EntityTypeMapping TypeName="VimasModel.NghiepDoan">
         <MappingFragment StoreEntitySet="NghiepDoan">

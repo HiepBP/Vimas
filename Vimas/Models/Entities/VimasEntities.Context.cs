@@ -36,7 +36,6 @@ namespace Vimas.Models.Entities
         public virtual DbSet<HopDongDOLAB> HopDongDOLABs { get; set; }
         public virtual DbSet<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }
         public virtual DbSet<KyTucXa> KyTucXas { get; set; }
-        public virtual DbSet<KyTucXaHocVienMapping> KyTucXaHocVienMappings { get; set; }
         public virtual DbSet<NghiepDoan> NghiepDoans { get; set; }
         public virtual DbSet<QuaTrinhHocTap> QuaTrinhHocTaps { get; set; }
         public virtual DbSet<QuaTrinhLamViec> QuaTrinhLamViecs { get; set; }

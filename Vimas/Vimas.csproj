@@ -230,6 +230,7 @@
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhLamViecController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\ThongTinNopTienController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -308,12 +309,6 @@
     <Compile Include="Models\Entities\KyTucXa.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\KyTucXaHocVienMapping.cs">
-      <DependentUpon>VimasEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\KyTucXaHocVienMappingRefined.cs">
-      <DependentUpon>EntityRefinery.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Entities\KyTucXaRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
@@ -363,9 +358,6 @@
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\HopDongDOLABRepositoryGen.cs">
-      <DependentUpon>Repositories.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\Repositories\KyTucXaHocVienMappingRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\KyTucXaRepositoryGen.cs">
@@ -440,9 +432,6 @@
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\HopDongDOLABServiceGen.cs">
-      <DependentUpon>Services.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\Services\KyTucXaHocVienMappingServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\KyTucXaServiceGen.cs">
@@ -604,9 +593,6 @@
     <Compile Include="ViewModels\HopDongDOLABViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\KyTucXaHocVienMappingViewModelGen.cs">
-      <DependentUpon>ViewModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\KyTucXaViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -638,6 +624,8 @@
     <Compile Include="ViewModels\ThongTinGiaDinhViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ThongTinNopTienEditViewModel.cs" />
+    <Compile Include="ViewModels\ThongTinNopTienViewModel.cs" />
     <Compile Include="ViewModels\ThongTinNopTienViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2937,6 +2925,9 @@
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

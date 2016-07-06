@@ -26,7 +26,7 @@ namespace Vimas.ViewModels
     			public virtual Nullable<System.DateTime> NgayTron { get; set; }
     			public virtual Nullable<System.DateTime> NgayBiTrucXuat { get; set; }
     			public virtual string GhiChuTheoDoi { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public ThongTinVeNuocViewModel() : base() { }
     	public ThongTinVeNuocViewModel(Vimas.Models.Entities.ThongTinVeNuoc entity) : base(entity) { }

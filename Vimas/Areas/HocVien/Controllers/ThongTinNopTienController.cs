@@ -66,7 +66,7 @@ namespace Vimas.Areas.HocVien.Controllers
             model.ThuChi = (ThuChi)model.ThuHayChi;
             model.AvailableThongTinCaNhan = thongTinCaNhanService.GetActive().Select(q => new SelectListItem()
             {
-                Text = q.HoTen,
+                Text = q.HoTen + " - " +q.NgaySinh.ToShortDateString(),
                 Value = q.Id.ToString(),
                 Selected = false,
             });

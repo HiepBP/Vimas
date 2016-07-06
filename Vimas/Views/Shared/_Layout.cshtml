@@ -109,7 +109,20 @@
                         </li>
                     </ul>
                 </li>
-
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongNguon")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý trung tâm GTVL</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách trung tâm</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="zmdi zmdi-window-restore"></i> Nothing</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
                 @if (user.IsInRole("Admin"))
                 {
                     <li class="sub-menu submenu-style">

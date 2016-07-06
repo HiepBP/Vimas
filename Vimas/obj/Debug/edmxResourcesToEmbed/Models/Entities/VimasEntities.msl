@@ -70,6 +70,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BienBans">
+      <EntityTypeMapping TypeName="VimasModel.BienBan">
+        <MappingFragment StoreEntitySet="BienBan">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="idThongTinCaNhan" ColumnName="idThongTinCaNhan" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CongTyChungNghes">
       <EntityTypeMapping TypeName="VimasModel.CongTyChungNghe">
         <MappingFragment StoreEntitySet="CongTyChungNghe">

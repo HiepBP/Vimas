@@ -271,6 +271,12 @@
     <Compile Include="Models\Entities\BangCapRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\BienBan.cs">
+      <DependentUpon>VimasEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\BienBanRefined.cs">
+      <DependentUpon>EntityRefinery.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\CongTyChungNghe.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
@@ -345,6 +351,9 @@
     <Compile Include="Models\Entities\Repositories\BangCapRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Repositories\BienBanRepositoryGen.cs">
+      <DependentUpon>Repositories.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\Repositories\CongTyChungNgheRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
@@ -417,6 +426,9 @@
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\BangCapServiceGen.cs">
+      <DependentUpon>Services.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Services\BienBanServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\CongTyChungNgheServiceGen.cs">
@@ -576,6 +588,9 @@
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BangCapViewModelGen.cs">
+      <DependentUpon>ViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BienBanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CongTyChungNgheViewModelGen.cs">

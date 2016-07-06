@@ -13,14 +13,18 @@ using Vimas.ViewModels;
 
 namespace Vimas.Areas.HocVien.Controllers
 {
+    [Authorize]
     public class ThongTinNopTienController : BaseController
     {
+
+        //[Authorize(Roles = "Admin, PhongKeToan")]
         // GET: HocVien/ThongTinNopTien
         public ActionResult Index()
         {
             return View();
         }
 
+        //[Authorize(Roles = "Admin, PhongKeToan")]
         public JsonResult LoadDanhSachThongTinNopTien(JQueryDataTableParamModel param)
         {
             var thongTinNopTienService = this.Service<IThongTinNopTienService>();
@@ -37,7 +41,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     {
                         q.SoPhieu,
                         q.ThongTinCaNhan.HoTen,
-                        q.LoaiTien,
+                        EnumHelper<TypeOfMoney>.GetDisplayValue((TypeOfMoney)q.LoaiTien),
                         q.SoTien,
                         EnumHelper<ThuChi>.GetDisplayValue((ThuChi)q.ThuHayChi),
                         q.NgayLapPhieu.ToShortDateString(),
@@ -64,9 +68,10 @@ namespace Vimas.Areas.HocVien.Controllers
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             var model = new ThongTinNopTienEditViewModel();
             model.ThuChi = (ThuChi)model.ThuHayChi;
+            model.TypeOfMoney = (TypeOfMoney)model.LoaiTien;
             model.AvailableThongTinCaNhan = thongTinCaNhanService.GetActive().Select(q => new SelectListItem()
             {
-                Text = q.HoTen + " - " +q.NgaySinh.ToShortDateString(),
+                Text = q.HoTen,
                 Value = q.Id.ToString(),
                 Selected = false,
             });
@@ -104,6 +109,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = Resource.ErrorMessage});
             }
             model.ThuChi = (ThuChi)model.ThuHayChi;
+            model.TypeOfMoney = (TypeOfMoney)model.LoaiTien;
             return View(model);
         }
 

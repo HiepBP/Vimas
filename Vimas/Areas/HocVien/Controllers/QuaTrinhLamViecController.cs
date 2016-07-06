@@ -14,6 +14,7 @@ namespace Vimas.Areas.HocVien.Controllers
 {
     public class QuaTrinhLamViecController : BaseController
     {
+        [Authorize]
         //
         // GET: /HocVien/QuaTrinhLamViec/
         public ActionResult Index()

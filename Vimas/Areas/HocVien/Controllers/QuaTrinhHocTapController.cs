@@ -13,6 +13,7 @@ using Vimas.ViewModels;
 
 namespace Vimas.Areas.HocVien.Controllers
 {
+    [Authorize]
     public class QuaTrinhHocTapController : BaseController
     {
         // GET: HocVien/QuaTrinhHocTap

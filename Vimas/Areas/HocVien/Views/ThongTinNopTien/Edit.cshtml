@@ -25,10 +25,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(q => q.LoaiTien, new { @class = "control-label col-md-4" })
+                        @Html.LabelFor(q => q.TypeOfMoney, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.LoaiTien, new { @class = "form-control col-sm-12" })
-                            @Html.ValidationMessageFor(q => q.LoaiTien)
+                            @Html.EnumDropDownListFor(q => q.TypeOfMoney, new { @class = "form-control col-sm-12" })
                         </div>
                     </div>
                     <div class="form-group">

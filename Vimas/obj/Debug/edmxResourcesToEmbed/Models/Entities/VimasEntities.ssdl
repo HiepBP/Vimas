@@ -74,6 +74,15 @@
     <Property Name="TrinhDo" Type="nvarchar" MaxLength="50" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="BienBan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+    <Property Name="HinhAnh" Type="nvarchar" MaxLength="2803" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
   <EntityType Name="CongTyChungNghe">
     <Key>
       <PropertyRef Name="Id" />
@@ -295,7 +304,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
-    <Property Name="LoaiTien" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LoaiTien" Type="int" Nullable="false" />
     <Property Name="SoPhieu" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="NgayLapPhieu" Type="datetime" Nullable="false" />
     <Property Name="ThuHayChi" Type="int" Nullable="false" />
@@ -377,6 +386,18 @@
       </Principal>
       <Dependent Role="BangCap">
         <PropertyRef Name="IdThongTinDuTuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BienBan_ThongTinCaNhan">
+    <End Role="ThongTinCaNhan" Type="Self.ThongTinCaNhan" Multiplicity="1" />
+    <End Role="BienBan" Type="Self.BienBan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThongTinCaNhan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BienBan">
+        <PropertyRef Name="idThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -624,6 +645,7 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BangCap" EntityType="Self.BangCap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BienBan" EntityType="Self.BienBan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CongTyChungNghe" EntityType="Self.CongTyChungNghe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CongTyTiepNhan" EntityType="Self.CongTyTiepNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HopDongDOLAB" EntityType="Self.HopDongDOLAB" Schema="dbo" store:Type="Tables" />
@@ -644,6 +666,10 @@
     <AssociationSet Name="FK_BangCap_ThongTinDuTuyen" Association="Self.FK_BangCap_ThongTinDuTuyen">
       <End Role="ThongTinDuTuyen" EntitySet="ThongTinDuTuyen" />
       <End Role="BangCap" EntitySet="BangCap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BienBan_ThongTinCaNhan" Association="Self.FK_BienBan_ThongTinCaNhan">
+      <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
+      <End Role="BienBan" EntitySet="BienBan" />
     </AssociationSet>
     <AssociationSet Name="FK_CongTyTiepNhan_NghiepDoan" Association="Self.FK_CongTyTiepNhan_NghiepDoan">
       <End Role="NghiepDoan" EntitySet="NghiepDoan" />

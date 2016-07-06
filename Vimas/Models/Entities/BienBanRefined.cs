@@ -12,18 +12,7 @@ namespace Vimas.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ThongTinNopTien
+    public partial class BienBan : SkyWeb.DatVM.Data.IEntity
     {
-        public int Id { get; set; }
-        public int IdThongTinCaNhan { get; set; }
-        public int LoaiTien { get; set; }
-        public string SoPhieu { get; set; }
-        public System.DateTime NgayLapPhieu { get; set; }
-        public int ThuHayChi { get; set; }
-        public decimal SoTien { get; set; }
-        public string LyDo { get; set; }
-        public bool Active { get; set; }
-    
-        public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }
 }

@@ -30,8 +30,11 @@ namespace Vimas.ViewModels
         public override decimal SoTien { get; set; }
         [Display(Name = "Lý do")]
         public override string LyDo { get; set; }
-        [Display(Name = "Thu hay chi")]
+        [Display(Name = "Thu/chi")]
         public ThuChi ThuChi { get; set; }
+        [Display(Name ="Người nộp tiền")]
         public IEnumerable<SelectListItem> AvailableThongTinCaNhan { get; set; }
+        [Display(Name ="Loại tiền")]
+        public TypeOfMoney TypeOfMoney { get; set; }
     }
 }

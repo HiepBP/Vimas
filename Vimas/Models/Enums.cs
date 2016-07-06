@@ -72,4 +72,14 @@ namespace Vimas.Models
         [Display(Name = "Chi")]
         Chi = 1,
     }
+
+    public enum TypeOfMoney
+    {
+        [Display(Name ="Tiền dự tuyển")]
+        TienDuTuyen = 0,
+        [Display(Name = "Tiền đảm bảo khóa học")]
+        TienDamBaoKhoaHoc = 1,
+        [Display(Name = "Phí dịch vụ thu hộ")]
+        PhiDichVuThuHo = 2,
+    }
 }

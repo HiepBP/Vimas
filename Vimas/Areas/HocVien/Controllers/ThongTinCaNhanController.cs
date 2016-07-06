@@ -158,8 +158,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
-                entity.Active = false;
-                await thongTinCaNhanService.UpdateAsync(entity);
+                //entity.Active = false;
+                await thongTinCaNhanService.DeactivateAsync(entity);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

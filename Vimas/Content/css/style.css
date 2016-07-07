@@ -509,7 +509,7 @@ Page: CostManage/IndexCostManage
     margin: 0px;
 }
 
-    .main-menu > li > a {
+    .main-menu > li > a, .main-menu > li > form > a {
         border-bottom: 1px solid #c9c9c9;
         background: #f2f2f2;
         color: black;

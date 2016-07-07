@@ -38,10 +38,10 @@
                             <label class="">Địa chỉ liên lạc</label>
                         </th>
                         <th>
-                            <label class="">Ngày ra</label>
+                            <label class="">Ngày vào</label>
                         </th>
                         <th>
-                            <label class="">Ngày vào</label>
+                            <label class="">Ngày ra</label>
                         </th>
                         <th>
                             <label class="">Số phòng</label>
@@ -95,7 +95,7 @@
                 {
                     "aTargets": [8],
                     "mRender": function (data, type, o) {
-                        var data = o[9];
+                        var data = o[8];
                         var edit = "<a id='editThongTinKTX' class='btn btn-sm btn-danger' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                         return edit;
                     }
@@ -106,7 +106,7 @@
         });
     }
 
-    @if(!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+    @if(!user.IsInRole("Admin") && !user.IsInRole("PhongQuanLyKTX"))
     {
         <text>document.getElementById('editThongTinKTX').style.visibility = 'hidden';</text>
     }

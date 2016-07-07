@@ -80,6 +80,9 @@
 
                 <div id="quaTrinhLamViec" class="tab-pane fade">
                     <div class="col-md-12">
+                        <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <table id="quaTrinhLamViecTable" class="table table-hover">
@@ -281,7 +284,7 @@
         });
     }
 
-    function showEditQTHT(idQTLV) {
+    function showEditQTLV(idQTLV) {
         $.ajax({
             type: "GET",
             url: '@Url.Action("Edit", "QuaTrinhLamViec")',
@@ -316,7 +319,7 @@
         }
     }
 
-    function deleteQTHT(idQTLV) {
+    function deleteQTLV(idQTLV) {
         if (confirm("Bạn có chắc xóa dòng này?")) {
             $.ajax({
                 type: "POST",

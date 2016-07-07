@@ -105,10 +105,14 @@
                     <a href="#"><i class="zmdi zmdi-globe"></i> Quản lí học viên</a>
                     <ul>
                         <li>
-                            <a href="@Url.Action("Index","ThongTinCaNhan", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
+                            <a href="@Url.Action(" Index","ThongTinCaNhan", new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "ThongTinNopTien", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
+                            <a href="@Url.Action(" Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
+                        </li>
+                        <li>
+
+                            <a href="@Url.Action(" Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
                         </li>
                     </ul>
                 </li>
@@ -126,6 +130,7 @@
                         </ul>
                     </li>
                 }
+
                 @if (user.IsInRole("Admin"))
                 {
                     <li class="sub-menu submenu-style">

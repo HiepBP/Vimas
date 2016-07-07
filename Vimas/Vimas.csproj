@@ -224,6 +224,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
     <Compile Include="Areas\HeThong\HeThongAreaRegistration.cs" />
@@ -289,9 +290,9 @@
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\EntityRefinery.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EntityRefinery.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\Entities\HopDongDOLAB.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
@@ -381,9 +382,9 @@
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\Repositories.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Repositories.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\Entities\Repositories\SucKhoeRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
@@ -445,6 +446,7 @@
     <Compile Include="Models\Entities\Services\KyTucXaHocVienMappingServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\KyTucXaService.cs" />
     <Compile Include="Models\Entities\Services\KyTucXaServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -460,9 +462,9 @@
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\Services.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Services.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\Entities\Services\SucKhoeServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
@@ -547,23 +549,24 @@
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\VimasEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>VimasEntities.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\Entities\VimasEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>VimasEntities.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\Entities\VimasEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>VimasEntities.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JQueryDataTableParamModel.cs" />
+    <Compile Include="Models\KyTucXaHocVienViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -613,6 +616,7 @@
     <Compile Include="ViewModels\NghiepDoanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\KyTucXaEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhHocTapEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhHocTapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
@@ -2736,13 +2740,16 @@
       <LastGenOutput>Services.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Entities\VimasEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VimasEntities.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VimasEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Entities\VimasEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="Models\Entities\VimasEntities.edmx.diagram">
       <DependentUpon>VimasEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Entities\VimasEntities.tt">
+      <DependentUpon>VimasEntities.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VimasEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -2753,13 +2760,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Models\Entities\VimasEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VimasEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Entities\VimasEntities.edmx.diagram">
-      <DependentUpon>VimasEntities.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\HocVien\Views\web.config" />
@@ -2937,6 +2937,9 @@
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\KyTucXa\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\KyTucXa\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\KyTucXa\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -3091,6 +3094,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Entities\VimasEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VimasEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

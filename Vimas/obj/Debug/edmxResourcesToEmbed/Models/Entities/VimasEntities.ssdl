@@ -144,8 +144,8 @@
     <Property Name="IdThongTinCaNhan" Type="int" />
     <Property Name="NgayVao" Type="datetime" />
     <Property Name="NgayRa" Type="datetime" />
-    <Property Name="SoPhong" Type="int" />
-    <Property Name="SoHocTuDo" Type="int" />
+    <Property Name="SoPhong" Type="nvarchar" MaxLength="20" />
+    <Property Name="SoHocTuDo" Type="nvarchar" MaxLength="20" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>

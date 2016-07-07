@@ -256,8 +256,8 @@
     <Property Name="IdThongTinCaNhan" Type="Int32" />
     <Property Name="NgayVao" Type="DateTime" Precision="3" />
     <Property Name="NgayRa" Type="DateTime" Precision="3" />
-    <Property Name="SoPhong" Type="Int32" />
-    <Property Name="SoHocTuDo" Type="Int32" />
+    <Property Name="SoPhong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoHocTuDo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_KyTucXa_ThongTinCaNhan" FromRole="KyTucXa" ToRole="ThongTinCaNhan" />

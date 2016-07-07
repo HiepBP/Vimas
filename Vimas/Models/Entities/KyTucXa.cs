@@ -18,8 +18,8 @@ namespace Vimas.Models.Entities
         public Nullable<int> IdThongTinCaNhan { get; set; }
         public Nullable<System.DateTime> NgayVao { get; set; }
         public Nullable<System.DateTime> NgayRa { get; set; }
-        public Nullable<int> SoPhong { get; set; }
-        public Nullable<int> SoHocTuDo { get; set; }
+        public string SoPhong { get; set; }
+        public string SoHocTuDo { get; set; }
         public string GhiChu { get; set; }
         public bool Active { get; set; }
     

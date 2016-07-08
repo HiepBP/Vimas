@@ -90,4 +90,12 @@ namespace Vimas.Models
         [Display(Name = "Ba năm")]
         BaNam = 1,
     }
+
+    public enum TayThuan
+    {
+        [Display(Name = "Tay trái")]
+        trai = 0,
+        [Display(Name = "Tay phải")]
+        phai = 1,
+    }
 }

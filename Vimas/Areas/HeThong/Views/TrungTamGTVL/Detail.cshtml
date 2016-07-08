@@ -86,11 +86,11 @@
     $(document).ready(function () {
         moment.locale('vi');
         var now = moment().format("LL");
-        $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
 
-        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.Value.ToShortDateString()');
-        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.Value.ToShortDateString()')
+        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()');
+        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()')
     });
 
 </script>

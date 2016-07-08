@@ -224,11 +224,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
+    <Compile Include="Areas\HeThong\Controllers\NghiepDoanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
     <Compile Include="Areas\HeThong\HeThongAreaRegistration.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhLamViecController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\SucKhoeController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinNopTienController.cs" />
@@ -298,9 +300,9 @@
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\EntityRefinery.cs">
-      <DependentUpon>EntityRefinery.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\HopDongDOLAB.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
@@ -384,9 +386,9 @@
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\Repositories.cs">
-      <DependentUpon>Repositories.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\SucKhoeRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
@@ -464,9 +466,9 @@
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\Services.cs">
-      <DependentUpon>Services.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\SucKhoeServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
@@ -552,19 +554,19 @@
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\VimasEntities.Context.cs">
-      <DependentUpon>VimasEntities.Context.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VimasEntities.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\VimasEntities.cs">
-      <DependentUpon>VimasEntities.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\VimasEntities.Designer.cs">
-      <DependentUpon>VimasEntities.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VimasEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -612,13 +614,13 @@
     <Compile Include="ViewModels\HopDongDOLABViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\KyTucXaEditViewModel.cs" />
     <Compile Include="ViewModels\KyTucXaViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\NghiepDoanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\KyTucXaEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhHocTapEditViewModel.cs" />
     <Compile Include="ViewModels\QuaTrinhHocTapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
@@ -627,6 +629,7 @@
     <Compile Include="ViewModels\QuaTrinhLamViecViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\SucKhoeEditViewModel.cs" />
     <Compile Include="ViewModels\SucKhoeViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -678,7 +681,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Content\js\common.js" />
-    <Content Include="Content\js\upload-image.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.css" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\demo.html" />
@@ -872,7 +874,6 @@
     <Content Include="Content\plugins\bootstrap-select-1.10.0\test.html" />
     <Content Include="Content\plugins\bootstrap-select\dist\css\bootstrap-select.css" />
     <Content Include="Content\plugins\bootstrap-select\dist\js\bootstrap-select.js" />
-    <Content Include="Content\plugins\bootstrap-tooltip\tooltip.js" />
     <Content Include="Content\plugins\DataTables-1.10.12\examples\advanced_init\column_render.html" />
     <Content Include="Content\plugins\DataTables-1.10.12\examples\advanced_init\complex_header.html" />
     <Content Include="Content\plugins\DataTables-1.10.12\examples\advanced_init\defaults.html" />
@@ -2748,16 +2749,13 @@
       <LastGenOutput>Services.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Entities\VimasEntities.Context.tt">
-      <DependentUpon>VimasEntities.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VimasEntities.edmx</DependentUpon>
       <LastGenOutput>VimasEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Entities\VimasEntities.edmx.diagram">
-      <DependentUpon>VimasEntities.edmx</DependentUpon>
-    </Content>
     <Content Include="Models\Entities\VimasEntities.tt">
-      <DependentUpon>VimasEntities.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VimasEntities.edmx</DependentUpon>
       <LastGenOutput>VimasEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -2768,6 +2766,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\Entities\VimasEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VimasEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Entities\VimasEntities.edmx.diagram">
+      <DependentUpon>VimasEntities.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\HocVien\Views\web.config" />
@@ -2945,15 +2950,21 @@
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Index.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Create.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Edit.cshtml" />
-    <Content Include="Areas\HocVien\Views\KyTucXa\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Detail.cshtml" />
+    <Content Include="Areas\HeThong\Views\NghiepDoan\Detail.cshtml" />
+    <Content Include="Areas\HeThong\Views\NghiepDoan\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\KyTucXa\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\KyTucXa\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\KyTucXa\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinNopTien\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Create.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -3108,12 +3119,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\Entities\VimasEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VimasEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

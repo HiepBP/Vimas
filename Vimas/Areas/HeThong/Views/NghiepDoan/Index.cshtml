@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Trung Tâm Giới Thiệu Việc Làm";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,11 +8,11 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-8">
-                <h3>Trung tâm giới thiệu việc làm</h3>
+                <h3>Nghiệp đoàn</h3>
             </div>
             <div class="col-md-4">
                 <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm trung tâm
+                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm nghiệp đoàn
                 </a>
             </div>
         </div>
@@ -24,22 +24,22 @@
                 <thead style="white-space: nowrap; text-overflow: ellipsis;">
                     <tr>
                         <th>
-                            <label>Mã Nguồn</label>
+                            <label>Mã Nghiệp đoàn</label>
                         </th>
                         <th>
-                            <label class="">Tên cơ sở</label>
+                            <label class="">Tên nghiệp đoàn</label>
                         </th>
                         <th>
-                            <label class="">Địa Chỉ</label>
+                            <label class="">Tên viết tắt</label>
                         </th>
                         <th>
-                            <label class="">SĐT</label>
+                            <label class="">Người đại diện</label>
                         </th>
                         <th>
-                            <label class="">Fax</label>
+                            <label class="">Chức danh</label>
                         </th>
                         <th>
-                            <label class="">Số HDLK</label>
+                            <label class="">Điện thoại</label>
                         </th>
                         <th>
                             <label class=""></label>
@@ -61,7 +61,7 @@
             "bRetrieve": true,
             "bServerSide": true,
             "bScrollCollapse": true,
-            "sAjaxSource": "@Url.Action("LoadDanhSachTrungTam")",
+            "sAjaxSource": "@Url.Action("LoadDanhSachNghiepDoan")",
             "bProcessing": true,
             "iDisplayLength": 10,
             "aLengthMenu": [10, 25, 50],
@@ -87,9 +87,9 @@
                     "aTargets": [6],
                     "mRender": function (data, type, o) {
                         var data = o[6];
-                        var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
+                        var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "NghiepDoan")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
                         var del = "<a id='deleteTrungTam' class='btn btn-sm btn-danger' onClick='Delete("+data+")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
-                        var edit = "<a id='editTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var edit = "<a id='editTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "NghiepDoan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                         return detail +" "+edit +" "+ del;
                     }
                 }
@@ -102,8 +102,7 @@
     function Delete(id){
         $.ajax({
             url: '@this.Url.Action("Delete")',
-            data: { id},
-            method: "POST",
+            data: {id},
             success: function (result) {
                 alert(result.message);
                 window.location.hred = "@this.Url.Action("Index")";

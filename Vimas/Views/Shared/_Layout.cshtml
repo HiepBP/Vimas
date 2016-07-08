@@ -106,8 +106,10 @@
                     <a href="#"><i class="zmdi zmdi-globe"></i> Quản lí học viên</a>
                     <ul>
                         <li>
-                            <a href="@Url.Action("Index","ThongTinCaNhan", new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
+                            <a href="@Url.Action("Index","ThongTinCaNhan", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
                         </li>
+                        <li>
+                            <a href="@Url.Action("Index","SucKhoe", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Sức Khỏe</a>
                         <li>
                             <a href="@Url.Action("Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
                         </li>
@@ -141,7 +143,7 @@
                                 <a href="@Url.Action("Index","TaiKhoan", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
                             </li>
                             <li>
-                                <a href="#"><i class="zmdi zmdi-window-restore"></i> Quản lý kho</a>
+                                <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong"})"><i class="zmdi zmdi-window-restore"></i> Trung Tâm GTVL</a>
                             </li>
                         </ul>
                     </li>
@@ -196,6 +198,8 @@
     <script src="/Content/template/template-material/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/Content/template/template-material/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
 
+    <script src="~/Content/template/template-material/vendors/fileinput/fileinput.min.js"></script>
+
     <script src="~/Content/template/template-material/vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
     <script src="/Content/template/template-material/js/flot-charts/curved-line-chart.js"></script>
     <script src="/Content/template/template-material/js/flot-charts/line-chart.js"></script>
@@ -203,8 +207,9 @@
     <script src="/Content/template/template-material/js/charts.js"></script>
     <script src="/Content/template/template-material/js/functions.js"></script>
 
+    <!-- Custom -->
     <script src="~/Content/js/common.js"></script>
-
+    <script src="~/Content/js/upload-image.js"></script>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js">
     </script>

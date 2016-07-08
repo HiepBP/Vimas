@@ -42,6 +42,7 @@
                     <li class="active waves-effect"><a data-toggle="tab" href="#quaTrinhHocTap">Quá trình học tập</a></li>
                     <li class="waves-effect"><a data-toggle="tab" href="#thongTinGiaDinh">Thông tin gia đình</a></li>
                     <li class="waves-effect"><a data-toggle="tab" href="#quaTrinhLamViec">Quá trình làm việc</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#thongTinPhongVan">Thông tin phỏng vấn</a></li>
                 </ul>
             </div>
 
@@ -49,9 +50,9 @@
                 <div id="quaTrinhHocTap" class="tab-pane fade in active">
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
-                        <div class="col-md-12">
-                            <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                        </div>
+                    <div class="col-md-12">
+                        <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
                     }
                     <div class="col-md-12">
                         <div class="card">
@@ -88,9 +89,9 @@
                 <div id="thongTinGiaDinh" class="tab-pane fade">
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
-                        <div class="col-md-12">
-                            <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                        </div>
+                    <div class="col-md-12">
+                        <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
                     }
                     <div class="col-md-12">
                         <div class="card">
@@ -124,9 +125,9 @@
                 <div id="quaTrinhLamViec" class="tab-pane fade">
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
-                        <div class="col-md-12">
-                            <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                        </div>
+                    <div class="col-md-12">
+                        <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                    </div>
                     }
                     <div class="col-md-12">
                         <div class="card">
@@ -160,6 +161,48 @@
                         </div>
                     </div>
                 </div>
+                <div id="thongTinPhongVan" class="tab-pane fade">
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <a href="@Url.Action("Create","ThongTinPhongVan", new { idThongTinCaNhan=this.Model.Id})" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</a>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="thongTinPhongVanTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Ngày phỏng vấn</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Nghề phỏng vấn</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ghi chú</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ngày trúng tuyển</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Nghề trúng tuyển</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Công ty tiếp nhận</label>
+                                            </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -173,6 +216,8 @@
 
 <div id="createQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 <div id="editQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="TTPVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 
 <script>
@@ -212,11 +257,11 @@
                     "bSortable": false
                 },
                 {
-                    "aTargets": [4],
+                    "aTargets": [0, 1, 2, 3],
                     "mRender": function (data, type, o) {
-                        var tuNam = o[4];
-                        var denNam = o[5];
-                        return tuNam + " - " + denNam;
+                        var from = o[4];
+                        var to = o[5];
+                        return from + " - " + to
                     }
                 },
                 {
@@ -357,6 +402,63 @@
                         </text>
                         }
                         return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        });
+
+        $("#thongTinPhongVanTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadThongTinPhongVan", "ThongTinPhongVan")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4, 5],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showTTPVModal(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<a class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinPhongVan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTPV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+                        return detail + " " + edit + " " + del;
                     }
                 }
 
@@ -561,5 +663,48 @@
         var oTable = $('#quaTrinhLamViecTable').dataTable();
         oTable._fnPageChange(0);
         oTable._fnAjaxUpdate();
+    }
+
+    function RefreshTable(id) {
+        var oTable = $(id).dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+
+    function showTTPVModal(idTTPV) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail", "ThongTinPhongVan")',
+            data: {
+                id: idTTPV,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#TTPVPanel').html(result);
+                $('#TTPVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function deleteTTPV(idTTPV) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "ThongTinPhongVan")',
+                data: {
+                    id: idTTPV,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTable('#thongTinPhongVanTable');
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
     }
 </script>

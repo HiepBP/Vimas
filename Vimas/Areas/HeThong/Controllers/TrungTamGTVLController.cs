@@ -25,10 +25,10 @@ namespace Vimas.Areas.HeThong.Controllers
         public JsonResult LoadDanhSachTrungTam(JQueryDataTableParamModel param)
         {
             var service = this.Service<ITrungTamGTVLService>();
-            var model = service.GetActive().ProjectTo<TrungTamGTVLViewModel>(this.MapperConfig).ToList();
+            var model = service.Get().Where(q => q.Active == true)
+                .ProjectTo<TrungTamGTVLViewModel>(this.MapperConfig).ToList();
             try
             {
-                var count = 0;
                 var rs = model
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
                         || q.TenCoSo.ToLower().Contains(param.sSearch.ToLower()))
@@ -37,7 +37,6 @@ namespace Vimas.Areas.HeThong.Controllers
                     .Take(param.iDisplayLength)
                     .Select(q => new IConvertible[]
                     {
-                        count++,
                         q.MaNguon,
                         q.TenCoSo,
                         q.DiaChi,
@@ -46,7 +45,7 @@ namespace Vimas.Areas.HeThong.Controllers
                         q.SoHDLK,
                         q.Id,
                     });
-                var totalRecords = rs.Count();
+                var totalRecords = model.Count();
                 return Json(new
                 {
                     sEcho = param.sEcho,
@@ -132,9 +131,10 @@ namespace Vimas.Areas.HeThong.Controllers
             }
 
             return Json(new { success = true, message = "Chỉnh sửa thông tin thành công." });
-        } 
+        }
         #endregion
-       
+
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Detail(int id)
         {
             var service = this.Service<ITrungTamGTVLService>();
@@ -148,6 +148,7 @@ namespace Vimas.Areas.HeThong.Controllers
             return this.View(model);
         }
 
+        [HttpPost]
         [Authorize(Roles = "Admin, PhongNguon")]
         public async Task<JsonResult> Delete(int id)
         {

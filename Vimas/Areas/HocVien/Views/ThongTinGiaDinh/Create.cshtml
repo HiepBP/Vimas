@@ -82,7 +82,10 @@
     })
 
     function createTTGD() {
+        var form = $('#createThongTinGiaDinhForm');
+        $.validator.unobtrusive.parse(form);
         var formData = $('#createThongTinGiaDinhForm').serialize();
+        if(form.valid()){
         $.ajax({
             type: "POST",
             url: '@Url.Action("Create","ThongTinGiaDinh")',
@@ -96,6 +99,7 @@
                 alert(result.message);
             }
         });
+        }
     }
     function initializeDateRangePicker() {
         moment.locale('vi');

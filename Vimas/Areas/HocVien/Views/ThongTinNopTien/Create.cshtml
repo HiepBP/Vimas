@@ -84,20 +84,24 @@
     })
 
     function createTTNT() {
+        var form = $('#createThongTinNopTienForm');
+        $.validator.unobtrusive.parse(form);
         var formData = $('#createThongTinNopTienForm').serialize();
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Create","ThongTinNopTien")',
-            data: formData,
-            success: function (result) {
-                alert(result.message);
-                $('#createTTNTPanel').modal('hide');
-                RefreshTTNTTable();
-            },
-            error: function (error) {
-                alert(result.message);
-            }
-        });
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create","ThongTinNopTien")',
+                data: formData,
+                success: function (result) {
+                    alert(result.message);
+                    $('#createTTNTPanel').modal('hide');
+                    RefreshTTNTTable();
+                },
+                error: function (error) {
+                    alert(result.message);
+                }
+            });
+        }
     }
 
     function initializeDateRangePicker() {

@@ -83,20 +83,24 @@
     })
 
     function editTTGD() {
+        var form = $('#editThongTinGiaDinhForm');
+        $.validator.unobtrusive.parse(form);
         var formData = $('#editThongTinGiaDinhForm').serialize();
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Edit","ThongTinGiaDinh")',
-            data: formData,
-            success: function (result) {
-                alert(result.message);
-                $('#editTTGDPanel').modal('hide');
-                RefreshTTGDTable();
-            },
-            error: function (error) {
-                alert(result.message);
-            }
-        });
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Edit","ThongTinGiaDinh")',
+                data: formData,
+                success: function (result) {
+                    alert(result.message);
+                    $('#editTTGDPanel').modal('hide');
+                    RefreshTTGDTable();
+                },
+                error: function (error) {
+                    alert(result.message);
+                }
+            });
+        }
     }
 
     function initializeDateRangePicker() {

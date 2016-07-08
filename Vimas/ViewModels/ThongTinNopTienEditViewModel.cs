@@ -21,12 +21,12 @@ namespace Vimas.ViewModels
             mapper.Map(original, this);
         }
         [Display(Name ="Số phiếu")]
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập số phiếu")]
         public override string SoPhieu { get; set; }
         [Display(Name ="Ngày lập phiếu")]
         public override System.DateTime NgayLapPhieu { get; set; }
         [Display(Name ="Số tiền")]
-        [Required, IsNumeric]
+        [Required(ErrorMessage = "Yêu cầu nhập số tiền"), IsNumeric(ErrorMessage ="Số tiền phải là số")]
         public override decimal SoTien { get; set; }
         [Display(Name = "Lý do")]
         public override string LyDo { get; set; }

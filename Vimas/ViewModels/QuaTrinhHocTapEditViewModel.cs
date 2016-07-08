@@ -20,18 +20,18 @@ namespace Vimas.ViewModels
             mapper.Map(original, this);
         }
         
-        [IsNumeric]
+        [IsNumeric(ErrorMessage = "Vui lòng nhập số")]
         [Display(Name = "Từ năm")]
         public override Nullable<int> TuNam { get; set; }
-        [IsNumeric]
+        [IsNumeric(ErrorMessage = "Vui lòng nhập số")]
         [Display(Name = "Đến năm")]
         public override Nullable<int> DenNam { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập Tên trường")]
         [Display(Name = "Tên trường")]
         public override string TenTruong { get; set; }
         [Display(Name = "Loại trường")]
         public override Nullable<int> LoaiTruong { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập ngành học")]
         [Display(Name = "Ngành học")]
         public override string NganhHoc { get; set; }
         [Display(Name = "Đã tốt nghiệp")]

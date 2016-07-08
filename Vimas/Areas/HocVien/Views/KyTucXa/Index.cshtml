@@ -96,8 +96,17 @@
                     "aTargets": [8],
                     "mRender": function (data, type, o) {
                         var data = o[8];
-                        var edit = "<a id='editThongTinKTX' class='btn btn-sm btn-danger' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        return edit;
+                        var data1 = o[9];
+                        var edit = '';
+                        var del = '';
+                        if (parseInt(data1) === 0) {
+                            edit = "<a id='editThongTinKTX' data-toggle='tooltip' data-placement='top' title='Học viên này chưa từng ở ký túc xá' class='btn btn-sm btn-primary' href='@Url.Action("Add","KyTucXa")?idttcn=" + data + "\'><i class='glyphicon glyphicon-question-sign'></i> Thêm</a>";
+                        } else {
+                            edit = "<a id='editThongTinKTX' class='btn btn-sm btn-info' href='@Url.Action("Edit","KyTucXa")?idktx=" + data1 + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
+                            del = "<a id='delThongTinKTX' class='btn btn-sm btn-danger' href='#'><i class='glyphicon glyphicon-trash'></i> Xóa</a>";
+                        }
+
+                        return edit + " " + del;
                     }
                 }
 
@@ -108,6 +117,8 @@
 
     @if(!user.IsInRole("Admin") && !user.IsInRole("PhongQuanLyKTX"))
     {
+        <text>document.getElementById('delThongTinKTX').style.visibility = 'hidden';</text>
         <text>document.getElementById('editThongTinKTX').style.visibility = 'hidden';</text>
+        <text>document.getElementById('themThongTinKTX').style.visibility = 'hidden';</text>
     }
 </script>

@@ -37,6 +37,7 @@
     <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
     @*<link href="~/Content/plugins/DataTables-1.10.12/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />*@
     <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="~/Content/plugins/bootstrap-tooltip/tooltip.js"></script>
     <!-- CSS -->
     <link href="~/Content/template/template-material/css/app.min.1.css" rel="stylesheet">
     <link href="~/Content/template/template-material/css/app.min.2.css" rel="stylesheet">
@@ -105,14 +106,14 @@
                     <a href="#"><i class="zmdi zmdi-globe"></i> Quản lí học viên</a>
                     <ul>
                         <li>
-                            <a href="@Url.Action(" Index","ThongTinCaNhan", new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
+                            <a href="@Url.Action("Index","ThongTinCaNhan", new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
                         </li>
                         <li>
-                            <a href="@Url.Action(" Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
+                            <a href="@Url.Action("Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
                         </li>
                         <li>
 
-                            <a href="@Url.Action(" Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
+                            <a href="@Url.Action("Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
                         </li>
                     </ul>
                 </li>

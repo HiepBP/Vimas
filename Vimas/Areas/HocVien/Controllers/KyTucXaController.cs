@@ -4,6 +4,7 @@ using SkyWeb.DatVM.Mvc.Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Vimas.Models;
@@ -63,13 +64,14 @@ namespace Vimas.Areas.HocVien.Controllers
 
                         q.DiaChiLienLac,
 
-                        q.KyTucXas.Where(p => p.NgayVao != null).Select(p => ((DateTime)p.NgayVao).ToShortDateString()).FirstOrDefault(),
-                        q.KyTucXas.Where(p => p.NgayRa != null).Select(p => ((DateTime)p.NgayRa).ToShortDateString()).FirstOrDefault(),
+                        q.KyTucXas.Where(p => p.NgayVao != null).Select(p => ((DateTime)p.NgayVao).ToShortDateString()).LastOrDefault(),
+                        q.KyTucXas.Where(p => p.NgayRa != null).Select(p => ((DateTime)p.NgayRa).ToShortDateString()).LastOrDefault(),
 
-                        q.KyTucXas.Where(p => p.SoPhong != null).Select(p => p.SoPhong).FirstOrDefault(),
-                        q.KyTucXas.Where(p => p.SoHocTuDo != null).Select(p => p.SoHocTuDo).FirstOrDefault(),
+                        q.KyTucXas.Where(p => p.SoPhong != null).Select(p => p.SoPhong).LastOrDefault(),
+                        q.KyTucXas.Where(p => p.SoHocTuDo != null).Select(p => p.SoHocTuDo).LastOrDefault(),
                         
-                        q.KyTucXas.Select(p => p.Id).FirstOrDefault(),
+                        q.Id,
+                        q.KyTucXas.Select(p => p.Id).LastOrDefault(),
                     });
                 var totalRecords = rs.Count();
                 return Json(new
@@ -89,8 +91,49 @@ namespace Vimas.Areas.HocVien.Controllers
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]
         public ActionResult Create()
         {
-            var tuple = new Tuple<ThongTinCaNhanEditViewModel, KyTucXaEditViewModel>(new ThongTinCaNhanEditViewModel(), new KyTucXaEditViewModel());
-            return View(tuple);
+            var model = new KyTucXaEditViewModel();
+            return View(model);
         }
+
+        [Authorize(Roles = "Admin, PhongQuanLyKTX")]
+        public async Task<ActionResult> Add(int idttcn)
+        {
+            var kyTucXaService = this.Service<IKyTucXaService>();
+            var model = new KyTucXaEditViewModel();
+            model.IdThongTinCaNhan = idttcn;
+            model.Active = true;
+            await kyTucXaService.CreateAsync(model.ToEntity());
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Admin, PhongQuanLyKTX")]
+        public async Task<ActionResult> Edit(int idktx)
+        {
+            var kyTucXaService = this.Service<IKyTucXaService>();
+            var model = new KyTucXaEditViewModel(await kyTucXaService.GetAsync(idktx));
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongQuanLyKTX")]
+        public async Task<ActionResult> Edit(KyTucXaEditViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var kyTucXaService = this.Service<IKyTucXaService>();
+
+            var entity = await kyTucXaService.GetAsync(model.Id);
+            model.CopyToEntity(entity);
+            entity.Active = true;
+            entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+            await kyTucXaService.UpdateAsync(entity);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Tuple<Vimas.ViewModels.ThongTinCaNhanEditViewModel, Vimas.ViewModels.KyTucXaEditViewModel>
+﻿@model Vimas.ViewModels.KyTucXaEditViewModel
 
 @{
     ViewBag.Title = "Chỉnh sửa thông tin ký túc xá";
@@ -40,7 +40,38 @@
     <form id="createProductItemForm" method="post">
         <div class="modal-body">
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(q => q.Item2.Id)
+            @Html.HiddenFor(q => q.Id)
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <!-- set cho các field của thongtincanhan -->
+            @Html.HiddenFor(q => q.ThongTinCaNhan.Id)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.MaLuuHoSo)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.IdTrungTamGTVL)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.HoTen)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.TenPhienAmNhat)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.GioiTinh)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NgaySinh)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NoiSinh)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.TrinhDoVanHoa)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.TinhTrangGiaDinh)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.CMND)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NgayCap)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NoiCap)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.SoHoChieu)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NgayCapHC)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NoiCapHC)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.NgayHetHan)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.SoNha)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.PhuongXa)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.QuanHuyen)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.Tinh)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.DiaChiTiengAnh)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.DiaChiLienLac)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.DienThoaiDiDong)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.DienThoaiNha)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.CoGiay)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.SizeQuanAo)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.Active)
+            <!-- END: các field của thongtincanhan -->
             <div class="form-horizontal">
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px;">
                     <div class="col-md-6">
@@ -52,26 +83,26 @@
                         <hr />
                         <div class="border-all">
                             <div class="form-group first-row">
-                                <label class="control-label col-md-5" for="HoTen">Họ Tên</label>
+                                <label class="control-label col-md-5">Họ Tên</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextBoxFor(q => q.Item1.HoTen, new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" class="form-control" readonly="readonly" value="@this.Model.ThongTinCaNhan.HoTen" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5" for="TenPhienAmNhat">Tên phiên âm nhật</label>
+                                <label class="control-label col-md-5">Tên phiên âm nhật</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextBoxFor(q => q.Item1.TenPhienAmNhat, new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" class="form-control" readonly="readonly" value="@this.Model.ThongTinCaNhan.TenPhienAmNhat" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5" for="NgaySinh">Ngày Sinh</label>
+                                <label class="control-label col-md-5">Ngày Sinh</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextBoxFor(q => q.Item1.NgaySinh, new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" class="form-control" readonly="readonly" value="@this.Model.ThongTinCaNhan.NgaySinh" />
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +110,7 @@
                                 <label class="control-label col-md-5" for="NoiSinh">Quê quán</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextBoxFor(q => q.Item1.NoiSinh, new { @class = "form-control", @readonly = "readonly" })
+                                        <input type="text" class="form-control" readonly="readonly" value="@this.Model.ThongTinCaNhan.NoiSinh" />
                                     </div>
                                 </div>
                             </div>
@@ -87,11 +118,19 @@
                                 <label class="control-label col-md-5" for="DiaChiThuongTru">Địa chỉ thường trú</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        <textarea id="DiaChiThuongTru" class="form-control" readonly ="readonly" rows="3"></textarea>
-                                        @Html.HiddenFor(q => q.Item1.SoNha)
-                                        @Html.HiddenFor(q => q.Item1.PhuongXa)
-                                        @Html.HiddenFor(q => q.Item1.QuanHuyen)
-                                        @Html.HiddenFor(q => q.Item1.Tinh)
+                                        <textarea id="DiaChiThuongTru" class="form-control" readonly="readonly" rows="3"></textarea>
+                                        <input type="hidden" id="soNha" value="@this.Model.ThongTinCaNhan.SoNha" />
+                                        <input type="hidden" id="phuongXa" value="@this.Model.ThongTinCaNhan.PhuongXa" />
+                                        <input type="hidden" id="quanHuyen" value="@this.Model.ThongTinCaNhan.QuanHuyen" />
+                                        <input type="hidden" id="tinh" value="@this.Model.ThongTinCaNhan.Tinh" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="DiaChiLienLac">Địa chỉ liên lạc</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <textarea class="form-control" readonly="readonly" rows="3">@this.Model.ThongTinCaNhan.DiaChiLienLac</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -111,16 +150,16 @@
                                 <div class="col-md-6">
                                     <div class="fg-line">
                                         <input class="form-control" id="NgayVao" type="text" value="" style="background-color:white" />
-                                        <input type="hidden" name="Item2.NgayVao" value="@this.Model.Item2.NgayVao" />
+                                        <input type="hidden" name="NgayVao" required value="@this.Model.NgayVao" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5" for="NgayRa">Ngày Ra<span style="color:red">*</span></label>
+                                <label class="control-label col-md-5" for="NgayRa">Ngày Ra</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
                                         <input class="form-control" id="NgayRa" type="text" value="" style="background-color:white" />
-                                        <input type="hidden" name="Item2.NgayRa" value="@this.Model.Item2.NgayRa" />
+                                        <input type="hidden" name="NgayRa" value="@this.Model.NgayRa" />
                                     </div>
                                 </div>
                             </div>
@@ -128,35 +167,35 @@
                                 <label class="control-label col-md-5" for="SoPhong">Số phòng<span style="color:red">*</span></label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextBoxFor(q => q.Item2.SoPhong, new { @class = "form-control", required = "true" })
-                                        @Html.ValidationMessageFor(q => q.Item2.SoPhong)
+                                        @Html.TextBoxFor(q => q.SoPhong, new { @class = "form-control", required = "true" })
+                                        @Html.ValidationMessageFor(q => q.SoPhong)
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5" for="SoHocTuDo">Số hộc tủ đồ<span style="color:red">*</span></label>
+                                <label class="control-label col-md-5" for="SoHocTuDo">Số hộc tủ đồ</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextBoxFor(q => q.Item2.SoHocTuDo, new { @class = "form-control", required = "true" })
-                                        @Html.ValidationMessageFor(q => q.Item2.SoHocTuDo)
+                                        @Html.TextBoxFor(q => q.SoHocTuDo, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(q => q.SoHocTuDo)
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-5" for="GhiChu">Ghi Chú<span style="color:red">*</span></label>
+                                <label class="control-label col-md-5" for="GhiChu">Ghi Chú</label>
                                 <div class="col-md-6">
                                     <div class="fg-line">
-                                        @Html.TextAreaFor(q => q.Item2.GhiChu, new { @class = "form-control", @rows = "3" })
+                                        @Html.TextAreaFor(q => q.GhiChu, new { @class = "form-control", @rows = "3" })
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
                         </div>
 
                     </div>
+
                 </div>
             </div>
+        </div>
 
         <div class="modal-footer">
             <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
@@ -174,8 +213,31 @@
             });
         });
 
-        // TODO:
-        $('#DiaChiThuongTru').val('');
+        // địa chỉ thường trú được ghép từ:
+        // SoNha + PhuongXa + QuanHuyen + Tinh
+        var soNha = '';
+        var phuongXa = '';
+        var quanHuyen = '';
+        var tinh = '';
+        var diaChi = '';
+        if ($('#soNha').val()) {
+            soNha = $('#soNha').val() + ', ';
+            diaChi = diaChi.concat(soNha);
+        }
+        if ($('#phuongXa').val()) {
+            phuongXa = $('#phuongXa').val() + ', ';
+            diaChi = diaChi.concat(phuongXa);
+        }
+        if ($('#quanHuyen').val()) {
+            quanHuyen = $('#quanHuyen').val() + ', ';
+            diaChi = diaChi.concat(quanHuyen);
+        }
+        if ($('#tinh').val()) {
+            tinh = $('#tinh').val();
+            diaChi = diaChi.concat(tinh);
+        }
+
+        $('#DiaChiThuongTru').val(diaChi);
     });
     $(function () {
         initializeDateRangePicker();
@@ -222,7 +284,7 @@
         },
         function (start, end, label) {
             $('#NgayVao').val(start.format('LL'));
-            $('input[name="Item2.NgayVao"]').val(start.format("DD/MM/YYYY"));
+            $('input[name="NgayVao"]').val(start.format("DD/MM/YYYY"));
         });
 
         $('#NgayRa').val("");
@@ -262,17 +324,17 @@
         },
         function (start, end, label) {
             $('#NgayRa').val(start.format('LL'));
-            $('input[name="Item2.NgayRa"]').val(start.format("DD/MM/YYYY"));
+            $('input[name="NgayRa"]').val(start.format("DD/MM/YYYY"));
         });
 
-        @if (this.Model.Item2.NgayVao.HasValue) {
-            <text>$('#NgayVao').val(moment('@this.Model.Item2.NgayVao.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        @if (this.Model.NgayVao.HasValue) {
+            <text>$('#NgayVao').val(moment('@this.Model.NgayVao.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
         }
         else {
             <text>$('#NgayVao').val("");</text>
         }
-        @if (this.Model.Item2.NgayRa.HasValue) {
-            <text>$('#NgayRa').val(moment('@this.Model.Item2.NgayRa.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
+        @if (this.Model.NgayRa.HasValue) {
+            <text>$('#NgayRa').val(moment('@this.Model.NgayRa.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
         }
         else {
             <text>$('#NgayRa').val("");</text>

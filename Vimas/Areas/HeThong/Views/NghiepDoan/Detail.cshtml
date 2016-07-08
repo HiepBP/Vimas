@@ -1,13 +1,14 @@
-﻿@model TrungTamGTVLViewModel
+﻿@model NghiepDoanViewModel
 @{
-    ViewBag.Title = "Trung tâm " + this.Model.TenCoSo;
+    ViewBag.Title = "Nghiệp Đoàn: " + this.Model.MaNghiepDoan;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col-md-12">
-                <h3>Trung tâm: <strong>@this.Model.TenCoSo</strong></h3>
+                <h3>Nghiệp đoàn: <strong>@this.Model.MaNghiepDoan</strong></h3>
             </div>
         </div>
         <hr />
@@ -18,15 +19,27 @@
             <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="TenCoSo">Tên Cơ Sở</label>
+                        <label class="control-label col-md-4" for="TenCoSo">Tên nghiệp đoàn</label>
                         <div class="col-md-6">
-                            @Html.DisplayTextFor(q => q.TenCoSo)
+                            @Html.DisplayTextFor(q => q.TenNghiepDoan)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="MaNguon">Mã Nguồn</label>
+                        <label class="control-label col-md-4" for="MaNguon">Tên viết tắt</label>
                         <div class="col-md-6">
-                            @Html.DisplayTextFor(q => q.MaNguon)
+                            @Html.DisplayTextFor(q => q.TenVietTat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaNguon">Người đại diện</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NguoiDaiDien)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaNguon">Chức danh</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.ChucDanh)
                         </div>
                     </div>
                     <div class="form-group">
@@ -39,12 +52,6 @@
                         <label class="control-label col-md-4" for="NgayKyHopDong">Ngày kí hợp đồng</label>
                         <div class="col-md-6">
                             <input class="form-control default-cursor" id="NgayKyHopDong" type="text" value="" readonly style="background-color:white" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="NgayHetHan">Ngày hết hạn</label>
-                        <div class="col-md-6">
-                            <input class="form-control default-cursor" id="NgayHetHan" type="text" value="" readonly style="background-color:white" />
                         </div>
                     </div>
                 </div>
@@ -62,15 +69,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="SoHDLK">Số HDLK</label>
+                        <label class="control-label col-md-4" for="SoHDLK">Lương cơ bản</label>
                         <div class="col-md-6">
-                            @Html.DisplayTextFor(q => q.SoHDLK)
+                            @Html.DisplayTextFor(q => q.LuongCoBan)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
+                        <label class="control-label col-md-4" for="NguoiDaiDien">Phí dịch vụ</label>
                         <div class="col-md-6">
-                            @Html.DisplayTextFor(q => q.NguoiDaiDien)
+                            @Html.DisplayTextFor(q => q.PhiDichVu)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NguoiDaiDien">Phí ứng trước dự tuyển</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.PhiUTDT)
                         </div>
                     </div>
                 </div>
@@ -87,10 +100,9 @@
         moment.locale('vi');
         var now = moment().format("LL");
         $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
 
-        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.Value.ToShortDateString()');
-        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.Value.ToShortDateString()')
+        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.Value.ToShortDateString()')
     });
 
 </script>
+

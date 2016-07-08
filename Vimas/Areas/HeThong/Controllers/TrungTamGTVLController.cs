@@ -28,7 +28,6 @@ namespace Vimas.Areas.HeThong.Controllers
             var model = service.GetActive().ProjectTo<TrungTamGTVLViewModel>(this.MapperConfig).ToList();
             try
             {
-                var count = 0;
                 var rs = model
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
                         || q.TenCoSo.ToLower().Contains(param.sSearch.ToLower()))
@@ -37,7 +36,6 @@ namespace Vimas.Areas.HeThong.Controllers
                     .Take(param.iDisplayLength)
                     .Select(q => new IConvertible[]
                     {
-                        count++,
                         q.MaNguon,
                         q.TenCoSo,
                         q.DiaChi,
@@ -46,7 +44,7 @@ namespace Vimas.Areas.HeThong.Controllers
                         q.SoHDLK,
                         q.Id,
                     });
-                var totalRecords = rs.Count();
+                var totalRecords = model.Count();
                 return Json(new
                 {
                     sEcho = param.sEcho,

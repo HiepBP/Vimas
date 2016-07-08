@@ -63,14 +63,13 @@ namespace Vimas.Areas.HocVien.Controllers
 
                         q.DiaChiLienLac,
 
-                        q.KyTucXas.Select(p => p.NgayVao).SingleOrDefault(),
-                        q.KyTucXas.Select(p => p.NgayRa).LastOrDefault(),
+                        q.KyTucXas.Where(p => p.NgayVao != null).Select(p => ((DateTime)p.NgayVao).ToShortDateString()).FirstOrDefault(),
+                        q.KyTucXas.Where(p => p.NgayRa != null).Select(p => ((DateTime)p.NgayRa).ToShortDateString()).FirstOrDefault(),
 
-                        q.KyTucXas.Select(p => p.SoPhong).LastOrDefault(),
-                        q.KyTucXas.Select(p => p.SoHocTuDo).LastOrDefault(),
-
-                        q.Id,
-                        q.KyTucXas.Select(p => p.Id).LastOrDefault(),
+                        q.KyTucXas.Where(p => p.SoPhong != null).Select(p => p.SoPhong).FirstOrDefault(),
+                        q.KyTucXas.Where(p => p.SoHocTuDo != null).Select(p => p.SoHocTuDo).FirstOrDefault(),
+                        
+                        q.KyTucXas.Select(p => p.Id).FirstOrDefault(),
                     });
                 var totalRecords = rs.Count();
                 return Json(new

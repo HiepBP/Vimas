@@ -1,0 +1,576 @@
+﻿@model Vimas.ViewModels.ThongTinPhongVanEditViewModel
+
+@{
+    ViewBag.Title = "Sửa thông tin phỏng vấn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title-inner {
+        background-color: #4da6ff;
+        border-bottom: 1px solid #808080;
+        border-right: 4px double #808080;
+    }
+
+    .border-all {
+        border: 3px double #808080;
+    }
+
+    .no-margin-right {
+        margin-right: 0px;
+    }
+
+    .first-row {
+        margin-top: 15px;
+    }
+
+    .card-header {
+        padding-bottom: 0px !important;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header bg-info">
+        <div class="row">
+            <div class="col-md-10">
+                <h3 class="text-uppercase">Sửa thông tin phỏng vấn</h3>
+            </div>
+            <div class="col-md-2"><h3><span><i class="pull-right glyphicon glyphicon-folder-close"></i></span></h3></div>
+        </div>
+        <hr />
+    </div>
+    <form id="createProductItemForm" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px;">
+                    <div class="col-md-6">
+                        <div class="row no-margin-right">
+                            <div class="title-inner col-md-12">
+                                <h4><span><i class="glyphicon glyphicon-user"></i></span> Thông tin cơ bản</h4>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="border-all">
+                            <div class="form-group first-row">
+                                @Html.LabelFor(q => q.NgayPhongVan, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control default-cursor" id="NgayPhongVan" type="text" value="" readonly style="background-color:white" />
+                                        <input type="hidden" name="NgayPhongVan" value="@this.Model.NgayPhongVan" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NghePhongVan, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.NghePhongVan, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.GhiChuPV, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.GhiChuPV, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgayTrungTuyen, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control default-cursor" id="NgayTrungTuyen" type="text" value="" readonly style="background-color:white" />
+                                        <input type="hidden" name="NgayTrungTuyen" value="@this.Model.NgayTrungTuyen" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.DotTrungTuyen, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.DotTrungTuyen, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgheTrungTuyenTiengAnh, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.NgheTrungTuyenTiengAnh, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgheTrungTuyenTiengViet, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.NgheTrungTuyenTiengViet, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="#congTyTiepNhan" class="form-group">
+                                @Html.LabelFor(q => q.IdCongTyTiepNhan, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.DropDownListFor(q => q.IdCongTyTiepNhan, this.Model.AvailableCongTyTiepNhan, new { @class = "form-control", @id = "congTyTiepNhanDDL" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.ThoiHanHopDong, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.ThoiHanHopDong, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.GhiChuSauTrungTuyen, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.GhiChuSauTrungTuyen, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row no-margin-right">
+                            <div class="title-inner col-md-12">
+                                <h4><span><i class="glyphicon glyphicon-info-sign"></i></span> Thông tin thêm</h4>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="border-all">
+                            <div class="form-group first-row">
+                                @Html.LabelFor(q => q.LopHoc, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.LopHoc, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgayNhapHoc, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control default-cursor" id="NgayNhapHoc" type="text" value="" readonly style="background-color:white" />
+                                        <input type="hidden" name="NgayNhapHoc" value="@this.Model.NgayNhapHoc" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgayKetThucKhoaHoc, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control default-cursor" id="NgayKetThucKhoaHoc" type="text" value="" readonly style="background-color:white" />
+                                        <input type="hidden" name="NgayKetThucKhoaHoc" value="@this.Model.NgayKetThucKhoaHoc" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.GhiChuKhenThuongKyLuat, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.GhiChuKhenThuongKyLuat, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.AvailableCongTyChungNghe, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.DropDownListFor(q => q.IdCongTyChungNghe, this.Model.AvailableCongTyChungNghe, new { @class = "form-control", @id = "congTyChungNgheDDL" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.SoPhieuTiepNhan, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.SoPhieuTiepNhan, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.GhiChuPhaiCu, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.GhiChuPhaiCu, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.HopDongTTS, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.HopDongTTS, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgayKyHopDong, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control default-cursor" id="NgayKyHopDong" type="text" value="" readonly style="background-color:white" />
+                                        <input type="hidden" name="NgayKyHopDong" value="@this.Model.NgayKyHopDong" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Hình ảnh</label>
+                                <div class="col-md-6">
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <span class="btn btn-primary btn-file m-r-10 waves-effect">
+                                            <span class="fileinput-new">Lựa hình</span>
+                                            <span class="fileinput-exists">Đổi</span>
+                                            <input type="hidden"><input type="file" name="HinhAnhLogo" id="HinhAnhLogo">
+                                        </span>
+                                        <span class="fileinput-filename"></span>
+                                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">×</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="img-circle img-background text-center">
+                                        <img src="@this.Model.HinhAnh" onerror="this.src ='http://www.rego-bis.pl/design/img/no-photo.jpg';" style="width:80%; height:auto;" id="hinhAnhPreview" alt="HinhAnh" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.NgayHuySauKhiTrungTuyen, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control default-cursor" id="NgayHuySauKhiTrungTuyen" type="text" value="" readonly style="background-color:white" />
+                                        <input type="hidden" name="NgayHuySauKhiTrungTuyen" value="@this.Model.NgayHuySauKhiTrungTuyen" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(q => q.LyDoHuy, new { @class = "control-label col-md-5" })
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.LyDoHuy, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Detail","ThongTinCaNhan", new { id = this.Model.IdThongTinCaNhan })" class="btn btn-danger">Huỷ</a>
+            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        moment.locale('vi');
+        initializeDateRangePicker();
+        $('#congTyTiepNhanDDL').select2();
+        $('#congTyChungNgheDDL').select2();
+    });
+
+    $('#HinhAnhLogo').on('change', function () {
+        readURL(this);
+    });
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+
+        @if (this.Model.NgayPhongVan.HasValue) {
+            <text>$('#NgayPhongVan').val(moment('@this.Model.NgayPhongVan.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayPhongVan').val("");</text>
+        }
+        @if (this.Model.NgayTrungTuyen.HasValue) {
+            <text>$('#NgayTrungTuyen').val(moment('@this.Model.NgayTrungTuyen.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayTrungTuyen').val("");</text>
+        }
+        @if (this.Model.NgayNhapHoc.HasValue) {
+            <text>$('#NgayNhapHoc').val(moment('@this.Model.NgayNhapHoc.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayNhapHoc').val("");</text>
+        }
+        @if (this.Model.NgayKetThucKhoaHoc.HasValue) {
+            <text>$('#NgayKetThucKhoaHoc').val(moment('@this.Model.NgayKetThucKhoaHoc.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayKetThucKhoaHoc').val("");</text>
+        }
+        @if (this.Model.NgayKyHopDong.HasValue) {
+            <text>$('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayKyHopDong').val("");</text>
+        }
+        @if (this.Model.NgayHuySauKhiTrungTuyen.HasValue) {
+            <text>$('#NgayHuySauKhiTrungTuyen').val(moment('@this.Model.NgayHuySauKhiTrungTuyen.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayHuySauKhiTrungTuyen').val("");</text>
+        }
+
+
+        $('#NgayPhongVan').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayPhongVan').val(start.format('LL'));
+            $('input[name="NgayPhongVan"]').val(start.format("DD/MM/YYYY"));
+        });
+
+
+        $('#NgayTrungTuyen').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayTrungTuyen').val(start.format('LL'));
+            $('input[name="NgayTrungTuyen"]').val(start.format("DD/MM/YYYY"));
+        });
+
+
+        $('#NgayNhapHoc').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayNhapHoc').val(start.format('LL'));
+            $('input[name="NgayNhapHoc"]').val(start.format("DD/MM/YYYY"));
+        });
+
+
+        $('#NgayKetThucKhoaHoc').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayKetThucKhoaHoc').val(start.format('LL'));
+            $('input[name="NgayKetThucKhoaHoc"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayKyHopDong').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayKyHopDong').val(start.format('LL'));
+            $('input[name="NgayKyHopDong"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayHuySauKhiTrungTuyen').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayHuySauKhiTrungTuyen').val(start.format('LL'));
+            $('input[name="NgayHuySauKhiTrungTuyen"]').val(start.format("DD/MM/YYYY"));
+        });
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#hinhAnhPreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+
+</script>

@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>"Có lỗi xảy ra, vui lòng liên hệ admin!"</value>
+    <value>Có lỗi xảy ra, vui lòng liên hệ admin!</value>
+  </data>
+  <data name="InvalidImageFile" xml:space="preserve">
+    <value>Hình ảnh không đúng định dạng</value>
   </data>
 </root>

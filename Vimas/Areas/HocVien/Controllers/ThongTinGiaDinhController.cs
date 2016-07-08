@@ -43,7 +43,7 @@ namespace Vimas.Areas.HocVien.Controllers
                             q.DiaChi,
                             q.Id,
                         });
-                    var totalRecords = rs.Count();
+                    var totalRecords = listQuaTrinhHocTap.Count();
                     return Json(new
                     {
                         sEcho = param.sEcho,

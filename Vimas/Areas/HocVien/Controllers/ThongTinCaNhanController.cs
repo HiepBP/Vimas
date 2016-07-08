@@ -44,11 +44,11 @@ namespace Vimas.Areas.HocVien.Controllers
                         q.DienThoaiDiDong,
                         q.Id,
                     });
-                var totalRecords = rs.Count();
+                var totalRecords = listThongTinCaNhan.Count();
                 return Json(new
                 {
                     sEcho = param.sEcho,
-                    iTotalRecords = totalRecords,
+                    iTotalRecords = listThongTinCaNhan.Count,
                     iTotalDisplayRecords = totalRecords,
                     aaData = rs
                 }, JsonRequestBehavior.AllowGet);

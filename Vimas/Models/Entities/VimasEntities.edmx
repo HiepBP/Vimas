@@ -330,15 +330,15 @@
           <Property Name="DotTrungTuyen" Type="nvarchar" MaxLength="50" />
           <Property Name="NgheTrungTuyenTiengAnh" Type="nvarchar" MaxLength="50" />
           <Property Name="NgheTrungTuyenTiengViet" Type="nvarchar" MaxLength="50" />
-          <Property Name="NghiepDoan" Type="int" />
-          <Property Name="CongTyTiepNhan" Type="int" />
+          <Property Name="IdNghiepDoan" Type="int" />
+          <Property Name="IdCongTyTiepNhan" Type="int" />
           <Property Name="ThoiHanHopDong" Type="int" />
           <Property Name="GhiChuSauTrungTuyen" Type="nvarchar" MaxLength="500" />
           <Property Name="LopHoc" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayNhapHoc" Type="datetime" />
           <Property Name="NgayKetThucKhoaHoc" Type="datetime" />
           <Property Name="GhiChuKhenThuongKyLuat" Type="nvarchar" MaxLength="500" />
-          <Property Name="CongTyChungNghe" Type="int" />
+          <Property Name="IdCongTyChungNghe" Type="int" />
           <Property Name="SoPhieuTiepNhan" Type="nvarchar" MaxLength="50" />
           <Property Name="GhiChuPhaiCu" Type="nvarchar" MaxLength="500" />
           <Property Name="HopDongTTS" Type="int" />
@@ -594,7 +594,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ThongTinPhongVan_CongTyChungNghe">
+        <Association Name="FK_ThongTinPhongVan_CongTyChungNghe1">
           <End Role="CongTyChungNghe" Type="Self.CongTyChungNghe" Multiplicity="0..1" />
           <End Role="ThongTinPhongVan" Type="Self.ThongTinPhongVan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -602,7 +602,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ThongTinPhongVan">
-              <PropertyRef Name="CongTyChungNghe" />
+              <PropertyRef Name="IdCongTyChungNghe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -614,7 +614,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ThongTinPhongVan">
-              <PropertyRef Name="CongTyTiepNhan" />
+              <PropertyRef Name="IdCongTyTiepNhan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -736,7 +736,7 @@
             <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
             <End Role="ThongTinNopTien" EntitySet="ThongTinNopTien" />
           </AssociationSet>
-          <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe" Association="Self.FK_ThongTinPhongVan_CongTyChungNghe">
+          <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe1" Association="Self.FK_ThongTinPhongVan_CongTyChungNghe1">
             <End Role="CongTyChungNghe" EntitySet="CongTyChungNghe" />
             <End Role="ThongTinPhongVan" EntitySet="ThongTinPhongVan" />
           </AssociationSet>
@@ -798,7 +798,7 @@
             <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
             <End Role="BienBan" EntitySet="BienBans" />
           </AssociationSet>
-          <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe" Association="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe">
+          <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe1" Association="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe1">
             <End Role="CongTyChungNghe" EntitySet="CongTyChungNghes" />
             <End Role="ThongTinPhongVan" EntitySet="ThongTinPhongVans" />
           </AssociationSet>
@@ -962,7 +962,7 @@
           <Property Name="VonDieuLe" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="SoNhanVien" Type="Int32" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ThongTinPhongVans" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" FromRole="CongTyChungNghe" ToRole="ThongTinPhongVan" />
+          <NavigationProperty Name="ThongTinPhongVans" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe1" FromRole="CongTyChungNghe" ToRole="ThongTinPhongVan" />
         </EntityType>
         <EntityType Name="CongTyTiepNhan">
           <Key>
@@ -1215,15 +1215,15 @@
           <Property Name="DotTrungTuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgheTrungTuyenTiengAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgheTrungTuyenTiengViet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NghiepDoan" Type="Int32" />
-          <Property Name="CongTyTiepNhan" Type="Int32" />
+          <Property Name="IdNghiepDoan" Type="Int32" />
+          <Property Name="IdCongTyTiepNhan" Type="Int32" />
           <Property Name="ThoiHanHopDong" Type="Int32" />
           <Property Name="GhiChuSauTrungTuyen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="LopHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayNhapHoc" Type="DateTime" Precision="3" />
           <Property Name="NgayKetThucKhoaHoc" Type="DateTime" Precision="3" />
           <Property Name="GhiChuKhenThuongKyLuat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CongTyChungNghe" Type="Int32" />
+          <Property Name="IdCongTyChungNghe" Type="Int32" />
           <Property Name="SoPhieuTiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GhiChuPhaiCu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="HopDongTTS" Type="Int32" />
@@ -1232,8 +1232,8 @@
           <Property Name="NgayHuySauKhiTrungTuyen" Type="DateTime" Precision="3" />
           <Property Name="LyDoHuy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CongTyChungNghe1" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" FromRole="ThongTinPhongVan" ToRole="CongTyChungNghe" />
-          <NavigationProperty Name="CongTyTiepNhan1" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyTiepNhan" FromRole="ThongTinPhongVan" ToRole="CongTyTiepNhan" />
+          <NavigationProperty Name="CongTyChungNghe" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe1" FromRole="ThongTinPhongVan" ToRole="CongTyChungNghe" />
+          <NavigationProperty Name="CongTyTiepNhan" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyTiepNhan" FromRole="ThongTinPhongVan" ToRole="CongTyTiepNhan" />
           <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_ThongTinPhongVan_ThongTinCaNhan" FromRole="ThongTinPhongVan" ToRole="ThongTinCaNhan" />
         </EntityType>
         <EntityType Name="ThongTinVeNuoc">
@@ -1324,7 +1324,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ThongTinPhongVan_CongTyChungNghe">
+        <Association Name="FK_ThongTinPhongVan_CongTyChungNghe1">
           <End Type="VimasModel.CongTyChungNghe" Role="CongTyChungNghe" Multiplicity="0..1" />
           <End Type="VimasModel.ThongTinPhongVan" Role="ThongTinPhongVan" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1332,7 +1332,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ThongTinPhongVan">
-              <PropertyRef Name="CongTyChungNghe" />
+              <PropertyRef Name="IdCongTyChungNghe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1356,7 +1356,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ThongTinPhongVan">
-              <PropertyRef Name="CongTyTiepNhan" />
+              <PropertyRef Name="IdCongTyTiepNhan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1847,15 +1847,15 @@
                 <ScalarProperty Name="HopDongTTS" ColumnName="HopDongTTS" />
                 <ScalarProperty Name="GhiChuPhaiCu" ColumnName="GhiChuPhaiCu" />
                 <ScalarProperty Name="SoPhieuTiepNhan" ColumnName="SoPhieuTiepNhan" />
-                <ScalarProperty Name="CongTyChungNghe" ColumnName="CongTyChungNghe" />
+                <ScalarProperty Name="IdCongTyChungNghe" ColumnName="IdCongTyChungNghe" />
                 <ScalarProperty Name="GhiChuKhenThuongKyLuat" ColumnName="GhiChuKhenThuongKyLuat" />
                 <ScalarProperty Name="NgayKetThucKhoaHoc" ColumnName="NgayKetThucKhoaHoc" />
                 <ScalarProperty Name="NgayNhapHoc" ColumnName="NgayNhapHoc" />
                 <ScalarProperty Name="LopHoc" ColumnName="LopHoc" />
                 <ScalarProperty Name="GhiChuSauTrungTuyen" ColumnName="GhiChuSauTrungTuyen" />
                 <ScalarProperty Name="ThoiHanHopDong" ColumnName="ThoiHanHopDong" />
-                <ScalarProperty Name="CongTyTiepNhan" ColumnName="CongTyTiepNhan" />
-                <ScalarProperty Name="NghiepDoan" ColumnName="NghiepDoan" />
+                <ScalarProperty Name="IdCongTyTiepNhan" ColumnName="IdCongTyTiepNhan" />
+                <ScalarProperty Name="IdNghiepDoan" ColumnName="IdNghiepDoan" />
                 <ScalarProperty Name="NgheTrungTuyenTiengViet" ColumnName="NgheTrungTuyenTiengViet" />
                 <ScalarProperty Name="NgheTrungTuyenTiengAnh" ColumnName="NgheTrungTuyenTiengAnh" />
                 <ScalarProperty Name="DotTrungTuyen" ColumnName="DotTrungTuyen" />

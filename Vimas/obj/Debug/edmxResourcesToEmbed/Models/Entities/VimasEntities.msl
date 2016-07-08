@@ -334,15 +334,15 @@
           <ScalarProperty Name="HopDongTTS" ColumnName="HopDongTTS" />
           <ScalarProperty Name="GhiChuPhaiCu" ColumnName="GhiChuPhaiCu" />
           <ScalarProperty Name="SoPhieuTiepNhan" ColumnName="SoPhieuTiepNhan" />
-          <ScalarProperty Name="CongTyChungNghe" ColumnName="CongTyChungNghe" />
+          <ScalarProperty Name="IdCongTyChungNghe" ColumnName="IdCongTyChungNghe" />
           <ScalarProperty Name="GhiChuKhenThuongKyLuat" ColumnName="GhiChuKhenThuongKyLuat" />
           <ScalarProperty Name="NgayKetThucKhoaHoc" ColumnName="NgayKetThucKhoaHoc" />
           <ScalarProperty Name="NgayNhapHoc" ColumnName="NgayNhapHoc" />
           <ScalarProperty Name="LopHoc" ColumnName="LopHoc" />
           <ScalarProperty Name="GhiChuSauTrungTuyen" ColumnName="GhiChuSauTrungTuyen" />
           <ScalarProperty Name="ThoiHanHopDong" ColumnName="ThoiHanHopDong" />
-          <ScalarProperty Name="CongTyTiepNhan" ColumnName="CongTyTiepNhan" />
-          <ScalarProperty Name="NghiepDoan" ColumnName="NghiepDoan" />
+          <ScalarProperty Name="IdCongTyTiepNhan" ColumnName="IdCongTyTiepNhan" />
+          <ScalarProperty Name="IdNghiepDoan" ColumnName="IdNghiepDoan" />
           <ScalarProperty Name="NgheTrungTuyenTiengViet" ColumnName="NgheTrungTuyenTiengViet" />
           <ScalarProperty Name="NgheTrungTuyenTiengAnh" ColumnName="NgheTrungTuyenTiengAnh" />
           <ScalarProperty Name="DotTrungTuyen" ColumnName="DotTrungTuyen" />

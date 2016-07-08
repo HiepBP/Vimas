@@ -61,11 +61,20 @@ namespace Vimas {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Có lỗi xảy ra, vui lòng liên hệ admin!&quot;.
+        ///   Looks up a localized string similar to Có lỗi xảy ra, vui lòng liên hệ admin!.
         /// </summary>
         internal static string ErrorMessage {
             get {
                 return ResourceManager.GetString("ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hình ảnh không đúng định dạng.
+        /// </summary>
+        internal static string InvalidImageFile {
+            get {
+                return ResourceManager.GetString("InvalidImageFile", resourceCulture);
             }
         }
     }

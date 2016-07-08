@@ -47,11 +47,11 @@ namespace Vimas.Areas.HocVien.Controllers
                         q.NgayLapPhieu.ToShortDateString(),
                         q.Id,
                     });
-                var totalRecords = rs.Count();
+                var totalRecords = listThongTinNopTien.Count();
                 return Json(new
                 {
                     sEcho = param.sEcho,
-                    iTotalRecords = listThongTinNopTien.Count(),
+                    iTotalRecords = totalRecords,
                     iTotalDisplayRecords = totalRecords,
                     aaData = rs
                 }, JsonRequestBehavior.AllowGet);

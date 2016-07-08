@@ -232,7 +232,6 @@
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinNopTienController.cs" />
-    <Compile Include="Areas\HocVien\Controllers\ThongTinPhongVanController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -448,7 +447,13 @@
     <Compile Include="Models\Entities\Services\HopDongDOLABServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Models\Entities\Services\KyTucXaHocVienMappingServiceGen.cs">
+      <DependentUpon>Services.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\Services\KyTucXaService.cs" />
+>>>>>>> origin/thanhhc
     <Compile Include="Models\Entities\Services\KyTucXaServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -487,7 +492,6 @@
     <Compile Include="Models\Entities\Services\ThongTinNopTienServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\ThongTinPhongVanService.cs" />
     <Compile Include="Models\Entities\Services\ThongTinPhongVanServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -569,6 +573,7 @@
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JQueryDataTableParamModel.cs" />
+    <Compile Include="Models\KyTucXaHocVienViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -649,8 +654,6 @@
     <Compile Include="ViewModels\ThongTinNopTienViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ThongTinPhongVanEditViewModel.cs" />
-    <Compile Include="ViewModels\ThongTinPhongVanViewModel.cs" />
     <Compile Include="ViewModels\ThongTinPhongVanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -678,7 +681,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Content\js\common.js" />
-    <Content Include="Content\js\upload-image.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.css" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\demo.html" />
@@ -2944,15 +2946,15 @@
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
+<<<<<<< HEAD
     <Content Include="Areas\HocVien\Views\ThongTinNopTien\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinNopTien\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinNopTien\Edit.cshtml" />
+=======
     <Content Include="Areas\HocVien\Views\KyTucXa\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\KyTucXa\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\KyTucXa\Edit.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Create.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Edit.cshtml" />
-    <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Detail.cshtml" />
+>>>>>>> origin/thanhhc
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

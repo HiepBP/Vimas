@@ -82,4 +82,12 @@ namespace Vimas.Models
         [Display(Name = "Phí dịch vụ thu hộ")]
         PhiDichVuThuHo = 2,
     }
+
+    public enum ThoiHanHopDong
+    {
+        [Display(Name = "Một năm")]
+        MotNam = 0,
+        [Display(Name = "Ba năm")]
+        BaNam = 1,
+    }
 }

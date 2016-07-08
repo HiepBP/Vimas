@@ -1,0 +1,197 @@
+﻿@model ThongTinPhongVanViewModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    .form-horizontal .control-label{
+        margin-top: -10px;
+    }
+
+    .control-label {
+        font-weight: bold;
+    }
+</style>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        @Html.AntiForgeryToken()
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Thông tin phỏng vấn của: <strong>@this.Model.ThongTinCaNhan.HoTen</strong></h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="col-md-6">
+                    @if (Model.NgayPhongVan.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.NgayPhongVan, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.NgayPhongVan)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NghePhongVan, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NghePhongVan)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.GhiChuPV, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.GhiChuPV)
+                        </div>
+                    </div>
+                    @if (Model.NgayTrungTuyen.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.NgayTrungTuyen, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.NgayTrungTuyen)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DotTrungTuyen, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.DotTrungTuyen)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgheTrungTuyenTiengAnh, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NgheTrungTuyenTiengAnh)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgheTrungTuyenTiengViet, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NgheTrungTuyenTiengViet)
+                        </div>
+                    </div>
+                    @if (Model.CongTyTiepNhan != null)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.CongTyTiepNhan.TenTiengViet, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.CongTyTiepNhan.TenTiengViet)
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ThoiHanHopDong.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.ThoiHanHopDong, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.ThoiHanHopDong)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.GhiChuSauTrungTuyen, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.GhiChuSauTrungTuyen)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.LopHoc, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.LopHoc)
+                        </div>
+                    </div>
+                    @if (Model.NgayNhapHoc.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.NgayNhapHoc, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.NgayNhapHoc)
+                            </div>
+                        </div>
+                    }
+                    @if (Model.NgayKetThucKhoaHoc.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.NgayKetThucKhoaHoc, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.NgayKetThucKhoaHoc)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.GhiChuKhenThuongKyLuat, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.GhiChuKhenThuongKyLuat)
+                        </div>
+                    </div>
+                    @if (Model.CongTyChungNghe != null)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.CongTyChungNghe.TenTiengViet, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.CongTyChungNghe.TenTiengViet)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.SoPhieuTiepNhan, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.SoPhieuTiepNhan)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.GhiChuPhaiCu, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.GhiChuPhaiCu)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.HopDongTTS, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.HopDongTTS)
+                        </div>
+                    </div>
+                    @if (Model.NgayKyHopDong.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.NgayKyHopDong, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.NgayKyHopDong)
+                            </div>
+                        </div>
+                    }
+                    @if (Model.NgayHuySauKhiTrungTuyen.HasValue)
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(q => q.NgayHuySauKhiTrungTuyen, new { @class = "control-label col-md-5" })
+                            <div class="col-md-6">
+                                @Html.DisplayTextFor(q => q.NgayHuySauKhiTrungTuyen)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.LyDoHuy, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.LyDoHuy)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="img-circle img-background">
+                                <img src="@this.Model.HinhAnh" onerror="this.src ='http://www.rego-bis.pl/design/img/no-photo.jpg';" style="width:80%; height:auto;text-align:left" id="hinhAnhPreview" alt="HinhAnh" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+</div>

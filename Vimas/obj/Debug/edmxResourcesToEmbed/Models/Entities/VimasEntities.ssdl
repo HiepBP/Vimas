@@ -325,15 +325,15 @@
     <Property Name="DotTrungTuyen" Type="nvarchar" MaxLength="50" />
     <Property Name="NgheTrungTuyenTiengAnh" Type="nvarchar" MaxLength="50" />
     <Property Name="NgheTrungTuyenTiengViet" Type="nvarchar" MaxLength="50" />
-    <Property Name="NghiepDoan" Type="int" />
-    <Property Name="CongTyTiepNhan" Type="int" />
+    <Property Name="IdNghiepDoan" Type="int" />
+    <Property Name="IdCongTyTiepNhan" Type="int" />
     <Property Name="ThoiHanHopDong" Type="int" />
     <Property Name="GhiChuSauTrungTuyen" Type="nvarchar" MaxLength="500" />
     <Property Name="LopHoc" Type="nvarchar" MaxLength="50" />
     <Property Name="NgayNhapHoc" Type="datetime" />
     <Property Name="NgayKetThucKhoaHoc" Type="datetime" />
     <Property Name="GhiChuKhenThuongKyLuat" Type="nvarchar" MaxLength="500" />
-    <Property Name="CongTyChungNghe" Type="int" />
+    <Property Name="IdCongTyChungNghe" Type="int" />
     <Property Name="SoPhieuTiepNhan" Type="nvarchar" MaxLength="50" />
     <Property Name="GhiChuPhaiCu" Type="nvarchar" MaxLength="500" />
     <Property Name="HopDongTTS" Type="int" />
@@ -589,7 +589,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ThongTinPhongVan_CongTyChungNghe">
+  <Association Name="FK_ThongTinPhongVan_CongTyChungNghe1">
     <End Role="CongTyChungNghe" Type="Self.CongTyChungNghe" Multiplicity="0..1" />
     <End Role="ThongTinPhongVan" Type="Self.ThongTinPhongVan" Multiplicity="*" />
     <ReferentialConstraint>
@@ -597,7 +597,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
-        <PropertyRef Name="CongTyChungNghe" />
+        <PropertyRef Name="IdCongTyChungNghe" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -609,7 +609,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
-        <PropertyRef Name="CongTyTiepNhan" />
+        <PropertyRef Name="IdCongTyTiepNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -731,7 +731,7 @@
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhan" />
       <End Role="ThongTinNopTien" EntitySet="ThongTinNopTien" />
     </AssociationSet>
-    <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe" Association="Self.FK_ThongTinPhongVan_CongTyChungNghe">
+    <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe1" Association="Self.FK_ThongTinPhongVan_CongTyChungNghe1">
       <End Role="CongTyChungNghe" EntitySet="CongTyChungNghe" />
       <End Role="ThongTinPhongVan" EntitySet="ThongTinPhongVan" />
     </AssociationSet>

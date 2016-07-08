@@ -44,7 +44,7 @@ namespace Vimas.Areas.HocVien.Controllers
                         q.DenNam.HasValue ? q.DenNam : 0,
                         q.Id,
                     });
-                var totalRecords = rs.Count();
+                var totalRecords = listQuaTrinhHocTap.Count();
                 return Json(new
                 {
                     sEcho = param.sEcho,

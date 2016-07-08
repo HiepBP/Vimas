@@ -41,7 +41,7 @@
       <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
       <End Role="BienBan" EntitySet="BienBans" />
     </AssociationSet>
-    <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe" Association="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe">
+    <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe1" Association="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe1">
       <End Role="CongTyChungNghe" EntitySet="CongTyChungNghes" />
       <End Role="ThongTinPhongVan" EntitySet="ThongTinPhongVans" />
     </AssociationSet>
@@ -205,7 +205,7 @@
     <Property Name="VonDieuLe" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="SoNhanVien" Type="Int32" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="ThongTinPhongVans" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" FromRole="CongTyChungNghe" ToRole="ThongTinPhongVan" />
+    <NavigationProperty Name="ThongTinPhongVans" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe1" FromRole="CongTyChungNghe" ToRole="ThongTinPhongVan" />
   </EntityType>
   <EntityType Name="CongTyTiepNhan">
     <Key>
@@ -458,15 +458,15 @@
     <Property Name="DotTrungTuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NgheTrungTuyenTiengAnh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NgheTrungTuyenTiengViet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="NghiepDoan" Type="Int32" />
-    <Property Name="CongTyTiepNhan" Type="Int32" />
+    <Property Name="IdNghiepDoan" Type="Int32" />
+    <Property Name="IdCongTyTiepNhan" Type="Int32" />
     <Property Name="ThoiHanHopDong" Type="Int32" />
     <Property Name="GhiChuSauTrungTuyen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="LopHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NgayNhapHoc" Type="DateTime" Precision="3" />
     <Property Name="NgayKetThucKhoaHoc" Type="DateTime" Precision="3" />
     <Property Name="GhiChuKhenThuongKyLuat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="CongTyChungNghe" Type="Int32" />
+    <Property Name="IdCongTyChungNghe" Type="Int32" />
     <Property Name="SoPhieuTiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="GhiChuPhaiCu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="HopDongTTS" Type="Int32" />
@@ -475,8 +475,8 @@
     <Property Name="NgayHuySauKhiTrungTuyen" Type="DateTime" Precision="3" />
     <Property Name="LyDoHuy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="CongTyChungNghe1" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" FromRole="ThongTinPhongVan" ToRole="CongTyChungNghe" />
-    <NavigationProperty Name="CongTyTiepNhan1" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyTiepNhan" FromRole="ThongTinPhongVan" ToRole="CongTyTiepNhan" />
+    <NavigationProperty Name="CongTyChungNghe" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe1" FromRole="ThongTinPhongVan" ToRole="CongTyChungNghe" />
+    <NavigationProperty Name="CongTyTiepNhan" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyTiepNhan" FromRole="ThongTinPhongVan" ToRole="CongTyTiepNhan" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_ThongTinPhongVan_ThongTinCaNhan" FromRole="ThongTinPhongVan" ToRole="ThongTinCaNhan" />
   </EntityType>
   <EntityType Name="ThongTinVeNuoc">
@@ -567,7 +567,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ThongTinPhongVan_CongTyChungNghe">
+  <Association Name="FK_ThongTinPhongVan_CongTyChungNghe1">
     <End Type="VimasModel.CongTyChungNghe" Role="CongTyChungNghe" Multiplicity="0..1" />
     <End Type="VimasModel.ThongTinPhongVan" Role="ThongTinPhongVan" Multiplicity="*" />
     <ReferentialConstraint>
@@ -575,7 +575,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
-        <PropertyRef Name="CongTyChungNghe" />
+        <PropertyRef Name="IdCongTyChungNghe" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -599,7 +599,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ThongTinPhongVan">
-        <PropertyRef Name="CongTyTiepNhan" />
+        <PropertyRef Name="IdCongTyTiepNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

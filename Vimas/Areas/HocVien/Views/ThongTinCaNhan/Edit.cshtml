@@ -296,6 +296,7 @@
                 event.preventDefault();
             });
         });
+        moment.locale('vi');
     });
     $(function () {
         initializeDateRangePicker();
@@ -323,6 +324,21 @@
     function initializeDateRangePicker() {
         moment.locale('vi');
         var now = moment().format("LL");
+
+
+
+        @if (this.Model.NgayCapHC.HasValue) {
+            <text>$('#NgayCapHC').val(moment('@this.Model.NgayCapHC.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayCapHC').val("");</text>
+        }
+        @if (this.Model.NgayHetHan.HasValue) {
+            <text>$('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayHetHan').val("");</text>
+        }
 
         $('input[name="NgayCap"]').val('@this.Model.NgayCap.ToShortDateString()')
         $('input[name="NgaySinh"]').val('@this.Model.NgaySinh.ToShortDateString()')
@@ -405,7 +421,7 @@
             $('#NgayCap').val(start.format('LL'));
             $('input[name="NgayCap"]').val(start.format("DD/MM/YYYY"));
         });
-        $('#NgayCapHC').val("");
+
         $('#NgayCapHC').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -445,7 +461,6 @@
             $('input[name="NgayCapHC"]').val(start.format("DD/MM/YYYY"));
         });
 
-        $('#NgayHetHan').val("");
         $('#NgayHetHan').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -484,18 +499,5 @@
             $('#NgayHetHan').val(start.format('LL'));
             $('input[name="NgayHetHan"]').val(start.format("DD/MM/YYYY"));
         });
-
-        @if (this.Model.NgayCapHC.HasValue) {
-            <text>$('#NgayCapHC').val(moment('@this.Model.NgayCapHC.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
-        }
-        else {
-            <text>$('#NgayCapHC').val("");</text>
-        }
-        @if (this.Model.NgayHetHan.HasValue) {
-            <text>$('#NgayHetHan').val(moment('@this.Model.NgayHetHan.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
-        }
-        else {
-            <text>$('#NgayHetHan').val("");</text>
-        }
     }
 </script>

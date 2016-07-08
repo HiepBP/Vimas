@@ -64,4 +64,12 @@ namespace Vimas.Models
         [Display(Name = "Dì")]
         Di = 8,
     }
+
+    public enum TayThuan
+    {
+        [Display(Name = "Tay trái")]
+        trai = 0,
+        [Display(Name = "Tay phải")]
+        phai = 1,
+    }
 }

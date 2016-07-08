@@ -1,118 +1,145 @@
-﻿@model TrungTamGTVLViewModel
+﻿@model SucKhoeEditViewModel
+
 @{
-    ViewBag.Title = "Chỉnh sửa Trung Tâm";
+    ViewBag.Title = "Báo cáo sức khỏe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col-md-12">
-                <h3>Chỉnh sửa trung tâm: @this.Model.TenCoSo.ToUpper()</h3>
+                <h3>Chỉnh sửa báo cáo sức khỏe</h3>
             </div>
         </div>
         <hr />
     </div>
-    <form id="editTrungTamForm" method="post">
+    <form id="editSuckhoeForm" action="@this.Url.Action("Edit")" method="post">
         <div class="modal-body">
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="TenCoSo">Tên Cơ Sở<span style="color:red">*</span></label>
+                            <label class="control-label col-md-4" for="IdThongTinCaNhan">ID thông tin cá nhân<span style="color:red">*</span></label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.TenCoSo, new { @class = "form-control", @required = "required" })
+                                    @Html.DropDownListFor(q => q.IdThongTinCaNhan, this.Model.AvailableIDs, new { @class = "form-control", @placeholder = "Chọn ID", @required = "required" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="MaNguon">Mã Nguồn<span style="color:red">*</span></label>
+                            <label class="control-label col-md-4" for="ChieuCao">Chiều cao</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.MaNguon, new { @class = "form-control", @required = "required" })
+                                    @Html.TextBoxFor(q => q.ChieuCao, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="DiaChi">Địa Chỉ</label>
+                            <label class="control-label col-md-4" for="CanNang">Cân nặng</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.DiaChi, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.CanNang, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="NgayKyHopDong">Ngày kí hợp đồng</label>
+                            <label class="control-label col-md-4" for="NhomMau">Nhóm máu</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    <input class="form-control default-cursor" id="NgayKyHopDong" type="text" value="" readonly style="background-color:white" />
-                                    <input type="hidden" id="ngayKi" name="NgayKyHopDong" value="@this.Model.NgayKyHopDong" />
+                                    @Html.TextBoxFor(q => q.NhomMau, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="NgayHetHan">Ngày hết hạn</label>
+                            <label class="control-label col-md-4" for="NhomMau">Tay thuận</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    <input class="form-control default-cursor" id="NgayHetHan" type="text" value="" readonly style="background-color:white" />
-                                    <input type="hidden" id="ngayHet" name="NgayHetHan" value="@this.Model.NgayHetHan" />
+                                    @Html.RadioButtonFor(q => q.TayThuan, 1)
+                                    Tay phải <!--tay phải-->
+                                    <br />
+                                    @Html.RadioButtonFor(q => q.TayThuan, 0)<!--tay trái-->
+                                    Tay trái
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="DienThoai">Điện Thoại</label>
+                            <label class="control-label col-md-4" for="ThiLucMatTrai">Thị lực mắt trái</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.DienThoai, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.ThiLucMatTrai, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="Fax">Fax</label>
+                            <label class="control-label col-md-4" for="ThiLucMatPhai">Thị lực mắt phải</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.Fax, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.ThiLucMatPhai, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="SoHDLK">Số HDLK</label>
+                            <label class="control-label col-md-4" for="SoHDLK">Hình xăm</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.SoHDLK, new { @class = "form-control" })
+                                    @Html.RadioButtonFor(q => q.HinhXam, true)
+                                    Có
+                                    <br />
+                                    @Html.RadioButtonFor(q => q.HinhXam, false)
+                                    Không
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
+                            <label class="control-label col-md-4" for="NgayKhamDot1">Ngày khám đợt 1</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.NguoiDaiDien, new { @class = "form-control" })
+                                    <input class="form-control default-cursor" id="NgayKhamDot1" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayKhamDot1" value="@this.Model.NgayKhamDot1" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="ChucDanh">Chức danh</label>
+                            <label class="control-label col-md-4" for="GhiChuSucKhoeDot1">Ghi chú sức khỏe đợt 1</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.ChucDanh, new { @class = "form-control" })
+                                    @Html.TextAreaFor(q => q.GhiChuSucKhoeDot1, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
-                        @Html.HiddenFor(q => q.Active)
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayKhamDot2">Ngày khám đợt 2</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control default-cursor" id="NgayKhamDot2" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayKhamDot2" value="@this.Model.NgayKhamDot2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="GhiChuSucKhoeDot2">Ghi chú sức khỏe đợt 2</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextAreaFor(q => q.GhiChuSucKhoeDot2, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
+            @Html.HiddenFor(q => q.Active)
             <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
             <button type="button" onclick="Update();" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
         </div>
     </form>
 </div>
+
 <script>
 
     $(function () {
@@ -122,15 +149,14 @@
     function initializeDateRangePicker() {
         moment.locale('vi');
         var now = moment().format("LL");
-        var ngayKiValue = $('#ngayKi').val();
-        var ngayHetValue = $('#ngayHet').val();
 
-        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()');
+        $('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
 
-        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()');
+        $('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()');
 
-        $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-        $('#NgayKyHopDong').daterangepicker({
+
+        $('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKhamDot1').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
@@ -163,12 +189,12 @@
             }
         },
         function (start, end, label) {
-            $('#NgayKyHopDong').val(start.format('LL'));
-            $('input[name="NgayKyHopDong"]').val(start.format("DD/MM/YYYY"));
+            $('#NgayKhamDot1').val(start.format('LL'));
+            $('input[name="NgayKhamDot1"]').val(start.format("DD/MM/YYYY"));
         });
 
-        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-        $('#NgayHetHan').daterangepicker({
+        $('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKhamDot2').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
@@ -201,13 +227,13 @@
             }
         },
         function (start, end, label) {
-            $('#NgayHetHan').val(start.format('LL'));
-            $('input[name="NgayHetHan"]').val(start.format("DD/MM/YYYY"));
+            $('#NgayKhamDot2').val(start.format('LL'));
+            $('input[name="NgayKhamDot2"]').val(start.format("DD/MM/YYYY"));
         });
     }
 
     function Update() {
-        var formData = $('#editTrungTamForm').serialize();
+        var formData = $('#editSuckhoeForm').serialize();
 
         $.ajax({
             url: '@this.Url.Action("Edit")',
@@ -218,8 +244,10 @@
                 window.location.href = "@this.Url.Action("Index")";
             },
             error: function (error) {
-                alert(error.message);
+                alert(result.message);
             }
         });
     }
 </script>
+
+

@@ -1,0 +1,154 @@
+﻿@model SucKhoeEditViewModel
+@{
+    ViewBag.Title = "Báo cáo chi tiết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Chi tiết cáo sức khỏe của: <strong>@this.Model.Name</strong></h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="IdThongTinCaNhan">ID thông tin cá nhân</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                [@Html.DisplayTextFor(q => q.IdThongTinCaNhan)]
+                                - [@Html.DisplayTextFor(q => q.Name)]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ChieuCao">Chiều cao</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.ChieuCao)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="CanNang">Cân nặng</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.CanNang)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NhomMau">Nhóm máu</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.NhomMau)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NhomMau">Tay thuận</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.TayThuan == 1)
+                                {
+                                    Html.DisplayText("Tay phải");
+                                }
+                                else if (this.Model.TayThuan == 0)
+                                {
+                                    Html.DisplayText("Tay trái");
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ThiLucMatTrai">Thị lực mắt trái</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.ThiLucMatTrai)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ThiLucMatPhai">Thị lực mắt phải</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.ThiLucMatPhai)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="SoHDLK">Hình xăm</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.HinhXam.Value)
+                                {
+                                    Html.DisplayText("Có");
+                                }
+                                else
+                                {
+                                    Html.DisplayText("Không");
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayKhamDot1">Ngày khám đợt 1</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                <input class="form-control default-cursor" id="NgayKhamDot1" type="text" value="" readonly style="background-color:white" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="GhiChuSucKhoeDot1">Ghi chú sức khỏe đợt 1</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.GhiChuSucKhoeDot1)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayKhamDot2">Ngày khám đợt 2</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                <input class="form-control default-cursor" id="NgayKhamDot2" type="text" value="" readonly style="background-color:white" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="GhiChuSucKhoeDot2">Ghi chú sức khỏe đợt 2</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @Html.DisplayTextFor(q => q.GhiChuSucKhoeDot2)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Index")" class="btn btn-danger">Quay lại</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+
+        $('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+        $('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()')
+    });
+
+</script>

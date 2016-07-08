@@ -444,3 +444,5 @@ D:\Source\C#\vimasProject\Vimas\obj\Debug\Vimas.Resource.resources
 D:\Source\C#\vimasProject\Vimas\obj\Debug\Vimas.csproj.GenerateResource.Cache
 D:\Source\C#\vimasProject\Vimas\obj\Debug\Vimas.dll
 D:\Source\C#\vimasProject\Vimas\obj\Debug\Vimas.pdb
+C:\Users\MyPC\Source\Repos\Vimas\Vimas\obj\Debug\Vimas.Resource.resources
+C:\Users\MyPC\Source\Repos\Vimas\Vimas\obj\Debug\Vimas.csproj.GenerateResource.Cache

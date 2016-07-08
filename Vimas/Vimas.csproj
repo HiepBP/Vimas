@@ -228,6 +228,7 @@
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
     <Compile Include="Areas\HeThong\HeThongAreaRegistration.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhLamViecController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\SucKhoeController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
@@ -621,6 +622,7 @@
     <Compile Include="ViewModels\QuaTrinhLamViecViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\SucKhoeEditViewModel.cs" />
     <Compile Include="ViewModels\SucKhoeViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2937,6 +2939,10 @@
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\SucKhoe\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

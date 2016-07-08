@@ -25,7 +25,8 @@ namespace Vimas.Areas.HeThong.Controllers
         public JsonResult LoadDanhSachTrungTam(JQueryDataTableParamModel param)
         {
             var service = this.Service<ITrungTamGTVLService>();
-            var model = service.GetActive().ProjectTo<TrungTamGTVLViewModel>(this.MapperConfig).ToList();
+            var model = service.Get().Where(q => q.Active == true)
+                .ProjectTo<TrungTamGTVLViewModel>(this.MapperConfig).ToList();
             try
             {
                 var count = 0;
@@ -132,9 +133,10 @@ namespace Vimas.Areas.HeThong.Controllers
             }
 
             return Json(new { success = true, message = "Chỉnh sửa thông tin thành công." });
-        } 
+        }
         #endregion
-       
+
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Detail(int id)
         {
             var service = this.Service<ITrungTamGTVLService>();
@@ -148,6 +150,7 @@ namespace Vimas.Areas.HeThong.Controllers
             return this.View(model);
         }
 
+        [HttpPost]
         [Authorize(Roles = "Admin, PhongNguon")]
         public async Task<JsonResult> Delete(int id)
         {

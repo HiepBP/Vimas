@@ -57,8 +57,20 @@ namespace Vimas.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index", "ThongTinCaNhan", new { area = "HocVien" });
+                }
+                else
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+            }
             return View();
         }
 

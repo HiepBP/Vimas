@@ -20,7 +20,7 @@
                     <div class="form-group">
                         @Html.LabelFor(q => q.SoPhieu, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.SoPhieu, new { @class = "form-control col-sm-12 default-cursor", @readonly="true" })
+                            @Html.TextBoxFor(q => q.SoPhieu, new { @class = "form-control col-sm-12 default-cursor", @readonly = "true" })
                             @Html.ValidationMessageFor(q => q.SoPhieu)
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-4">Tên người nộp tiền</label>
                         <div class="col-md-5">
-                            <input type="text" value="@this.Model.ThongTinCaNhan.HoTen" class="form-control col-sm-12 default-cursor" readonly/>
+                            <input type="text" value="@this.Model.ThongTinCaNhan.HoTen" class="form-control col-sm-12 default-cursor" readonly />
                         </div>
                     </div>
                 </div>
@@ -87,20 +87,24 @@
     })
 
     function editTTNT() {
+        var form = $('#editThongTinNopTienForm');
+        $.validator.unobtrusive.parse(form);
         var formData = $('#editThongTinNopTienForm').serialize();
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Edit","ThongTinNopTien")',
-            data: formData,
-            success: function (result) {
-                alert(result.message);
-                $('#editTTNTPanel').modal('hide');
-                RefreshTTNTTable();
-            },
-            error: function (error) {
-                alert(result.message);
-            }
-        });
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Edit","ThongTinNopTien")',
+                data: formData,
+                success: function (result) {
+                    alert(result.message);
+                    $('#editTTNTPanel').modal('hide');
+                    RefreshTTNTTable();
+                },
+                error: function (error) {
+                    alert(result.message);
+                }
+            });
+        }
     }
 
     function initializeDateRangePicker() {

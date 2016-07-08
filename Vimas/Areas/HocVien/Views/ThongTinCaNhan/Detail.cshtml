@@ -508,13 +508,13 @@
         }
     }
 
-    function deleteQTHT(idQTLV) {
+    function deleteQTHT(idQTHT) {
         if (confirm("Bạn có chắc xóa dòng này?")) {
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
+                url: '@Url.Action("Delete", "QuaTrinhHocTap")',
                 data: {
-                    id: idQTLV,
+                    id: idQTHT,
                 },
                 success: function (result) {
                     alert(result.message);

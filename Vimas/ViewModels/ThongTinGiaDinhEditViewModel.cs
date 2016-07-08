@@ -20,7 +20,7 @@ namespace Vimas.ViewModels
             mapper.Map(original, this);
         }
         [Display(Name = "Họ tên")]
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập Họ tên")]
         public override string HoTen { get; set; }
         [Display(Name = "Nghề nghiệp")]
         public override string NgheNghiep { get; set; }
@@ -29,7 +29,7 @@ namespace Vimas.ViewModels
         [Display(Name = "Địa chỉ")]
         public override string DiaChi { get; set; }
         [Display(Name = "Số điện thoại")]
-        [IsNumeric]
+        [IsNumeric(ErrorMessage = "Yêu cầu nhập số")]
         public override string SoDienThoai { get; set; }
 
         public Relation Relation { get; set; }

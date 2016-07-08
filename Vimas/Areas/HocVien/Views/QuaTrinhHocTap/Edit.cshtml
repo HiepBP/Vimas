@@ -76,19 +76,24 @@
     })
 
     function editQTHT() {
+        var form = $('#editQuaTrinhHocTapForm');
+        $.validator.unobtrusive.parse(form);
         var formData = $('#editQuaTrinhHocTapForm').serialize();
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Edit","QuaTrinhHocTap")',
-            data: formData,
-            success: function (result) {
-                alert(result.message);
-                $('#editQTHTPanel').modal('hide');
-                RefreshQTHTTable();
-            },
-            error: function (error) {
-                alert(result.message);
-            }
-        });
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Edit","QuaTrinhHocTap")',
+                data: formData,
+                success: function (result) {
+                    alert(result.message);
+                    $('#editQTHTPanel').modal('hide');
+                    RefreshQTHTTable();
+                },
+                error: function (error) {
+                    alert(result.message);
+                }
+            });
+        }
+
     }
 </script>

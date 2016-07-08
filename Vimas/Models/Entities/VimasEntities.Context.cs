@@ -31,12 +31,12 @@ namespace Vimas.Models.Entities
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BangCap> BangCaps { get; set; }
+        public virtual DbSet<BienBan> BienBans { get; set; }
         public virtual DbSet<CongTyChungNghe> CongTyChungNghes { get; set; }
         public virtual DbSet<CongTyTiepNhan> CongTyTiepNhans { get; set; }
         public virtual DbSet<HopDongDOLAB> HopDongDOLABs { get; set; }
         public virtual DbSet<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }
         public virtual DbSet<KyTucXa> KyTucXas { get; set; }
-        public virtual DbSet<KyTucXaHocVienMapping> KyTucXaHocVienMappings { get; set; }
         public virtual DbSet<NghiepDoan> NghiepDoans { get; set; }
         public virtual DbSet<QuaTrinhHocTap> QuaTrinhHocTaps { get; set; }
         public virtual DbSet<QuaTrinhLamViec> QuaTrinhLamViecs { get; set; }

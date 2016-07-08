@@ -12,16 +12,16 @@ namespace Vimas.ViewModels
     using System;
     using System.Collections.Generic;
     
-    public partial class KyTucXaHocVienMappingViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.KyTucXaHocVienMapping>
+    public partial class BienBanViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.BienBan>
     {
     	
     			public virtual int id { get; set; }
-    			public virtual Nullable<int> idThongTinCaNhan { get; set; }
-    			public virtual string idKyTucXa { get; set; }
-    			public virtual string Active { get; set; }
+    			public virtual int idThongTinCaNhan { get; set; }
+    			public virtual string HinhAnh { get; set; }
+    			public virtual Nullable<bool> Active { get; set; }
     	
-    	public KyTucXaHocVienMappingViewModel() : base() { }
-    	public KyTucXaHocVienMappingViewModel(Vimas.Models.Entities.KyTucXaHocVienMapping entity) : base(entity) { }
+    	public BienBanViewModel() : base() { }
+    	public BienBanViewModel(Vimas.Models.Entities.BienBan entity) : base(entity) { }
     
     }
 }

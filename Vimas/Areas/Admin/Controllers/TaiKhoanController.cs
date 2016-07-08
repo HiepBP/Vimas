@@ -150,7 +150,7 @@ namespace Vimas.Areas.Admin.Controllers
             try
             {
                 var b = await UserManager.RemoveFromRolesAsync(id, currentRole.ToArray());
-
+                var rs = await UserManager.DeleteAsync(user);
             }
             catch (Exception)
             {

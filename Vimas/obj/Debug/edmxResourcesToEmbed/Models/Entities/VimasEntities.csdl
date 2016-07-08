@@ -7,12 +7,12 @@
     <EntitySet Name="AspNetUserLogins" EntityType="VimasModel.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="VimasModel.AspNetUser" />
     <EntitySet Name="BangCaps" EntityType="VimasModel.BangCap" />
+    <EntitySet Name="BienBans" EntityType="VimasModel.BienBan" />
     <EntitySet Name="CongTyChungNghes" EntityType="VimasModel.CongTyChungNghe" />
     <EntitySet Name="CongTyTiepNhans" EntityType="VimasModel.CongTyTiepNhan" />
     <EntitySet Name="HopDongDOLABs" EntityType="VimasModel.HopDongDOLAB" />
     <EntitySet Name="HopDongDOLABHocVienMappings" EntityType="VimasModel.HopDongDOLABHocVienMapping" />
     <EntitySet Name="KyTucXas" EntityType="VimasModel.KyTucXa" />
-    <EntitySet Name="KyTucXaHocVienMappings" EntityType="VimasModel.KyTucXaHocVienMapping" />
     <EntitySet Name="NghiepDoans" EntityType="VimasModel.NghiepDoan" />
     <EntitySet Name="QuaTrinhHocTaps" EntityType="VimasModel.QuaTrinhHocTap" />
     <EntitySet Name="QuaTrinhLamViecs" EntityType="VimasModel.QuaTrinhLamViec" />
@@ -36,6 +36,10 @@
     <AssociationSet Name="FK_BangCap_ThongTinDuTuyen" Association="VimasModel.FK_BangCap_ThongTinDuTuyen">
       <End Role="ThongTinDuTuyen" EntitySet="ThongTinDuTuyens" />
       <End Role="BangCap" EntitySet="BangCaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BienBan_ThongTinCaNhan" Association="VimasModel.FK_BienBan_ThongTinCaNhan">
+      <End Role="ThongTinCaNhan" EntitySet="ThongTinCaNhans" />
+      <End Role="BienBan" EntitySet="BienBans" />
     </AssociationSet>
     <AssociationSet Name="FK_ThongTinPhongVan_CongTyChungNghe" Association="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe">
       <End Role="CongTyChungNghe" EntitySet="CongTyChungNghes" />
@@ -172,8 +176,18 @@
     <Property Name="BangCap1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DaNop" Type="Boolean" />
     <Property Name="TrinhDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ThongTinDuTuyen" Relationship="VimasModel.FK_BangCap_ThongTinDuTuyen" FromRole="BangCap" ToRole="ThongTinDuTuyen" />
+  </EntityType>
+  <EntityType Name="BienBan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idThongTinCaNhan" Type="Int32" Nullable="false" />
+    <Property Name="HinhAnh" Type="String" Nullable="false" MaxLength="2803" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_BienBan_ThongTinCaNhan" FromRole="BienBan" ToRole="ThongTinCaNhan" />
   </EntityType>
   <EntityType Name="CongTyChungNghe">
     <Key>
@@ -190,7 +204,7 @@
     <Property Name="ChucDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="VonDieuLe" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="SoNhanVien" Type="Int32" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ThongTinPhongVans" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" FromRole="CongTyChungNghe" ToRole="ThongTinPhongVan" />
   </EntityType>
   <EntityType Name="CongTyTiepNhan">
@@ -230,7 +244,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdThongTinCaNhan" Type="Int32" />
     <Property Name="IdHopDongDOLAB" Type="Int32" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="HopDongDOLAB" Relationship="VimasModel.FK_HopDongDOLAB_HocVien_HopDongDOLAB" FromRole="HopDongDOLABHocVienMapping" ToRole="HopDongDOLAB" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_HopDongDOLAB_HocVien_ThongTinCaNhan" FromRole="HopDongDOLABHocVienMapping" ToRole="ThongTinCaNhan" />
   </EntityType>
@@ -242,20 +256,11 @@
     <Property Name="IdThongTinCaNhan" Type="Int32" />
     <Property Name="NgayVao" Type="DateTime" Precision="3" />
     <Property Name="NgayRa" Type="DateTime" Precision="3" />
-    <Property Name="SoPhong" Type="Int32" />
-    <Property Name="SoHocTuDo" Type="Int32" />
+    <Property Name="SoPhong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoHocTuDo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_KyTucXa_ThongTinCaNhan" FromRole="KyTucXa" ToRole="ThongTinCaNhan" />
-  </EntityType>
-  <EntityType Name="KyTucXaHocVienMapping">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="idThongTinCaNhan" Type="Int32" />
-    <Property Name="idKyTucXa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Active" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="NghiepDoan">
     <Key>
@@ -371,6 +376,7 @@
     <Property Name="CoGiay" Type="Int32" />
     <Property Name="SizeQuanAo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BienBans" Relationship="VimasModel.FK_BienBan_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="BienBan" />
     <NavigationProperty Name="HopDongDOLABHocVienMappings" Relationship="VimasModel.FK_HopDongDOLAB_HocVien_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="HopDongDOLABHocVienMapping" />
     <NavigationProperty Name="KyTucXas" Relationship="VimasModel.FK_KyTucXa_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="KyTucXa" />
     <NavigationProperty Name="QuaTrinhHocTaps" Relationship="VimasModel.FK_QuaTrinhHocTap_ThongTinCaNhan" FromRole="ThongTinCaNhan" ToRole="QuaTrinhHocTap" />
@@ -430,7 +436,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdThongTinCaNhan" Type="Int32" Nullable="false" />
-    <Property Name="LoaiTien" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiTien" Type="Int32" Nullable="false" />
     <Property Name="SoPhieu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NgayLapPhieu" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ThuHayChi" Type="Int32" Nullable="false" />
@@ -468,7 +474,7 @@
     <Property Name="HinhAnh" Type="String" MaxLength="2083" FixedLength="false" Unicode="true" />
     <Property Name="NgayHuySauKhiTrungTuyen" Type="DateTime" Precision="3" />
     <Property Name="LyDoHuy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CongTyChungNghe1" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyChungNghe" FromRole="ThongTinPhongVan" ToRole="CongTyChungNghe" />
     <NavigationProperty Name="CongTyTiepNhan1" Relationship="VimasModel.FK_ThongTinPhongVan_CongTyTiepNhan" FromRole="ThongTinPhongVan" ToRole="CongTyTiepNhan" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_ThongTinPhongVan_ThongTinCaNhan" FromRole="ThongTinPhongVan" ToRole="ThongTinCaNhan" />
@@ -488,7 +494,7 @@
     <Property Name="NgayTron" Type="DateTime" Precision="3" />
     <Property Name="NgayBiTrucXuat" Type="DateTime" Precision="3" />
     <Property Name="GhiChuTheoDoi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_ThongTinVeNuoc_ThongTinCaNhan" FromRole="ThongTinVeNuoc" ToRole="ThongTinCaNhan" />
   </EntityType>
   <EntityType Name="TrungTamGTVL">
@@ -506,7 +512,7 @@
     <Property Name="NgayHetHan" Type="DateTime" Precision="3" />
     <Property Name="NguoiDaiDien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ChucDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Active" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ThongTinCaNhans" Relationship="VimasModel.FK_ThongTinCaNhan_TrungTamGTVL" FromRole="TrungTamGTVL" ToRole="ThongTinCaNhan" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -546,6 +552,18 @@
       </Principal>
       <Dependent Role="BangCap">
         <PropertyRef Name="IdThongTinDuTuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BienBan_ThongTinCaNhan">
+    <End Type="VimasModel.ThongTinCaNhan" Role="ThongTinCaNhan" Multiplicity="1" />
+    <End Type="VimasModel.BienBan" Role="BienBan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThongTinCaNhan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BienBan">
+        <PropertyRef Name="idThongTinCaNhan" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

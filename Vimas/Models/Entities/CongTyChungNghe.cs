@@ -31,7 +31,7 @@ namespace Vimas.Models.Entities
         public string ChucDanh { get; set; }
         public Nullable<decimal> VonDieuLe { get; set; }
         public Nullable<int> SoNhanVien { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongTinPhongVan> ThongTinPhongVans { get; set; }

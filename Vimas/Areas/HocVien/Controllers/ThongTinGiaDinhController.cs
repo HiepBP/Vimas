@@ -13,6 +13,7 @@ using Vimas.ViewModels;
 
 namespace Vimas.Areas.HocVien.Controllers
 {
+    [Authorize]
     public class ThongTinGiaDinhController : BaseController
     {
         // GET: HocVien/ThongTinGiaDinh
@@ -58,6 +59,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Create(int idThongTinCaNhan)
         {
             var model = new ThongTinGiaDinhEditViewModel();
@@ -66,6 +68,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<JsonResult> Create(ThongTinGiaDinhEditViewModel model)
         {
@@ -83,6 +86,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {
             var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
@@ -96,6 +100,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> Edit(ThongTinGiaDinhEditViewModel model)
         {
@@ -121,6 +126,7 @@ namespace Vimas.Areas.HocVien.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
         {
             try
@@ -131,7 +137,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
-                await thongTinGiaDinhService.DeleteAsync(entity);
+                entity.Active = false;
+                await thongTinGiaDinhService.UpdateAsync(entity);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

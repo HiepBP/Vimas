@@ -12,11 +12,7 @@ namespace Vimas.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class KyTucXaHocVienMapping
+    public partial class BienBan : SkyWeb.DatVM.Data.IEntity
     {
-        public int id { get; set; }
-        public Nullable<int> idThongTinCaNhan { get; set; }
-        public string idKyTucXa { get; set; }
-        public string Active { get; set; }
     }
 }

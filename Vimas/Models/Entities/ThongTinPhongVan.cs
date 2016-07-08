@@ -39,7 +39,7 @@ namespace Vimas.Models.Entities
         public string HinhAnh { get; set; }
         public Nullable<System.DateTime> NgayHuySauKhiTrungTuyen { get; set; }
         public string LyDoHuy { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         public virtual CongTyChungNghe CongTyChungNghe1 { get; set; }
         public virtual CongTyTiepNhan CongTyTiepNhan1 { get; set; }

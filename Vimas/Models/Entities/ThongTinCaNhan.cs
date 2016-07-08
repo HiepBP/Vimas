@@ -17,6 +17,7 @@ namespace Vimas.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ThongTinCaNhan()
         {
+            this.BienBans = new HashSet<BienBan>();
             this.HopDongDOLABHocVienMappings = new HashSet<HopDongDOLABHocVienMapping>();
             this.KyTucXas = new HashSet<KyTucXa>();
             this.QuaTrinhHocTaps = new HashSet<QuaTrinhHocTap>();
@@ -58,6 +59,8 @@ namespace Vimas.Models.Entities
         public string SizeQuanAo { get; set; }
         public bool Active { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BienBan> BienBans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

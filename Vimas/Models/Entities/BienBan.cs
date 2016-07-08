@@ -7,20 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities.Repositories
+namespace Vimas.Models.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    
-    public partial interface IKyTucXaHocVienMappingRepository : SkyWeb.DatVM.Data.IBaseRepository<KyTucXaHocVienMapping>
+    public partial class BienBan
     {
-    }
+        public int id { get; set; }
+        public int idThongTinCaNhan { get; set; }
+        public string HinhAnh { get; set; }
+        public Nullable<bool> Active { get; set; }
     
-    public partial class KyTucXaHocVienMappingRepository : SkyWeb.DatVM.Data.BaseRepository<KyTucXaHocVienMapping>, IKyTucXaHocVienMappingRepository
-    {
-    	public KyTucXaHocVienMappingRepository(System.Data.Entity.DbContext dbContext) : base(dbContext)
-        {
-        }
+        public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }
 }

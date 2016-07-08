@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*<style>
-    .display-initial {
-        display: initial;
-    }
-</style>*@
+        .display-initial {
+            display: initial;
+        }
+    </style>*@
 
 <div class="card">
     <div class="card-header">
@@ -16,11 +16,14 @@
             <div class="col-md-8">
                 <h3>Danh sách học viên</h3>
             </div>
-            <div class="col-md-4">
-                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin cá nhân
-                </a>
-            </div>
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+            {
+                <div class="col-md-4">
+                    <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
+                        <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin cá nhân
+                    </a>
+                </div>
+            }
         </div>
         <hr />
     </div>
@@ -94,9 +97,22 @@
                     "aTargets": [5],
                     "mRender": function (data, type, o) {
                         var data = o[5];
-                        var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
-                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-danger' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        return detail + " " + edit;
+                        var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-info-sign'></i> Detail</a>";
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                                <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else {
+                            <text>
+                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinCaNhan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var del = "<button type='button' id='deleteThongTinCaNhan' class='btn btn-sm btn-danger' onclick='deleteTTCN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+
+                        return detail + " " + edit + " " + del;
                     }
                 }
 
@@ -105,8 +121,28 @@
         });
     }
 
-    @if(!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
-    {
-        <text>document.getElementById('editThongTinCaNhan').style.visibility = 'hidden';</text>
+    function deleteTTCN(idTTCN) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "ThongTinCaNhan")',
+                data: {
+                    id: idTTCN,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTCNTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function RefreshTTCNTable() {
+        var oTable = $('#hocVienDatatable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
     }
 </script>

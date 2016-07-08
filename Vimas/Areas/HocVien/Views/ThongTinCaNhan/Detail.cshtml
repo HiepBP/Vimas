@@ -1,6 +1,7 @@
 ﻿@model ThongTinCaNhanViewModel
 
 @{
+    var user = HttpContext.Current.User;
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -46,9 +47,12 @@
 
             <div class="tab-content">
                 <div id="quaTrinhHocTap" class="tab-pane fade in active">
-                    <div class="col-md-12">
-                        <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                    </div>
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -82,9 +86,12 @@
                     </div>
                 </div>
                 <div id="thongTinGiaDinh" class="tab-pane fade">
-                    <div class="col-md-12">
-                        <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                    </div>
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -115,9 +122,12 @@
                     </div>
                 </div>
                 <div id="quaTrinhLamViec" class="tab-pane fade">
-                    <div class="col-md-12">
-                        <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                    </div>
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -213,8 +223,20 @@
                     "aTargets": [5],
                     "mRender": function (data, type, o) {
                         var data = o[6];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                                <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
                         var edit = "<button type='button' id='editQuaTrinhHocTap' class='btn btn-sm btn-primary' onclick='showEditQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                         var del = "<button type='button' id='deleteQuaTrinhHocTap' class='btn btn-sm btn-danger' onclick='deleteQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
                         return edit + " " + del;
                     }
                 }
@@ -257,8 +279,20 @@
                     "aTargets": [4],
                     "mRender": function (data, type, o) {
                         var data = o[4];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
                         var edit = "<button type='button' id='editThongTinGiaDinh' class='btn btn-sm btn-primary' onclick='showEditTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                         var del = "<button type='button' id='deleteThongTinGiaDinh' class='btn btn-sm btn-danger' onclick='deleteTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
                         return edit + del;
                     }
                 },
@@ -308,8 +342,20 @@
                     "aTargets": [6],
                     "mRender": function (data, type, o) {
                         var data = o[7];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
                         var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                         var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
                         return edit + " " + del;
                     }
                 }
@@ -472,6 +518,7 @@
                 },
                 success: function (result) {
                     alert(result.message);
+                    RefreshQTHTTable();
                 },
                 error: function (error) {
                     alert(error.message);
@@ -490,6 +537,7 @@
                 },
                 success: function (result) {
                     alert(result.message);
+                    RefreshQTLVTable();
                 },
                 error: function (error) {
                     alert(error.message);

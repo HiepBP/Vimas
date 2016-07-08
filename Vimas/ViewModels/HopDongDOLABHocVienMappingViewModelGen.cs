@@ -18,7 +18,7 @@ namespace Vimas.ViewModels
     			public virtual int Id { get; set; }
     			public virtual Nullable<int> IdThongTinCaNhan { get; set; }
     			public virtual Nullable<int> IdHopDongDOLAB { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public HopDongDOLABHocVienMappingViewModel() : base() { }
     	public HopDongDOLABHocVienMappingViewModel(Vimas.Models.Entities.HopDongDOLABHocVienMapping entity) : base(entity) { }

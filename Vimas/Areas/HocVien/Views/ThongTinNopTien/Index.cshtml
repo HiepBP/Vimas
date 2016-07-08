@@ -1,0 +1,192 @@
+﻿
+@{
+    var user = HttpContext.Current.User;
+    ViewBag.Title = "Lịch sử thu/chi tiền";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<style>
+        .display-initial {
+            display: initial;
+        }
+    </style>*@
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Lịch sử thu/chi tiền</h3>
+            </div>
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongKeToan"))
+            {
+                <div class="col-md-4">
+                    <button onclick="showCreateTTNT()" class="btn btn-primary pull-right ">
+                        <i class="left-icon glyphicon glyphicon-plus"></i> Thêm phiếu thu/chi
+                    </button>
+                </div>
+            }
+        </div>
+        <hr />
+    </div>
+
+    <div class="card-padding">
+        <div id="datatable">
+            <table id="phieuThuChiDatatable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                    <tr>
+                        <th>
+                            <label class="">Số phiếu</label>
+                        </th>
+                        <th>
+                            <label class="">Người đóng tiền</label>
+                        </th>
+                        <th>
+                            <label class="">Loại tiền</label>
+                        </th>
+                        <th>
+                            <label class="">Số tiền</label>
+                        </th>
+                        <th>
+                            <label class="">Thu/Chi</label>
+                        </th>
+                        <th>
+                            <label class="">Ngày lập phiếu</label>
+                        </th>
+                        <th>
+                            <label class=""></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="createTTNTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editTTNTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<script>
+    $(document).ready(function () {
+        InitOrderDatatable();
+        //$('#hocVienDatatable_length, #hocVienDatatable_filter, #hocVienDatatable_info, hocVienDatatable_paginate').addClass('display-initial');
+        //$('#hocVienDatatable_filter, #hocVienDatatable_paginate').addClass('pull-right');
+    });
+    function InitOrderDatatable() {
+        $("#phieuThuChiDatatable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadDanhSachThongTinNopTien")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 5],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        //var detail = "<button type='button' id='detailTTNT' class='btn btn-sm btn-primary' onclick='showDetailTTNT(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+
+
+                        @if(!user.IsInRole("Admin"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' id='editTTNT' class='btn btn-sm btn-primary' onclick='showEditTTNT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteTTNT' class='btn btn-sm btn-danger' onclick='deleteTTNT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+
+                        return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        });
+    }
+
+    function showCreateTTNT() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","ThongTinNopTIen")',
+            data: {
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createTTNTPanel').html(result);
+                $('#createTTNTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditTTNT(idTTNT) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","ThongTinNopTIen")',
+            data: {
+                id: idTTNT
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editTTNTPanel').html(result);
+                $('#editTTNTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function deleteTTNT(idTTNT) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "ThongTinNopTien")',
+                data: {
+                    id: idTTNT,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTNTTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function RefreshTTNTTable() {
+        var oTable = $('#phieuThuChiDatatable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+</script>

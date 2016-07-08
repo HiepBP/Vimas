@@ -21,7 +21,7 @@ namespace Vimas.Models.Entities
         public string BangCap1 { get; set; }
         public Nullable<bool> DaNop { get; set; }
         public string TrinhDo { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         public virtual ThongTinDuTuyen ThongTinDuTuyen { get; set; }
     }

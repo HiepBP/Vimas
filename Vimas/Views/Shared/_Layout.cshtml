@@ -16,10 +16,10 @@
     <link href="/Content/template/template-epona/css/font-awesome.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.css" />
-        <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.js"></script>
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-   
+
 
     <!-- Vendor CSS -->
     <link href="~/Content/template/template-material/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
@@ -36,6 +36,7 @@
     @*<link href="~/Content/plugins/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet"/>*@
     <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
     @*<link href="~/Content/plugins/DataTables-1.10.12/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
     <!-- CSS -->
     <link href="~/Content/template/template-material/css/app.min.1.css" rel="stylesheet">
     <link href="~/Content/template/template-material/css/app.min.2.css" rel="stylesheet">
@@ -45,7 +46,7 @@
 
     <!-- Custom -->
     <link href="~/Content/css/theme.css" rel="stylesheet" />
-    <link href="~/Content/css/style.css" rel="stylesheet"/>
+    <link href="~/Content/css/style.css" rel="stylesheet" />
     <style>
         body {
             font-family: 'OpenSans';
@@ -104,13 +105,31 @@
                     <a href="#"><i class="zmdi zmdi-globe"></i> Quản lí học viên</a>
                     <ul>
                         <li>
-                            <a href="@Url.Action("Index","ThongTinCaNhan", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
+                            <a href="@Url.Action(" Index","ThongTinCaNhan", new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "KyTucXa", new { area = "HocVien"})"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
+                            <a href="@Url.Action(" Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
+                        </li>
+                        <li>
+
+                            <a href="@Url.Action(" Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
                         </li>
                     </ul>
                 </li>
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongNguon")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý trung tâm GTVL</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách trung tâm</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="zmdi zmdi-window-restore"></i> Nothing</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
 
                 @if (user.IsInRole("Admin"))
                 {

@@ -13,13 +13,13 @@ namespace Vimas.Models.Entities.Services
     using System.Collections.Generic;
     
     
-    public partial interface IKyTucXaHocVienMappingService : SkyWeb.DatVM.Data.IBaseService<KyTucXaHocVienMapping>
+    public partial interface IBienBanService : SkyWeb.DatVM.Data.IBaseService<BienBan>
     {
     }
     
-    public partial class KyTucXaHocVienMappingService : SkyWeb.DatVM.Data.BaseService<KyTucXaHocVienMapping>, IKyTucXaHocVienMappingService
+    public partial class BienBanService : SkyWeb.DatVM.Data.BaseService<BienBan>, IBienBanService
     {
-        public KyTucXaHocVienMappingService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IKyTucXaHocVienMappingRepository repository) : base(unitOfWork, repository)
+        public BienBanService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IBienBanRepository repository) : base(unitOfWork, repository)
         {
         }
     }

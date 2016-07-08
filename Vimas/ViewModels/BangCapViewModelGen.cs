@@ -22,7 +22,7 @@ namespace Vimas.ViewModels
     			public virtual string BangCap1 { get; set; }
     			public virtual Nullable<bool> DaNop { get; set; }
     			public virtual string TrinhDo { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public BangCapViewModel() : base() { }
     	public BangCapViewModel(Vimas.Models.Entities.BangCap entity) : base(entity) { }

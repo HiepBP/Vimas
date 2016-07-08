@@ -40,7 +40,7 @@ namespace Vimas.ViewModels
     			public virtual string HinhAnh { get; set; }
     			public virtual Nullable<System.DateTime> NgayHuySauKhiTrungTuyen { get; set; }
     			public virtual string LyDoHuy { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public ThongTinPhongVanViewModel() : base() { }
     	public ThongTinPhongVanViewModel(Vimas.Models.Entities.ThongTinPhongVan entity) : base(entity) { }

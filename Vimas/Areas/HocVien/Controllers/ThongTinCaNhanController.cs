@@ -145,5 +145,27 @@ namespace Vimas.Areas.HocVien.Controllers
             var model = new ThongTinCaNhanViewModel(await thongTinCaNhanService.GetAsync(id));
             return View(model);
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
+        public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
+        {
+            try
+            {
+                var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+                var entity = await thongTinCaNhanService.GetAsync(id);
+                if (entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                //entity.Active = false;
+                await thongTinCaNhanService.DeactivateAsync(entity);
+                return Json(new { success = false, message = "Xóa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
     }
 }

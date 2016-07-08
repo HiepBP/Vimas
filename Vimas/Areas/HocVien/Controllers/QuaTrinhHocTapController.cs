@@ -39,7 +39,7 @@ namespace Vimas.Areas.HocVien.Controllers
                         q.TenTruong,
                         EnumHelper<EducationLevel>.GetDisplayValue((EducationLevel)q.LoaiTruong.Value),
                         q.NganhHoc,
-                        q.DaTotNghiep,
+                        q.DaTotNghiep == true ? "Rồi":"Chưa",
                         q.TuNam.HasValue ? q.TuNam : 0,
                         q.DenNam.HasValue ? q.DenNam : 0,
                         q.Id,
@@ -122,6 +122,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     model.DaTotNghiep = false;
                 }
                 model.CopyToEntity(entity);
+                entity.DaTotNghiep = model.DaTotNghiep;
                 entity.Active = true;
                 entity.LoaiTruong = (int)model.EducationLevel;
                 entity.IdThongTinCaNhan = model.IdThongTinCaNhan;

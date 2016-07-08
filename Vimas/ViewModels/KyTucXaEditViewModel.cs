@@ -19,16 +19,23 @@ namespace Vimas.ViewModels
             mapper.Map(original, this);
         }
 
-        [IsNumeric]
+        [Display(Name = "Ngày vào")]
+        [Required(ErrorMessage = "Vui lòng nhập ngày vào!!!")]
+        public override Nullable<System.DateTime> NgayVao { get; set; }
+
+        [Display(Name = "Ngày ra")]
+        public override Nullable<System.DateTime> NgayRa { get; set; }
+
         [Display(Name = "Số phòng")]
         [Required(ErrorMessage = "Vui lòng nhập số phòng!!!")]
         public override string SoPhong { get; set; }
 
-        [IsNumeric]
         [Display(Name = "Số hộc tủ đồ")]
-        [Required(ErrorMessage = "Vui lòng nhập số hộc tủ đồ!!!")]
         public override string SoHocTuDo { get; set; }
+
         [Display(Name = "Ghi Chú")]
         public override string GhiChu { get; set; }
+
+        public ThongTinCaNhanEditViewModel ThongTinCaNhan { get; set; }
     }
 }

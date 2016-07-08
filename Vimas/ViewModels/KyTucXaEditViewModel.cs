@@ -22,12 +22,12 @@ namespace Vimas.ViewModels
         [IsNumeric]
         [Display(Name = "Số phòng")]
         [Required(ErrorMessage = "Vui lòng nhập số phòng!!!")]
-        public override Nullable<int> SoPhong { get; set; }
+        public override string SoPhong { get; set; }
 
         [IsNumeric]
         [Display(Name = "Số hộc tủ đồ")]
         [Required(ErrorMessage = "Vui lòng nhập số hộc tủ đồ!!!")]
-        public override Nullable<int> SoHocTuDo { get; set; }
+        public override string SoHocTuDo { get; set; }
         [Display(Name = "Ghi Chú")]
         public override string GhiChu { get; set; }
     }

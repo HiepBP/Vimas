@@ -114,8 +114,10 @@
                             <a href="@Url.Action("Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
                         </li>
                         <li>
-
                             <a href="@Url.Action("Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "HopDongDOLAB" , new { area="HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách hợp đồng DOLAB</a>
                         </li>
                     </ul>
                 </li>
@@ -144,7 +146,17 @@
                         </ul>
                     </li>
                 }
-
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý công ty chứng nghề</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "CongTyChungNghe", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty chứng nghề</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
                 @if (user.IsInRole("Admin"))
                 {
                     <li class="sub-menu submenu-style">

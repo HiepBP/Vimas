@@ -13,34 +13,33 @@ using Vimas.ViewModels;
 
 namespace Vimas.Areas.HeThong.Controllers
 {
-    public class NghiepDoanController : BaseController
+    public class CongTyChungNgheController : BaseController
     {
-        // GET: HeThong/NghiepDoan
+        // GET: HeThong/CongTyChungNghe
         #region Index
         public ActionResult Index()
         {
             return View();
         }
-
-        public JsonResult LoadDanhSachNghiepDoan (JQueryDataTableParamModel param)
+        public JsonResult LoadDanhSachCongTyChungNghe(JQueryDataTableParamModel param)
         {
-            var service = this.Service<INghiepDoanService>();
-            var model = service.GetActive().ProjectTo<NghiepDoanViewModel>(this.MapperConfig).ToList();
+            var service = this.Service<ICongTyChungNgheService>();
+            var model = service.GetActive().ProjectTo<CongTyChungNgheViewModel>(this.MapperConfig).ToList();
             try
             {
                 var rs = model
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
-                        || q.TenNghiepDoan.ToLower().Contains(param.sSearch.ToLower()))
-                    .OrderBy(q => q.MaNghiepDoan)
+                        || q.TenTiengViet.ToLower().Contains(param.sSearch.ToLower()))
+                    .OrderBy(q => q.TenVietTat)
                     .Skip(param.iDisplayStart)
                     .Take(param.iDisplayLength)
                     .Select(q => new IConvertible[]
                     {
-                        q.MaNghiepDoan,
-                        q.TenNghiepDoan,
                         q.TenVietTat,
+                        q.TenTiengViet,
+                        q.TenTiengAnh,
+                        q.DiaChiTiengViet,
                         q.NguoiDaiDien,
-                        q.ChucDanh,
                         q.DienThoai,
                         q.Id,
                     });
@@ -63,13 +62,13 @@ namespace Vimas.Areas.HeThong.Controllers
         #region Detail
         public ActionResult Detail(int id)
         {
-            var service = this.Service<INghiepDoanService>();
+            var service = this.Service<ICongTyChungNgheService>();
             var entity = service.Get(id);
             if (entity == null)
             {
                 return HttpNotFound();
             }
-            var model = Mapper.Map<NghiepDoanViewModel>(entity);
+            var model = Mapper.Map<CongTyChungNgheViewModel>(entity);
 
             return this.View(model);
         }
@@ -79,19 +78,19 @@ namespace Vimas.Areas.HeThong.Controllers
         [Authorize(Roles = "Admin, PhongXKLD")]
         public ActionResult Create()
         {
-            var model = new NghiepDoanViewModel();
+            var model = new CongTyChungNgheViewModel();
             return this.View(model);
         }
         [HttpPost]
         [Authorize(Roles = "Admin, PhongXKLD")]
-        public async Task<ActionResult> Create(NghiepDoanViewModel model)
+        public async Task<ActionResult> Create(CongTyChungNgheViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            var service = this.Service<INghiepDoanService>();
+            var service = this.Service<ICongTyChungNgheService>();
             model.Active = true;
             try
             {
@@ -109,7 +108,7 @@ namespace Vimas.Areas.HeThong.Controllers
         [Authorize(Roles = "Admin, PhongXKLD")]
         public ActionResult Edit(int id)
         {
-            var service = this.Service<INghiepDoanService>();
+            var service = this.Service<ICongTyChungNgheService>();
 
             var entity = service.Get(id);
 
@@ -118,16 +117,16 @@ namespace Vimas.Areas.HeThong.Controllers
                 return HttpNotFound();
             }
 
-            var model = Mapper.Map<NghiepDoanViewModel>(entity);
+            var model = Mapper.Map<CongTyChungNgheViewModel>(entity);
 
             return this.View(model);
         }
 
         [Authorize(Roles = "Admin, PhongXKLD")]
         [HttpPost]
-        public async Task<JsonResult> Edit(NghiepDoanViewModel model)
+        public async Task<JsonResult> Edit(CongTyChungNgheViewModel model)
         {
-            var service = this.Service<INghiepDoanService>();
+            var service = this.Service<ICongTyChungNgheService>();
 
             if (!this.ModelState.IsValid)
             {
@@ -153,27 +152,27 @@ namespace Vimas.Areas.HeThong.Controllers
         [Authorize(Roles = "Admin, PhongXKLD")]
         public async Task<JsonResult> Delete(int id)
         {
-            var nghiepDoanService = this.Service<INghiepDoanService>();
+            var congTyCNService = this.Service<ICongTyChungNgheService>();
 
-            var entity = nghiepDoanService.Get(id);
+            var entity = congTyCNService.Get(id);
 
             if (entity == null)
             {
-                return Json(new { success = false, message = "Không tồn tại nghiệp đoàn này, xin vui lòng thử lại." });
+                return Json(new { success = false, message = "Không tồn tại công ty này, xin vui lòng thử lại." });
             }
             else
             {
                 try
                 {
                     entity.Active = false;
-                    await nghiepDoanService.UpdateAsync(entity);
+                    await congTyCNService.UpdateAsync(entity);
                 }
                 catch (Exception e)
                 {
-                    return Json(new { success = false, message = "Xóa nghiệp đoàn thất bại, xin vui lòng thử lại." });
+                    return Json(new { success = false, message = "Xóa công ty thất bại, xin vui lòng thử lại." });
                 };
             }
-            return Json(new { success = true, message = "Xóa nghiệp đoàn thành công." });
+            return Json(new { success = true, message = "Xóa công ty thành công." });
         }
         #endregion
     }

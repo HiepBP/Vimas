@@ -1,10 +1,11 @@
 ﻿@model QuaTrinhLamViecEditViewModel
 @{
-    ViewBag.Title = "Create";
     Layout = null;
 }
 
+
 <div class="modal-dialog modal-lg">
+  
     <div class="modal-content">
         <form id="createQuaTrinhLamViecForm" method="post" action="@Url.Action("Register","TaiKhoan")">
             @Html.AntiForgeryToken()
@@ -29,7 +30,7 @@
                             @Html.ValidationMessageFor(q => q.HinhThucCongTy)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         @Html.LabelFor(q => q.DiaChiCongTy, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
@@ -68,12 +69,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="createQTLV()" value="Thêm" class="btn btn-primary" />
+                <button type="submit" id="btnSubmitCreateQTLV" class="btn btn-primary">Thêm</button>
             </div>
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         var form = $('#createQuaTrinhLamViecForm')
@@ -83,7 +83,24 @@
         $.validator.unobtrusive.parse(form);
     })
 
-    function createQTLV() {
+    $("#btnSubmitCreateQTLV").click(function (e) {
+        e.preventDefault();
+        var _form = $('#createQuaTrinhLamViecForm');
+
+        var validator = $("#createQuaTrinhLamViecForm").validate(); // obtain validator
+        var anyError = false;
+        _form.find("input").each(function () {
+            if (!validator.element(this)) { // validate every input element inside this step
+                anyError = true;
+            }
+        });
+
+        if (anyError) {
+            return false; // exit if any error found    
+        }
+
+
+
         var formData = $('#createQuaTrinhLamViecForm').serialize();
         $.ajax({
             type: "POST",
@@ -91,12 +108,13 @@
             data: formData,
             success: function (result) {
                 alert(result.message);
-                $('#createQTHTPanel').modal('hide');
+                $('#createQTLVPanel').modal('hide');
                 RefreshQTLVTable();
             },
             error: function (error) {
-                alert(result.message);
+                alert(error.message);
             }
         });
-    }
+    });
+    
 </script>

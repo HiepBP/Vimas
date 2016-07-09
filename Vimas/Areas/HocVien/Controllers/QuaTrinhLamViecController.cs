@@ -70,7 +70,7 @@ namespace Vimas.Areas.HocVien.Controllers
         public ActionResult Create(int idThongTinCaNhan)
         {
             var quaTrinhLamViecService = this.Service<IQuaTrinhLamViecService>();
-            var model = new QuaTrinhLamViecViewModel()
+            var model = new QuaTrinhLamViecEditViewModel()
             {
                 IdThongTinCaNhan = idThongTinCaNhan,
                 DangLam = false,
@@ -82,7 +82,7 @@ namespace Vimas.Areas.HocVien.Controllers
         // POST: /HocVien/QuaTrinhLamViec/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<ActionResult> Create(QuaTrinhLamViecViewModel model)
+        public async System.Threading.Tasks.Task<ActionResult> Create(QuaTrinhLamViecEditViewModel model)
         {
             try
             {

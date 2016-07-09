@@ -33,7 +33,6 @@ namespace Vimas.ViewModels
         [Display(Name = "Công ty tiếp nhận")]
         public Nullable<int> IdCongTyTiepNhan { get; set; }
         [Display(Name = "Thời hạn hợp đồng")]
-        [IsNumeric]
         public Nullable<int> ThoiHanHopDong { get; set; }
         [Display(Name = "Ghi chú sau trúng tuyển")]
         public string GhiChuSauTrungTuyen { get; set; }

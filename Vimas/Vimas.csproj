@@ -224,6 +224,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
+    <Compile Include="Areas\HeThong\Controllers\CongTyTiepNhanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\NghiepDoanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
@@ -602,6 +603,7 @@
     <Compile Include="ViewModels\CongTyChungNgheViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CongTyTiepNhanEditViewModel.cs" />
     <Compile Include="ViewModels\CongTyTiepNhanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2965,6 +2967,11 @@
     <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Detail.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinPhongVan\Edit.cshtml" />
+    <Content Include="Areas\HeThong\Views\CongTyTiepNhan\Create.cshtml" />
+    <Content Include="Areas\HeThong\Views\NghiepDoan\Create.cshtml" />
+    <Content Include="Areas\HeThong\Views\NghiepDoan\Edit.cshtml" />
+    <Content Include="Areas\HeThong\Views\CongTyTiepNhan\Index.cshtml" />
+    <Content Include="Areas\HeThong\Views\CongTyTiepNhan\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

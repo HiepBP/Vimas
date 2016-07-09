@@ -13,10 +13,10 @@ namespace Vimas.Models.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VimasEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public VimasEntities()
-            : base("name=VimasEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

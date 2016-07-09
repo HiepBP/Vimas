@@ -114,8 +114,10 @@
                             <a href="@Url.Action("Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
                         </li>
                         <li>
-
                             <a href="@Url.Action("Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "HopDongDOLAB" , new { area="HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách hợp đồng DOLAB</a>
                         </li>
                     </ul>
                 </li>
@@ -133,12 +135,36 @@
                         </ul>
                     </li>
                 }
-
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý nghiệp đoàn</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "NghiepDoan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách nghiệp đoàn</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý công ty chứng nghề</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "CongTyChungNghe", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty chứng nghề</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
                 @if (user.IsInRole("Admin"))
                 {
                     <li class="sub-menu submenu-style">
                         <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý hệ thống</a>
                         <ul>
+                            <li>
+                                <a href="@Url.Action("Index","CongTyTiepNhan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty tiếp nhận</a>
+                            </li>
                             <li>
                                 <a href="@Url.Action("Index","TaiKhoan", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
                             </li>
@@ -225,6 +251,7 @@
     @*<script src="~/Content/plugins/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>*@
     @*<script src="~/Content/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>*@
     <script src="~/Content/plugins/select2-4.0.3/dist/js/select2.min.js"></script>
+    <script src="~/Scripts/accounting.min.js"></script>
 
     <script>
         $(document)

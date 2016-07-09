@@ -31,6 +31,8 @@
                         @Html.LabelFor(q => q.SoTien, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
                             @Html.TextBoxFor(q => q.SoTien, new { @class = " form-control col-sm-12" })
+                            <div id="SoTienVND" class="col-sm-12">
+                            </div>
                             @Html.ValidationMessageFor(q => q.SoTien)
                         </div>
                     </div>
@@ -103,6 +105,13 @@
             });
         }
     }
+
+    $(function () {
+        $(document).on('keyup', '#SoTien', function () {
+            document.getElementById('SoTienVND').innerHTML = "";
+            $('#SoTienVND').append('Giá trị: ' + toMoney($('#SoTien').val(), '.', ' đ'));
+        });
+    });
 
     function initializeDateRangePicker() {
         moment.locale('vi');

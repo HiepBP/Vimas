@@ -19,25 +19,25 @@
             <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="TenCoSo">Tên nghiệp đoàn</label>
+                        <label class="control-label col-md-4" for="TenNghiepDoan">Tên nghiệp đoàn</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.TenNghiepDoan)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="MaNguon">Tên viết tắt</label>
+                        <label class="control-label col-md-4" for="TenVietTat">Tên viết tắt</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.TenVietTat)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="MaNguon">Người đại diện</label>
+                        <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.NguoiDaiDien)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="MaNguon">Chức danh</label>
+                        <label class="control-label col-md-4" for="ChucDanh">Chức danh</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.ChucDanh)
                         </div>
@@ -69,21 +69,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="SoHDLK">Lương cơ bản</label>
+                        <label class="control-label col-md-4" for="LuongCoBan">Lương cơ bản</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.LuongCoBan)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="NguoiDaiDien">Phí dịch vụ</label>
+                        <label class="control-label col-md-4" for="PhiDichVu">Phí dịch vụ</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.PhiDichVu)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4" for="NguoiDaiDien">Phí ứng trước dự tuyển</label>
+                        <label class="control-label col-md-4" for="PhiUTDT">Phí ứng trước dự tuyển</label>
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.PhiUTDT)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="WebsiteUrl">Website</label>
+                        <div class="col-md-6">
+                            <a href='@string.Format("http://" + this.Model.WebsiteUrl)'> @Html.DisplayTextFor(q => q.WebsiteUrl) </a>
                         </div>
                     </div>
                 </div>

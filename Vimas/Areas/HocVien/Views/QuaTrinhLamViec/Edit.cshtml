@@ -61,14 +61,14 @@
                     <div class="form-group">
                         @Html.LabelFor(q => q.DangLam, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            <input type="checkbox" checked="@(this.Model.DangLam.Value ? "":null)" />
+                            <input type="checkbox" id="DangLam" name="DangLam"  checked="@(this.Model.DangLam.Value ? "":null)" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="editQTLV()" value="Thêm" class="btn btn-primary" />
+                <button type="button" id="btnSubmitEditQTLV" class="btn btn-primary" >Xong</button>
             </div>
         </form>
     </div>
@@ -83,8 +83,23 @@
         $.validator.unobtrusive.parse(form);
     })
 
-    function editQTLV() {
-        var formData = $('#editQuaTrinhLamViecForm').serialize();
+    $("#btnSubmitEditQTLV").click(function (e) {
+        e.preventDefault();
+        var _form = $('#editQuaTrinhLamViecForm');
+
+        var validator = $("#editQuaTrinhLamViecForm").validate(); // obtain validator
+        var anyError = false;
+        _form.find("input").each(function () {
+            if (!validator.element(this)) { // validate every input element inside this step
+                anyError = true;
+            }
+        });
+
+        if (anyError) {
+            return false; // exit if any error found
+        }
+
+         var formData = $('#editQuaTrinhLamViecForm').serialize();
         $.ajax({
             type: "POST",
             url: '@Url.Action("Edit", "QuaTrinhLamViec")',
@@ -98,5 +113,5 @@
                 alert(result.message);
             }
         });
-    }
+    });
 </script>

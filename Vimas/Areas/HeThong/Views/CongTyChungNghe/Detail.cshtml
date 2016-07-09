@@ -1,0 +1,92 @@
+﻿@model CongTyChungNgheViewModel
+@{
+    ViewBag.Title = "Công ty: " + this.Model.TenVietTat;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Công ty chứng nghề: <strong>@this.Model.TenVietTat</strong></h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TenTiengViet">Tên tiếng Việt</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.TenTiengViet)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TenTiengAnh">Tên tiếng Anh</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.TenTiengAnh)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DiaChiTiengAnh">Địa chỉ tiếng Anh</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.DiaChiTiengAnh)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DiaChiTiengViet">Địa chỉ tiếng Việt</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.DiaChiTiengViet)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DienThoai">Điện Thoại</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.DienThoai)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NguoiDaiDien)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="ChucDanh">Chức danh</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.ChucDanh)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="VonDieuLe">Vốn điều lệ</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.VonDieuLe)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="SoNhanVien">Số nhân viên</label>
+                        <div class="col-md-6">
+                            @string.Format(@Html.DisplayTextFor(q => q.SoNhanVien) + " người")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Index")" class="btn btn-danger">Quay lại</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+    });
+
+</script>
+

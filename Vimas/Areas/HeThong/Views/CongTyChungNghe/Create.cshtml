@@ -1,0 +1,117 @@
+﻿@model CongTyChungNgheViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Thêm công ty chứng nghề</h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <form id="createTrungTamForm" action="@this.Url.Action("Create")" method="post">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="TenVietTat">Tên viết tắt<span style="color:red"> *</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.TenVietTat, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="TenTiengViet">Tên tiếng Việt<span style="color:red"> *</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.TenTiengViet, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="TenTiengAnh">Tên tiếng Anh</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.TenTiengAnh, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="DiaChiTiengViet">Địa chỉ tiếng Việt</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.DiaChiTiengViet, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="DiaChiTiengAnh">Địa chỉ tiếng Anh</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.DiaChiTiengAnh, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="DienThoai">Điện Thoại</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.DienThoai, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.NguoiDaiDien, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ChucDanh">Chức danh</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.ChucDanh, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="VonDieuLe">Vốn điều lệ</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.VonDieuLe, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.VonDieuLe)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="SoNhanVien">Số nhân viên</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.SoNhanVien, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.SoNhanVien)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
+            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>
+

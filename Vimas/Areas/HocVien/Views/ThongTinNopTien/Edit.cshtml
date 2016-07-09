@@ -34,6 +34,8 @@
                         @Html.LabelFor(q => q.SoTien, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
                             @Html.TextBoxFor(q => q.SoTien, new { @class = " form-control col-sm-12" })
+                            <div id="SoTienVND" class="col-sm-12">
+                            </div>
                             @Html.ValidationMessageFor(q => q.SoTien)
                         </div>
                     </div>
@@ -68,7 +70,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="editTTNT()" value="Thêm" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="editTTNT()" value="Sửa" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -84,7 +86,16 @@
 
         $('#select2ThongTinCaNhan').select2();
         initializeDateRangePicker();
+        document.getElementById('SoTienVND').innerHTML = "";
+        $('#SoTienVND').append('Giá trị: ' + toMoney($('#SoTien').val(), '.', ' đ'));
     })
+
+    $(function () {
+        $(document).on('keyup', '#SoTien', function () {
+            document.getElementById('SoTienVND').innerHTML = "";
+            $('#SoTienVND').append('Giá trị: ' + toMoney($('#SoTien').val(), '.', ' đ'));
+        });
+    });
 
     function editTTNT() {
         var form = $('#editThongTinNopTienForm');

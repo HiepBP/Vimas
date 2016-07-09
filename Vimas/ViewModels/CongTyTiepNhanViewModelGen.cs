@@ -24,7 +24,7 @@ namespace Vimas.ViewModels
     			public virtual string DienThoai { get; set; }
     			public virtual string Fax { get; set; }
     			public virtual Nullable<int> idNghiepDoan { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public CongTyTiepNhanViewModel() : base() { }
     	public CongTyTiepNhanViewModel(Vimas.Models.Entities.CongTyTiepNhan entity) : base(entity) { }

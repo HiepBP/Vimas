@@ -1,4 +1,4 @@
-﻿@model NghiepDoanViewModel
+﻿@model CongTyChungNgheViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -9,7 +9,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12">
-                <h3>Thêm Nghiệp đoàn</h3>
+                <h3>Thêm công ty chứng nghề</h3>
             </div>
         </div>
         <hr />
@@ -21,51 +21,42 @@
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="MaNghiepDoan">Mã nghiệp đoàn<span style="color:red"> *</span></label>
+                            <label class="control-label col-md-4" for="TenVietTat">Tên viết tắt<span style="color:red"> *</span></label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.MaNghiepDoan, new { @class = "form-control", @required = "required" })
+                                    @Html.TextBoxFor(q => q.TenVietTat, new { @class = "form-control", @required = "required" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="TenNghiepDoan">Tên nghiệp đoàn<span style="color:red"> *</span></label>
+                            <label class="control-label col-md-4" for="TenTiengAnh">Tên tiếng Việt<span style="color:red"> *</span></label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.TenNghiepDoan, new { @class = "form-control", @required = "required" })
+                                    @Html.TextBoxFor(q => q.TenTiengViet, new { @class = "form-control", @required = "required" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="TenVietTat">Tên viết tắt</label>
+                            <label class="control-label col-md-4" for="TenVietTat">Tên tiếng Anh</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.TenVietTat, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.TenTiengAnh, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="DiaChi">Địa Chỉ</label>
+                            <label class="control-label col-md-4" for="DiaChi">Địa chỉ tiếng Việt</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.DiaChi, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.DiaChiTiengViet, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4" for="NgayKyHopDong">Ngày kí hợp đồng</label>
+                            <label class="control-label col-md-4" for="DiaChi">Địa chỉ tiếng Anh</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    <input class="form-control default-cursor" id="NgayKyHopDong" type="text" value="" readonly style="background-color:white" />
-                                    <input type="hidden" name="NgayKyHopDong" value="@this.Model.NgayKyHopDong" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="WebsiteUrl">Website</label>
-                            <div class="col-md-6">
-                                <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.WebsiteUrl, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.DiaChiTiengAnh, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>
@@ -76,41 +67,6 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.DienThoai, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="Fax">Fax</label>
-                            <div class="col-md-6">
-                                <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.Fax, new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="LuongCoBan">Lương cơ bản</label>
-                            <div class="col-md-6">
-                                <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.LuongCoBan, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(q => q.LuongCoBan)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="PhiDichVu">Phí dịch vụ</label>
-                            <div class="col-md-6">
-                                <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.PhiDichVu, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(q => q.PhiDichVu)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="PhiUTDT">Phí ứng trước dự tuyển</label>
-                            <div class="col-md-6">
-                                <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.PhiUTDT, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(q => q.PhiUTDT)
                                 </div>
                             </div>
                         </div>
@@ -127,6 +83,22 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.ChucDanh, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ChucDanh">Vốn điều lệ</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.VonDieuLe, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ChucDanh">Số nhân viên</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.SoNhanVien, new { @class = "form-control" })
                                 </div>
                             </div>
                         </div>

@@ -76,7 +76,7 @@ namespace Vimas.Areas.HeThong.Controllers
         #endregion
 
         #region Create
-        [Authorize(Roles = "Admin, PhongNguon")]
+        [Authorize(Roles = "Admin, PhongXKLD")]
         public ActionResult Create()
         {
             var model = new NghiepDoanViewModel();

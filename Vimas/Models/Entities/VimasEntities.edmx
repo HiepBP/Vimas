@@ -171,6 +171,7 @@
           <Property Name="LuongCoBan" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PhiDichVu" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PhiUTDT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="WebsiteUrl" Type="nvarchar" MaxLength="2083" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="QuaTrinhHocTap">
@@ -1035,6 +1036,7 @@
           <Property Name="LuongCoBan" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PhiDichVu" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PhiUTDT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="WebsiteUrl" Type="String" MaxLength="2083" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CongTyTiepNhans" Relationship="VimasModel.FK_CongTyTiepNhan_NghiepDoan" FromRole="NghiepDoan" ToRole="CongTyTiepNhan" />
         </EntityType>
@@ -1666,6 +1668,7 @@
             <EntityTypeMapping TypeName="VimasModel.NghiepDoan">
               <MappingFragment StoreEntitySet="NghiepDoan">
                 <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
                 <ScalarProperty Name="PhiUTDT" ColumnName="PhiUTDT" />
                 <ScalarProperty Name="PhiDichVu" ColumnName="PhiDichVu" />
                 <ScalarProperty Name="LuongCoBan" ColumnName="LuongCoBan" />

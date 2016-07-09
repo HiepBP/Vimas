@@ -28,6 +28,7 @@ namespace Vimas.ViewModels
     			public virtual Nullable<decimal> LuongCoBan { get; set; }
     			public virtual Nullable<decimal> PhiDichVu { get; set; }
     			public virtual Nullable<decimal> PhiUTDT { get; set; }
+    			public virtual string WebsiteUrl { get; set; }
     			public virtual bool Active { get; set; }
     	
     	public NghiepDoanViewModel() : base() { }

@@ -33,6 +33,7 @@ namespace Vimas.Models.Entities
         public Nullable<decimal> LuongCoBan { get; set; }
         public Nullable<decimal> PhiDichVu { get; set; }
         public Nullable<decimal> PhiUTDT { get; set; }
+        public string WebsiteUrl { get; set; }
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -30,8 +30,6 @@ namespace Vimas.ViewModels
         public string NgheTrungTuyenTiengAnh { get; set; }
         [Display(Name = "Nghề trúng tuyển tiếng việt")]
         public string NgheTrungTuyenTiengViet { get; set; }
-        [Display(Name = "Nghiệp đoàn")]
-        public Nullable<int> IdNghiepDoan { get; set; }
         [Display(Name = "Công ty tiếp nhận")]
         public Nullable<int> IdCongTyTiepNhan { get; set; }
         [Display(Name = "Thời hạn hợp đồng")]

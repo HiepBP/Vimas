@@ -57,11 +57,15 @@
                             <div class="fg-line">
                                 @if (this.Model.TayThuan == 1)
                                 {
-                                    Html.DisplayText("Tay phải");
+                                    <text>
+                                        Tay Phải
+                                    </text>
                                 }
                                 else if (this.Model.TayThuan == 0)
                                 {
-                                    Html.DisplayText("Tay trái");
+                                    <text>
+                                        Tay Trái
+                                    </text>
                                 }
                             </div>
                         </div>
@@ -90,11 +94,15 @@
                             <div class="fg-line">
                                 @if (this.Model.HinhXam.Value)
                                 {
-                                    Html.DisplayText("Có");
+                                    <text>
+                                        Có
+                                    </text>
                                 }
                                 else
                                 {
-                                    Html.DisplayText("Không");
+                                    <text>
+                                        Không
+                                    </text>
                                 }
                             </div>
                         </div>

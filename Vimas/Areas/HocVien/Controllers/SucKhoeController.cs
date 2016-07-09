@@ -69,12 +69,16 @@ namespace Vimas.Areas.HocVien.Controllers
         #endregion
 
         #region Create
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Create()
         {
             var model = new SucKhoeEditViewModel();
             PrepareEdit(model);
             return this.View(model);
         }
+
+        [Authorize(Roles = "Admin, PhongNguon")]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<ActionResult> Create(SucKhoeEditViewModel model)
         {
@@ -98,6 +102,7 @@ namespace Vimas.Areas.HocVien.Controllers
         #endregion
 
         #region Edit
+        [Authorize(Roles = "Admin, PhongNguon")]
         public ActionResult Edit(int id)
         {
             var service = this.Service<ISucKhoeService>();
@@ -110,6 +115,9 @@ namespace Vimas.Areas.HocVien.Controllers
             PrepareEdit(model);
             return this.View(model);
         }
+
+        [Authorize(Roles = "Admin, PhongNguon")]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<JsonResult> Edit(SucKhoeEditViewModel model)
         {
@@ -151,6 +159,8 @@ namespace Vimas.Areas.HocVien.Controllers
             return this.View(model);
         }
 
+        [Authorize(Roles = "Admin, PhongNguon")]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<JsonResult> Delete(int? id)
         {

@@ -21,7 +21,7 @@ namespace Vimas.ViewModels
     			public virtual string SoDKHopDong { get; set; }
     			public virtual string SoCongVan { get; set; }
     			public virtual string SoPhieuTiepNhan { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public HopDongDOLABViewModel() : base() { }
     	public HopDongDOLABViewModel(Vimas.Models.Entities.HopDongDOLAB entity) : base(entity) { }

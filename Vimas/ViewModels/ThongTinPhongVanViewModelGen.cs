@@ -24,7 +24,6 @@ namespace Vimas.ViewModels
     			public virtual string DotTrungTuyen { get; set; }
     			public virtual string NgheTrungTuyenTiengAnh { get; set; }
     			public virtual string NgheTrungTuyenTiengViet { get; set; }
-    			public virtual Nullable<int> IdNghiepDoan { get; set; }
     			public virtual Nullable<int> IdCongTyTiepNhan { get; set; }
     			public virtual Nullable<int> ThoiHanHopDong { get; set; }
     			public virtual string GhiChuSauTrungTuyen { get; set; }

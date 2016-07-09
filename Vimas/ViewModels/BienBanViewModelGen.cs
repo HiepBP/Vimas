@@ -18,7 +18,7 @@ namespace Vimas.ViewModels
     			public virtual int id { get; set; }
     			public virtual int idThongTinCaNhan { get; set; }
     			public virtual string HinhAnh { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public BienBanViewModel() : base() { }
     	public BienBanViewModel(Vimas.Models.Entities.BienBan entity) : base(entity) { }

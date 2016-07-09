@@ -23,7 +23,6 @@ namespace Vimas.Models.Entities
         public string DotTrungTuyen { get; set; }
         public string NgheTrungTuyenTiengAnh { get; set; }
         public string NgheTrungTuyenTiengViet { get; set; }
-        public Nullable<int> IdNghiepDoan { get; set; }
         public Nullable<int> IdCongTyTiepNhan { get; set; }
         public Nullable<int> ThoiHanHopDong { get; set; }
         public string GhiChuSauTrungTuyen { get; set; }

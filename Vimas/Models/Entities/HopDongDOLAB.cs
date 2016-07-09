@@ -26,7 +26,7 @@ namespace Vimas.Models.Entities
         public string SoDKHopDong { get; set; }
         public string SoCongVan { get; set; }
         public string SoPhieuTiepNhan { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }

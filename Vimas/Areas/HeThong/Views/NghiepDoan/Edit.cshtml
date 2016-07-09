@@ -90,6 +90,7 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.LuongCoBan, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.LuongCoBan)
                                 </div>
                             </div>
                         </div>
@@ -98,6 +99,7 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.PhiDichVu, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.PhiDichVu)
                                 </div>
                             </div>
                         </div>
@@ -106,6 +108,7 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.PhiUTDT, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.PhiUTDT)
                                 </div>
                             </div>
                         </div>

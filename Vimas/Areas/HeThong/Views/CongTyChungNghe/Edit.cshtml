@@ -1,20 +1,18 @@
 ﻿@model CongTyChungNgheViewModel
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Chỉnh sửa Trung Tâm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="card">
     <div class="card-header">
         <div class="row">
             <div class="col-md-12">
-                <h3>Thêm công ty chứng nghề</h3>
+                <h3>Chỉnh sửa công ty chứng nghề: @this.Model.TenVietTat</h3>
             </div>
         </div>
         <hr />
     </div>
-    <form id="createTrungTamForm" action="@this.Url.Action("Create")" method="post">
+    <form id="editCongTyChungNgheForm" method="post">
         <div class="modal-body">
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
@@ -40,7 +38,7 @@
                             <label class="control-label col-md-4" for="TenTiengAnh">Tên tiếng Anh</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.TenTiengAnh, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.TenTiengAnh, new { @class = "form-control", @required = "required" })
                                 </div>
                             </div>
                         </div>
@@ -104,14 +102,33 @@
                                 </div>
                             </div>
                         </div>
+                        @Html.HiddenFor(q => q.Active)
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
             <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
-            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+            <button type="button" onclick="Update();" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
         </div>
     </form>
 </div>
 
+<script>
+    function Update() {
+        var formData = $('#editCongTyChungNgheForm').serialize();
+
+        $.ajax({
+            url: '@this.Url.Action("Edit")',
+            data: formData,
+            method: 'POST',
+            success: function (result) {
+                alert(result.message);
+                window.location.href = "@this.Url.Action("Index")";
+            },
+            error: function (error) {
+                alert(error.message);
+            }
+        });
+    }
+</script>

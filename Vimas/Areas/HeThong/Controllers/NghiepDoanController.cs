@@ -106,7 +106,7 @@ namespace Vimas.Areas.HeThong.Controllers
         #endregion
 
         #region Edit
-        [Authorize(Roles = "Admin, PhongNguon")]
+        [Authorize(Roles = "Admin, PhongXKLD")]
         public ActionResult Edit(int id)
         {
             var service = this.Service<INghiepDoanService>();
@@ -123,7 +123,7 @@ namespace Vimas.Areas.HeThong.Controllers
             return this.View(model);
         }
 
-        [Authorize(Roles = "Admin, PhongNguon")]
+        [Authorize(Roles = "Admin, PhongXKLD")]
         [HttpPost]
         public async Task<JsonResult> Edit(NghiepDoanViewModel model)
         {
@@ -159,7 +159,7 @@ namespace Vimas.Areas.HeThong.Controllers
 
             if (entity == null)
             {
-                return Json(new { success = false, message = "Không tồn tại trung tâm này, xin vui lòng thử lại." });
+                return Json(new { success = false, message = "Không tồn tại nghiệp đoàn này, xin vui lòng thử lại." });
             }
             else
             {
@@ -170,10 +170,10 @@ namespace Vimas.Areas.HeThong.Controllers
                 }
                 catch (Exception e)
                 {
-                    return Json(new { success = false, message = "Xóa trung tâm thất bại, xin vui lòng thử lại." });
+                    return Json(new { success = false, message = "Xóa nghiệp đoàn thất bại, xin vui lòng thử lại." });
                 };
             }
-            return Json(new { success = true, message = "Xóa trung tâm thành công." });
+            return Json(new { success = true, message = "Xóa nghiệp đoàn thành công." });
         }
         #endregion
     }

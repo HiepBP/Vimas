@@ -103,5 +103,77 @@ namespace Vimas.Areas.HeThong.Controllers
             return this.RedirectToAction("Index");
         }
         #endregion
+
+        #region Edit
+        [Authorize(Roles = "Admin, PhongXKLD")]
+        public ActionResult Edit(int id)
+        {
+            var service = this.Service<ICongTyChungNgheService>();
+
+            var entity = service.Get(id);
+
+            if (entity == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = Mapper.Map<CongTyChungNgheViewModel>(entity);
+
+            return this.View(model);
+        }
+
+        [Authorize(Roles = "Admin, PhongXKLD")]
+        [HttpPost]
+        public async Task<JsonResult> Edit(CongTyChungNgheViewModel model)
+        {
+            var service = this.Service<ICongTyChungNgheService>();
+
+            if (!this.ModelState.IsValid)
+            {
+                return Json(new { success = false, message = "Đã có lỗi xảy ra, vui lòng kiểm tra lại thông tin." });
+            }
+
+            try
+            {
+                await service.UpdateAsync(model.ToEntity());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Json(new { success = false, message = "Đã có lỗi xảy ra, vui lòng kiểm thử lại." });
+            }
+
+            return Json(new { success = true, message = "Chỉnh sửa thông tin thành công." });
+        }
+        #endregion
+
+        #region Delete
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongXKLD")]
+        public async Task<JsonResult> Delete(int id)
+        {
+            var congTyCNService = this.Service<ICongTyChungNgheService>();
+
+            var entity = congTyCNService.Get(id);
+
+            if (entity == null)
+            {
+                return Json(new { success = false, message = "Không tồn tại công ty này, xin vui lòng thử lại." });
+            }
+            else
+            {
+                try
+                {
+                    entity.Active = false;
+                    await congTyCNService.UpdateAsync(entity);
+                }
+                catch (Exception e)
+                {
+                    return Json(new { success = false, message = "Xóa công ty thất bại, xin vui lòng thử lại." });
+                };
+            }
+            return Json(new { success = true, message = "Xóa công ty thành công." });
+        }
+        #endregion
     }
 }

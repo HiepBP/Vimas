@@ -11,11 +11,14 @@
             <div class="col-md-8">
                 <h3>Thông tin ký túc xá</h3>
             </div>
+@if (user.IsInRole("Admin") || user.IsInRole("PhongQuanLyKTX"))
+{
             <div class="col-md-4">
                 <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
                     <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin ký túc xá
                 </a>
             </div>
+}
         </div>
         <hr />
     </div>
@@ -48,6 +51,9 @@
                         </th>
                         <th>
                             <label class="">Số hộc tủ đồ</label>
+                        </th>
+                        <th>
+                            <label class="">Trạng thái</label>
                         </th>
                         <th>
                             <label class=""></label>
@@ -93,32 +99,102 @@
                     "bSortable": false
                 },
                 {
-                    "aTargets": [8],
+                    "targets": [8],
+                    "mRender": function (data, type, o) {
+                        var data = o[10];
+                        var data1 = o[9];
+                        var label = '';
+                        if (parseInt(data1) === 0) {
+                            label = "<a class='btn btn-xs btn-warning' href='#'>Unavailable</a>";
+                        } else {
+                            if (data == true) {
+                                label = "<a class='btn btn-xs btn-success' href='#'>Active</a>";
+                            } else {
+                                label = "<a class='btn btn-xs btn-danger' href='#'>Deactive</a>";
+                            }
+                        }
+                        return label;
+                    },
+                    "searchable": false
+                },
+                {
+                    "aTargets": [9],
                     "mRender": function (data, type, o) {
                         var data = o[8];
                         var data1 = o[9];
-                        var edit = '';
-                        var del = '';
-                        if (parseInt(data1) === 0) {
-                            edit = "<a id='editThongTinKTX' data-toggle='tooltip' data-placement='top' title='Học viên này chưa từng ở ký túc xá' class='btn btn-sm btn-primary' href='@Url.Action("Add","KyTucXa")?idttcn=" + data + "\'><i class='glyphicon glyphicon-question-sign'></i> Thêm</a>";
+                        var data2 = o[10];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongQuanLyKTX"))
+                        {
+                            <text>
+                        return '';
+                        </text>
+                        } else
+                        {
+                            <text>
+                        if (parseInt(data1) != 0 && data2 == false) {
+                            return '';
                         } else {
-                            edit = "<a id='editThongTinKTX' class='btn btn-sm btn-info' href='@Url.Action("Edit","KyTucXa")?idktx=" + data1 + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
-                            del = "<a id='delThongTinKTX' class='btn btn-sm btn-danger' href='#'><i class='glyphicon glyphicon-trash'></i> Xóa</a>";
+                            var edit = '';
+                            var del = '';
+                            if (parseInt(data1) === 0) {
+                                edit = "<button type='button' id='editThongTinKTX' class='btn btn-xs btn-info' onclick='addTTKTX(\"" + data + "\")'><i class='glyphicon glyphicon-question-sign'></i> Thêm</button>";
+                            } else {
+                                edit = "<a id='editThongTinKTX' class='btn btn-xs btn-primary' href='@Url.Action("Edit","KyTucXa")?idktx=" + data1 + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
+                                del = "<button type='button' id='delThongTinKTX' class='btn btn-xs btn-danger' onclick='delTTKTX(\"" + data1 + "\")'><i class='glyphicon glyphicon-trash'></i> Xóa</button>";
+                            }
                         }
 
                         return edit + " " + del;
+                        </text>
+                        }
                     }
                 }
-
             ],
             "bAutoWidth": false
         });
     }
 
-    @if(!user.IsInRole("Admin") && !user.IsInRole("PhongQuanLyKTX"))
-    {
-        <text>document.getElementById('delThongTinKTX').style.visibility = 'hidden';</text>
-        <text>document.getElementById('editThongTinKTX').style.visibility = 'hidden';</text>
-        <text>document.getElementById('themThongTinKTX').style.visibility = 'hidden';</text>
+    function delTTKTX(idktx) {
+        if (confirm("Chắc chắn xóa dòng thông tin này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Del", "KyTucXa")',
+                data: {
+                    idktx: idktx,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTKTXTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
     }
+
+    function addTTKTX(idttcn) {
+        if (confirm("Học viên này chưa từng ở ký túc xá.\nThêm thông tin ký túc xá cho học viên này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Add", "KyTucXa")',
+                data: {
+                    idttcn: idttcn,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTKTXTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+    function RefreshTTKTXTable() {
+        var oTable = $('#KTXDatatable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+
 </script>

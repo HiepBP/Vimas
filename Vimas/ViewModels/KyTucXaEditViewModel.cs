@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Vimas.Models.Entities;
 
 namespace Vimas.ViewModels
@@ -37,5 +38,7 @@ namespace Vimas.ViewModels
         public override string GhiChu { get; set; }
 
         public ThongTinCaNhanEditViewModel ThongTinCaNhan { get; set; }
+
+        public IEnumerable<SelectListItem> AvailableThongTinCaNhan { get; set; }
     }
 }

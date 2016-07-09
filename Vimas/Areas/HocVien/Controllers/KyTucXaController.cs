@@ -72,6 +72,7 @@ namespace Vimas.Areas.HocVien.Controllers
                         
                         q.Id,
                         q.KyTucXas.Select(p => p.Id).LastOrDefault(),
+                        q.KyTucXas.Select(p => p.Active).LastOrDefault(),
                     });
                 var totalRecords = rs.Count();
                 return Json(new
@@ -91,19 +92,82 @@ namespace Vimas.Areas.HocVien.Controllers
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]
         public ActionResult Create()
         {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             var model = new KyTucXaEditViewModel();
+
+            model.AvailableThongTinCaNhan = thongTinCaNhanService.GetActive().Select(q => new SelectListItem()
+            {
+                Text = q.HoTen + "[CMND: " + q.CMND +"]",
+                Value = q.Id.ToString(),
+                Selected = false,
+            });
+            
             return View(model);
         }
 
+        [HttpPost]
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]
-        public async Task<ActionResult> Add(int idttcn)
+        public async Task<ActionResult> Create(KyTucXaEditViewModel model)
         {
-            var kyTucXaService = this.Service<IKyTucXaService>();
-            var model = new KyTucXaEditViewModel();
-            model.IdThongTinCaNhan = idttcn;
-            model.Active = true;
-            await kyTucXaService.CreateAsync(model.ToEntity());
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var kyTucXaService = this.Service<IKyTucXaService>();
+
+                model.Active = true;
+
+                await kyTucXaService.CreateAsync(model.ToEntity());
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongQuanLyKTX")]
+        public async Task<JsonResult> Del(int idktx)
+        {
+            try
+            {
+                var kyTucXaService = this.Service<IKyTucXaService>();
+                var entity = await kyTucXaService.GetAsync(idktx);
+                if (entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                //entity.Active = false;
+                await kyTucXaService.DeactivateAsync(entity);
+                return Json(new { success = false, message = "Xóa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongQuanLyKTX")]
+        public async Task<JsonResult> Add(int idttcn)
+        {
+            try
+            {
+                var kyTucXaService = this.Service<IKyTucXaService>();
+                var model = new KyTucXaEditViewModel();
+                model.IdThongTinCaNhan = idttcn;
+                model.Active = true;
+                await kyTucXaService.CreateAsync(model.ToEntity());
+                return Json(new { success = true, message = "Thêm thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
         }
 
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]

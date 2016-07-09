@@ -56,5 +56,11 @@ namespace Vimas.Areas.HeThong.Controllers
             }
         }
         #endregion
+
+        public ActionResult Create()
+        {
+            var model = new HopDongDOLABViewModel();
+            return View(model);
+        }
     }
 }

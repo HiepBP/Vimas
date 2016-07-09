@@ -133,6 +133,17 @@
                         </ul>
                     </li>
                 }
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý nghiệp đoàn</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "NghiepDoan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách nghiệp đoàn</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
 
                 @if (user.IsInRole("Admin"))
                 {

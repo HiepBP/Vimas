@@ -107,13 +107,19 @@
                         method: "POST",
                 success: function (result) {
                     alert(result.message);
-                    window.location.hred = "@this.Url.Action("Index")";
+                    RefreshTrungTamGTVLTable()
                 },
                 error: function (error) {
                     alert(error.message);
                 }
             });
         }
+    }
+
+    function RefreshTrungTamGTVLTable() {
+        var oTable = $('#trungTamDataTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
     }
 
 </script>

@@ -446,7 +446,7 @@
                     "mRender": function (data, type, o) {
                         var data = o[6];
                         var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showTTPVModal(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
-                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD"))
                         {
                             <text>
                         var edit = "";

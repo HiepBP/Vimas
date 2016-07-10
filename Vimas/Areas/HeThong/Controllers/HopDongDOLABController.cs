@@ -57,10 +57,155 @@ namespace Vimas.Areas.HeThong.Controllers
         }
         #endregion
 
+        #region Create
         public ActionResult Create()
         {
-            var model = new HopDongDOLABViewModel();
+            var model = new HopDongDOLABEditViewModel();
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<ActionResult> Create(HopDongDOLABEditViewModel model)
+        {
+            var hopDongDOLABService = this.Service<IHopDongDOLABService>();
+            var hopDongDOLABHocVienMappingService = this.Service<IHopDongDOLABHocVienMappingService>();
+            try
+            {
+                var entity = model.ToEntity();
+                entity.Active = true;
+                await hopDongDOLABService.CreateAsync(entity);
+                var idHopDongDOLAB = entity.Id;
+                try
+                {
+                    foreach (var item in model.SelectedThongTinCaNhan)
+                    {
+                        var mapping = new HopDongDOLABHocVienMappingViewModel()
+                        {
+                            IdHopDongDOLAB = idHopDongDOLAB,
+                            IdThongTinCaNhan = item,
+                        };
+                        await hopDongDOLABHocVienMappingService.CreateAsync(mapping.ToEntity());
+                    }
+                    return Json(new { success = true, message = "Tạo thành công" });
+                }
+                catch (Exception e)
+                {
+                    await hopDongDOLABService.DeleteAsync(entity);
+                    var listMapping = hopDongDOLABHocVienMappingService.GetByIdHopDongDOLAB(idHopDongDOLAB).ToList();
+                    foreach (var item in listMapping)
+                    {
+                        await hopDongDOLABHocVienMappingService.DeleteAsync(item);
+                    }
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+        #endregion
+
+        #region Edit
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
+        {
+            var hopDongDOLABService = this.Service<IHopDongDOLABService>();
+            var model = new HopDongDOLABEditViewModel(await hopDongDOLABService.GetAsync(id));
+            if (model == null || !model.Active)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task<JsonResult> Edit(HopDongDOLABEditViewModel model)
+        {
+            var hopDongDOLABService = this.Service<IHopDongDOLABService>();
+            try
+            {
+                var entity = model.ToEntity();
+                entity.Active = true;
+                await hopDongDOLABService.UpdateAsync(entity);
+                return Json(new { success = true,  message = "Sửa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false,  message = Resource.ErrorMessage });
+            }
+        }
+
+        public async System.Threading.Tasks.Task<JsonResult> AddHocVien(HopDongDOLABHocVienMappingViewModel model)
+        {
+            var hopDongDOLABHocVienMappingService = this.Service<IHopDongDOLABHocVienMappingService>();
+            var entity = await hopDongDOLABHocVienMappingService.GetByIdHopDongDOLABAndIdTTCNAsync(model.IdHopDongDOLAB.GetValueOrDefault(), model.IdThongTinCaNhan.GetValueOrDefault());
+            if (entity == null)
+            {
+                await hopDongDOLABHocVienMappingService.CreateAsync(model.ToEntity());
+                return Json(new { success = true, message = "Thêm thành công!" }, JsonRequestBehavior.AllowGet);
+            }
+            try
+            {
+                if (entity.Active == true)
+                {
+                    return Json(new { success = false, message = "Đã tồn tại nhà cung cấp này!" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    entity.Active = true;
+                    await hopDongDOLABHocVienMappingService.UpdateAsync(entity);
+                    return Json(new { success = true, message = "Thêm thành công!" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        public async System.Threading.Tasks.Task<JsonResult> DeleteHocVien(int id)
+        {
+            var hopDongDOLABHocVienMappingService = this.Service<IHopDongDOLABHocVienMappingService>();
+            try
+            {
+                var entity = await hopDongDOLABHocVienMappingService.GetAsync(id);
+                await hopDongDOLABHocVienMappingService.DeactivateAsync(entity);
+                return Json(new { success = true, message = "Xóa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+        #endregion
+
+        #region Delete
+        public async System.Threading.Tasks.Task<ActionResult> Delete(int id)
+        {
+            var hopDongDOLABService = this.Service<IHopDongDOLABService>();
+            var hopDongDOLABHocVienMappingService = this.Service<IHopDongDOLABHocVienMappingService>();
+            try
+            {
+                var dolabEntity = await hopDongDOLABService.GetAsync(id);
+                if(dolabEntity == null && !dolabEntity.Active)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                await hopDongDOLABService.DeactivateAsync(dolabEntity);
+                var listMapping = hopDongDOLABHocVienMappingService.GetByIdHopDongDOLAB(id).ToList();
+                foreach (var item in listMapping)
+                {
+                    await hopDongDOLABHocVienMappingService.DeactivateAsync(item);
+                }
+                return Json(new { success = true, message = "Xóa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+        #endregion
     }
 }

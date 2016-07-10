@@ -71,6 +71,7 @@ namespace Vimas.ViewModels
         public IEnumerable<SelectListItem> AvailableCongTyTiepNhan { get; set; }
 
         public HttpPostedFileBase HinhAnhLogo { get; set; }
-        public ThoiHanHopDong ThoiHanHopDongEnum { get; set; }
+        [Display(Name ="Thời hạn hợp đồng")]
+        public ThoiHanHopDong? ThoiHanHopDongEnum { get; set; }
     }
 }

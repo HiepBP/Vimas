@@ -14,9 +14,9 @@
             @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
             {
                 <div class="col-md-4">
-                    <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
+                    <button onclick="showCreateDOLAB()" class="btn btn-primary pull-right ">
                         <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm hợp đồng
-                    </a>
+                    </button>
                 </div>
             }
         </div>
@@ -52,6 +52,10 @@
         </div>
     </div>
 </div>
+
+<div id="createDOLABPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editDOLABPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
 <script>
     $(document).ready(function () {
         InitOrderDatatable();
@@ -91,18 +95,18 @@
                         @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
                         {
                                 <text>
-                                var detail = "<a id='detailDOLAB' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
-                                var del = "<a id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
-                                var edit = "<a id='editDOLAB' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                                </text>
+                        var detail = "<a id='detailDOLAB' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
+                        var del = "<a id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        var edit = "<button id='editDOLAB' class='btn btn-sm btn-primary' onclick='showEditDOLAB(" + data + ")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        </text>
                          }
                         else
                         {
                             <text>
-                            var detail = "";
-                            var edit = "";
-                            var del = "";
-                            </text>
+                        var detail = "";
+                        var edit = "";
+                        var del = "";
+                        </text>
                         }
                         return detail + " " + edit + " " + del;
                     }
@@ -113,15 +117,52 @@
         }).fnSetFilteringDelay(delaySearchDb);
     }
 
+    function showCreateDOLAB() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","HopDongDOLAB")',
+            data: {
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createDOLABPanel').html(result);
+                $('#createDOLABPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditDOLAB(idDOLAB) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","HopDongDOLAB")',
+            data: {
+                id: idDOLAB,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editDOLABPanel').html(result);
+                $('#editDOLABPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
     function Delete(id) {
         if (confirm("Bạn có chắc xóa dòng này?")) {
             $.ajax({
                 url: '@this.Url.Action("Delete")',
-                data: { id},
+                data: {
+                    id
+                    },
                         method: "POST",
                 success: function (result) {
                     alert(result.message);
-                    RefreshDOLABDatatable()
+                    RefreshTable('DOLABDatatable');
                 },
                 error: function (error) {
                     alert(error.message);
@@ -129,12 +170,4 @@
             });
         }
     }
-
-    function RefreshDOLABDatatable() {
-        var oTable = $('#trungTamDataTable').dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
-    }
-
 </script>
-

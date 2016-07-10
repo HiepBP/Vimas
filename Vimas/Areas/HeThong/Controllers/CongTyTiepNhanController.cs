@@ -84,7 +84,7 @@ namespace Vimas.Areas.HeThong.Controllers
                 var congTyTiepNhanService = this.Service<ICongTyTiepNhanService>();
                 model.Active = true;
                 await congTyTiepNhanService.CreateAsync(model.ToEntity());
-                return Json(new { success = true, message = Resource.ErrorMessage });
+                return Json(new { success = true, message = "Tạo thành công" });
             }
             catch (Exception)
             {

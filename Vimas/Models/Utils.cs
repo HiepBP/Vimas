@@ -128,6 +128,11 @@ namespace Vimas.Models
             return DateTime.ParseExact(datetime, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
+        public static string FormatDate(DateTime? date)
+        {
+            return date.HasValue ? date.Value.ToShortDateString() : "";
+        }
+
         public static string GetEnumDescription(Enum en)
         {
             Type type = en.GetType();

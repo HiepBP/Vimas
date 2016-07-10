@@ -57,7 +57,7 @@
                             <label class="control-label col-md-4" for="NhomMau">Tay thuận</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.RadioButtonFor(q => q.TayThuan, 1)
+                                    @Html.RadioButtonFor(q => q.TayThuan, 1, new { Checked = "checked"})
                                     Tay phải <!--tay phải-->
                                     <br />
                                     @Html.RadioButtonFor(q => q.TayThuan, 0)<!--tay trái-->
@@ -90,7 +90,7 @@
                                     @Html.RadioButtonFor(q => q.HinhXam, true)
                                     Có 
                                     <br />
-                                    @Html.RadioButtonFor(q => q.HinhXam, false)
+                                    @Html.RadioButtonFor(q => q.HinhXam, false, new { Checked = "checked"})
                                     Không
                                 </div>
                             </div>

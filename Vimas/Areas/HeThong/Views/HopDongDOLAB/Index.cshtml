@@ -1,5 +1,6 @@
 ﻿
 @{
+    var user = HttpContext.Current.User;
     ViewBag.Title = "Hợp đồng DOLAB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,11 +11,14 @@
             <div class="col-md-8">
                 <h3>Danh sách hợp đồng DOLAB</h3>
             </div>
-            <div class="col-md-4">
-                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm hợp đồng
-                </a>
-            </div>
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
+            {
+                <div class="col-md-4">
+                    <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
+                        <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm hợp đồng
+                    </a>
+                </div>
+            }
         </div>
         <hr />
     </div>
@@ -84,10 +88,23 @@
                     "aTargets": [5],
                     "mRender": function (data, type, o) {
                         var data = o[5];
-                        var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
-                        var del = "<a id='deleteTrungTam' class='btn btn-sm btn-danger' onClick='Delete("+data+")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
-                        var edit = "<a id='editTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        return detail +" "+edit +" "+ del;
+                        @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
+                        {
+                                <text>
+                                var detail = "<a id='detailDOLAB' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
+                                var del = "<a id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                                var edit = "<a id='editDOLAB' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                                </text>
+                         }
+                        else
+                        {
+                            <text>
+                            var detail = "";
+                            var edit = "";
+                            var del = "";
+                            </text>
+                        }
+                        return detail + " " + edit + " " + del;
                     }
                 }
 

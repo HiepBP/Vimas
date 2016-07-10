@@ -28,8 +28,7 @@
                     {
                         <div class="form-group">
                             @Html.LabelFor(q => q.NgayPhongVan, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.NgayPhongVan)
+                            <div class="col-md-6" id="NgayPhongVanText">
                             </div>
                         </div>
                     }
@@ -49,8 +48,7 @@
                     {
                         <div class="form-group">
                             @Html.LabelFor(q => q.NgayTrungTuyen, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.NgayTrungTuyen)
+                            <div class="col-md-6" id="NgayTrungTuyenText">
                             </div>
                         </div>
                     }
@@ -75,9 +73,9 @@
                     @if (Model.CongTyTiepNhan != null)
                     {
                         <div class="form-group">
-                            @Html.LabelFor(q => q.CongTyTiepNhan.TenTiengViet, new { @class = "control-label col-md-5" })
+                            @Html.LabelFor(q => q.CongTyTiepNhan.TenTiengNhat, new { @class = "control-label col-md-5" })
                             <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.CongTyTiepNhan.TenTiengViet)
+                                @Html.DisplayTextFor(q => q.CongTyTiepNhan.TenTiengNhat)
                             </div>
                         </div>
                     }
@@ -109,8 +107,7 @@
                     {
                         <div class="form-group">
                             @Html.LabelFor(q => q.NgayNhapHoc, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.NgayNhapHoc)
+                            <div class="col-md-6" id="NgayNhapHocText">
                             </div>
                         </div>
                     }
@@ -118,8 +115,7 @@
                     {
                         <div class="form-group">
                             @Html.LabelFor(q => q.NgayKetThucKhoaHoc, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.NgayKetThucKhoaHoc)
+                            <div class="col-md-6" id="NgayKetThucKhoaHocText">
                             </div>
                         </div>
                     }
@@ -160,8 +156,7 @@
                     {
                         <div class="form-group">
                             @Html.LabelFor(q => q.NgayKyHopDong, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.NgayKyHopDong)
+                            <div class="col-md-6" id="NgayKyHopDongText">
                             </div>
                         </div>
                     }
@@ -169,7 +164,7 @@
                     {
                         <div class="form-group">
                             @Html.LabelFor(q => q.NgayHuySauKhiTrungTuyen, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="NgayHuySauKhiTrungTuyenText">
                                 @Html.DisplayTextFor(q => q.NgayHuySauKhiTrungTuyen)
                             </div>
                         </div>
@@ -195,3 +190,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgayPhongVanText').append(moment('@this.Model.NgayPhongVan.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayTrungTuyenText').append(moment('@this.Model.NgayTrungTuyen.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayNhapHocText').append(moment('@this.Model.NgayNhapHoc.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKetThucKhoaHocText').append(moment('@this.Model.NgayKetThucKhoaHoc.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKyHopDongText').append(moment('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayHuySauKhiTrungTuyenText').append(moment('@this.Model.NgayHuySauKhiTrungTuyen.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+    });
+</script>

@@ -41,7 +41,7 @@ namespace Vimas.Areas.HocVien.Controllers
                             q.GhiChuPV,
                             q.NgayTrungTuyen.HasValue? q.NgayTrungTuyen.Value.ToShortDateString():"",
                             q.NgheTrungTuyenTiengViet,
-                            q.IdCongTyTiepNhan.HasValue?((congTyTiepNhanService.Get(q.IdCongTyTiepNhan)).TenTiengViet):"",
+                            q.IdCongTyTiepNhan.HasValue?((congTyTiepNhanService.Get(q.IdCongTyTiepNhan)).TenTiengNhat):"",
                             q.Id,
                         });
                     var totalRecords = listThongTinPhongVan.Count();
@@ -75,7 +75,7 @@ namespace Vimas.Areas.HocVien.Controllers
             });
             model.AvailableCongTyTiepNhan = congTyTiepNhanService.GetActive().Select(q => new SelectListItem()
             {
-                Text = q.TenTiengViet,
+                Text = q.TenTiengNhat,
                 Value = q.Id.ToString(),
                 Selected = false,
             });
@@ -145,7 +145,7 @@ namespace Vimas.Areas.HocVien.Controllers
             });
             model.AvailableCongTyTiepNhan = congTyTiepNhanService.GetActive().Select(q => new SelectListItem()
             {
-                Text = q.TenTiengViet,
+                Text = q.TenTiengNhat,
                 Value = q.Id.ToString(),
                 Selected = q.Id == model.IdCongTyTiepNhan,
             });

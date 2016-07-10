@@ -93,7 +93,8 @@
             success: function (result) {
                 alert(result.message);
                 $('#createTTGDPanel').modal('hide');
-                RefreshTTGDTable();
+                $('#createTTGDPanel').html("");
+                RefreshTable('thongTinGiaDinhTable');
             },
             error: function (error) {
                 alert(result.message);

@@ -79,7 +79,7 @@
             success: function (result) {
                 alert(result.message);
                 $('#editAccountModal').modal('hide');
-                RefreshTable();
+                RefreshTable('taiKhoanDatatable');
             },
             error: function (error) {
                 alert(result.message);

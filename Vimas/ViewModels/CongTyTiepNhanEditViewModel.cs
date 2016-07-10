@@ -23,9 +23,9 @@ namespace Vimas.ViewModels
         [Display(Name = "Tên tiếng anh")]
         [Required(ErrorMessage = "Vui lòng nhập tên tiếng anh!")]
         public override string TenTiengAnh { get; set; }
-        [Display(Name = "Tên tiếng việt")]
-        [Required(ErrorMessage = "Vui lòng nhập tên tiếng việt!")]
-        public override string TenTiengViet { get; set; }
+        [Display(Name = "Tên tiếng nhật")]
+        [Required(ErrorMessage = "Vui lòng nhập tên tiếng nhật!")]
+        public override string TenTiengNhat { get; set; }
         [Display(Name = "Ngành nghề")]
         public override string NganhNghe { get; set; }
         [Display(Name = "Người đại diện")]

@@ -681,6 +681,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Content\js\common.js" />
+    <Content Include="Content\js\upload-image.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.css" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\demo.html" />
@@ -1452,6 +1453,7 @@
     <Content Include="Content\plugins\DataTables-1.10.12\extensions\Select\js\dataTables.select.js" />
     <Content Include="Content\plugins\DataTables-1.10.12\extensions\Select\js\dataTables.select.min.js" />
     <Content Include="Content\plugins\DataTables-1.10.12\extensions\Select\License.txt" />
+    <Content Include="Content\plugins\DataTables-1.10.12\fnSetFilteringDelay.js" />
     <Content Include="Content\plugins\DataTables-1.10.12\license.txt" />
     <Content Include="Content\plugins\DataTables-1.10.12\media\css\dataTables.bootstrap.css" />
     <Content Include="Content\plugins\DataTables-1.10.12\media\css\dataTables.bootstrap.min.css" />
@@ -2976,6 +2978,7 @@
     <Content Include="Areas\HeThong\Views\CongTyChungNghe\Edit.cshtml" />
     <Content Include="Areas\HeThong\Views\CongTyChungNghe\Index.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

@@ -123,7 +123,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function deleteCTTN(idCTTN) {
@@ -143,12 +143,6 @@
                 }
             });
         }
-    }
-
-    function RefreshTable(id) {
-        var oTable = $(id).dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
     }
 
     function showCreateCTTN() {

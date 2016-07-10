@@ -27,14 +27,14 @@ namespace Vimas.Areas.HeThong.Controllers
             {
                 var rs = listCongTyTiepNhan
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
-                        || q.TenTiengViet.ToLower().Contains(param.sSearch.ToLower())
+                        || q.TenTiengNhat.ToLower().Contains(param.sSearch.ToLower())
                         || q.TenTiengAnh.ToLower().Contains(param.sSearch.ToLower()))
-                    .OrderBy(q => q.TenTiengViet)
+                    .OrderBy(q => q.TenTiengNhat)
                     .Skip(param.iDisplayStart)
                     .Take(param.iDisplayLength)
                     .Select(q => new IConvertible[]
                     {
-                        q.TenTiengViet,
+                        q.TenTiengNhat,
                         q.TenTiengAnh,
                         q.NganhNghe,
                         q.NguoiDaiDien,

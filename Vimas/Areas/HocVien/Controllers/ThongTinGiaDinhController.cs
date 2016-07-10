@@ -146,5 +146,18 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
+
+        
+        public async System.Threading.Tasks.Task<ActionResult> Detail(int id)
+        {
+            var thongTinGiaDinhService = this.Service<IThongTinGiaDinhService>();
+            var model = new ThongTinGiaDinhEditViewModel(await thongTinGiaDinhService.GetAsync(id));
+            if (model == null || model.Active == false)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+            model.Relation = (Relation)model.QuanHe;
+            return View(model);
+        }
     }
 }

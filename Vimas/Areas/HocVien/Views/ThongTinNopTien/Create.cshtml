@@ -97,6 +97,7 @@
                 success: function (result) {
                     alert(result.message);
                     $('#createTTNTPanel').modal('hide');
+                    $('#createTTNTPanel').html("");
                     RefreshTTNTTable();
                 },
                 error: function (error) {

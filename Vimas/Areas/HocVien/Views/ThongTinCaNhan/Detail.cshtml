@@ -12,7 +12,7 @@
         <h2>@this.Model.HoTen <small>Tên tiếng nhật: <strong>@this.Model.TenPhienAmNhat</strong></small></h2>
     </div>
     <div class="card" id="profile-main">
-        <div class="pm-overview c-overflow mCustomScrollbar _mCS_3 mCS-autoHide" style="overflow: visible;">
+        <div class="pm-overview c-overflow mCustomScrollbar _mCS_3 mCS-autoHide" style="overflow: visible; width: 25%;">
             <div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
                 <div id="mCSB_3_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
 
@@ -21,7 +21,7 @@
 
                         <ul>
                             <li><i class="zmdi zmdi-phone"></i> @this.Model.DienThoaiDiDong</li>
-                            <li><i class="zmdi zmdi-calendar"></i> @(this.Model.NgaySinh)</li>
+                            <li><i class="zmdi zmdi-calendar"></i> <div id="NgaySinhText"></div></li>
                             <li><i class="zmdi zmdi-print"></i> @this.Model.CMND</li>
                             <li>
                                 <i class="zmdi zmdi-pin"></i>
@@ -36,7 +36,7 @@
             </div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 587px; top: 0px; display: block; max-height: 695px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div>
         </div>
 
-        <div class="pm-body clearfix">
+        <div class="pm-body clearfix" style="padding-left: 220px;">
             <div class="col-md-12">
                 <ul class="tab-nav tn-justified">
                     <li class="active waves-effect"><a data-toggle="tab" href="#quaTrinhHocTap">Quá trình học tập</a></li>
@@ -50,9 +50,9 @@
                 <div id="quaTrinhHocTap" class="tab-pane fade in active">
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
-                    <div class="col-md-12">
-                        <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                    </div>
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
                     }
                     <div class="col-md-12">
                         <div class="card">
@@ -89,9 +89,9 @@
                 <div id="thongTinGiaDinh" class="tab-pane fade">
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
-                    <div class="col-md-12">
-                        <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                    </div>
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
                     }
                     <div class="col-md-12">
                         <div class="card">
@@ -125,9 +125,9 @@
                 <div id="quaTrinhLamViec" class="tab-pane fade">
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
-                    <div class="col-md-12">
-                        <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
-                    </div>
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
                     }
                     <div class="col-md-12">
                         <div class="card">
@@ -224,6 +224,9 @@
 <script>
     $(document).ready(function () {
         initializeDatatable();
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgaySinhText').append(moment('@this.Model.NgaySinh.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
     });
 
     function initializeDatatable() {
@@ -258,6 +261,20 @@
                     "bSortable": false
                 },
                 {
+                    "aTargets": [3],
+                    "mRender": function (data, type, o) {
+                        var status = "";
+                        var data = o[3];
+                        status += ($('<span/>', {
+                            'class': 'badge',
+                            'style': 'background-color: #009FFF!important;',
+                            html: data,
+                            'data-id': data
+                        })[0].outerHTML);
+                        return status;
+                    }
+                },
+                {
                     "aTargets": [4],
                     "mRender": function (data, type, o) {
                         var from = o[4];
@@ -271,10 +288,10 @@
                         var data = o[6];
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
-                            <text>
-                            var edit = "";
-                            var del = "";
-                            </text>
+                                <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
                         }
                         else
                         {
@@ -374,7 +391,7 @@
             },
             "aoColumnDefs": [
                 {
-                    "aTargets": [0, 1, 2, 3,4],
+                    "aTargets": [0, 1, 2, 3, 4],
                     "bSortable": false
                 },
                 {
@@ -392,16 +409,16 @@
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
                             <text>
-                            var edit = "";
-                            var del = "";
-                            </text>
+                        var edit = "";
+                        var del = "";
+                        </text>
                         }
                         else
                         {
                             <text>
-                            var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                            var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                            </text>
+                        var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
                         }
                         return edit + " " + del;
                     }
@@ -482,7 +499,7 @@
                 $('#createQTHTPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -499,7 +516,7 @@
                 $('#createQTLVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -516,7 +533,7 @@
                 $('#editQTHTPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -534,7 +551,7 @@
                 $('#createTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -552,7 +569,7 @@
                 $('#editTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -570,7 +587,7 @@
                 $('#detailTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -588,7 +605,7 @@
                 $('#createQTLVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -606,32 +623,52 @@
                 $('#editQTLVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
 
     function deleteTTGD(idTTGD) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("Delete","ThongTinGiaDinh")',
+                url: '@Url.Action("Delete", "ThongTinGiaDinh")',
                 data: {
                     id: idTTGD,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTable('thongTinGiaDinhTable');
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function deleteQTHT(idQTHT) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "QuaTrinhHocTap")',
@@ -639,18 +676,28 @@
                     id: idQTHT,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTable('quaTrinhHocTapTable');
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function deleteQTLT(idQTLV) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "QuaTrinhLamViec")',
@@ -659,14 +706,14 @@
                 },
                 success: function (result) {
                     RefreshQTLVTable();
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshQTLVTable();
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function RefreshQTLVTable() {
@@ -688,13 +735,23 @@
                 $('#TTPVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
 
     function deleteTTPV(idTTPV) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "ThongTinPhongVan")',
@@ -702,32 +759,13 @@
                     id: idTTPV,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTable('thongTinPhongVanTable');
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi',error.message,'error');
                 }
             });
-        }
-    }
-
-    function deleteQTLV(idQTLV) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
-                data: {
-                    id: idQTLV,
-                },
-                success: function (result) {
-                    alert(result.message);
-                    RefreshTable('quaTrinhLamViecTable');
-                },
-                error: function (error) {
-                    alert(error.message);
-                }
-            });
-        }
+        });
     }
 </script>

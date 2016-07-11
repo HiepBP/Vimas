@@ -59,7 +59,7 @@
                 $('#createAccountModal').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -77,7 +77,7 @@
                 $('#editAccountModal').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -151,11 +151,11 @@
                     id: id,
                 },
                 success: function (result) {
-                    alert('Xóa thành công!!!')
+                    swal("Xoá", result.message, "success");
                     RefreshTable()
                 },
                 error: function (error) {
-                    alert('Xóa không thành công, xin liên hệ admin!!!')
+                    swal('Lỗi', error.message, 'error');
                 },
             });
         };

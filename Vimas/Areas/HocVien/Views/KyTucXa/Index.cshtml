@@ -53,9 +53,6 @@
                             <label class="">Số hộc tủ đồ</label>
                         </th>
                         <th>
-                            <label class="">Trạng thái</label>
-                        </th>
-                        <th>
                             <label class=""></label>
                         </th>
                     </tr>
@@ -99,30 +96,9 @@
                     "bSortable": false
                 },
                 {
-                    "targets": [8],
-                    "mRender": function (data, type, o) {
-                        var data = o[10];
-                        var data1 = o[9];
-                        var label = '';
-                        if (parseInt(data1) === 0) {
-                            label = "<a class='btn btn-xs btn-warning' href='#'>Unavailable</a>";
-                        } else {
-                            if (data == true) {
-                                label = "<a class='btn btn-xs btn-success' href='#'>Active</a>";
-                            } else {
-                                label = "<a class='btn btn-xs btn-danger' href='#'>Deactive</a>";
-                            }
-                        }
-                        return label;
-                    },
-                    "searchable": false
-                },
-                {
-                    "aTargets": [9],
+                    "aTargets": [8],
                     "mRender": function (data, type, o) {
                         var data = o[8];
-                        var data1 = o[9];
-                        var data2 = o[10];
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongQuanLyKTX"))
                         {
                             <text>
@@ -130,20 +106,10 @@
                         </text>
                         } else
                         {
-                            <text>
-                        if (parseInt(data1) != 0 && data2 == false) {
-                            return '';
-                        } else {
-                            var edit = '';
-                            var del = '';
-                            if (parseInt(data1) === 0) {
-                                edit = "<button type='button' id='editThongTinKTX' class='btn btn-xs btn-info' onclick='addTTKTX(\"" + data + "\")'><i class='glyphicon glyphicon-question-sign'></i> Thêm</button>";
-                            } else {
-                                edit = "<a id='editThongTinKTX' class='btn btn-xs btn-primary' href='@Url.Action("Edit","KyTucXa")?idktx=" + data1 + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
-                                del = "<button type='button' id='delThongTinKTX' class='btn btn-xs btn-danger' onclick='delTTKTX(\"" + data1 + "\")'><i class='glyphicon glyphicon-trash'></i> Xóa</button>";
-                            }
-                        }
-
+                        <text>                        
+                        var edit = "<a id='editThongTinKTX' class='btn btn-xs btn-primary' href='@Url.Action("Edit","KyTucXa")?idktx=" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
+                        var del = "<button type='button' id='delThongTinKTX' class='btn btn-xs btn-danger' onclick='delTTKTX(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Xóa</button>";
+                        
                         return edit + " " + del;
                         </text>
                         }

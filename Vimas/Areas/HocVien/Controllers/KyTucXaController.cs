@@ -25,7 +25,7 @@ namespace Vimas.Areas.HocVien.Controllers
         {
             var kyTucXaService = this.Service<IKyTucXaService>();
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
-            var listThongTinCaNhan = thongTinCaNhanService.GetActive().ToList();
+            var listKyTucXa = kyTucXaService.GetActive().ToList();
 
             /*var res = (from h in listThongTinCaNhan
                       join k in listKyTucXa on h.Id equals k.IdThongTinCaNhan
@@ -48,31 +48,30 @@ namespace Vimas.Areas.HocVien.Controllers
                       }).ToList();*/
             try
             {
-                var rs = listThongTinCaNhan
+                var rs = listKyTucXa
+                    .Where(q => q.Active == true)
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
-                        || q.HoTen.ToLower().Contains(param.sSearch.ToLower()))
-                    .OrderBy(q => q.HoTen)
+                        || q.ThongTinCaNhan.HoTen.ToLower().Contains(param.sSearch.ToLower()))
+                    .OrderBy(q => q.ThongTinCaNhan.HoTen)
                     .Skip(param.iDisplayStart)
                     .Take(param.iDisplayLength)
                     .Select(q => new IConvertible[]
                     {
-                        q.HoTen,
-                        q.NgaySinh.ToShortDateString(),
+                        q.ThongTinCaNhan.HoTen,
+                        q.ThongTinCaNhan.NgaySinh.ToShortDateString(),
                         
                         // quê quán
-                        q.NoiSinh,
+                        q.ThongTinCaNhan.NoiSinh,
 
-                        q.DiaChiLienLac,
+                        q.ThongTinCaNhan.DiaChiLienLac,
 
-                        q.KyTucXas.Where(p => p.NgayVao != null).Select(p => ((DateTime)p.NgayVao).ToShortDateString()).LastOrDefault(),
-                        q.KyTucXas.Where(p => p.NgayRa != null).Select(p => ((DateTime)p.NgayRa).ToShortDateString()).LastOrDefault(),
+                        ((DateTime)q.NgayVao).ToShortDateString(),
+                        q.NgayRa != null ? ((DateTime)q.NgayRa).ToShortDateString() : null,
 
-                        q.KyTucXas.Where(p => p.SoPhong != null).Select(p => p.SoPhong).LastOrDefault(),
-                        q.KyTucXas.Where(p => p.SoHocTuDo != null).Select(p => p.SoHocTuDo).LastOrDefault(),
-                        
+                        q.SoPhong,
+                        q.SoHocTuDo,
+
                         q.Id,
-                        q.KyTucXas.Select(p => p.Id).LastOrDefault(),
-                        q.KyTucXas.Select(p => p.Active).LastOrDefault(),
                     });
                 var totalRecords = rs.Count();
                 return Json(new
@@ -151,24 +150,24 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin, PhongQuanLyKTX")]
-        public async Task<JsonResult> Add(int idttcn)
-        {
-            try
-            {
-                var kyTucXaService = this.Service<IKyTucXaService>();
-                var model = new KyTucXaEditViewModel();
-                model.IdThongTinCaNhan = idttcn;
-                model.Active = true;
-                await kyTucXaService.CreateAsync(model.ToEntity());
-                return Json(new { success = true, message = "Thêm thành công" });
-            }
-            catch (Exception e)
-            {
-                return Json(new { success = false, message = Resource.ErrorMessage });
-            }
-        }
+        //[HttpPost]
+        //[Authorize(Roles = "Admin, PhongQuanLyKTX")]
+        //public async Task<JsonResult> Add(int idttcn)
+        //{
+        //    try
+        //    {
+        //        var kyTucXaService = this.Service<IKyTucXaService>();
+        //        var model = new KyTucXaEditViewModel();
+        //        model.IdThongTinCaNhan = idttcn;
+        //        model.Active = true;
+        //        await kyTucXaService.CreateAsync(model.ToEntity());
+        //        return Json(new { success = true, message = "Thêm thành công" });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return Json(new { success = false, message = Resource.ErrorMessage });
+        //    }
+        //}
 
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]
         public async Task<ActionResult> Edit(int idktx)

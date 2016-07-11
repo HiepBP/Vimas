@@ -1,0 +1,755 @@
+﻿@model ThongTinCaNhanViewModel
+
+@{
+    var user = HttpContext.Current.User;
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/sweetalert.css" rel="stylesheet" />
+
+<div class="container" style="width: calc(100%)">
+
+    <div class="block-header">
+        <h2>@this.Model.HoTen <small>Tên tiếng nhật: <strong>@this.Model.TenPhienAmNhat</strong></small></h2>
+    </div>
+    <div class="card" id="profile-main">
+        <div class="pm-overview c-overflow mCustomScrollbar _mCS_3 mCS-autoHide" style="overflow: visible; width: 25%;">
+            <div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                <div id="mCSB_3_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+
+                    <div class="pmo-block pmo-contact hidden-xs">
+                        <h2>Contact</h2>
+
+                        <ul>
+                            <li><i class="zmdi zmdi-phone"></i> @this.Model.DienThoaiDiDong</li>
+                            <li><i class="zmdi zmdi-calendar"></i> @(this.Model.NgaySinh)</li>
+                            <li><i class="zmdi zmdi-print"></i> @this.Model.CMND</li>
+                            <li>
+                                <i class="zmdi zmdi-pin"></i>
+                                <address class="m-b-0 ng-binding">
+                                    @this.Model.DiaChiLienLac
+                                </address>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 587px; top: 0px; display: block; max-height: 695px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div>
+        </div>
+
+        <div class="pm-body clearfix" style="padding-left: 220px;">
+            <div class="col-md-12">
+                <ul class="tab-nav tn-justified">
+                    <li class="active waves-effect"><a data-toggle="tab" href="#quaTrinhHocTap">Quá trình học tập</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#thongTinGiaDinh">Thông tin gia đình</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#quaTrinhLamViec">Quá trình làm việc</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#thongTinPhongVan">Thông tin phỏng vấn</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div id="quaTrinhHocTap" class="tab-pane fade in active">
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateQTHT(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="quaTrinhHocTapTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Tên trường</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Loại trường</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ngành học</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Đã tốt nghiệp</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Từ năm - Đến năm</label>
+                                            </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="thongTinGiaDinh" class="tab-pane fade">
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateTTGD(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="thongTinGiaDinhTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Họ Tên</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Quan hệ</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Số điện thoại</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Địa chỉ</label>
+                                            </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="quaTrinhLamViec" class="tab-pane fade">
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateQTLV(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="quaTrinhLamViecTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Tên công ty</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Hình thức công ty</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Chi tiết công việc</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Địa chỉ</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Đang làm</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Từ năm - Đến năm</label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="thongTinPhongVan" class="tab-pane fade">
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                    {
+                        <div class="col-md-12">
+                            <a href="@Url.Action("Create","ThongTinPhongVan", new { idThongTinCaNhan=this.Model.Id})" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</a>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="thongTinPhongVanTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Ngày phỏng vấn</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Nghề phỏng vấn</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ghi chú</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ngày trúng tuyển</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Nghề trúng tuyển</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Công ty tiếp nhận</label>
+                                            </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="createQTHTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editQTHTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="createTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="detailTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="createQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="TTPVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+
+<script>
+    $(document).ready(function () {
+        initializeDatatable();
+    });
+
+    function initializeDatatable() {
+        $("#quaTrinhHocTapTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadQuaTrinhHocTap","QuaTrinhHocTap")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function (data, type, o) {
+                        var from = o[4];
+                        var to = o[5];
+                        return from + " - " + to
+                    }
+                },
+                {
+                    "aTargets": [5],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                                <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' id='editQuaTrinhHocTap' class='btn btn-sm btn-primary' onclick='showEditQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteQuaTrinhHocTap' class='btn btn-sm btn-danger' onclick='deleteQTHT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+                        return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+
+        $("#thongTinGiaDinhTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadThongTinGiaDinh", "ThongTinGiaDinh")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function (data, type, o) {
+                        var data = o[4];
+                        var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showDetailTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' id='editThongTinGiaDinh' class='btn btn-sm btn-primary' onclick='showEditTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteThongTinGiaDinh' class='btn btn-sm btn-danger' onclick='deleteTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+                        return detail + edit + del;
+                    }
+                },
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+
+        $("#quaTrinhLamViecTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadQuaTrinhLamViec", "QuaTrinhLamViec")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [5],
+                    "mRender": function (data, type, o) {
+                        var tuNam = o[5];
+                        var denNam = o[6];
+                        return tuNam + " - " + denNam;
+                    }
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[7];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+                        return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+
+        $("#thongTinPhongVanTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadThongTinPhongVan", "ThongTinPhongVan")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4, 5],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showTTPVModal(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<a class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinPhongVan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTPV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+                        return detail + " " + edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+    }
+
+    function showCreateQTHT(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","QuaTrinhHocTap")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTHTPanel').html(result);
+                $('#createQTHTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+    function showCreateQTLV(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create", "QuaTrinhLamViec")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTLVPanel').html(result);
+                $('#createQTLVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+    function showEditQTHT(idQTHT) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","QuaTrinhHocTap")',
+            data: {
+                id: idQTHT,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editQTHTPanel').html(result);
+                $('#editQTHTPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showCreateTTGD(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","ThongTinGiaDinh")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createTTGDPanel').html(result);
+                $('#createTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditTTGD(idTTGD) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit", "ThongTinGiaDinh")',
+            data: {
+                id: idTTGD,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editTTGDPanel').html(result);
+                $('#editTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showDetailTTGD(idTTGD) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail", "ThongTinGiaDinh")',
+            data: {
+                id: idTTGD,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#detailTTGDPanel').html(result);
+                $('#detailTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showCreateQTLV(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create", "QuaTrinhLamViec")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createQTLVPanel').html(result);
+                $('#createQTLVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditQTLV(idQTLV) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit", "QuaTrinhLamViec")',
+            data: {
+                id: idQTLV,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editQTLVPanel').html(result);
+                $('#editQTLVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function deleteTTGD(idTTGD) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "ThongTinGiaDinh")',
+                data: {
+                    id: idTTGD,
+                },
+                success: function (result) {
+                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    RefreshTable('thongTinGiaDinhTable');
+                },
+                error: function (error) {
+                    swal('Lỗi', 'Thao tác xoá không thực hiện được. Vui lòng thử lại sau!', 'error');
+                }
+            });
+        });
+    }
+
+    function deleteQTHT(idQTHT) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "QuaTrinhHocTap")',
+                data: {
+                    id: idQTHT,
+                },
+                success: function (result) {
+                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    RefreshTable('quaTrinhHocTapTable');
+                },
+                error: function (error) {
+                    swal('Lỗi', 'Thao tác xoá không thực hiện được. Vui lòng thử lại sau!', 'error');
+                }
+            });
+        });
+    }
+
+    function deleteQTLT(idQTLV) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
+                data: {
+                    id: idQTLV,
+                },
+                success: function (result) {
+                    RefreshQTLVTable();
+                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    RefreshQTLVTable();
+                },
+                error: function (error) {
+                    swal('Lỗi', 'Thao tác xoá không thực hiện được. Vui lòng thử lại sau!', 'error');
+                }
+            });
+        });
+    }
+
+    function RefreshQTLVTable() {
+        var oTable = $('#quaTrinhLamViecTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+
+    function showTTPVModal(idTTPV) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail", "ThongTinPhongVan")',
+            data: {
+                id: idTTPV,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#TTPVPanel').html(result);
+                $('#TTPVPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function deleteTTPV(idTTPV) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "ThongTinPhongVan")',
+                data: {
+                    id: idTTPV,
+                },
+                success: function (result) {
+                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    RefreshTable('thongTinPhongVanTable');
+                },
+                error: function (error) {
+                    swal('Lỗi','Thao tác xoá không thực hiện được. Vui lòng thử lại sau!','error');
+                }
+            });
+        });
+    }
+</script>

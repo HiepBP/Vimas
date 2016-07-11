@@ -129,11 +129,11 @@ namespace Vimas.Areas.HeThong.Controllers
                 var entity = model.ToEntity();
                 entity.Active = true;
                 await hopDongDOLABService.UpdateAsync(entity);
-                return Json(new { success = true,  message = "Sửa thành công" });
+                return Json(new { success = true, message = "Sửa thành công" });
             }
             catch (Exception e)
             {
-                return Json(new { success = false,  message = Resource.ErrorMessage });
+                return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
 
@@ -189,7 +189,7 @@ namespace Vimas.Areas.HeThong.Controllers
             try
             {
                 var dolabEntity = await hopDongDOLABService.GetAsync(id);
-                if(dolabEntity == null && !dolabEntity.Active)
+                if (dolabEntity == null && !dolabEntity.Active)
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
@@ -204,6 +204,29 @@ namespace Vimas.Areas.HeThong.Controllers
             catch (Exception e)
             {
                 return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+        #endregion
+
+        #region Detail
+        public ActionResult Detail(int id)
+        {
+            var hopDongDOLABService = this.Service<IHopDongDOLABService>();
+            try
+            {
+                var model = hopDongDOLABService.Get(id);
+                if(model == null || !model.Active)
+                {
+                    return Json(new { success = false, message = "Object không tồn tại" });
+                }
+                else
+                {
+                    return View(model);
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = true, message = Resource.ErrorMessage });
             }
         }
         #endregion

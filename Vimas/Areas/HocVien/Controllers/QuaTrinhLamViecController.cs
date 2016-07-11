@@ -43,7 +43,7 @@ namespace Vimas.Areas.HocVien.Controllers
                         q.DenNam.HasValue ? q.DenNam : 0,
                         q.Id,
                     });
-            var numberRecord = result.Count();
+            var numberRecord = listQuaTrinhLamViec.Count();
 
 
             return Json(new
@@ -90,6 +90,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        
         [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {

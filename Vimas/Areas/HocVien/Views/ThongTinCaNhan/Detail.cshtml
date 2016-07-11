@@ -271,10 +271,10 @@
                         var data = o[6];
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
-                                <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            <text>
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         else
                         {
@@ -374,7 +374,7 @@
             },
             "aoColumnDefs": [
                 {
-                    "aTargets": [0, 1, 2, 3, 4],
+                    "aTargets": [0, 1, 2, 3,4],
                     "bSortable": false
                 },
                 {
@@ -392,16 +392,16 @@
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
                             <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         else
                         {
                             <text>
-                        var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                        var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                        </text>
+                            var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
                         }
                         return edit + " " + del;
                     }
@@ -704,6 +704,25 @@
                 success: function (result) {
                     alert(result.message);
                     RefreshTable('thongTinPhongVanTable');
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function deleteQTLV(idQTLV) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
+                data: {
+                    id: idQTLV,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTable('quaTrinhLamViecTable');
                 },
                 error: function (error) {
                     alert(error.message);

@@ -16,14 +16,18 @@
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        @Html.LabelFor(q => q.TenTiengViet, new { @class = "control-label col-md-4" })
+                        <div class="col-md-4">
+                            @Html.LabelFor(q => q.TenTiengNhat, new { @class = "control-label" })<span style="color:red">*</span>
+                        </div>
                         <div class="col-md-5">
-                            @Html.TextBoxFor(q => q.TenTiengViet, new { @class = "form-control col-sm-12" })
-                            @Html.ValidationMessageFor(q => q.TenTiengViet)
+                            @Html.TextBoxFor(q => q.TenTiengNhat, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TenTiengNhat)
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(q => q.TenTiengAnh, new { @class = "control-label col-md-4" })
+                        <div class="col-md-4">
+                            @Html.LabelFor(q => q.TenTiengAnh, new { @class = "control-label" })<span style="color:red">*</span>
+                        </div>
                         <div class="col-md-5">
                             @Html.TextBoxFor(q => q.TenTiengAnh, new { @class = "form-control col-sm-12" })
                             @Html.ValidationMessageFor(q => q.TenTiengAnh)
@@ -47,6 +51,12 @@
                         @Html.LabelFor(q => q.DiaChi, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
                             @Html.TextBoxFor(q => q.DiaChi, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DienThoai, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DienThoai, new { @class = "form-control col-sm-12" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -93,7 +103,8 @@
                 success: function (result) {
                     alert(result.message);
                     $('#editCTTNPanel').modal('hide');
-                    RefreshTable('#congTyTiepNhanDatatable');
+                    $('#editCTTNPanel').html("");
+                    RefreshTable('congTyTiepNhanDatatable');
                 },
                 error: function (error) {
                     alert(result.message);

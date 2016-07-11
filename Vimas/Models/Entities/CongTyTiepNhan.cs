@@ -22,7 +22,7 @@ namespace Vimas.Models.Entities
     
         public int Id { get; set; }
         public string TenTiengAnh { get; set; }
-        public string TenTiengViet { get; set; }
+        public string TenTiengNhat { get; set; }
         public string NganhNghe { get; set; }
         public string NguoiDaiDien { get; set; }
         public string DiaChi { get; set; }

@@ -17,7 +17,9 @@
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        @Html.LabelFor(q => q.TenTruong, new { @class = "control-label col-md-4" })
+                        <div class="col-md-4">
+                            @Html.LabelFor(q => q.TenTruong, new { @class = "control-label" })<span style="color:red">*</span>
+                        </div>
                         <div class="col-md-5">
                             @Html.TextBoxFor(q => q.TenTruong, new { @class = "form-control col-sm-12" })
                             @Html.ValidationMessageFor(q => q.TenTruong)
@@ -87,7 +89,8 @@
                 success: function (result) {
                     alert(result.message);
                     $('#editQTHTPanel').modal('hide');
-                    RefreshQTHTTable();
+                    $('#editQTHTPanel').html("");
+                    RefreshTable('quaTrinhHocTapTable');
                 },
                 error: function (error) {
                     alert(result.message);

@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <h3>Danh sách công ty tiếp nhận</h3>
             </div>
-            @if (user.IsInRole("Admin"))
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
             {
                 <div class="col-md-4">
                     <button type="button" onclick="showCreateCTTN()" class="btn btn-primary pull-right ">
@@ -102,18 +102,19 @@
                     "aTargets": [8],
                     "mRender": function (data, type, o) {
                         var data = o[8];
-                        @if (!user.IsInRole("Admin"))
+                        @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
                         {
-                                <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
-                        }
-                        else {
                             <text>
-                        var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                        </text>
+                            var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
 
                         return edit + " " + del;
@@ -122,7 +123,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function deleteCTTN(idCTTN) {
@@ -142,12 +143,6 @@
                 }
             });
         }
-    }
-
-    function RefreshTable(id) {
-        var oTable = $(id).dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
     }
 
     function showCreateCTTN() {
@@ -195,7 +190,7 @@
                 },
                 success: function (result) {
                     alert(result.message);
-                    RefreshTable('#congTyTiepNhanDatatable');
+                    RefreshTable('congTyTiepNhanDatatable');
                 },
                 error: function (error) {
                     alert(error.message);

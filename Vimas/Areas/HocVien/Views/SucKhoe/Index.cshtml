@@ -1,5 +1,6 @@
 ﻿
 @{
+    var user = HttpContext.Current.User;
     ViewBag.Title = "Sức Khỏe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -10,11 +11,14 @@
             <div class="col-md-8">
                 <h3>Sức Khỏe</h3>
             </div>
-            <div class="col-md-4">
-                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm báo cáo sức khỏe
-                </a>
-            </div>
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+            {
+                <div class="col-md-4">
+                    <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
+                        <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm báo cáo sức khỏe
+                    </a>
+                </div>
+            }
         </div>
         <hr />
     </div>
@@ -76,16 +80,29 @@
             },
             "aoColumnDefs": [
                 {
-                    "aTargets": [0, 1, 2, 3,],
+                    "aTargets": [0, 1, 2, 3, ],
                     "bSortable": false
                 },
                 {
                     "aTargets": [4],
                     "mRender": function (data, type, o) {
                         var data = o[4];
-                        var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail", "SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
-                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-success' href='@Url.Action("Edit","SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        var del = "<a id='editThongTinCaNhan' class='btn btn-sm btn-danger' onClick='Delete("+data+")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                            var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail", "SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
+                            var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-success' href='@Url.Action("Edit","SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                            var del = "<a id='editThongTinCaNhan' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                            var detail = "";
+                            var edit = "";
+                            var del =  "";
+                            </text>
+                        }
                         return detail + " " + edit + " " + del;
                     }
                 }
@@ -96,18 +113,19 @@
     }
 
     function Delete(id) {
-
-        $.ajax({
-            url: '@this.Url.Action("Delete")',
-            data: { id},
-            method: "POST",
-            success: function (result) {
-                alert(result.message);
-                window.location.href = "@this.Url.Action("Index")";
-            },
-            error: function (error) {
-                alert(error.message);
-            }
-        });
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                url: '@this.Url.Action("Delete")',
+                data: { id},
+                        method: "POST",
+                success: function (result) {
+                    alert(result.message);
+                    window.location.href = "@this.Url.Action("Index")";
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
     }
 </script>

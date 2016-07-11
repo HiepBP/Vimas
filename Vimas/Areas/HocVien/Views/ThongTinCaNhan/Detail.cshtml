@@ -213,6 +213,7 @@
 
 <div id="createTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 <div id="editTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="detailTTGDPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 <div id="createQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 <div id="editQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
@@ -257,7 +258,7 @@
                     "bSortable": false
                 },
                 {
-                    "aTargets": [0, 1, 2, 3],
+                    "aTargets": [4],
                     "mRender": function (data, type, o) {
                         var from = o[4];
                         var to = o[5];
@@ -270,10 +271,10 @@
                         var data = o[6];
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
-                                <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            <text>
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         else
                         {
@@ -288,7 +289,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
 
         $("#thongTinGiaDinhTable").dataTable({
             "bSort": false,
@@ -324,6 +325,7 @@
                     "aTargets": [4],
                     "mRender": function (data, type, o) {
                         var data = o[4];
+                        var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showDetailTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
                             <text>
@@ -338,12 +340,12 @@
                         var del = "<button type='button' id='deleteThongTinGiaDinh' class='btn btn-sm btn-danger' onclick='deleteTTGD(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
                         </text>
                         }
-                        return edit + del;
+                        return detail + edit + del;
                     }
                 },
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
 
         $("#quaTrinhLamViecTable").dataTable({
             "bSort": false,
@@ -372,7 +374,7 @@
             },
             "aoColumnDefs": [
                 {
-                    "aTargets": [0, 1, 2, 3, 4],
+                    "aTargets": [0, 1, 2, 3,4],
                     "bSortable": false
                 },
                 {
@@ -390,16 +392,16 @@
                         @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
                         {
                             <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         else
                         {
                             <text>
-                        var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                        var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                        </text>
+                            var edit = "<button type='button' id='editQuaTrinhLamViec' class='btn btn-sm btn-primary' onclick='showEditQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var del = "<button type='button' id='deleteQuaTrinhLamViec' class='btn btn-sm btn-danger' onclick='deleteQTLV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
                         }
                         return edit + " " + del;
                     }
@@ -407,7 +409,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
 
         $("#thongTinPhongVanTable").dataTable({
             "bSort": false,
@@ -444,7 +446,7 @@
                     "mRender": function (data, type, o) {
                         var data = o[6];
                         var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showTTPVModal(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
-                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongNguon"))
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD"))
                         {
                             <text>
                         var edit = "";
@@ -464,7 +466,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function showCreateQTHT(idThongTinCaNhan) {
@@ -555,6 +557,24 @@
         });
     }
 
+    function showDetailTTGD(idTTGD) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail", "ThongTinGiaDinh")',
+            data: {
+                id: idTTGD,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#detailTTGDPanel').html(result);
+                $('#detailTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
     function showCreateQTLV(idThongTinCaNhan) {
         $.ajax({
             type: "GET",
@@ -601,7 +621,7 @@
                 },
                 success: function (result) {
                     alert(result.message);
-                    RefreshTTGDTable();
+                    RefreshTable('thongTinGiaDinhTable');
                 },
                 error: function (error) {
                     alert(error.message);
@@ -620,7 +640,7 @@
                 },
                 success: function (result) {
                     alert(result.message);
-                    RefreshQTHTTable();
+                    RefreshTable('quaTrinhHocTapTable');
                 },
                 error: function (error) {
                     alert(error.message);
@@ -649,25 +669,8 @@
         }
     }
 
-    function RefreshQTHTTable() {
-        var oTable = $('#quaTrinhHocTapTable').dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
-    }
-
-    function RefreshTTGDTable() {
-        var oTable = $('#thongTinGiaDinhTable').dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
-    }
     function RefreshQTLVTable() {
         var oTable = $('#quaTrinhLamViecTable').dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
-    }
-
-    function RefreshTable(id) {
-        var oTable = $(id).dataTable();
         oTable._fnPageChange(0);
         oTable._fnAjaxUpdate();
     }
@@ -700,7 +703,26 @@
                 },
                 success: function (result) {
                     alert(result.message);
-                    RefreshTable('#thongTinPhongVanTable');
+                    RefreshTable('thongTinPhongVanTable');
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function deleteQTLV(idQTLV) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "QuaTrinhLamViec")',
+                data: {
+                    id: idQTLV,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTable('quaTrinhLamViecTable');
                 },
                 error: function (error) {
                     alert(error.message);

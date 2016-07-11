@@ -167,5 +167,56 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
+
+        public JsonResult LoadThongTinCaNhanDDL(string searchTerm, int pageSize, int pageNumber)
+        {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var select2pagedResult = new Select2PagedResult();
+            #region GetData
+            string cacheKey = "Select2Options";
+            var listThongTinCaNhan = new List<Select2OptionModel>();
+            //check cache
+            if (System.Web.HttpContext.Current.Cache[cacheKey] != null)
+            {
+                listThongTinCaNhan = (List<Select2OptionModel>)System.Web.HttpContext.Current.Cache[cacheKey];
+            }
+            else
+            {
+                listThongTinCaNhan = thongTinCaNhanService.GetActive()
+                    .AsEnumerable()
+                    .Select(q => new Select2OptionModel()
+                    {
+                        id = q.Id.ToString(),
+                        text = q.HoTen + " - " + Utils.FormatDate(q.NgaySinh),
+                    })
+                    .ToList();
+                //cache results
+                System.Web.HttpContext.Current.Cache[cacheKey] = listThongTinCaNhan;
+            }
+            #endregion
+            var totalSearchRecords = listThongTinCaNhan.Count;
+            select2pagedResult.Results = listThongTinCaNhan.Where(q => string.IsNullOrEmpty(searchTerm)
+                                                                    || q.text.ToLower().Contains(searchTerm.ToLower()));
+            select2pagedResult.Total = select2pagedResult.Results.Count();
+            select2pagedResult.Results = select2pagedResult.Results.Skip((pageNumber - 1) * pageSize)
+                                                                    .Take(pageSize);
+            return Json(select2pagedResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetByIdDOLAB(int idDOLAB)
+        {
+            var hopDongDOLABHocVienMappingService = this.Service<IHopDongDOLABHocVienMappingService>();
+            var count = 0;
+            List<dynamic> listDt = new List<dynamic>();
+            var providers = hopDongDOLABHocVienMappingService.GetByIdHopDongDOLAB(idDOLAB)
+                .AsEnumerable()
+                .Select(q => new
+                {
+                    No = ++count,
+                    HoTen = q.ThongTinCaNhan.HoTen,
+                    Id = q.Id,
+                });
+            return Json(new { data = providers.ToList() }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

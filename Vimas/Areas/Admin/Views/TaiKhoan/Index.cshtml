@@ -139,7 +139,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function deleteAccount(id) {
@@ -159,11 +159,5 @@
                 },
             });
         };
-    }
-
-    function RefreshTable() {
-        var oTable = $('#taiKhoanDatatable').dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
     }
 </script>

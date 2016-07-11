@@ -128,3 +128,9 @@ function RefreshTable(tableId) {
     oTable._fnPageChange(0);
     oTable._fnAjaxUpdate();
 }
+
+var delaySearchDb = 500;
+
+$(".modal").on("hidden.bs.modal", function(){
+    $(".modal").html("");
+});

@@ -38,12 +38,12 @@ namespace Vimas.Areas.HocVien.Controllers
                         q.HinhThucCongTy,
                         q.ChiTietCongViec,
                         q.DiaChiCongTy,
-                        q.DangLam,
+                        q.DangLam == true ? "Đang làm":"Không",
                         q.TuNam.HasValue ? q.TuNam : 0,
                         q.DenNam.HasValue ? q.DenNam : 0,
                         q.Id,
                     });
-            var numberRecord = result.Count();
+            var numberRecord = listQuaTrinhLamViec.Count();
 
 
             return Json(new
@@ -90,6 +90,7 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
+        
         [Authorize(Roles = "Admin, PhongNguon")]
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {

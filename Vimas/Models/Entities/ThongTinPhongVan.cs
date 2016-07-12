@@ -23,15 +23,14 @@ namespace Vimas.Models.Entities
         public string DotTrungTuyen { get; set; }
         public string NgheTrungTuyenTiengAnh { get; set; }
         public string NgheTrungTuyenTiengViet { get; set; }
-        public Nullable<int> NghiepDoan { get; set; }
-        public Nullable<int> CongTyTiepNhan { get; set; }
+        public Nullable<int> IdCongTyTiepNhan { get; set; }
         public Nullable<int> ThoiHanHopDong { get; set; }
         public string GhiChuSauTrungTuyen { get; set; }
         public string LopHoc { get; set; }
         public Nullable<System.DateTime> NgayNhapHoc { get; set; }
         public Nullable<System.DateTime> NgayKetThucKhoaHoc { get; set; }
         public string GhiChuKhenThuongKyLuat { get; set; }
-        public Nullable<int> CongTyChungNghe { get; set; }
+        public Nullable<int> IdCongTyChungNghe { get; set; }
         public string SoPhieuTiepNhan { get; set; }
         public string GhiChuPhaiCu { get; set; }
         public Nullable<int> HopDongTTS { get; set; }
@@ -39,10 +38,10 @@ namespace Vimas.Models.Entities
         public string HinhAnh { get; set; }
         public Nullable<System.DateTime> NgayHuySauKhiTrungTuyen { get; set; }
         public string LyDoHuy { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
-        public virtual CongTyChungNghe CongTyChungNghe1 { get; set; }
-        public virtual CongTyTiepNhan CongTyTiepNhan1 { get; set; }
+        public virtual CongTyChungNghe CongTyChungNghe { get; set; }
+        public virtual CongTyTiepNhan CongTyTiepNhan { get; set; }
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }
 }

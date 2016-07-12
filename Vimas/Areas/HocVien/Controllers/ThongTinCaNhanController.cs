@@ -38,17 +38,17 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.HoTen,
-                        q.GioiTinh,
+                        q.GioiTinh == 0 ? "Nữ":"Nam",
                         q.NgaySinh.ToShortDateString(),
                         q.CMND,
                         q.DienThoaiDiDong,
                         q.Id,
                     });
-                var totalRecords = rs.Count();
+                var totalRecords = listThongTinCaNhan.Count();
                 return Json(new
                 {
                     sEcho = param.sEcho,
-                    iTotalRecords = totalRecords,
+                    iTotalRecords = listThongTinCaNhan.Count,
                     iTotalDisplayRecords = totalRecords,
                     aaData = rs
                 }, JsonRequestBehavior.AllowGet);
@@ -64,7 +64,7 @@ namespace Vimas.Areas.HocVien.Controllers
         {
             var trungTamGTVLService = this.Service<ITrungTamGTVLService>();
             var model = new ThongTinCaNhanEditViewModel();
-            model.Gender = (Gender)model.GioiTinh;
+            model.Gender = (Gender)1;
             model.FamilyStatus = (FamilyStatus)model.TinhTrangGiaDinh;
             model.EducationLevel = (EducationLevel)(model.TrinhDoVanHoa != null ? model.TrinhDoVanHoa : 0);
             model.AvailableMaNguon = trungTamGTVLService.GetActive().Select(q => new SelectListItem()
@@ -130,12 +130,6 @@ namespace Vimas.Areas.HocVien.Controllers
             }
             var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             var entity = await thongTinCaNhanService.GetAsync(model.Id);
-            //entity.MaLuuHoSo = model.MaLuuHoSo;
-            //entity.IdTrungTamGTVL = model.IdTrungTamGTVL
-            //entity.HoTen = model.HoTen;
-            //entity.TenPhienAmNhat = model.TenPhienAmNhat;
-            //entity.GioiTinh = model.GioiTinh;
-            //entity.NgaySinh = model.NgaySinh;
             model.CopyToEntity(entity);
             entity.Active = true;
             entity.GioiTinh = (int)model.Gender;
@@ -143,6 +137,86 @@ namespace Vimas.Areas.HocVien.Controllers
             entity.TinhTrangGiaDinh = (int)model.FamilyStatus;
             await thongTinCaNhanService.UpdateAsync(entity);
             return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Detail(int id)
+        {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var model = new ThongTinCaNhanViewModel(await thongTinCaNhanService.GetAsync(id));
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
+        public async System.Threading.Tasks.Task<JsonResult> Delete(int id)
+        {
+            try
+            {
+                var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+                var entity = await thongTinCaNhanService.GetAsync(id);
+                if (entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                //entity.Active = false;
+                await thongTinCaNhanService.DeactivateAsync(entity);
+                return Json(new { success = false, message = "Xóa thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
+        public JsonResult LoadThongTinCaNhanDDL(string searchTerm, int pageSize, int pageNumber)
+        {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var select2pagedResult = new Select2PagedResult();
+            #region GetData
+            string cacheKey = "Select2Options";
+            var listThongTinCaNhan = new List<Select2OptionModel>();
+            //check cache
+            if (System.Web.HttpContext.Current.Cache[cacheKey] != null)
+            {
+                listThongTinCaNhan = (List<Select2OptionModel>)System.Web.HttpContext.Current.Cache[cacheKey];
+            }
+            else
+            {
+                listThongTinCaNhan = thongTinCaNhanService.GetActive()
+                    .AsEnumerable()
+                    .Select(q => new Select2OptionModel()
+                    {
+                        id = q.Id.ToString(),
+                        text = q.HoTen + " - " + Utils.FormatDate(q.NgaySinh),
+                    })
+                    .ToList();
+                //cache results
+                System.Web.HttpContext.Current.Cache[cacheKey] = listThongTinCaNhan;
+            }
+            #endregion
+            var totalSearchRecords = listThongTinCaNhan.Count;
+            select2pagedResult.Results = listThongTinCaNhan.Where(q => string.IsNullOrEmpty(searchTerm)
+                                                                    || q.text.ToLower().Contains(searchTerm.ToLower()));
+            select2pagedResult.Total = select2pagedResult.Results.Count();
+            select2pagedResult.Results = select2pagedResult.Results.Skip((pageNumber - 1) * pageSize)
+                                                                    .Take(pageSize);
+            return Json(select2pagedResult, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetByIdDOLAB(int idDOLAB)
+        {
+            var hopDongDOLABHocVienMappingService = this.Service<IHopDongDOLABHocVienMappingService>();
+            var count = 0;
+            List<dynamic> listDt = new List<dynamic>();
+            var providers = hopDongDOLABHocVienMappingService.GetByIdHopDongDOLAB(idDOLAB)
+                .AsEnumerable()
+                .Select(q => new
+                {
+                    No = ++count,
+                    HoTen = q.ThongTinCaNhan.HoTen,
+                    Id = q.Id,
+                });
+            return Json(new { data = providers.ToList() }, JsonRequestBehavior.AllowGet);
         }
     }
 }

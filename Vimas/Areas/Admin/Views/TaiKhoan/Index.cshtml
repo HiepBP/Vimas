@@ -41,8 +41,8 @@
     </div>
 </div>
 
-<div id="createAccountModel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
-<div id="editAccountModel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="createAccountModal" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editAccountModal" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 <script>
     $(document).ready(function () {
@@ -55,11 +55,11 @@
             url: '@Url.Action("Create","TaiKhoan")',
             success: function (result) {
                 //$('#myModal').modal('show');
-                $('#createAccountModel').html(result);
-                $('#createAccountModel').modal('show');
+                $('#createAccountModal').html(result);
+                $('#createAccountModal').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -73,11 +73,11 @@
             },
             success: function (result) {
                 //$('#myModal').modal('show');
-                $('#editAccountModel').html(result);
-                $('#editAccountModel').modal('show');
+                $('#editAccountModal').html(result);
+                $('#editAccountModal').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -99,7 +99,11 @@
                 "sEmptyTable": "Không có dữ liệu",
                 "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
                 "sLengthMenu": "Hiển thị _MENU_ dòng",
-                "sProcessing": "Đang xử lý..."
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
             },
             "aoColumnDefs": [
                 {
@@ -135,7 +139,7 @@
 
             ],
             "bAutoWidth": false
-        });
+        }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function deleteAccount(id) {
@@ -147,19 +151,13 @@
                     id: id,
                 },
                 success: function (result) {
-                    alert('Xóa thành công!!!')
+                    swal("Xoá", result.message, "success");
                     RefreshTable()
                 },
                 error: function (error) {
-                    alert('Xóa không thành công, xin liên hệ admin!!!')
+                    swal('Lỗi', error.message, 'error');
                 },
             });
         };
-    }
-
-    function RefreshTable() {
-        var oTable = $('#taiKhoanDatatable').dataTable();
-        oTable._fnPageChange(0);
-        oTable._fnAjaxUpdate();
     }
 </script>

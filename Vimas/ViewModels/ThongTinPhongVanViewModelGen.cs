@@ -24,15 +24,14 @@ namespace Vimas.ViewModels
     			public virtual string DotTrungTuyen { get; set; }
     			public virtual string NgheTrungTuyenTiengAnh { get; set; }
     			public virtual string NgheTrungTuyenTiengViet { get; set; }
-    			public virtual Nullable<int> NghiepDoan { get; set; }
-    			public virtual Nullable<int> CongTyTiepNhan { get; set; }
+    			public virtual Nullable<int> IdCongTyTiepNhan { get; set; }
     			public virtual Nullable<int> ThoiHanHopDong { get; set; }
     			public virtual string GhiChuSauTrungTuyen { get; set; }
     			public virtual string LopHoc { get; set; }
     			public virtual Nullable<System.DateTime> NgayNhapHoc { get; set; }
     			public virtual Nullable<System.DateTime> NgayKetThucKhoaHoc { get; set; }
     			public virtual string GhiChuKhenThuongKyLuat { get; set; }
-    			public virtual Nullable<int> CongTyChungNghe { get; set; }
+    			public virtual Nullable<int> IdCongTyChungNghe { get; set; }
     			public virtual string SoPhieuTiepNhan { get; set; }
     			public virtual string GhiChuPhaiCu { get; set; }
     			public virtual Nullable<int> HopDongTTS { get; set; }
@@ -40,7 +39,7 @@ namespace Vimas.ViewModels
     			public virtual string HinhAnh { get; set; }
     			public virtual Nullable<System.DateTime> NgayHuySauKhiTrungTuyen { get; set; }
     			public virtual string LyDoHuy { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public ThongTinPhongVanViewModel() : base() { }
     	public ThongTinPhongVanViewModel(Vimas.Models.Entities.ThongTinPhongVan entity) : base(entity) { }

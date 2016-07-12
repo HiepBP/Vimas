@@ -25,7 +25,7 @@ namespace Vimas.Models.Entities
         public Nullable<System.DateTime> NgayTron { get; set; }
         public Nullable<System.DateTime> NgayBiTrucXuat { get; set; }
         public string GhiChuTheoDoi { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }

@@ -15,11 +15,11 @@ namespace Vimas.Models.Entities
     public partial class QuaTrinhHocTap
     {
         public int Id { get; set; }
-        public int idThongTinCaNhan { get; set; }
+        public int IdThongTinCaNhan { get; set; }
         public Nullable<int> TuNam { get; set; }
         public Nullable<int> DenNam { get; set; }
         public string TenTruong { get; set; }
-        public string LoaiTruong { get; set; }
+        public Nullable<int> LoaiTruong { get; set; }
         public string NganhHoc { get; set; }
         public Nullable<bool> DaTotNghiep { get; set; }
         public bool Active { get; set; }

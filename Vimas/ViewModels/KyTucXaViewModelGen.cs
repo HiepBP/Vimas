@@ -19,10 +19,10 @@ namespace Vimas.ViewModels
     			public virtual Nullable<int> IdThongTinCaNhan { get; set; }
     			public virtual Nullable<System.DateTime> NgayVao { get; set; }
     			public virtual Nullable<System.DateTime> NgayRa { get; set; }
-    			public virtual Nullable<int> SoPhong { get; set; }
-    			public virtual Nullable<int> SoHocTuDo { get; set; }
+    			public virtual string SoPhong { get; set; }
+    			public virtual string SoHocTuDo { get; set; }
     			public virtual string GhiChu { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public KyTucXaViewModel() : base() { }
     	public KyTucXaViewModel(Vimas.Models.Entities.KyTucXa entity) : base(entity) { }

@@ -1,0 +1,96 @@
+﻿@model TrungTamGTVLViewModel
+@{
+    ViewBag.Title = "Trung tâm " + this.Model.TenCoSo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Trung tâm: <strong>@this.Model.TenCoSo</strong></h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="TenCoSo">Tên Cơ Sở</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.TenCoSo)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="MaNguon">Mã Nguồn</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.MaNguon)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DiaChi">Địa Chỉ</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.DiaChi)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayKyHopDong">Ngày kí hợp đồng</label>
+                        <div class="col-md-6">
+                            <input class="form-control default-cursor" id="NgayKyHopDong" type="text" value="" readonly style="background-color:white" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayHetHan">Ngày hết hạn</label>
+                        <div class="col-md-6">
+                            <input class="form-control default-cursor" id="NgayHetHan" type="text" value="" readonly style="background-color:white" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DienThoai">Điện Thoại</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.DienThoai)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="Fax">Fax</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.Fax)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="SoHDLK">Số HDLK</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.SoHDLK)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NguoiDaiDien">Người đại diện</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NguoiDaiDien)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Index")" class="btn btn-danger">Quay lại</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+
+        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()');
+        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()')
+    });
+
+</script>

@@ -1,0 +1,161 @@
+﻿@model ThongTinNopTienEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="createThongTinNopTienForm" method="post">
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thêm QTHT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.SoPhieu, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.SoPhieu, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.SoPhieu)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.TypeOfMoney, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.EnumDropDownListFor(q => q.TypeOfMoney, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.SoTien, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.SoTien, new { @class = " form-control col-sm-12" })
+                            <div id="SoTienVND" class="col-sm-12">
+                            </div>
+                            @Html.ValidationMessageFor(q => q.SoTien)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.ThuChi, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.EnumDropDownListFor(q => q.ThuChi, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgayLapPhieu, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            <div class="fg-line">
+                                <input class="form-control default-cursor" id="NgayLapPhieu" type="text" value="" readonly style="background-color:white" />
+                                <input type="hidden" name="NgayLapPhieu" value="@this.Model.NgayLapPhieu" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.LyDo, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.LyDo, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.AvailableThongTinCaNhan, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(q => q.IdThongTinCaNhan, this.Model.AvailableThongTinCaNhan, new { @class = "form-control col-sm-12", @id = "select2ThongTinCaNhan" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="createTTNT()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#createThongTinNopTienForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+
+        $('#select2ThongTinCaNhan').select2();
+        initializeDateRangePicker();
+    })
+
+    function createTTNT() {
+        var form = $('#createThongTinNopTienForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = $('#createThongTinNopTienForm').serialize();
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create","ThongTinNopTien")',
+                data: formData,
+                success: function (result) {
+                    alert(result.message);
+                    $('#createTTNTPanel').modal('hide');
+                    $('#createTTNTPanel').html("");
+                    RefreshTTNTTable();
+                },
+                error: function (error) {
+                    alert(result.message);
+                }
+            });
+        }
+    }
+
+    $(function () {
+        $(document).on('keyup', '#SoTien', function () {
+            document.getElementById('SoTienVND').innerHTML = "";
+            $('#SoTienVND').append('Giá trị: ' + toMoney($('#SoTien').val(), '.', ' đ'));
+        });
+    });
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('input[name="NgayLapPhieu"]').val(moment().format("L"))
+        $('#NgayLapPhieu').val(now);
+        $('#NgayLapPhieu').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayLapPhieu').val(start.format('LL'));
+            $('input[name="NgayLapPhieu"]').val(start.format("DD/MM/YYYY"));
+        });
+    };
+</script>

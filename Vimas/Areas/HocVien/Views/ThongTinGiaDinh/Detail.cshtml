@@ -1,0 +1,85 @@
+﻿@model ThongTinGiaDinhEditViewModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    .form-horizontal .control-label {
+        margin-top: -10px;
+    }
+
+    .control-label {
+        font-weight: bold;
+    }
+</style>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form>
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sửa thông tin gia đình</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.LabelFor(q => q.HoTen, new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.HoTen)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.Relation, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.Relation)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgaySinh">Ngày Sinh</label>
+                        <div class="col-md-5" id="NgaySinhText">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgheNghiep, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.NgheNghiep)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NoiLamViec, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.NoiLamViec)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DiaChi, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.DiaChi)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.SoDienThoai, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.SoDienThoai)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgaySinhText').append(moment('@this.Model.NgaySinh.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+    });
+</script>

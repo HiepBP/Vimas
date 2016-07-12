@@ -10772,7 +10772,7 @@ h6 small,
   margin: 20px 0 0 0;
 }
 
-.main-menu > li > a {
+.main-menu > li > a, .main-menu > li > form > a {
   padding: 14px 20px 14px 52px;
   display: block;
   color: #4C4C4C;
@@ -10780,12 +10780,12 @@ h6 small,
   position: relative;
 }
 
-.main-menu > li > a:hover {
+.main-menu > li > a:hover, .main-menu > li > form > a:hover {
   color: #262626;
   background-color: #f7f7f7;
 }
 
-.main-menu > li > a > i {
+.main-menu > li > a > i, .main-menu > li > form > a > i {
   position: absolute;
   left: 16px;
   font-size: 20px;

@@ -1,0 +1,117 @@
+﻿@model QuaTrinhLamViecEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="editQuaTrinhLamViecForm" method="post" action="@Url.Action("Register","TaiKhoan")">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.Id)
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Chỉnh sửa QTLV</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.TenCongTy, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TenCongTy, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TenCongTy)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.HinhThucCongTy, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.HinhThucCongTy, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.HinhThucCongTy)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DiaChiCongTy, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DiaChiCongTy, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.DiaChiCongTy)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.ChiTietCongViec, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.ChiTietCongViec, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.ChiTietCongViec)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.TuNam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TuNam, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TuNam)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DenNam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DenNam, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.DenNam)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DangLam, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            <input type="checkbox" id="DangLam" name="DangLam"  checked="@(this.Model.DangLam.Value ? "":null)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" id="btnSubmitEditQTLV" class="btn btn-primary" >Xong</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#editQuaTrinhLamViecForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+    })
+
+    $("#btnSubmitEditQTLV").click(function (e) {
+        e.preventDefault();
+        var _form = $('#editQuaTrinhLamViecForm');
+
+        var validator = $("#editQuaTrinhLamViecForm").validate(); // obtain validator
+        var anyError = false;
+        _form.find("input").each(function () {
+            if (!validator.element(this)) { // validate every input element inside this step
+                anyError = true;
+            }
+        });
+
+        if (anyError) {
+            return false; // exit if any error found
+        }
+
+         var formData = $('#editQuaTrinhLamViecForm').serialize();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Edit", "QuaTrinhLamViec")',
+            data: formData,
+            success: function (result) {
+                alert(result.message);
+                $('#editQTLVPanel').modal('hide');
+                RefreshQTLVTable();
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+    });
+</script>

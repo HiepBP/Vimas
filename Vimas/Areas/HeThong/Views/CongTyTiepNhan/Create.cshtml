@@ -1,0 +1,114 @@
+﻿@model CongTyTiepNhanEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="congTyTiepNhanForm" method="post">
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thêm công ty tiếp nhận</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.LabelFor(q => q.TenTiengNhat, new { @class = "control-label" })<span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TenTiengNhat, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TenTiengNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            @Html.LabelFor(q => q.TenTiengAnh, new { @class = "control-label" })<span style="color:red">*</span>
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TenTiengAnh, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.TenTiengAnh)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NganhNghe, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.NganhNghe, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.NganhNghe)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NguoiDaiDien, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.NguoiDaiDien, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.NguoiDaiDien)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DiaChi, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DiaChi, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DienThoai, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DienThoai, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.Fax, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.Fax, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.AvailableNghiepDoan, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(q => q.idNghiepDoan, this.Model.AvailableNghiepDoan, new { @class = "form-control col-sm-12", @id = "select2DDL" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="createCTTN()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#congTyTiepNhanForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $('#select2DDL').select2();
+        $.validator.unobtrusive.parse(form);
+    })
+
+    function createCTTN() {
+        var form = $('#congTyTiepNhanForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = $('#congTyTiepNhanForm').serialize();
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create","CongTyTiepNhan")',
+                data: formData,
+                success: function (result) {
+                    swal("Thêm mới", result.message, "success");
+                    $('#createCTTNPanel').modal('hide');
+                    $('#createCTTNPanel').html("");
+                    RefreshTable('congTyTiepNhanDatatable');
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        }
+    }
+</script>

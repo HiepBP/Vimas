@@ -30,7 +30,8 @@ namespace Vimas.Models.Entities
         public Nullable<System.DateTime> NgayKyHopDong { get; set; }
         public Nullable<System.DateTime> NgayHetHan { get; set; }
         public string NguoiDaiDien { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public string ChucDanh { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongTinCaNhan> ThongTinCaNhans { get; set; }

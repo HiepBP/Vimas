@@ -25,7 +25,8 @@ namespace Vimas.ViewModels
     			public virtual Nullable<System.DateTime> NgayKyHopDong { get; set; }
     			public virtual Nullable<System.DateTime> NgayHetHan { get; set; }
     			public virtual string NguoiDaiDien { get; set; }
-    			public virtual Nullable<bool> Active { get; set; }
+    			public virtual string ChucDanh { get; set; }
+    			public virtual bool Active { get; set; }
     	
     	public TrungTamGTVLViewModel() : base() { }
     	public TrungTamGTVLViewModel(Vimas.Models.Entities.TrungTamGTVL entity) : base(entity) { }

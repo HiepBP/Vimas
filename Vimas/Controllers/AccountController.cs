@@ -60,6 +60,17 @@ namespace Vimas.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index", "ThongTinCaNhan", new { area = "HocVien" });
+                }
+                else
+                {
+                    return RedirectToLocal(returnUrl);
+                }
+            }
             return View();
         }
 
@@ -68,7 +79,7 @@ namespace Vimas.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -88,7 +99,7 @@ namespace Vimas.Controllers
                     case SignInStatus.LockedOut:
                         return View("Lockout");
                     case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        return RedirectToAction("SendCode", new { RememberMe = model.RememberMe });
                     case SignInStatus.Failure:
                     default:
                         ModelState.AddModelError("", "Invalid login attempt.");

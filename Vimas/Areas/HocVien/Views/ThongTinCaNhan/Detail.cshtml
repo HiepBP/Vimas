@@ -5,7 +5,6 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/css/sweetalert.css" rel="stylesheet" />
 
 <div class="container" style="width: calc(100%)">
 
@@ -22,7 +21,7 @@
 
                         <ul>
                             <li><i class="zmdi zmdi-phone"></i> @this.Model.DienThoaiDiDong</li>
-                            <li><i class="zmdi zmdi-calendar"></i> @(this.Model.NgaySinh)</li>
+                            <li><i class="zmdi zmdi-calendar"></i> <div id="NgaySinhText"></div></li>
                             <li><i class="zmdi zmdi-print"></i> @this.Model.CMND</li>
                             <li>
                                 <i class="zmdi zmdi-pin"></i>
@@ -225,6 +224,9 @@
 <script>
     $(document).ready(function () {
         initializeDatatable();
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgaySinhText').append(moment('@this.Model.NgaySinh.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
     });
 
     function initializeDatatable() {
@@ -257,6 +259,20 @@
                 {
                     "aTargets": [0, 1, 2, 3],
                     "bSortable": false
+                },
+                {
+                    "aTargets": [3],
+                    "mRender": function (data, type, o) {
+                        var status = "";
+                        var data = o[3];
+                        status += ($('<span/>', {
+                            'class': 'badge',
+                            'style': 'background-color: #009FFF!important;',
+                            html: data,
+                            'data-id': data
+                        })[0].outerHTML);
+                        return status;
+                    }
                 },
                 {
                     "aTargets": [4],
@@ -483,7 +499,7 @@
                 $('#createQTHTPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -500,7 +516,7 @@
                 $('#createQTLVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -517,7 +533,7 @@
                 $('#editQTHTPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -535,7 +551,7 @@
                 $('#createTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -553,7 +569,7 @@
                 $('#editTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -571,7 +587,7 @@
                 $('#detailTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -589,7 +605,7 @@
                 $('#createQTLVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -607,7 +623,7 @@
                 $('#editQTLVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -618,7 +634,7 @@
             type: "warning",
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonText: "Vâng, chắc chắn Xoá",
             confirmButtonClass: 'btn btn-success',
             cancelButtonText: "Không",
             showCancelButton: true,
@@ -631,11 +647,11 @@
                     id: idTTGD,
                 },
                 success: function (result) {
-                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    swal("Xoá", result.message, "success");
                     RefreshTable('thongTinGiaDinhTable');
                 },
                 error: function (error) {
-                    swal('Lỗi', 'Thao tác xoá không thực hiện được. Vui lòng thử lại sau!', 'error');
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         });
@@ -647,7 +663,7 @@
             type: "warning",
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonText: "Vâng, chắc chắn Xoá",
             confirmButtonClass: 'btn btn-success',
             cancelButtonText: "Không",
             showCancelButton: true,
@@ -660,11 +676,11 @@
                     id: idQTHT,
                 },
                 success: function (result) {
-                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    swal("Xoá", result.message, "success");
                     RefreshTable('quaTrinhHocTapTable');
                 },
                 error: function (error) {
-                    swal('Lỗi', 'Thao tác xoá không thực hiện được. Vui lòng thử lại sau!', 'error');
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         });
@@ -676,7 +692,7 @@
             type: "warning",
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonText: "Vâng, chắc chắn Xoá",
             confirmButtonClass: 'btn btn-success',
             cancelButtonText: "Không",
             showCancelButton: true,
@@ -690,11 +706,11 @@
                 },
                 success: function (result) {
                     RefreshQTLVTable();
-                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    swal("Xoá", result.message, "success");
                     RefreshQTLVTable();
                 },
                 error: function (error) {
-                    swal('Lỗi', 'Thao tác xoá không thực hiện được. Vui lòng thử lại sau!', 'error');
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         });
@@ -719,7 +735,7 @@
                 $('#TTPVPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -730,7 +746,7 @@
             type: "warning",
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonText: "Vâng, chắc chắn Xoá",
             confirmButtonClass: 'btn btn-success',
             cancelButtonText: "Không",
             showCancelButton: true,
@@ -743,11 +759,11 @@
                     id: idTTPV,
                 },
                 success: function (result) {
-                    swal("Xoá.", "Dữ liệu đã được xoá.", "success");
+                    swal("Xoá", result.message, "success");
                     RefreshTable('thongTinPhongVanTable');
                 },
                 error: function (error) {
-                    swal('Lỗi','Thao tác xoá không thực hiện được. Vui lòng thử lại sau!','error');
+                    swal('Lỗi',error.message,'error');
                 }
             });
         });

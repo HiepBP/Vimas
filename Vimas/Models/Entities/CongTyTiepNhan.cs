@@ -22,14 +22,14 @@ namespace Vimas.Models.Entities
     
         public int Id { get; set; }
         public string TenTiengAnh { get; set; }
-        public string TenTiengViet { get; set; }
+        public string TenTiengNhat { get; set; }
         public string NganhNghe { get; set; }
         public string NguoiDaiDien { get; set; }
         public string DiaChi { get; set; }
         public string DienThoai { get; set; }
         public string Fax { get; set; }
         public Nullable<int> idNghiepDoan { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         public virtual NghiepDoan NghiepDoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

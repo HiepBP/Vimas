@@ -1,0 +1,149 @@
+﻿@model ThongTinGiaDinhEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="createThongTinGiaDinhForm" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thêm thông tin gia đình</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.HoTen, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.HoTen, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.HoTen)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.Relation, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.EnumDropDownListFor(q => q.Relation, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgaySinh">Ngày Sinh</label>
+                        <div class="col-md-5">
+                            <input class="form-control default-cursor" id="NgaySinh" type="text" value="" readonly style="background-color:white" />
+                            <input type="hidden" name="NgaySinh" value="@this.Model.NgaySinh" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgheNghiep, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.NgheNghiep, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NoiLamViec, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.NoiLamViec, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.DiaChi, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.DiaChi, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.DiaChi)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.SoDienThoai, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.SoDienThoai, new { @class = " form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.SoDienThoai)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="createTTGD()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#createThongTinGiaDinhForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+        initializeDateRangePicker();
+    })
+
+    function createTTGD() {
+        var form = $('#createThongTinGiaDinhForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = $('#createThongTinGiaDinhForm').serialize();
+        if(form.valid()){
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Create","ThongTinGiaDinh")',
+            data: formData,
+            success: function (result) {
+                alert(result.message);
+                $('#createTTGDPanel').modal('hide');
+                $('#createTTGDPanel').html("");
+                RefreshTable('thongTinGiaDinhTable');
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+        }
+    }
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('input[name="NgaySinh"]').val(moment().format("L"));
+        $('#NgaySinh').val(now);
+        $('#NgaySinh').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgaySinh').val(start.format('LL'));
+            $('input[name="NgaySinh"]').val(start.format("DD/MM/YYYY"));
+        });
+    };
+</script>

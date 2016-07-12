@@ -54,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="editAccount()" value="Thêm tài khoản" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="editAccount()" value="Lưu" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -77,12 +77,12 @@
             url: '@Url.Action("Edit","TaiKhoan")',
             data: formData,
             success: function (result) {
-                alert(result.message);
-                $('#editAccountModel').modal('hide');
-                RefreshTable(taiKhoanDatatable);
+                swal("Chỉnh sửa", result.message, "success");
+                $('#editAccountModal').modal('hide');
+                RefreshTable('taiKhoanDatatable');
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
     }

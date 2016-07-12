@@ -1,0 +1,166 @@
+﻿
+@{
+    var user = HttpContext.Current.User;
+    ViewBag.Title = "Thông tin ký túc xá";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Thông tin ký túc xá</h3>
+            </div>
+@if (user.IsInRole("Admin") || user.IsInRole("PhongQuanLyKTX"))
+{
+            <div class="col-md-4">
+                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
+                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin ký túc xá
+                </a>
+            </div>
+}
+        </div>
+        <hr />
+    </div>
+
+    <div class="card-padding">
+        <div id="datatable">
+            <table id="KTXDatatable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                    <tr>
+                        <th>
+                            <label class="">Họ Tên</label>
+                        </th>
+                        <th>
+                            <label class="">Ngày sinh</label>
+                        </th>
+                        <th>
+                            <label class="">Quê quán</label>
+                        </th>
+                        <th>
+                            <label class="">Địa chỉ liên lạc</label>
+                        </th>
+                        <th>
+                            <label class="">Ngày vào</label>
+                        </th>
+                        <th>
+                            <label class="">Ngày ra</label>
+                        </th>
+                        <th>
+                            <label class="">Số phòng</label>
+                        </th>
+                        <th>
+                            <label class="">Số hộc tủ đồ</label>
+                        </th>
+                        <th>
+                            <label class=""></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        InitOrderDatatable();
+    });
+    function InitOrderDatatable() {
+        $("#KTXDatatable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadThongTinKyTucXa")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4, 5, 6, 7],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [8],
+                    "mRender": function (data, type, o) {
+                        var data = o[8];
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongQuanLyKTX"))
+                        {
+                            <text>
+                        return '';
+                        </text>
+                        } else
+                        {
+                        <text>                        
+                        var edit = "<a id='editThongTinKTX' class='btn btn-xs btn-primary' href='@Url.Action("Edit","KyTucXa")?idktx=" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
+                        var del = "<button type='button' id='delThongTinKTX' class='btn btn-xs btn-danger' onclick='delTTKTX(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Xóa</button>";
+                        
+                        return edit + " " + del;
+                        </text>
+                        }
+                    }
+                }
+            ],
+            "bAutoWidth": false
+        });
+    }
+
+    function delTTKTX(idktx) {
+        if (confirm("Chắc chắn xóa dòng thông tin này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Del", "KyTucXa")',
+                data: {
+                    idktx: idktx,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTKTXTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function addTTKTX(idttcn) {
+        if (confirm("Học viên này chưa từng ở ký túc xá.\nThêm thông tin ký túc xá cho học viên này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Add", "KyTucXa")',
+                data: {
+                    idttcn: idttcn,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTTKTXTable();
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+    function RefreshTTKTXTable() {
+        var oTable = $('#KTXDatatable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+
+</script>

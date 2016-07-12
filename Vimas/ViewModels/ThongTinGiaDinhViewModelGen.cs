@@ -18,7 +18,7 @@ namespace Vimas.ViewModels
     			public virtual int Id { get; set; }
     			public virtual int IdThongTinCaNhan { get; set; }
     			public virtual string HoTen { get; set; }
-    			public virtual string QuanHe { get; set; }
+    			public virtual Nullable<int> QuanHe { get; set; }
     			public virtual System.DateTime NgaySinh { get; set; }
     			public virtual string NgheNghiep { get; set; }
     			public virtual string NoiLamViec { get; set; }

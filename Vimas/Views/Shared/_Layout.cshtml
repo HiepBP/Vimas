@@ -15,10 +15,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" rel="stylesheet" type="text/css" />
     <link href="/Content/template/template-epona/css/font-awesome.css" rel="stylesheet" />
 
-    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.css" />
-        <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.js"></script>*@
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.10/datatables.min.js"></script>
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
 
     <!-- Vendor CSS -->
     <link href="~/Content/template/template-material/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
@@ -34,16 +35,21 @@
     @*<link href="~/Content/plugins/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css" rel="stylesheet"/>*@
     @*<link href="~/Content/plugins/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet"/>*@
     <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="~/Content/plugins/DataTables-1.10.12/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/plugins/DataTables-1.10.12/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/plugins/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="~/Content/plugins/bootstrap-tooltip/tooltip.js"></script>
     <!-- CSS -->
     <link href="~/Content/template/template-material/css/app.min.1.css" rel="stylesheet">
     <link href="~/Content/template/template-material/css/app.min.2.css" rel="stylesheet">
 
     <!-- ZMDI -->
     <link href="~/Content/css/material-design-iconic-font.css" rel="stylesheet" />
+    <!-- Alert -->
+    <link href="~/Content/css/sweetalert.css" rel="stylesheet" />
 
     <!-- Custom -->
     <link href="~/Content/css/theme.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
     <style>
         body {
             font-family: 'OpenSans';
@@ -105,7 +111,15 @@
                             <a href="@Url.Action("Index","ThongTinCaNhan", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin học viên</a>
                         </li>
                         <li>
-                            <a href="#"><i class="sub-menu zmdi zmdi-trending-up"></i> Nothing</a>
+                            <a href="@Url.Action("Index","SucKhoe", new { area = "HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Sức Khỏe</a>
+                        <li>
+                            <a href="@Url.Action("Index", "ThongTinNopTien" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách thu/chi</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "KyTucXa" , new { area="HocVien" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Thông tin ký túc xá</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "HopDongDOLAB" , new { area="HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách hợp đồng DOLAB</a>
                         </li>
                     </ul>
                 </li>
@@ -123,16 +137,41 @@
                         </ul>
                     </li>
                 }
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý nghiệp đoàn</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "NghiepDoan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách nghiệp đoàn</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
+                {
+                    <li class="sub-menu submenu-style">
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý công ty chứng nghề</a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "CongTyChungNghe", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty chứng nghề</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
                 @if (user.IsInRole("Admin"))
                 {
                     <li class="sub-menu submenu-style">
                         <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý hệ thống</a>
                         <ul>
                             <li>
-                                <a href="#"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
+                                <a href="@Url.Action("Index","CongTyTiepNhan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty tiếp nhận</a>
                             </li>
                             <li>
-                                <a href="#"><i class="zmdi zmdi-window-restore"></i> Quản lý kho</a>
+                                <a href="@Url.Action("Index","TaiKhoan", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong"})"><i class="zmdi zmdi-window-restore"></i> Trung Tâm GTVL</a>
                             </li>
                         </ul>
                     </li>
@@ -163,17 +202,6 @@
     </footer>
 
     @RenderSection("scripts", false)
-    <script>
-        $(document)
-          .ajaxStart(function () {
-              $('#loading-image').fadeIn(400);
-          })
-          .ajaxStop(function () {
-              $('#loading-image').fadeOut(400, function () {
-                  $(this).trigger('onFadeOutComplete');
-              });
-          });
-    </script>
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
@@ -198,6 +226,8 @@
     <script src="/Content/template/template-material/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/Content/template/template-material/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
 
+    <script src="~/Content/template/template-material/vendors/fileinput/fileinput.min.js"></script>
+
     <script src="~/Content/template/template-material/vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
     <script src="/Content/template/template-material/js/flot-charts/curved-line-chart.js"></script>
     <script src="/Content/template/template-material/js/flot-charts/line-chart.js"></script>
@@ -205,8 +235,9 @@
     <script src="/Content/template/template-material/js/charts.js"></script>
     <script src="/Content/template/template-material/js/functions.js"></script>
 
+    <!-- Custom -->
     <script src="~/Content/js/common.js"></script>
-
+    <script src="~/Content/js/upload-image.js"></script>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js">
     </script>
@@ -222,5 +253,19 @@
     @*<script src="~/Content/plugins/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>*@
     @*<script src="~/Content/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>*@
     <script src="~/Content/plugins/select2-4.0.3/dist/js/select2.min.js"></script>
+    <script src="~/Scripts/accounting.min.js"></script>
+    <script src="~/Content/plugins/DataTables-1.10.12/fnSetFilteringDelay.js"></script>
+
+    <script>
+        $(document)
+          .ajaxStart(function () {
+              $('#loading-image').fadeIn(400);
+          })
+          .ajaxStop(function () {
+              $('#loading-image').fadeOut(400, function () {
+                  $(this).trigger('onFadeOutComplete');
+              });
+          });
+    </script>
 </body>
 </html>

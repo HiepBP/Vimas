@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Trung Tâm Giới Thiệu Việc Làm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Danh sách Trung tâm giới thiệu việc làm</h3>
+            </div>
+            <div class="col-md-4">
+                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
+                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm trung tâm
+                </a>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="card-padding">
+        <div id="datatable">
+            <table id="trungTamDataTable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                    <tr>
+                        <th>
+                            <label>Mã Nguồn</label>
+                        </th>
+                        <th>
+                            <label class="">Tên cơ sở</label>
+                        </th>
+                        <th>
+                            <label class="">Địa Chỉ</label>
+                        </th>
+                        <th>
+                            <label class="">SĐT</label>
+                        </th>
+                        <th>
+                            <label class="">Fax</label>
+                        </th>
+                        <th>
+                            <label class="">Số HDLK</label>
+                        </th>
+                        <th>
+                            <label class=""></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        InitOrderDatatable();
+    });
+    function InitOrderDatatable() {
+        $("#trungTamDataTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadDanhSachTrungTam")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4, 5],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
+                        var del = "<a id='deleteTrungTam' class='btn btn-sm btn-danger' onClick='Delete("+data+")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        var edit = "<a id='editTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        return detail +" "+edit +" "+ del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+    }
+
+    function Delete(id) {
+        if (confirm("Bạn có chắc xóa dòng này?")) {
+            $.ajax({
+                url: '@this.Url.Action("Delete")',
+                data: { id},
+                        method: "POST",
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTrungTamGTVLTable()
+                },
+                error: function (error) {
+                    alert(error.message);
+                }
+            });
+        }
+    }
+
+    function RefreshTrungTamGTVLTable() {
+        var oTable = $('#trungTamDataTable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+
+</script>
+

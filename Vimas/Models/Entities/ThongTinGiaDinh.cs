@@ -17,7 +17,7 @@ namespace Vimas.Models.Entities
         public int Id { get; set; }
         public int IdThongTinCaNhan { get; set; }
         public string HoTen { get; set; }
-        public string QuanHe { get; set; }
+        public Nullable<int> QuanHe { get; set; }
         public System.DateTime NgaySinh { get; set; }
         public string NgheNghiep { get; set; }
         public string NoiLamViec { get; set; }

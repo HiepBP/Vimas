@@ -17,7 +17,7 @@ namespace Vimas.Models.Entities
         public int Id { get; set; }
         public Nullable<int> IdThongTinCaNhan { get; set; }
         public Nullable<int> IdHopDongDOLAB { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
     
         public virtual HopDongDOLAB HopDongDOLAB { get; set; }
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }

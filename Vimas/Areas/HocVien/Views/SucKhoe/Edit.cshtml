@@ -1,0 +1,253 @@
+﻿@model SucKhoeEditViewModel
+
+@{
+    ViewBag.Title = "Báo cáo sức khỏe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Chỉnh sửa báo cáo sức khỏe</h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <form id="editSuckhoeForm" action="@this.Url.Action("Edit")" method="post">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="IdThongTinCaNhan">ID thông tin cá nhân<span style="color:red">*</span></label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.DropDownListFor(q => q.IdThongTinCaNhan, this.Model.AvailableIDs, new { @class = "form-control", @placeholder = "Chọn ID", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ChieuCao">Chiều cao</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.ChieuCao, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="CanNang">Cân nặng</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.CanNang, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NhomMau">Nhóm máu</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.NhomMau, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NhomMau">Tay thuận</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.RadioButtonFor(q => q.TayThuan, 1)
+                                    Tay phải <!--tay phải-->
+                                    <br />
+                                    @Html.RadioButtonFor(q => q.TayThuan, 0)<!--tay trái-->
+                                    Tay trái
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ThiLucMatTrai">Thị lực mắt trái</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.ThiLucMatTrai, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="ThiLucMatPhai">Thị lực mắt phải</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextBoxFor(q => q.ThiLucMatPhai, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="SoHDLK">Hình xăm</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.RadioButtonFor(q => q.HinhXam, true)
+                                    Có
+                                    <br />
+                                    @Html.RadioButtonFor(q => q.HinhXam, false)
+                                    Không
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayKhamDot1">Ngày khám đợt 1</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control default-cursor" id="NgayKhamDot1" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayKhamDot1" value="@this.Model.NgayKhamDot1" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="GhiChuSucKhoeDot1">Ghi chú sức khỏe đợt 1</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextAreaFor(q => q.GhiChuSucKhoeDot1, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="NgayKhamDot2">Ngày khám đợt 2</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    <input class="form-control default-cursor" id="NgayKhamDot2" type="text" value="" readonly style="background-color:white" />
+                                    <input type="hidden" name="NgayKhamDot2" value="@this.Model.NgayKhamDot2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="GhiChuSucKhoeDot2">Ghi chú sức khỏe đợt 2</label>
+                            <div class="col-md-6">
+                                <div class="fg-line">
+                                    @Html.TextAreaFor(q => q.GhiChuSucKhoeDot2, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            @Html.HiddenFor(q => q.Active)
+            <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
+            <button type="button" onclick="Update();" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>
+
+<script>
+
+    $(function () {
+        initializeDateRangePicker();
+    });
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+
+        $('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+
+        $('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()');
+
+
+        $('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKhamDot1').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayKhamDot1').val(start.format('LL'));
+            $('input[name="NgayKhamDot1"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayKhamDot2').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayKhamDot2').val(start.format('LL'));
+            $('input[name="NgayKhamDot2"]').val(start.format("DD/MM/YYYY"));
+        });
+    }
+
+    function Update() {
+        var formData = $('#editSuckhoeForm').serialize();
+
+        $.ajax({
+            url: '@this.Url.Action("Edit")',
+            data: formData,
+            method: 'POST',
+            success: function (result) {
+                alert(result.message);
+                window.location.href = "@this.Url.Action("Index")";
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+    }
+</script>
+
+

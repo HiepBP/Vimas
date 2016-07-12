@@ -1,0 +1,313 @@
+﻿@model Vimas.ViewModels.KyTucXaEditViewModel
+
+@{
+    ViewBag.Title = "Thêm thông tin ký túc xá";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title-inner {
+        background-color: #4da6ff;
+        border-bottom: 1px solid #808080;
+        border-right: 4px double #808080;
+    }
+
+    .border-all {
+        border: 3px double #808080;
+    }
+
+    .no-margin-right {
+        margin-right: 0px;
+    }
+
+    .first-row {
+        margin-top: 15px;
+    }
+
+    .card-header {
+        padding-bottom: 0px !important;
+    }
+</style>
+<div class="card">
+    <div class="card-header bg-info">
+        <div class="row">
+            <div class="col-md-10">
+                <h3 class="text-uppercase">Thêm thông tin ký túc xá</h3>
+            </div>
+            <div class="col-md-2"><h3><span><i class="pull-right glyphicon glyphicon-edit"></i></span></h3></div>
+        </div>
+        <hr />
+    </div>
+    <form id="createProductItemForm" method="post">
+        <div class="modal-body">
+            @Html.AntiForgeryToken()
+            <!-- END: các field của thongtincanhan -->
+            <div class="form-horizontal">
+                <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px;">
+                    <div class="col-md-6">
+                        <div class="row no-margin-right">
+                            <div class="title-inner col-md-12">
+                                <h4><span><i class="glyphicon glyphicon-user"></i></span> Thông tin cá nhân</h4>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="border-all">
+                            <div class="form-group first-row">
+                                <label class="control-label col-md-5">Họ Tên</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.DropDownListFor(q => q.IdThongTinCaNhan, this.Model.AvailableThongTinCaNhan, new { @class = "form-control", @id = "select2ThongTinCaNhan" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Tên phiên âm nhật</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" readonly="readonly" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Ngày Sinh</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" readonly="readonly" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="NoiSinh">Quê quán</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control" readonly="readonly" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="DiaChiThuongTru">Địa chỉ thường trú</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <textarea id="DiaChiThuongTru" class="form-control" readonly="readonly" rows="3"></textarea>
+                                        <input type="hidden" id="soNha" value="" />
+                                        <input type="hidden" id="phuongXa" value="" />
+                                        <input type="hidden" id="quanHuyen" value="" />
+                                        <input type="hidden" id="tinh" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="DiaChiLienLac">Địa chỉ liên lạc</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <textarea class="form-control" readonly="readonly" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row no-margin-right">
+                            <div class="title-inner col-md-12">
+                                <h4><span><i class="glyphicon glyphicon-bookmark"></i></span> Thông tin ký túc xá</h4>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="border-all">
+                            <div class="form-group first-row">
+                                <label class="control-label col-md-5" for="NgayVao">Ngày vào<span style="color:red">*</span></label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control" id="NgayVao" type="text" autocomplete="off" required value="" style="background-color:white" />
+                                        <input type="hidden" name="NgayVao" required value="" />
+                                        @Html.ValidationMessageFor(q => q.NgayVao)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="NgayRa">Ngày Ra</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        <input class="form-control" id="NgayRa" type="text" autocomplete="off" value="" style="background-color:white" />
+                                        <input type="hidden" name="NgayRa" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="SoPhong">Số phòng<span style="color:red">*</span></label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.SoPhong, new { @class = "form-control", required = "true" })
+                                        @Html.ValidationMessageFor(q => q.SoPhong)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="SoHocTuDo">Số hộc tủ đồ</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextBoxFor(q => q.SoHocTuDo, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-5" for="GhiChu">Ghi Chú</label>
+                                <div class="col-md-6">
+                                    <div class="fg-line">
+                                        @Html.TextAreaFor(q => q.GhiChu, new { @class = "form-control", @rows = "3" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
+            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // prevent edit on dateTime textbox
+        $('#NgayVao, #NgayRa').on('focus', function () {
+            $(this).keydown(function (event) {
+                event.preventDefault();
+            });
+        });
+        $('#select2ThongTinCaNhan').select2();
+
+        // địa chỉ thường trú được ghép từ:
+        // SoNha + PhuongXa + QuanHuyen + Tinh
+        var soNha = '';
+        var phuongXa = '';
+        var quanHuyen = '';
+        var tinh = '';
+        var diaChi = '';
+        if ($('#soNha').val()) {
+            soNha = $('#soNha').val() + ', ';
+            diaChi = diaChi.concat(soNha);
+        }
+        if ($('#phuongXa').val()) {
+            phuongXa = $('#phuongXa').val() + ', ';
+            diaChi = diaChi.concat(phuongXa);
+        }
+        if ($('#quanHuyen').val()) {
+            quanHuyen = $('#quanHuyen').val() + ', ';
+            diaChi = diaChi.concat(quanHuyen);
+        }
+        if ($('#tinh').val()) {
+            tinh = $('#tinh').val();
+            diaChi = diaChi.concat(tinh);
+        }
+
+        $('#DiaChiThuongTru').val(diaChi);
+    });
+    $(function () {
+        initializeDateRangePicker();
+    });
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+
+        $('#NgayVao').val("");
+        $('#NgayVao').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayVao').val(start.format('LL'));
+            $('input[name="NgayVao"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('#NgayRa').val("");
+        $('#NgayRa').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayRa').val(start.format('LL'));
+            $('input[name="NgayRa"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        @if (this.Model.NgayVao.HasValue) {
+            <text>$('#NgayVao').val(moment('@this.Model.NgayVao.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayVao').val("");</text>
+        }
+        @if (this.Model.NgayRa.HasValue) {
+            <text>$('#NgayRa').val(moment('@this.Model.NgayRa.Value.ToShortDateString()','DD/MM/YYYY').format('LL'));</text>
+        }
+        else {
+            <text>$('#NgayRa').val("");</text>
+        }
+    }
+</script>

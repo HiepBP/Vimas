@@ -106,10 +106,10 @@
                         </text>
                         } else
                         {
-                        <text>                        
+                        <text>
                         var edit = "<a id='editThongTinKTX' class='btn btn-xs btn-primary' href='@Url.Action("Edit","KyTucXa")?idktx=" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Sửa</a>";
                         var del = "<button type='button' id='delThongTinKTX' class='btn btn-xs btn-danger' onclick='delTTKTX(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Xóa</button>";
-                        
+
                         return edit + " " + del;
                         </text>
                         }
@@ -121,41 +121,61 @@
     }
 
     function delTTKTX(idktx) {
-        if (confirm("Chắc chắn xóa dòng thông tin này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Del", "KyTucXa")',
                 data: {
-                    idktx: idktx,
+                    id: idktx,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTTKTXTable();
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function addTTKTX(idttcn) {
-        if (confirm("Học viên này chưa từng ở ký túc xá.\nThêm thông tin ký túc xá cho học viên này?")) {
+        swal({
+            title: "Học viên này chưa từng ở ký túc xá.\nThêm thông tin ký túc xá cho học viên này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Add", "KyTucXa")',
                 data: {
-                    idttcn: idttcn,
+                    id: idttcn,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Thêm mới", result.message, "success");
                     RefreshTTKTXTable();
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
     function RefreshTTKTXTable() {
         var oTable = $('#KTXDatatable').dataTable();

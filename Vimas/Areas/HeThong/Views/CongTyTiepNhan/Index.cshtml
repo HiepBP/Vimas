@@ -105,16 +105,16 @@
                         @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
                         {
                             <text>
-                            var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                            var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                            </text>
+                        var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteCTTN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
                         }
                         else
                         {
                             <text>
-                            var edit = "";
-                            var del = "";
-                            </text>
+                        var edit = "";
+                        var del = "";
+                        </text>
                         }
 
                         return edit + " " + del;
@@ -124,25 +124,6 @@
             ],
             "bAutoWidth": false
         }).fnSetFilteringDelay(delaySearchDb);
-    }
-
-    function deleteCTTN(idCTTN) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("Delete", "CongTyTiepNhan")',
-                data: {
-                    id: idCTTN,
-                },
-                success: function (result) {
-                    swal("Xoá", result.message, "success");
-                    RefreshTable('#congTyTiepNhanDatatable');
-                },
-                error: function (error) {
-                    swal('Lỗi', error.message, 'error');
-                }
-            });
-        }
     }
 
     function showCreateCTTN() {
@@ -181,7 +162,17 @@
     }
 
     function deleteCTTN(idCTTN) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "CongTyTiepNhan")',
@@ -189,13 +180,13 @@
                     id: idCTTN,
                 },
                 success: function (result) {
-                    swal("Xoá", result.message, "success");(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTable('congTyTiepNhanDatatable');
                 },
                 error: function (error) {
                     swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 </script>

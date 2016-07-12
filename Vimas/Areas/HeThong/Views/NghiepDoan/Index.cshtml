@@ -117,11 +117,23 @@
     }
 
     function Delete(id) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
+                type: "POST",
                 url: '@this.Url.Action("Delete")',
-                data: { id},
-                        method: "POST",
+                data: {
+                    id: id,
+                },
                 success: function (result) {
                     swal("Xoá", result.message, "success");
                     RefreshNghiepDoanTable();
@@ -130,7 +142,7 @@
                     swal('Lỗi',error.message,'error');
                 }
             });
-        }
+        });
     }
 
     function RefreshNghiepDoanTable() {

@@ -167,7 +167,17 @@
     }
 
     function deleteTTNT(idTTNT) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "ThongTinNopTien")',
@@ -182,7 +192,7 @@
                     swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function RefreshTTNTTable() {

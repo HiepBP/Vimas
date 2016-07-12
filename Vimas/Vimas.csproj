@@ -2985,6 +2985,7 @@
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Create.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Edit.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Detail.cshtml" />
+    <None Include="Properties\PublishProfiles\VimasAdmin - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

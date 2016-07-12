@@ -61,7 +61,7 @@
                     <div class="form-group">
                         @Html.LabelFor(q => q.DangLam, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            <input type="checkbox" id="DangLam" name="DangLam"  checked="@(this.Model.DangLam.Value ? "":null)" />
+                            <input type="checkbox" id="DangLam" name="DangLam" value="true" checked="@(this.Model.DangLam.GetValueOrDefault() ? "":null)" />
                         </div>
                     </div>
                 </div>

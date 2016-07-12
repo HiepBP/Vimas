@@ -23,7 +23,7 @@
                     <div class="form-group">
                         @Html.LabelFor(q => q.NgayDangKy, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            <div class="fg-line">
+                            <div class="fg-line" id="NgayDangKy">
                                 @Html.DisplayTextFor(q => q.NgayDangKy)
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         @Html.LabelFor(q => q.NgayNhan, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
-                            <div class="fg-line form-control">
+                            <div class="fg-line form-control" id="NgayNhan">
                                 @Html.DisplayTextFor(q => q.NgayNhan)
                             </div>
                         </div>
@@ -63,7 +63,6 @@
                         <tr>
                             <th>STT</th>
                             <th>Họ tên</th>
-                            <th>Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -78,200 +77,54 @@
 
 <script>
     $(document).ready(function () {
-        var form = $('#HopDongDOLABForm')
-            .removeData("validator") /* added by the raw jquery.validate plugin */
-            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+        @if (this.Model.NgayDangKy.HasValue)
+        {
+            <text>$('#NgayDangKy').append(moment('@this.Model.NgayDangKy.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
+        @if (this.Model.NgayNhan.HasValue)
+        {
+            <text>$('#NgayNhan').append(moment('@this.Model.NgayNhan.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));</text>
+        }
 
-        $.validator.unobtrusive.parse(form);
-
-
-        initializeDateRangePicker();
-        initializeDDL();
+        selectedTTCNTable();
     });
 
-    function createDOLAB() {
-        //var formData = $('#createProductItemForm').serialize();
-        var formData = new FormData($('#HopDongDOLABForm')[0]);
-        for (var i = 0; i < ttcnList.length; i++)
-            formData.append("SelectedThongTinCaNhan[]", ttcnList[i])
-        $.ajax({
-            url: "@this.Url.Action("Create","HopDongDOLAB")",
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (result) {
-                swal("Thêm mới", result.message, "success");
-                $('#createDOLABPanel').modal('hide');
-                $('#createDOLABPanel').html("");
-                RefreshTable('DOLABDatatable');
+    function selectedTTCNTable(){
+        console.log('Initialize datatable')
+        $('#selectedTTCNTable').dataTable({
+            "dom": '',
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "responsive": true,
+            "oLanguage": {
+                "sSearch": "Số đăng kí:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
             },
-            error: function (error) {
-                swal('Lỗi', error.message, 'error');
-            }
+            "sAjaxSource": "@Url.Action("GetByIdDOLAB","ThongTinCaNhan", new { area = "HocVien" })",
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "idDOLAB", "value": @this.Model.Id });
+            },
+            "aoColumnDefs": [
+               {
+                   "aTargets": [0],
+                   "sClass": "text-center"
+               },
+            ],
+            "columns": [
+                { "data": "No", "bSortable": false },
+                { "data": "HoTen", "bSortable": false },
+            ],
         });
-    };
-
-    function initializeDateRangePicker() {
-        moment.locale('vi');
-        var now = moment().format("LL");
-        $('input[name="NgayDangKy"]').val(moment().format("L"))
-        $('#NgayDangKy').val(now);
-        $('#NgayDangKy').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            autoUpdateInput: false,
-            minDate: moment().add(-50, 'y'),
-            maxDate: moment().add(10, 'y'),
-            locale: {
-                format: "LL",
-                daysOfWeek: [
-                    "Chủ Nhật",
-                    "Thứ 2",
-                    "Thứ 3",
-                    "Thứ 4",
-                    "Thứ 5",
-                    "Thứ 6",
-                    "Thứ 7"
-                ],
-                monthNames: [
-                    "Tháng 1",
-                    "Tháng 2",
-                    "Tháng 3",
-                    "Tháng 4",
-                    "Tháng 5",
-                    "Tháng 6",
-                    "Tháng 7",
-                    "Tháng 8",
-                    "Tháng 9",
-                    "Tháng 10",
-                    "Tháng 11",
-                    "Tháng 12"
-                ],
-                firstDay: 1,
-            }
-        },
-        function (start, end, label) {
-            $('#NgayDangKy').val(start.format('LL'));
-            $('input[name="NgayDangKy"]').val(start.format("DD/MM/YYYY"));
-        });
-
-        $('input[name="NgayNhan"]').val(moment().format("L"))
-        $('#NgayNhan').val(now);
-        $('#NgayNhan').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            autoUpdateInput: false,
-            minDate: moment().add(-50, 'y'),
-            maxDate: moment().add(10, 'y'),
-            locale: {
-                format: "LL",
-                daysOfWeek: [
-                    "Chủ Nhật",
-                    "Thứ 2",
-                    "Thứ 3",
-                    "Thứ 4",
-                    "Thứ 5",
-                    "Thứ 6",
-                    "Thứ 7"
-                ],
-                monthNames: [
-                    "Tháng 1",
-                    "Tháng 2",
-                    "Tháng 3",
-                    "Tháng 4",
-                    "Tháng 5",
-                    "Tháng 6",
-                    "Tháng 7",
-                    "Tháng 8",
-                    "Tháng 9",
-                    "Tháng 10",
-                    "Tháng 11",
-                    "Tháng 12"
-                ],
-                firstDay: 1,
-            }
-        },
-        function (start, end, label) {
-            $('#NgayNhan').val(start.format('LL'));
-            $('input[name="NgayNhan"]').val(start.format("DD/MM/YYYY"));
-        });
-    };
-
-    function initializeDDL() {
-        var pageSize = 20;
-        var optionListUrl = '@Url.Action("LoadThongTinCaNhanDDL","ThongTinCaNhan", new { area = "HocVien"})';
-        $('#thongTinCaNhanDDL').select2(
-            {
-                ajax: {
-                    delay: 150,
-                    url: optionListUrl,
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        params.page = params.page || 1;
-                        return {
-                            searchTerm: params.term,
-                            pageSize: pageSize,
-                            pageNumber: params.page
-                        };
-                    },
-                    processResults: function (data, params) {
-                        params.page = params.page || 1;
-                        return {
-                            results: data.Results,
-                            pagination: {
-                                more: (params.page * pageSize) < data.Total
-                            }
-                        };
-                    }
-                },
-                placeholder: "-- Lựa chọn --",
-                minimumInputLength: 0,
-                allowClear: true,
-            });
-    }
-
-    var ttcnList = [];
-    var count = 1;
-
-    $('#addTTCN').on('click', function () {
-        var option = $('#thongTinCaNhanDDL option:selected');
-        for (var i = 0; i < ttcnList.length; i++) {
-            if (ttcnList[i] == option[0].value) {
-                //ShowMessage("Đã tồn tại nhà cung cấp này!", 1);
-                return;
-            }
-        }
-        var table = document.getElementById("selectedTTCNTable");
-        var row = table.insertRow(count);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        cell1.innerHTML = count;
-        cell2.innerHTML = option[0].text;
-        cell3.innerHTML = $("<button>", {
-            //'type': 'button',
-            'id': option[0].value,
-            'class': 'btn btn-danger btn-md glyphicon glyphicon-minus',
-            'onclick': 'removeTTCNLine(this,' + option[0].value + ')',
-        })[0].outerHTML;
-        ttcnList.push(option[0].value);
-        count++;
-    });
-
-    function removeTTCNLine($btn, ttcnId) {
-        $($btn).closest('tr').remove();
-        count--;
-        for (var i = 0; i < ttcnList.length; i++) {
-            if (ttcnList[i] == ttcnId) {
-                ttcnList.splice(i, 1);
-            }
-        }
-        var table = document.getElementById("selectedTTCNTable");
-        var countCurrentRow = 0;
-        for (var i = 1; i < table.rows.length; i++) {
-            table.rows[i].cells[0].innerHTML = ++countCurrentRow;
-        }
     }
 </script>

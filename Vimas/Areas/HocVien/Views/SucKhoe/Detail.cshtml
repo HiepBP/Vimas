@@ -150,13 +150,19 @@
 
 <script>
     $(document).ready(function () {
-        moment.locale('vi');
-        var now = moment().format("LL");
-        $('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-        $('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        @if(this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
+            @:$('#NgayKhamDot1').val("");
+        }else{
+            @:$('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+            @:$('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+        }
 
-        $('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
-        $('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()')
+        @if(this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
+            @:$('#NgayKhamDot2').val("");
+        }else{
+            @:$('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+            @:$('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+        }
     });
 
 </script>

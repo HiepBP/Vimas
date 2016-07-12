@@ -117,19 +117,26 @@
 
     $(function () {
         initializeDateRangePicker();
+
+        @if(this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
+            @:$('#NgayKyHopDong').val("");
+        }else{
+            @:$('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+            @:$('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()');
+        }
+
+        @if(this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
+            @:$('#NgayHetHan').val("");
+        }else{
+            @:$('#NgayHetHan').val(moment('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+            @:$('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()');
+        }
     });
 
     function initializeDateRangePicker() {
         moment.locale('vi');
         var now = moment().format("LL");
-        var ngayKiValue = $('#ngayKi').val();
-        var ngayHetValue = $('#ngayHet').val();
 
-        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()');
-
-        $('input[name="NgayHetHan"]').val('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()');
-
-        $('#NgayKyHopDong').val(moment('@this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
         $('#NgayKyHopDong').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -167,7 +174,6 @@
             $('input[name="NgayKyHopDong"]').val(start.format("DD/MM/YYYY"));
         });
 
-        $('#NgayHetHan').val(moment('@this.Model.NgayHetHan.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
         $('#NgayHetHan').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,

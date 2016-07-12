@@ -240,11 +240,11 @@
             data: formData,
             method: 'POST',
             success: function (result) {
-                alert(result.message);
+                swal("Chỉnh sửa", result.message, "success");
                 window.location.href = "@this.Url.Action("Index")";
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
     }

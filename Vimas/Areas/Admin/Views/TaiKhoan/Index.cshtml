@@ -143,21 +143,31 @@
     }
 
     function deleteAccount(id) {
-        if (confirm("Bạn có muốn xóa tài khoản này")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
-                type: 'POST',
+                type: "POST",
                 url: '@Url.Action("Delete","TaiKhoan")',
                 data: {
                     id: id,
                 },
                 success: function (result) {
                     swal("Xoá", result.message, "success");
-                    RefreshTable()
+                    RefreshTable('taiKhoanDatatable');
                 },
                 error: function (error) {
                     swal('Lỗi', error.message, 'error');
-                },
+                }
             });
-        };
+        });
     }
 </script>

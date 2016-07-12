@@ -55,6 +55,7 @@
 
 <div id="createDOLABPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 <div id="editDOLABPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="detailDOLABPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 <script>
     $(document).ready(function () {
@@ -95,8 +96,8 @@
                         @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
                         {
                                 <text>
-                        var detail = "<a id='detailDOLAB' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
-                        var del = "<a id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        var detail = "<button id='detailDOLAB' class='btn btn-sm btn-primary' onclick='showDetailDOLAB(" + data + ")'><i class='fa fa-eye'></i> Detail</button>";
+                        var del = "<button id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
                         var edit = "<button id='editDOLAB' class='btn btn-sm btn-primary' onclick='showEditDOLAB(" + data + ")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                         </text>
                          }
@@ -115,6 +116,24 @@
             ],
             "bAutoWidth": false
         }).fnSetFilteringDelay(delaySearchDb);
+    }
+
+    function showDetailDOLAB(idDolab) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail","HopDongDOLAB")',
+            data: {
+                id: idDolab,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#detailDOLABPanel').html(result);
+                $('#detailDOLABPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
     }
 
     function showCreateDOLAB() {

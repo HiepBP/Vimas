@@ -214,7 +214,7 @@ namespace Vimas.Areas.HeThong.Controllers
             var hopDongDOLABService = this.Service<IHopDongDOLABService>();
             try
             {
-                var model = hopDongDOLABService.Get(id);
+                var model = new HopDongDOLABViewModel(hopDongDOLABService.Get(id));
                 if(model == null || !model.Active)
                 {
                     return Json(new { success = false, message = "Object không tồn tại" });

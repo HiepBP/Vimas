@@ -391,8 +391,22 @@
             },
             "aoColumnDefs": [
                 {
-                    "aTargets": [0, 1, 2, 3, 4],
+                    "aTargets": [0, 1, 2, 3],
                     "bSortable": false
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function (data, type, o) {
+                        var status = "";
+                        var data = o[4];
+                        status += ($('<span/>', {
+                            'class': 'badge',
+                            'style': 'background-color: #009FFF!important;',
+                            html: data,
+                            'data-id': data
+                        })[0].outerHTML);
+                        return status;
+                    }
                 },
                 {
                     "aTargets": [5],
@@ -592,24 +606,6 @@
         });
     }
 
-    function showCreateQTLV(idThongTinCaNhan) {
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("Create", "QuaTrinhLamViec")',
-            data: {
-                idThongTinCaNhan: idThongTinCaNhan,
-            },
-            success: function (result) {
-                //$('#myModal').modal('show');
-                $('#createQTLVPanel').html(result);
-                $('#createQTLVPanel').modal('show');
-            },
-            error: function (error) {
-                swal('Lỗi',error.message,'error');
-            }
-        });
-    }
-
     function showEditQTLV(idQTLV) {
         $.ajax({
             type: "GET",
@@ -686,7 +682,7 @@
         });
     }
 
-    function deleteQTLT(idQTLV) {
+    function deleteQTLV(idQTLV) {
         swal({
             title: "Bạn có chắc xóa dòng này?",
             type: "warning",

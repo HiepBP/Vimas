@@ -129,7 +129,7 @@
                 $('#createDOLABPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -147,7 +147,7 @@
                 $('#editDOLABPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi',error.message,'error');
             }
         });
     }
@@ -161,11 +161,11 @@
                     },
                         method: "POST",
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTable('DOLABDatatable');
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi',error.message,'error');
                 }
             });
         }

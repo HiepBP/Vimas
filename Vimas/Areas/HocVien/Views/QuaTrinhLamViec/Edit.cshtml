@@ -105,12 +105,12 @@
             url: '@Url.Action("Edit", "QuaTrinhLamViec")',
             data: formData,
             success: function (result) {
-                alert(result.message);
+                swal("Chỉnh sửa", result.message, "success");
                 $('#editQTLVPanel').modal('hide');
                 RefreshQTLVTable();
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
     });

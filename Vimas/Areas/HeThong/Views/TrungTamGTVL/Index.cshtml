@@ -106,11 +106,11 @@
                 data: { id},
                         method: "POST",
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTrungTamGTVLTable()
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi',error.message,'error');
                 }
             });
         }

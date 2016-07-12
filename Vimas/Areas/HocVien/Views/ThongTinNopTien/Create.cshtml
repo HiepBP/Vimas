@@ -95,13 +95,13 @@
                 url: '@Url.Action("Create","ThongTinNopTien")',
                 data: formData,
                 success: function (result) {
-                    alert(result.message);
+                    swal("Tạo mới", result.message, "success");
                     $('#createTTNTPanel').modal('hide');
                     $('#createTTNTPanel').html("");
                     RefreshTTNTTable();
                 },
                 error: function (error) {
-                    alert(result.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         }

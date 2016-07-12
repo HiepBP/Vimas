@@ -160,43 +160,54 @@ namespace Vimas.Areas.HocVien.Controllers
         [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<ActionResult> Edit(ThongTinPhongVanEditViewModel model)
         {
-            if (!this.ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
-            var thongTinPhongVanService = this.Service<IThongTinPhongVanService>();
-            var entity = await thongTinPhongVanService.GetAsync(model.Id);
-            #region Get Hinh Anh
-            string hinhAnhPath = "";
-            string root = Server.MapPath("~");
-            string parent = Path.GetDirectoryName(root);
-            string grandParent = Path.GetDirectoryName(parent);
-            string serverPath = grandParent + "/UploadedImageData/";
-            List<string> imgExtension = new List<string>() { ".jpg", ".jpeg", ".png" };
-            if (model.HinhAnhLogo != null)
-            {
-                string brandLogoFileExtension = Path.GetExtension(model.HinhAnhLogo.FileName);
-                if (!imgExtension.Contains(brandLogoFileExtension.ToLower()))
+                if (!this.ModelState.IsValid)
                 {
-                    return Json(new { success = false, message = Resource.InvalidImageFile });
+                    return View(model);
                 }
-                string hinhAnhFileName = "HinhAnh_" + Guid.NewGuid().ToString("N") + brandLogoFileExtension;
-                //model.HinhAnhLogo.SaveAs(serverPath + hinhAnhFileName);
-                //temp
-                model.HinhAnhLogo.SaveAs(HttpContext.Server.MapPath("~/UploadedImageData/") + hinhAnhFileName);
-                hinhAnhPath = "/UploadedImageData/" + hinhAnhFileName;
+                var thongTinPhongVanService = this.Service<IThongTinPhongVanService>();
+                var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+                var entity = await thongTinPhongVanService.GetAsync(model.Id);
+                #region Get Hinh Anh
+                string hinhAnhPath = "";
+                string root = Server.MapPath("~");
+                string parent = Path.GetDirectoryName(root);
+                string grandParent = Path.GetDirectoryName(parent);
+                string serverPath = grandParent + "/UploadedImageData/";
+                List<string> imgExtension = new List<string>() { ".jpg", ".jpeg", ".png" };
+                if (model.HinhAnhLogo != null)
+                {
+                    string brandLogoFileExtension = Path.GetExtension(model.HinhAnhLogo.FileName);
+                    if (!imgExtension.Contains(brandLogoFileExtension.ToLower()))
+                    {
+                        return Json(new { success = false, message = Resource.InvalidImageFile });
+                    }
+                    string hinhAnhFileName = "HinhAnh_" + Guid.NewGuid().ToString("N") + brandLogoFileExtension;
+                    //model.HinhAnhLogo.SaveAs(serverPath + hinhAnhFileName);
+                    //temp
+                    model.HinhAnhLogo.SaveAs(HttpContext.Server.MapPath("~/UploadedImageData/") + hinhAnhFileName);
+                    hinhAnhPath = "/UploadedImageData/" + hinhAnhFileName;
+                }
+                else
+                {
+                    hinhAnhPath = entity.HinhAnh;
+                }
+                #endregion
+                model.HinhAnh = hinhAnhPath;
+                model.ThoiHanHopDong = (int)model.ThoiHanHopDongEnum;
+                model.CopyToEntity(entity);
+                entity.Active = true;
+                entity.ThongTinCaNhan = await thongTinCaNhanService.GetAsync(entity.IdThongTinCaNhan);
+                entity.IdCongTyChungNghe = model.IdCongTyChungNghe;
+                entity.IdCongTyTiepNhan = model.IdCongTyTiepNhan;
+                await thongTinPhongVanService.UpdateAsync(entity);
+                return RedirectToAction("Detail", "ThongTinCaNhan", new { id = model.IdThongTinCaNhan });
             }
-            else
+            catch (Exception e)
             {
-                hinhAnhPath = entity.HinhAnh;
+                return Json(new { success = false });
             }
-            #endregion
-            model.HinhAnh = hinhAnhPath;
-            model.ThoiHanHopDong = (int)model.ThoiHanHopDongEnum;
-            model.CopyToEntity(entity);
-            entity.Active = true;
-            await thongTinPhongVanService.UpdateAsync(entity);
-            return RedirectToAction("Detail", "ThongTinCaNhan", new { id = model.IdThongTinCaNhan });
         }
 
         public async System.Threading.Tasks.Task<ActionResult> Detail(int id)

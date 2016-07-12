@@ -91,7 +91,9 @@
                             <label class="control-label col-md-4" for="LuongCoBan">Lương cơ bản</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.LuongCoBan, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.LuongCoBan, new { @class = "form-control col-sm-12" })
+                                    <div id="SoTienLuongCoBan" class="col-sm-12">
+                                    </div>
                                     @Html.ValidationMessageFor(q => q.LuongCoBan)
                                 </div>
                             </div>
@@ -100,7 +102,9 @@
                             <label class="control-label col-md-4" for="PhiDichVu">Phí dịch vụ</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.PhiDichVu, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.PhiDichVu, new { @class = "form-control col-sm-12" })
+                                    <div id="SoTienPhiDichVu" class="col-sm-12">
+                                    </div>
                                     @Html.ValidationMessageFor(q => q.PhiDichVu)
                                 </div>
                             </div>
@@ -109,7 +113,9 @@
                             <label class="control-label col-md-4" for="PhiUTDT">Phí ứng trước dự tuyển</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.PhiUTDT, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.PhiUTDT, new { @class = "form-control " })
+                                    <div id="SoTienPhiUTDT" class="col-sm-12">
+                                    </div>
                                     @Html.ValidationMessageFor(q => q.PhiUTDT)
                                 </div>
                             </div>
@@ -140,7 +146,29 @@
         </div>
     </form>
 </div>
+
 <script>
+
+    $(function () {
+        $(document).on('keyup', '#LuongCoBan', function () {
+            document.getElementById('SoTienLuongCoBan').innerHTML = "";
+            $('#SoTienLuongCoBan').append('Giá trị: ' + toMoney($('#LuongCoBan').val(), '.', ' đ'));
+        });
+    });
+
+    $(function () {
+        $(document).on('keyup', '#PhiDichVu', function () {
+            document.getElementById('SoTienPhiDichVu').innerHTML = "";
+            $('#SoTienPhiDichVu').append('Giá trị: ' + toMoney($('#PhiDichVu').val(), '.', ' đ'));
+        });
+    });
+
+    $(function () {
+        $(document).on('keyup', '#PhiUTDT', function () {
+            document.getElementById('SoTienPhiUTDT').innerHTML = "";
+            $('#SoTienPhiUTDT').append('Giá trị: ' + toMoney($('#PhiUTDT').val(), '.', ' đ'));
+        });
+    });
 
     $(function () {
         initializeDateRangePicker();

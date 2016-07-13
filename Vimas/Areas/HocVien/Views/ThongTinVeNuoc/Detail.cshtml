@@ -1,0 +1,133 @@
+﻿@model ThongTinVeNuocEditViewModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    .form-horizontal .control-label {
+        margin-top: -10px;
+    }
+
+    .control-label {
+        font-weight: bold;
+    }
+</style>
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        @Html.AntiForgeryToken()
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Thông tin về nước</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="col-md-12">
+                    @if (Model.NgayDi.HasValue)
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Ngày đi</label>
+                            <div class="col-md-6" id="NgayDiText">
+                            </div>
+                        </div>
+                    }
+@if (Model.NgayVe.HasValue)
+{
+                    <div class="form-group">                   
+                        <label class="control-label col-md-5">Ngày về</label>
+                        <div class="col-md-6" id="NgayVeText">
+                        </div>
+                    </div>
+}
+                    <div class="form-group">
+                        <label class="control-label col-md-5">Lý do về</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.LyDoVe)
+                        </div>
+                    </div>
+                    @if (Model.ThanhLyHopDong != null)
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-5">Thanh lý hợp đồng</label>
+                            <div class="col-md-6">
+                                @if (Model.ThanhLyHopDong == true)
+                                    {
+                                        <text>
+                                    Đã xong
+                                </text>
+                                    }
+                                @if (Model.ThanhLyHopDong == false)
+                                {
+                                    <text>
+                                Vẫn chưa
+                                    </text>
+}
+                            </div>
+                        </div>
+                    }
+@if (Model.NgayThanhLy.HasValue)
+{
+                    <div class="form-group">
+                        <label class="control-label col-md-5">Ngày thanh lý</label>
+                        <div class="col-md-6" id="NgayThanhLyText">
+                        </div>
+                    </div>
+}
+@if (Model.SoHopDongThanhLy != null)
+{
+                    <div class="form-group">
+                        <label class="control-label col-md-5">Số hợp đồng thanh lý</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.SoHopDongThanhLy)
+                        </div>
+                    </div>
+}
+@if (Model.NgayTron.HasValue)
+{
+                    <div class="form-group">
+                        <label class="control-label col-md-5">Ngày trốn</label>
+                        <div class="col-md-6" id="NgayTronText">
+                        </div>
+                    </div>
+}
+
+@if (Model.NgayBiTrucXuat.HasValue)
+{
+                    <div class="form-group">
+                        <label class="control-label col-md-5">Ngày bị trục xuất</label>
+                        <div class="col-md-6" id="NgayBiTrucXuatText">
+                        </div>
+                    </div>
+}
+@if (Model.GhiChuTheoDoi !=null)
+{ 
+                    <div class="form-group">
+                        <label class="control-label col-md-5">Ghi chú theo dõi</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.GhiChuTheoDoi)
+                        </div>
+                    </div>
+}
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgayDiText').append(moment('@this.Model.NgayDi.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayVeText').append(moment('@this.Model.NgayVe.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayThanhLyText').append(moment('@this.Model.NgayThanhLy.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayTronText').append(moment('@this.Model.NgayTron.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayBiTrucXuatText').append(moment('@this.Model.NgayBiTrucXuat.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+    });
+</script>

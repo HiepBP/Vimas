@@ -34,10 +34,10 @@ namespace Vimas.Areas.Admin.Controllers
         {
             try
             {
-                var aspNetUserService = this.Service<IAspNetUserService>();
+                var aspNetUserService = this.Service<IAspNetUsersService>();
                 var listThongTinCaNhan = aspNetUserService.Get()
                     .Where(q => q.AspNetRoles.FirstOrDefault().Name!="Admin" && q.AspNetRoles.FirstOrDefault().Name != "SysAdmin")
-                    .ProjectTo<AspNetUserViewModel>(this.MapperConfig);
+                    .ProjectTo<AspNetUsersViewModel>(this.MapperConfig);
 
                 var rs = (await listThongTinCaNhan
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
@@ -87,7 +87,7 @@ namespace Vimas.Areas.Admin.Controllers
         #region Tạo người dùng mới
         public ActionResult Create()
         {
-            var aspNetRoleService = this.Service<IAspNetRoleService>();
+            var aspNetRoleService = this.Service<IAspNetRolesService>();
             RegisterViewModel model = new RegisterViewModel();
             model.AvailableRoles = aspNetRoleService.Get(q => q.Name != "Admin" && q.Name != "SysAdmin").Select(q => new SelectListItem()
             {
@@ -163,8 +163,8 @@ namespace Vimas.Areas.Admin.Controllers
 
         public async Task<ActionResult> Edit(string id)
         {
-            var aspNetUserService = this.Service<IAspNetUserService>();
-            var aspNetRoleService = this.Service<IAspNetRoleService>();
+            var aspNetUserService = this.Service<IAspNetUsersService>();
+            var aspNetRoleService = this.Service<IAspNetRolesService>();
             var user = await aspNetUserService.GetAsync(id);
             RegisterViewModel model = new RegisterViewModel()
             {

@@ -17,7 +17,7 @@ namespace Vimas.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TrungTamGTVL()
         {
-            this.ThongTinCaNhans = new HashSet<ThongTinCaNhan>();
+            this.ThongTinCaNhan = new HashSet<ThongTinCaNhan>();
         }
     
         public int Id { get; set; }
@@ -34,6 +34,6 @@ namespace Vimas.Models.Entities
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThongTinCaNhan> ThongTinCaNhans { get; set; }
+        public virtual ICollection<ThongTinCaNhan> ThongTinCaNhan { get; set; }
     }
 }

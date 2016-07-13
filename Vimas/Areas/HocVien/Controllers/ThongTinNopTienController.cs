@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Helpers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
@@ -34,7 +35,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 var rs = listThongTinNopTien
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
                         || q.ThongTinCaNhan.HoTen.ToLower().Contains(param.sSearch.ToLower()))
-                    .OrderBy(q => q.NgayLapPhieu)
+                    .OrderByDescending(q => q.NgayLapPhieu)
                     .Skip(param.iDisplayStart)
                     .Take(param.iDisplayLength)
                     .Select(q => new IConvertible[]
@@ -91,6 +92,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 model.ThuHayChi = (int)model.ThuChi;
                 var entity = model.ToEntity();
                 await thongTinNopTienService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
                 return Json(new { success = true, message = "Tạo thành công" });
             }
             catch(Exception e)

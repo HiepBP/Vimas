@@ -17,7 +17,7 @@ namespace Vimas.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ThongTinDuTuyen()
         {
-            this.BangCaps = new HashSet<BangCap>();
+            this.BangCap = new HashSet<BangCap>();
         }
     
         public int Id { get; set; }
@@ -40,7 +40,7 @@ namespace Vimas.Models.Entities
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BangCap> BangCaps { get; set; }
+        public virtual ICollection<BangCap> BangCap { get; set; }
         public virtual ThongTinCaNhan ThongTinCaNhan { get; set; }
     }
 }

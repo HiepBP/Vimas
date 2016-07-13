@@ -13,13 +13,13 @@ namespace Vimas.Models.Entities.Services
     using System.Collections.Generic;
     
     
-    public partial interface IAspNetUserClaimService : SkyWeb.DatVM.Data.IBaseService<AspNetUserClaim>
+    public partial interface IAspNetUsersService : SkyWeb.DatVM.Data.IBaseService<AspNetUsers>
     {
     }
     
-    public partial class AspNetUserClaimService : SkyWeb.DatVM.Data.BaseService<AspNetUserClaim>, IAspNetUserClaimService
+    public partial class AspNetUsersService : SkyWeb.DatVM.Data.BaseService<AspNetUsers>, IAspNetUsersService
     {
-        public AspNetUserClaimService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IAspNetUserClaimRepository repository) : base(unitOfWork, repository)
+        public AspNetUsersService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IAspNetUsersRepository repository) : base(unitOfWork, repository)
         {
         }
     }

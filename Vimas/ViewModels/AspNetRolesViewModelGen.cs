@@ -7,20 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities.Repositories
+namespace Vimas.ViewModels
 {
     using System;
     using System.Collections.Generic;
     
-    
-    public partial interface IAspNetUserRepository : SkyWeb.DatVM.Data.IBaseRepository<AspNetUser>
+    public partial class AspNetRolesViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetRoles>
     {
-    }
+    	
+    			public virtual string Id { get; set; }
+    			public virtual string Name { get; set; }
+    	
+    	public AspNetRolesViewModel() : base() { }
+    	public AspNetRolesViewModel(Vimas.Models.Entities.AspNetRoles entity) : base(entity) { }
     
-    public partial class AspNetUserRepository : SkyWeb.DatVM.Data.BaseRepository<AspNetUser>, IAspNetUserRepository
-    {
-    	public AspNetUserRepository(System.Data.Entity.DbContext dbContext) : base(dbContext)
-        {
-        }
     }
 }

@@ -26,28 +26,28 @@ namespace Vimas.Models.Entities
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<BangCap> BangCaps { get; set; }
-        public virtual DbSet<BienBan> BienBans { get; set; }
-        public virtual DbSet<CongTyChungNghe> CongTyChungNghes { get; set; }
-        public virtual DbSet<CongTyTiepNhan> CongTyTiepNhans { get; set; }
-        public virtual DbSet<HopDongDOLAB> HopDongDOLABs { get; set; }
-        public virtual DbSet<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }
-        public virtual DbSet<KyTucXa> KyTucXas { get; set; }
-        public virtual DbSet<NghiepDoan> NghiepDoans { get; set; }
-        public virtual DbSet<QuaTrinhHocTap> QuaTrinhHocTaps { get; set; }
-        public virtual DbSet<QuaTrinhLamViec> QuaTrinhLamViecs { get; set; }
-        public virtual DbSet<SucKhoe> SucKhoes { get; set; }
-        public virtual DbSet<SystemLog> SystemLogs { get; set; }
-        public virtual DbSet<ThongTinCaNhan> ThongTinCaNhans { get; set; }
-        public virtual DbSet<ThongTinDuTuyen> ThongTinDuTuyens { get; set; }
-        public virtual DbSet<ThongTinGiaDinh> ThongTinGiaDinhs { get; set; }
-        public virtual DbSet<ThongTinNopTien> ThongTinNopTiens { get; set; }
-        public virtual DbSet<ThongTinPhongVan> ThongTinPhongVans { get; set; }
-        public virtual DbSet<ThongTinVeNuoc> ThongTinVeNuocs { get; set; }
-        public virtual DbSet<TrungTamGTVL> TrungTamGTVLs { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<BangCap> BangCap { get; set; }
+        public virtual DbSet<BienBan> BienBan { get; set; }
+        public virtual DbSet<CongTyChungNghe> CongTyChungNghe { get; set; }
+        public virtual DbSet<CongTyTiepNhan> CongTyTiepNhan { get; set; }
+        public virtual DbSet<HopDongDOLAB> HopDongDOLAB { get; set; }
+        public virtual DbSet<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMapping { get; set; }
+        public virtual DbSet<KyTucXa> KyTucXa { get; set; }
+        public virtual DbSet<NghiepDoan> NghiepDoan { get; set; }
+        public virtual DbSet<QuaTrinhHocTap> QuaTrinhHocTap { get; set; }
+        public virtual DbSet<QuaTrinhLamViec> QuaTrinhLamViec { get; set; }
+        public virtual DbSet<SucKhoe> SucKhoe { get; set; }
+        public virtual DbSet<SystemLog> SystemLog { get; set; }
+        public virtual DbSet<ThongTinCaNhan> ThongTinCaNhan { get; set; }
+        public virtual DbSet<ThongTinDuTuyen> ThongTinDuTuyen { get; set; }
+        public virtual DbSet<ThongTinGiaDinh> ThongTinGiaDinh { get; set; }
+        public virtual DbSet<ThongTinNopTien> ThongTinNopTien { get; set; }
+        public virtual DbSet<ThongTinPhongVan> ThongTinPhongVan { get; set; }
+        public virtual DbSet<ThongTinVeNuoc> ThongTinVeNuoc { get; set; }
+        public virtual DbSet<TrungTamGTVL> TrungTamGTVL { get; set; }
     }
 }

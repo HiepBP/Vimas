@@ -5,8 +5,8 @@ using System.Web;
 
 namespace Vimas.ViewModels
 {
-    public partial class AspNetUserViewModel
+    public partial class AspNetUsersViewModel
     {
-        public IEnumerable<AspNetRoleViewModel> AspNetRoles { get; set; }
+        public IEnumerable<AspNetRolesViewModel> AspNetRoles { get; set; }
     }
 }

@@ -27,7 +27,12 @@ namespace Vimas.Areas.HocVien.Controllers
             var congTyTiepNhanService = this.Service<ICongTyTiepNhanService>();
             try
             {
+                var user = System.Web.HttpContext.Current.User;
                 var listThongTinPhongVan = thongTinPhongVanService.GetByIdThongTinCaNhan(userId).ToList();
+                if (user.IsInRole("PhongXKLD"))
+                {
+                    listThongTinPhongVan = listThongTinPhongVan.Where(q => q.NgayTrungTuyen != null).ToList();
+                }
                 {
                     var rs = listThongTinPhongVan
                         .Where(q => string.IsNullOrEmpty(param.sSearch)

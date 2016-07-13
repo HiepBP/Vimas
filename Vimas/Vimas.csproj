@@ -222,6 +222,7 @@
     <Compile Include="Areas\HeThong\Controllers\CongTyTiepNhanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\HopDongDOLABController.cs" />
     <Compile Include="Areas\HeThong\Controllers\NghiepDoanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\BienBanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
@@ -595,6 +596,7 @@
     <Compile Include="ViewModels\BangCapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BienBanEditViewModel.cs" />
     <Compile Include="ViewModels\BienBanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2985,6 +2987,10 @@
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Create.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Edit.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\VimasAdmin - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />

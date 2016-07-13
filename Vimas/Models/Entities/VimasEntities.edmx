@@ -83,8 +83,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idThongTinCaNhan" Type="int" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="2803" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
@@ -209,8 +210,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdThongTinCaNhan" Type="int" Nullable="false" />
-          <Property Name="ChieuCao" Type="nchar" MaxLength="10" />
-          <Property Name="CanNang" Type="nchar" MaxLength="10" />
+          <Property Name="ChieuCao" Type="nvarchar" MaxLength="10" />
+          <Property Name="CanNang" Type="nvarchar" MaxLength="10" />
           <Property Name="NhomMau" Type="varchar" MaxLength="2" />
           <Property Name="TayThuan" Type="int" />
           <Property Name="ThiLucMatTrai" Type="int" />
@@ -940,8 +941,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idThongTinCaNhan" Type="Int32" Nullable="false" />
+          <Property Name="GhiChu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" Nullable="false" MaxLength="2803" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ThongTinCaNhan" Relationship="VimasModel.FK_BienBan_ThongTinCaNhan" FromRole="BienBan" ToRole="ThongTinCaNhan" />
@@ -1077,8 +1079,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdThongTinCaNhan" Type="Int32" Nullable="false" />
-          <Property Name="ChieuCao" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="CanNang" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ChieuCao" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CanNang" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="NhomMau" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="TayThuan" Type="Int32" />
           <Property Name="ThiLucMatTrai" Type="Int32" />
@@ -1588,6 +1590,7 @@
               <MappingFragment StoreEntitySet="BienBan">
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="idThongTinCaNhan" ColumnName="idThongTinCaNhan" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

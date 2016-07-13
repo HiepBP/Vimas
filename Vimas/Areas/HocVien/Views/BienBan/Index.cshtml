@@ -1,0 +1,207 @@
+﻿
+@{
+    var user = HttpContext.Current.User;
+    ViewBag.Title = "Danh sách biên bản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Danh sách biên bản</h3>
+            </div>
+            @if (user.IsInRole("Admin"))
+            {
+                <div class="col-md-4">
+                    <button onclick="showCreateBB()" class="btn btn-primary pull-right ">
+                        <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm biên bản
+                    </button>
+                </div>
+            }
+        </div>
+        <hr />
+    </div>
+
+    <div class="card-padding">
+        <div id="datatable">
+            <table id="bienBanDataTable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                    <tr>
+                        <th>
+                            <label class="">Tên học viên</label>
+                        </th>
+                        <th>
+                            <label class="">Ghi chú</label>
+                        </th>
+                        <th>
+                            <label class="">Biên bản</label>
+                        </th>
+                        <th>
+                            <label class=""></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="createBBPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editBBPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="detailBBPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<script>
+    $(document).ready(function () {
+        InitDatatable();
+    });
+    function InitDatatable() {
+        $("#bienBanDataTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "responsive": true,
+            "sAjaxSource": "@Url.Action("LoadDanhSachBienBan")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [2],
+                    "mRender": function (data, type, o) {
+                        var data = o[2];
+                        return '<img src="' + data + '" style="width:200px; height:auto;" alt="BienBan"/>'
+                    }
+                },
+                {
+                    "aTargets": [3],
+                    "mRender": function (data, type, o) {
+                        var data = o[3];
+                        var detail = "<button type='button' id='detailBB' class='btn btn-sm btn-primary' onclick='showDetailBB(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+
+
+                        @if(!user.IsInRole("Admin"))
+                        {
+                            <text>
+                        var edit = "";
+                            var del = "";
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' id='editBB' class='btn btn-sm btn-primary' onclick='showEditBB(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var del = "<button type='button' id='deleteBB' class='btn btn-sm btn-danger' onclick='deleteBB(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
+                        }
+
+                        return detail + " " + edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+    }
+
+    function showCreateBB() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","BienBan")',
+            data: {
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createBBPanel').html(result);
+                $('#createBBPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+
+    function showEditBB(idBB) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit", "BienBan")',
+            data: {
+                id: idBB
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editBBPanel').html(result);
+                $('#editBBPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+
+    function deleteBB(idBB) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "BienBan")',
+                data: {
+                    id: idBB,
+                },
+                success: function (result) {
+                    swal("Xoá.", result.message, "success");
+                    RefreshTTCNTable();
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        });
+    }
+
+    function showDetailBB(idBB) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail","BienBan")',
+            data: {
+                id: idBB
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#detailBBPanel').html(result);
+                $('#detailBBPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+</script>

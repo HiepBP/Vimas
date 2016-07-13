@@ -96,11 +96,11 @@ namespace Vimas.Areas.HocVien.Controllers
 
             model.AvailableThongTinCaNhan = thongTinCaNhanService.GetActive().Select(q => new SelectListItem()
             {
-                Text = q.HoTen + "[CMND: " + q.CMND +"]",
+                Text = q.HoTen + "[CMND: " + q.CMND + "]",
                 Value = q.Id.ToString(),
                 Selected = false,
             });
-            
+
             return View(model);
         }
 
@@ -121,7 +121,7 @@ namespace Vimas.Areas.HocVien.Controllers
 
                 await kyTucXaService.CreateAsync(model.ToEntity());
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -182,20 +182,29 @@ namespace Vimas.Areas.HocVien.Controllers
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]
         public async Task<ActionResult> Edit(KyTucXaEditViewModel model)
         {
-            if (!this.ModelState.IsValid)
+            try
             {
-                return View(model);
+                if (!this.ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var kyTucXaService = this.Service<IKyTucXaService>();
+                var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+                var entity = await kyTucXaService.GetAsync(model.Id);
+                model.CopyToEntity(entity);
+                entity.Active = true;
+                entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+                entity.ThongTinCaNhan = await thongTinCaNhanService.GetAsync(entity.IdThongTinCaNhan);
+                await kyTucXaService.UpdateAsync(entity);
+
+                return RedirectToAction("Index");
+
             }
-
-            var kyTucXaService = this.Service<IKyTucXaService>();
-
-            var entity = await kyTucXaService.GetAsync(model.Id);
-            model.CopyToEntity(entity);
-            entity.Active = true;
-            entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
-            await kyTucXaService.UpdateAsync(entity);
-
-            return RedirectToAction("Index");
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
         }
 
     }

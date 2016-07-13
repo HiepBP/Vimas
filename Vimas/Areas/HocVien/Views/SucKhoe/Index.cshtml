@@ -8,15 +8,22 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h3>Sức Khỏe</h3>
             </div>
             @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
             {
-                <div class="col-md-4">
-                    <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                        <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm báo cáo sức khỏe
-                    </a>
+                <div class="col-md-5">
+                    <div class="col-md-6">
+                        <button class ="btn btn-primary pull-right" type="submit" id="btnExport">
+                            <i class="left-icon fa fa-download"></i>   Xuất ra Excel
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right">
+                            <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm báo cáo sức khỏe
+                        </a>
+                    </div>
                 </div>
             }
         </div>
@@ -49,9 +56,17 @@
             </table>
         </div>
     </div>
+    <form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "SucKhoe")">
+
+    </form>
 </div>
 
 <script>
+
+    $('#btnExport').on('click', null, function () {
+        $('#exportForm').submit();
+    });
+
     $(document).ready(function () {
         InitOrderDatatable();
     });
@@ -90,18 +105,18 @@
                         @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                         {
                             <text>
-                            var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail", "SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
-                            var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-success' href='@Url.Action("Edit","SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                            var del = "<a id='editThongTinCaNhan' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
-                            </text>
+                        var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail", "SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-info'></i> Detail</a>";
+                        var edit = "<a id='editThongTinCaNhan' class='btn btn-sm btn-success' href='@Url.Action("Edit","SucKhoe")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var del = "<a id='editThongTinCaNhan' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        </text>
                         }
                         else
                         {
                             <text>
-                            var detail = "";
-                            var edit = "";
-                            var del =  "";
-                            </text>
+                        var detail = "";
+                        var edit = "";
+                        var del = "";
+                        </text>
                         }
                         return detail + " " + edit + " " + del;
                     }
@@ -127,9 +142,8 @@
             $.ajax({
                 type: "POST",
                 url: '@this.Url.Action("Delete")',
-                data: {
-                    id: id,
-                },
+                data: { id },
+                method: "POST",
                 success: function (result) {
                     swal("Xoá", result.message, "success");
                     window.location.href = "@this.Url.Action("Index")";
@@ -138,6 +152,6 @@
                     swal('Lỗi',error.message,'error');
                 }
             });
-        });
+        }
     }
 </script>

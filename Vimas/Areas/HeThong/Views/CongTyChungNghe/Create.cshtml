@@ -90,8 +90,10 @@
                             <label class="control-label col-md-4" for="VonDieuLe">Vốn điều lệ</label>
                             <div class="col-md-6">
                                 <div class="fg-line">
-                                    @Html.TextBoxFor(q => q.VonDieuLe, new { @class = "form-control" })
+                                    @Html.TextBoxFor(q => q.VonDieuLe, new { @class = "form-control col-sm-12" })
                                     @Html.ValidationMessageFor(q => q.VonDieuLe)
+                                </div>
+                                <div id="SoTienVonDieuLe" class="col-sm-12">
                                 </div>
                             </div>
                         </div>
@@ -114,4 +116,12 @@
         </div>
     </form>
 </div>
+<script>
+    $(function () {
+        $(document).on('keyup', '#VonDieuLe', function () {
+            document.getElementById('SoTienVonDieuLe').innerHTML = "";
+            $('#SoTienVonDieuLe').append('Giá trị: ' + toMoney($('#VonDieuLe').val(), '.', ' đ'));
+        });
+    });
+</script>
 

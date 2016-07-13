@@ -1,0 +1,247 @@
+﻿
+@{
+    var user = HttpContext.Current.User;
+    ViewBag.Title = "Thông tin dự tuyển";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<style>
+        .display-initial {
+            display: initial;
+        }
+    </style>*@
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Thông tin dự tuyển</h3>
+            </div>
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+            {
+                <div class="col-md-4">
+                    <button onclick="showCreateTTDT()" class="btn btn-primary pull-right ">
+                        <i class="left-icon glyphicon glyphicon-plus"></i> Thêm thông tin dự tuyển
+                    </button>
+                </div>
+            }
+        </div>
+        <hr />
+    </div>
+
+    <div class="card-padding">
+        <div id="datatable">
+            <table id="thongTinDuTuyenDatatable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                    <tr>
+                        <th>
+                            <label class="">Họ và tên</label>
+                        </th>
+                        <th>
+                            <label class="">Lý do đi nhật</label>
+                        </th>
+                        <th>
+                            <label class="">Đã ĐK đi Nhật ở công ty khác</label>
+                        </th>
+                        <th>
+                            <label class="">Đã đi Nhật</label>
+                        </th>
+                        <th>
+                            <label class="">Đã đi nước ngoài</label>
+                        </th>
+                        <th>
+                            <label class="">Ngày đăng ký</label>
+                        </th>
+                        <th>
+                            <label class=""></label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="createTTDTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editTTDTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<script>
+    $(document).ready(function () {
+        InitOrderDatatable();
+        //$('#hocVienDatatable_length, #hocVienDatatable_filter, #hocVienDatatable_info, hocVienDatatable_paginate').addClass('display-initial');
+        //$('#hocVienDatatable_filter, #hocVienDatatable_paginate').addClass('pull-right');
+    });
+
+    function InitOrderDatatable() {
+        $("#thongTinDuTuyenDatatable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadDanhSachThongTinDuTuyen")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [2],
+                    "mRender": function (data, type, o) {
+                        var status = "";
+                        var data = o[3];
+                        status += ($('<span/>', {
+                            'class': 'badge',
+                            'style': 'background-color: #009FFF!important;',
+                            html: data,
+                            'data-id': data
+                        })[0].outerHTML);
+                        return status;
+                    }
+                },
+                {
+                    "aTargets": [3],
+                    "mRender": function (data, type, o) {
+                        var status = "";
+                        var data = o[3];
+                        status += ($('<span/>', {
+                            'class': 'badge',
+                            'style': 'background-color: #009FFF!important;',
+                            html: data,
+                            'data-id': data
+                        })[0].outerHTML);
+                        return status;
+                    }
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function (data, type, o) {
+                        var status = "";
+                        var data = o[3];
+                        status += ($('<span/>', {
+                            'class': 'badge',
+                            'style': 'background-color: #009FFF!important;',
+                            html: data,
+                            'data-id': data
+                        })[0].outerHTML);
+                        return status;
+                    }
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        //var detail = "<button type='button' id='detailTTNT' class='btn btn-sm btn-primary' onclick='showDetailTTNT(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+
+
+                        @if(user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+                        {
+                            <text>
+                            var edit = "<button type='button' id='editTTDT' class='btn btn-sm btn-primary' onclick='showEditTTDT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var del = "<button type='button' id='deleteTTDT' class='btn btn-sm btn-danger' onclick='deleteTTDT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            var detail = "<button type='button' id='detailTTDT' class='btn btn-sm btn-primary' onclick='detailTTDT(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                            var detail = "";
+                            var edit = "";
+                            var del = "";
+                            </text>
+                        }
+
+                        return detail+ " " + edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+    }
+
+    function showCreateTTDT() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","ThongTinDuTuyen")',
+            data: {
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createTTDTPanel').html(result);
+                $('#createTTDTPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+
+    function showEditTTDT(idTTDT) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","ThongTinDuTuyen")',
+            data: {
+                id: idTTDT
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editTTDTPanel').html(result);
+                $('#editTTDTPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+
+    function deleteTTDT(idTTDT) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "ThongTinNopTien")',
+                data: {
+                    id: idTTDT,
+                },
+                success: function (result) {
+                    swal("Xoá", result.message, "success");
+                    RefreshTTDTTable();
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        });
+    }
+
+    function RefreshTTDTTable() {
+        var oTable = $('#thongTinDuTuyenDatatable').dataTable();
+        oTable._fnPageChange(0);
+        oTable._fnAjaxUpdate();
+    }
+</script>

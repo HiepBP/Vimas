@@ -55,6 +55,7 @@ namespace Vimas.ViewModels
         [Display(Name = "Ghi chú phái cử")]
         public override string GhiChuPhaiCu { get; set; }
         [Display(Name = "Hợp đồng TTS")]
+        [IsNumeric(ErrorMessage = "Hợp đồng TTS là số")]
         public override Nullable<int> HopDongTTS { get; set; }
         [Display(Name = "Ngày ký hợp đồng")]
         public override Nullable<System.DateTime> NgayKyHopDong { get; set; }

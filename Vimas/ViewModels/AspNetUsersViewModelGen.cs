@@ -12,7 +12,7 @@ namespace Vimas.ViewModels
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetUser>
+    public partial class AspNetUsersViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetUsers>
     {
     	
     			public virtual string Id { get; set; }
@@ -28,8 +28,8 @@ namespace Vimas.ViewModels
     			public virtual int AccessFailedCount { get; set; }
     			public virtual string UserName { get; set; }
     	
-    	public AspNetUserViewModel() : base() { }
-    	public AspNetUserViewModel(Vimas.Models.Entities.AspNetUser entity) : base(entity) { }
+    	public AspNetUsersViewModel() : base() { }
+    	public AspNetUsersViewModel(Vimas.Models.Entities.AspNetUsers entity) : base(entity) { }
     
     }
 }

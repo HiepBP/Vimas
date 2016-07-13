@@ -7,20 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities.Services
+namespace Vimas.Models.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    
-    public partial interface IAspNetUserLoginService : SkyWeb.DatVM.Data.IBaseService<AspNetUserLogin>
+    public partial class AspNetUserLogins : SkyWeb.DatVM.Data.IEntity
     {
-    }
-    
-    public partial class AspNetUserLoginService : SkyWeb.DatVM.Data.BaseService<AspNetUserLogin>, IAspNetUserLoginService
-    {
-        public AspNetUserLoginService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IAspNetUserLoginRepository repository) : base(unitOfWork, repository)
-        {
-        }
     }
 }

@@ -17,7 +17,7 @@ namespace Vimas.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HopDongDOLAB()
         {
-            this.HopDongDOLABHocVienMappings = new HashSet<HopDongDOLABHocVienMapping>();
+            this.HopDongDOLABHocVienMapping = new HashSet<HopDongDOLABHocVienMapping>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace Vimas.Models.Entities
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMappings { get; set; }
+        public virtual ICollection<HopDongDOLABHocVienMapping> HopDongDOLABHocVienMapping { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Vimas.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NghiepDoan()
         {
-            this.CongTyTiepNhans = new HashSet<CongTyTiepNhan>();
+            this.CongTyTiepNhan = new HashSet<CongTyTiepNhan>();
         }
     
         public int Id { get; set; }
@@ -37,6 +37,6 @@ namespace Vimas.Models.Entities
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CongTyTiepNhan> CongTyTiepNhans { get; set; }
+        public virtual ICollection<CongTyTiepNhan> CongTyTiepNhan { get; set; }
     }
 }

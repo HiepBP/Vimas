@@ -19,7 +19,7 @@ namespace Vimas.ViewModels
     			public virtual Nullable<int> id { get; set; }
     			public virtual string TenBang { get; set; }
     			public virtual string HanhDong { get; set; }
-    			public virtual Nullable<int> ThucHienBoi { get; set; }
+    			public virtual string ThucHienBoi { get; set; }
     			public virtual Nullable<System.DateTime> NgayThucHien { get; set; }
     	
     	public SystemLogViewModel() : base() { }

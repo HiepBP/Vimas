@@ -10,7 +10,7 @@ namespace Vimas.ViewModels
     public partial class ThongTinPhongVanViewModel
     {
         public ThongTinCaNhanViewModel ThongTinCaNhan { get; set; }
-        public CongTyTiepNhanViewModel CongTyTiepNhan { get; set; }
+        public CongTyTiepNhanEditViewModel CongTyTiepNhan { get; set; }
         public CongTyChungNgheViewModel CongTyChungNghe { get; set; }
     }
 

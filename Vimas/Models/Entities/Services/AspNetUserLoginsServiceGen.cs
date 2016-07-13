@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities.Repositories
+namespace Vimas.Models.Entities.Services
 {
     using System;
     using System.Collections.Generic;
     
     
-    public partial interface IAspNetUserLoginRepository : SkyWeb.DatVM.Data.IBaseRepository<AspNetUserLogin>
+    public partial interface IAspNetUserLoginsService : SkyWeb.DatVM.Data.IBaseService<AspNetUserLogins>
     {
     }
     
-    public partial class AspNetUserLoginRepository : SkyWeb.DatVM.Data.BaseRepository<AspNetUserLogin>, IAspNetUserLoginRepository
+    public partial class AspNetUserLoginsService : SkyWeb.DatVM.Data.BaseService<AspNetUserLogins>, IAspNetUserLoginsService
     {
-    	public AspNetUserLoginRepository(System.Data.Entity.DbContext dbContext) : base(dbContext)
+        public AspNetUserLoginsService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IAspNetUserLoginsRepository repository) : base(unitOfWork, repository)
         {
         }
     }

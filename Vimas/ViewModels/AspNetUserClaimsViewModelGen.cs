@@ -12,7 +12,7 @@ namespace Vimas.ViewModels
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaimViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetUserClaim>
+    public partial class AspNetUserClaimsViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetUserClaims>
     {
     	
     			public virtual int Id { get; set; }
@@ -20,8 +20,8 @@ namespace Vimas.ViewModels
     			public virtual string ClaimType { get; set; }
     			public virtual string ClaimValue { get; set; }
     	
-    	public AspNetUserClaimViewModel() : base() { }
-    	public AspNetUserClaimViewModel(Vimas.Models.Entities.AspNetUserClaim entity) : base(entity) { }
+    	public AspNetUserClaimsViewModel() : base() { }
+    	public AspNetUserClaimsViewModel(Vimas.Models.Entities.AspNetUserClaims entity) : base(entity) { }
     
     }
 }

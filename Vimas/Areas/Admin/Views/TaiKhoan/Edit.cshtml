@@ -77,12 +77,12 @@
             url: '@Url.Action("Edit","TaiKhoan")',
             data: formData,
             success: function (result) {
-                alert(result.message);
+                swal("Chỉnh sửa", result.message, "success");
                 $('#editAccountModal').modal('hide');
                 RefreshTable('taiKhoanDatatable');
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
     }

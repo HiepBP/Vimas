@@ -7,20 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities.Repositories
+namespace Vimas.Models.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    
-    public partial interface IAspNetUserClaimRepository : SkyWeb.DatVM.Data.IBaseRepository<AspNetUserClaim>
+    public partial class AspNetUserClaims : SkyWeb.DatVM.Data.IEntity
     {
-    }
-    
-    public partial class AspNetUserClaimRepository : SkyWeb.DatVM.Data.BaseRepository<AspNetUserClaim>, IAspNetUserClaimRepository
-    {
-    	public AspNetUserClaimRepository(System.Data.Entity.DbContext dbContext) : base(dbContext)
-        {
-        }
     }
 }

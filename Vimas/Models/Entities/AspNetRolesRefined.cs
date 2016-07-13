@@ -7,19 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.ViewModels
+namespace Vimas.Models.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRoleViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetRole>
+    public partial class AspNetRoles : SkyWeb.DatVM.Data.IEntity
     {
-    	
-    			public virtual string Id { get; set; }
-    			public virtual string Name { get; set; }
-    	
-    	public AspNetRoleViewModel() : base() { }
-    	public AspNetRoleViewModel(Vimas.Models.Entities.AspNetRole entity) : base(entity) { }
-    
     }
 }

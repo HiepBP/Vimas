@@ -13,13 +13,13 @@ namespace Vimas.Models.Entities.Repositories
     using System.Collections.Generic;
     
     
-    public partial interface IAspNetRoleRepository : SkyWeb.DatVM.Data.IBaseRepository<AspNetRole>
+    public partial interface IAspNetUsersRepository : SkyWeb.DatVM.Data.IBaseRepository<AspNetUsers>
     {
     }
     
-    public partial class AspNetRoleRepository : SkyWeb.DatVM.Data.BaseRepository<AspNetRole>, IAspNetRoleRepository
+    public partial class AspNetUsersRepository : SkyWeb.DatVM.Data.BaseRepository<AspNetUsers>, IAspNetUsersRepository
     {
-    	public AspNetRoleRepository(System.Data.Entity.DbContext dbContext) : base(dbContext)
+    	public AspNetUsersRepository(System.Data.Entity.DbContext dbContext) : base(dbContext)
         {
         }
     }

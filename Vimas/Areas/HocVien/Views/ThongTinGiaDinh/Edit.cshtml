@@ -94,13 +94,13 @@
                 url: '@Url.Action("Edit","ThongTinGiaDinh")',
                 data: formData,
                 success: function (result) {
-                    alert(result.message);
+                    swal("Chỉnh sửa", result.message, "success");
                     $('#editTTGDPanel').modal('hide');
                     $('#editTTGDPanel').html("");
                     RefreshTable('thongTinGiaDinhTable');
                 },
                 error: function (error) {
-                    alert(result.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         }

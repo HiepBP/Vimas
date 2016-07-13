@@ -7,12 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities
+namespace Vimas.ViewModels
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRole : SkyWeb.DatVM.Data.IEntity
+    public partial class AspNetUserLoginsViewModel : SkyWeb.DatVM.Mvc.BaseEntityViewModel<Vimas.Models.Entities.AspNetUserLogins>
     {
+    	
+    			public virtual string LoginProvider { get; set; }
+    			public virtual string ProviderKey { get; set; }
+    			public virtual string UserId { get; set; }
+    	
+    	public AspNetUserLoginsViewModel() : base() { }
+    	public AspNetUserLoginsViewModel(Vimas.Models.Entities.AspNetUserLogins entity) : base(entity) { }
+    
     }
 }

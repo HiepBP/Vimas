@@ -86,13 +86,13 @@
                 url: '@Url.Action("Create","QuaTrinhHocTap")',
                 data: formData,
                 success: function (result) {
-                    alert(result.message);
+                    swal("Thêm mới", result.message, "success");
                     $('#createQTHTPanel').modal('hide');
                     $('#createQTHTPanel').html("");
                     RefreshTable('quaTrinhHocTapTable');
                 },
                 error: function (error) {
-                    alert(result.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         }

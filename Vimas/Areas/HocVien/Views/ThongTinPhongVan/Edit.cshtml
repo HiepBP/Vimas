@@ -42,6 +42,7 @@
         <div class="modal-body">
             @Html.AntiForgeryToken()
             @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            @Html.ValidationSummary()
             <div class="form-horizontal">
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px;">
                     <div class="col-md-6">
@@ -207,6 +208,7 @@
                                 <div class="col-md-6">
                                     <div class="fg-line">
                                         @Html.TextBoxFor(q => q.HopDongTTS, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(q => q.HopDongTTS)
                                     </div>
                                 </div>
                             </div>

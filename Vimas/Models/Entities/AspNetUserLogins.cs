@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vimas.Models.Entities.Services
+namespace Vimas.Models.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    
-    public partial interface IAspNetRoleService : SkyWeb.DatVM.Data.IBaseService<AspNetRole>
+    public partial class AspNetUserLogins
     {
-    }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-    public partial class AspNetRoleService : SkyWeb.DatVM.Data.BaseService<AspNetRole>, IAspNetRoleService
-    {
-        public AspNetRoleService(SkyWeb.DatVM.Data.IUnitOfWork unitOfWork, Repositories.IAspNetRoleRepository repository) : base(unitOfWork, repository)
-        {
-        }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

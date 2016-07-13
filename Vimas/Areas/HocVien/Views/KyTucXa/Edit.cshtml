@@ -37,13 +37,14 @@
         </div>
         <hr />
     </div>
-    <form id="createProductItemForm" method="post">
+    <form id="createProductItemForm" method="post" action="@Url.Action("Edit","KyTucXa")">
         <div class="modal-body">
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary();
             @Html.HiddenFor(q => q.Id)
             @Html.HiddenFor(q => q.IdThongTinCaNhan)
             <!-- set cho các field của thongtincanhan -->
-            @Html.HiddenFor(q => q.ThongTinCaNhan.Id)
+            @*@Html.HiddenFor(q => q.ThongTinCaNhan.Id)
             @Html.HiddenFor(q => q.ThongTinCaNhan.MaLuuHoSo)
             @Html.HiddenFor(q => q.ThongTinCaNhan.IdTrungTamGTVL)
             @Html.HiddenFor(q => q.ThongTinCaNhan.HoTen)
@@ -70,7 +71,7 @@
             @Html.HiddenFor(q => q.ThongTinCaNhan.DienThoaiNha)
             @Html.HiddenFor(q => q.ThongTinCaNhan.CoGiay)
             @Html.HiddenFor(q => q.ThongTinCaNhan.SizeQuanAo)
-            @Html.HiddenFor(q => q.ThongTinCaNhan.Active)
+            @Html.HiddenFor(q => q.ThongTinCaNhan.Active)*@
             <!-- END: các field của thongtincanhan -->
             <div class="form-horizontal">
                 <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px;">
@@ -197,6 +198,7 @@
             </div>
         </div>
 
+        <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
         <div class="modal-footer">
             <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
             <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
@@ -242,6 +244,10 @@
     $(function () {
         initializeDateRangePicker();
     });
+
+    function submitForm() {
+        $('#createProductItemForm').submit();
+    }
 
     function initializeDateRangePicker() {
         moment.locale('vi');

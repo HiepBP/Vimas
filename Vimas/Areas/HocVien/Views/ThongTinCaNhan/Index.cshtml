@@ -71,6 +71,7 @@
             "bRetrieve": true,
             "bServerSide": true,
             "bScrollCollapse": true,
+            "responsive": true,
             "sAjaxSource": "@Url.Action("LoadDanhSachThongTin")",
             "bProcessing": true,
             "iDisplayLength": 10,
@@ -122,7 +123,17 @@
     }
 
     function deleteTTCN(idTTCN) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn xoá.",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "ThongTinCaNhan")',
@@ -130,14 +141,14 @@
                     id: idTTCN,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá.", result.message, "success");
                     RefreshTTCNTable();
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function RefreshTTCNTable() {

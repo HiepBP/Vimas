@@ -44,6 +44,8 @@
 
     <!-- ZMDI -->
     <link href="~/Content/css/material-design-iconic-font.css" rel="stylesheet" />
+    <!-- Alert -->
+    <link href="~/Content/css/sweetalert.css" rel="stylesheet" />
 
     <!-- Custom -->
     <link href="~/Content/css/theme.css" rel="stylesheet" />
@@ -130,7 +132,7 @@
                                 <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách trung tâm</a>
                             </li>
                             <li>
-                                <a href="#"><i class="zmdi zmdi-window-restore"></i> Nothing</a>
+                                <a href="@Url.Action("Index","CongTyTiepNhan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty tiếp nhận</a>
                             </li>
                         </ul>
                     </li>
@@ -163,13 +165,7 @@
                         <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý hệ thống</a>
                         <ul>
                             <li>
-                                <a href="@Url.Action("Index","CongTyTiepNhan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty tiếp nhận</a>
-                            </li>
-                            <li>
                                 <a href="@Url.Action("Index","TaiKhoan", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong"})"><i class="zmdi zmdi-window-restore"></i> Trung Tâm GTVL</a>
                             </li>
                         </ul>
                     </li>
@@ -245,6 +241,8 @@
 
     <!-- Plugins -->
     <script src="~/Content/plugins/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/DataTables-1.10.12/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/plugins/DataTables-1.10.12/extensions/Scroller/js/dataTables.scroller.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/moment-with-locales.min.js"></script>
     <script src="~/Content/plugins/bootstrap-daterangepicker-master/daterangepicker.js"></script>

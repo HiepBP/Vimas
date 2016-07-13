@@ -5,7 +5,7 @@
 }
 
 <style>
-    .form-horizontal .control-label{
+    .form-horizontal .control-label {
         margin-top: -10px;
     }
 
@@ -70,24 +70,18 @@
                             @Html.DisplayTextFor(q => q.NgheTrungTuyenTiengViet)
                         </div>
                     </div>
-                    @if (Model.CongTyTiepNhan != null)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.CongTyTiepNhan.TenTiengNhat, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.CongTyTiepNhan.TenTiengNhat)
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.CongTyTiepNhan.TenTiengNhat, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.CongTyTiepNhan.TenTiengNhat)
                         </div>
-                    }
-                    @if (Model.ThoiHanHopDong.HasValue)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.ThoiHanHopDong, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.ThoiHanHopDong)
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.ThoiHanHopDong, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.ThoiHanHopDong)
                         </div>
-                    }
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(q => q.GhiChuSauTrungTuyen, new { @class = "control-label col-md-5" })
                         <div class="col-md-6">
@@ -103,37 +97,28 @@
                             @Html.DisplayTextFor(q => q.LopHoc)
                         </div>
                     </div>
-                    @if (Model.NgayNhapHoc.HasValue)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.NgayNhapHoc, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6" id="NgayNhapHocText">
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgayNhapHoc, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6" id="NgayNhapHocText">
                         </div>
-                    }
-                    @if (Model.NgayKetThucKhoaHoc.HasValue)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.NgayKetThucKhoaHoc, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6" id="NgayKetThucKhoaHocText">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgayKetThucKhoaHoc, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6" id="NgayKetThucKhoaHocText">
                         </div>
-                    }
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(q => q.GhiChuKhenThuongKyLuat, new { @class = "control-label col-md-5" })
                         <div class="col-md-6">
                             @Html.DisplayTextFor(q => q.GhiChuKhenThuongKyLuat)
                         </div>
                     </div>
-                    @if (Model.CongTyChungNghe != null)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.CongTyChungNghe.TenTiengViet, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6">
-                                @Html.DisplayTextFor(q => q.CongTyChungNghe.TenTiengViet)
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.CongTyChungNghe.TenTiengViet, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.CongTyChungNghe.TenTiengViet)
                         </div>
-                    }
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(q => q.SoPhieuTiepNhan, new { @class = "control-label col-md-5" })
                         <div class="col-md-6">
@@ -152,23 +137,17 @@
                             @Html.DisplayTextFor(q => q.HopDongTTS)
                         </div>
                     </div>
-                    @if (Model.NgayKyHopDong.HasValue)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.NgayKyHopDong, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6" id="NgayKyHopDongText">
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgayKyHopDong, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6" id="NgayKyHopDongText">
                         </div>
-                    }
-                    @if (Model.NgayHuySauKhiTrungTuyen.HasValue)
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(q => q.NgayHuySauKhiTrungTuyen, new { @class = "control-label col-md-5" })
-                            <div class="col-md-6" id="NgayHuySauKhiTrungTuyenText">
-                                @Html.DisplayTextFor(q => q.NgayHuySauKhiTrungTuyen)
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.NgayHuySauKhiTrungTuyen, new { @class = "control-label col-md-5" })
+                        <div class="col-md-6" id="NgayHuySauKhiTrungTuyenText">
+                            @Html.DisplayTextFor(q => q.NgayHuySauKhiTrungTuyen)
                         </div>
-                    }
+                    </div>
                     <div class="form-group">
                         @Html.LabelFor(q => q.LyDoHuy, new { @class = "control-label col-md-5" })
                         <div class="col-md-6">

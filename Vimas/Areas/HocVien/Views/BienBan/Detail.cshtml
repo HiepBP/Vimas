@@ -1,0 +1,99 @@
+﻿@model BienBanEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="bienBanForm" method="post" enctype="multipart/form-data" action="@Url.Action("Create","BienBan")">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.id)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thông tin biên bả</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(q => q.GhiChu, new { @class = "control-label col-md-4" })
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.GhiChu)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Tên học viên</label>
+                        <div class="col-md-5">
+                            @Html.DisplayTextFor(q => q.ThongTinCaNhan.HoTen)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-6">Hình ảnh</label>
+                        <div class="col-md-4">
+                            <div class="img-circle img-background">
+                                <img src="@this.Model.HinhAnh" onerror="this.src ='http://www.rego-bis.pl/design/img/no-photo.jpg';" style="width:80%; height:auto;" id="hinhAnhPreview" alt="HinhAnh" />
+                            </div>
+                        </div>
+                        <a class="col-md-2 btn btn-primary btn-sm" href="@this.Model.HinhAnh" download="BienBan_@this.Model.id">Lưu hình</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#createThongTinNopTienForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+
+        $('#select2ThongTinCaNhan').select2();
+    })
+
+    $('#SelectedHinhAnh').on('change', function () {
+        readURL(this);
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#hinhAnhPreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function editBB() {
+        var form = $('#bienBanForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = new FormData($('#bienBanForm')[0]);
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Edit","BienBan")',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    swal("Sửa", result.message, "success");
+                    $('#editBBPanel').modal('hide');
+                    $('#editBBPanel').html("");
+                    RefreshTable('bienBanDataTable');
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        }
+    }
+</script>

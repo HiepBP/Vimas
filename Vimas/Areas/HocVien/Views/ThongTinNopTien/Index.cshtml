@@ -143,7 +143,7 @@
                 $('#createTTNTPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -161,13 +161,23 @@
                 $('#editTTNTPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
 
     function deleteTTNT(idTTNT) {
-        if (confirm("Bạn có chắc xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Delete", "ThongTinNopTien")',
@@ -175,14 +185,14 @@
                     id: idTTNT,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTTNTTable();
                 },
                 error: function (error) {
-                    alert(error.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function RefreshTTNTTable() {

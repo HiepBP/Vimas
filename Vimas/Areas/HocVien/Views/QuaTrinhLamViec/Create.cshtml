@@ -107,12 +107,12 @@
             url: '@Url.Action("Create", "QuaTrinhLamViec")',
             data: formData,
             success: function (result) {
-                alert(result.message);
+                swal("Thêm mới", result.message, "success");
                 $('#createQTLVPanel').modal('hide');
                 RefreshQTLVTable();
             },
             error: function (error) {
-                alert(error.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
     });

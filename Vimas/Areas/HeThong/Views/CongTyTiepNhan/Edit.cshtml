@@ -101,13 +101,13 @@
                 url: '@Url.Action("Edit","CongTyTiepNhan")',
                 data: formData,
                 success: function (result) {
-                    alert(result.message);
+                    swal("Chỉnh sửa", result.message, "success");
                     $('#editCTTNPanel').modal('hide');
                     $('#editCTTNPanel').html("");
                     RefreshTable('congTyTiepNhanDatatable');
                 },
                 error: function (error) {
-                    alert(result.message);
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         }

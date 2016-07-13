@@ -18,7 +18,7 @@ namespace Vimas.Models.Entities
         public Nullable<int> id { get; set; }
         public string TenBang { get; set; }
         public string HanhDong { get; set; }
-        public Nullable<int> ThucHienBoi { get; set; }
+        public string ThucHienBoi { get; set; }
         public Nullable<System.DateTime> NgayThucHien { get; set; }
     }
 }

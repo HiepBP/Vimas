@@ -113,10 +113,10 @@
                         else
                         {
                             <text>
-                        var detail = "";
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            var detail = "";
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         return detail + " " + edit + " " + del;
                     }
@@ -138,20 +138,21 @@
             cancelButtonText: "Không",
             showCancelButton: true,
             closeOnConfirm: false
-        }, function () {
+        }, 
+        function () {
             $.ajax({
                 type: "POST",
                 url: '@this.Url.Action("Delete")',
                 data: { id },
-                method: "POST",
-                success: function (result) {
-                    swal("Xoá", result.message, "success");
-                    window.location.href = "@this.Url.Action("Index")";
-                },
+                        method: "POST",
+                        success: function (result) {
+                            swal("Xoá", result.message, "success");
+                            window.location.href = "@this.Url.Action("Index")";
+                        },
                 error: function (error) {
                     swal('Lỗi',error.message,'error');
                 }
             });
-        }
+        });
     }
 </script>

@@ -447,13 +447,10 @@
     <Compile Include="Models\Entities\Services\HopDongDOLABServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="Models\Entities\Services\KyTucXaHocVienMappingServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\KyTucXaService.cs" />
->>>>>>> origin/thanhhc
     <Compile Include="Models\Entities\Services\KyTucXaServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -2946,15 +2943,12 @@
     <Content Include="Areas\HocVien\Views\ThongTinGiaDinh\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\QuaTrinhLamViec\Edit.cshtml" />
-<<<<<<< HEAD
     <Content Include="Areas\HocVien\Views\ThongTinNopTien\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinNopTien\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinNopTien\Edit.cshtml" />
-=======
     <Content Include="Areas\HocVien\Views\KyTucXa\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\KyTucXa\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\KyTucXa\Edit.cshtml" />
->>>>>>> origin/thanhhc
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

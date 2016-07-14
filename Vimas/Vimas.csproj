@@ -54,6 +54,10 @@
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -217,11 +221,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\CongTyChungNgheController.cs" />
     <Compile Include="Areas\HeThong\Controllers\CongTyTiepNhanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\HopDongDOLABController.cs" />
     <Compile Include="Areas\HeThong\Controllers\NghiepDoanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\BienBanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
@@ -229,6 +235,7 @@
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhLamViecController.cs" />
     <Compile Include="Areas\HocVien\Controllers\SucKhoeController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinCaNhanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\ThongTinDuTuyenController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinNopTienController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinPhongVanController.cs" />
@@ -243,28 +250,28 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\MP5Hasher.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Entities\AspNetRole.cs">
+    <Compile Include="Models\Entities\AspNetRoles.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetRoleRefined.cs">
+    <Compile Include="Models\Entities\AspNetRolesRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUser.cs">
+    <Compile Include="Models\Entities\AspNetUserClaims.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserClaim.cs">
-      <DependentUpon>VimasEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\AspNetUserClaimRefined.cs">
+    <Compile Include="Models\Entities\AspNetUserClaimsRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserLogin.cs">
+    <Compile Include="Models\Entities\AspNetUserLogins.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserLoginRefined.cs">
+    <Compile Include="Models\Entities\AspNetUserLoginsRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserRefined.cs">
+    <Compile Include="Models\Entities\AspNetUsers.cs">
+      <DependentUpon>VimasEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\AspNetUsersRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\BangCap.cs">
@@ -338,16 +345,16 @@
     <Compile Include="Models\Entities\QuaTrinhLamViecRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetRoleRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetRolesRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetUserClaimRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetUserClaimsRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetUserLoginRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetUserLoginsRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetUserRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetUsersRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\BangCapRepositoryGen.cs">
@@ -415,16 +422,16 @@
     <Compile Include="Models\Entities\Repositories\TrungTamGTVLRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetRoleServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetRolesServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetUserClaimServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetUserClaimsServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetUserLoginServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetUserLoginsServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetUserServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetUsersServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\BangCapServiceGen.cs">
@@ -581,22 +588,23 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AspNetRoleViewModelGen.cs">
+    <Compile Include="ViewModels\AspNetRolesViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AspNetUserClaimViewModelGen.cs">
+    <Compile Include="ViewModels\AspNetUserClaimsViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AspNetUserLoginViewModelGen.cs">
+    <Compile Include="ViewModels\AspNetUserLoginsViewModelGen.cs">
+      <DependentUpon>ViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AspNetUsersViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AspNetUserViewModel.cs" />
-    <Compile Include="ViewModels\AspNetUserViewModelGen.cs">
-      <DependentUpon>ViewModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\BangCapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BienBanEditViewModel.cs" />
     <Compile Include="ViewModels\BienBanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2991,6 +2999,11 @@
     <Content Include="Areas\HocVien\Views\ThongTinVeNuoc\Detail.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinVeNuoc\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinVeNuoc\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\BienBan\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

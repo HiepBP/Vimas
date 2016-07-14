@@ -98,4 +98,11 @@ namespace Vimas.Models
         [Display(Name = "Tay phải")]
         phai = 1,
     }
+    public enum ThanhLyHopDong
+    {
+        [Display(Name = "Đã xong")]
+        daXong = 1,
+        [Display(Name = "Vẫn chưa")]
+        vanChua = 0,
+    }
 }

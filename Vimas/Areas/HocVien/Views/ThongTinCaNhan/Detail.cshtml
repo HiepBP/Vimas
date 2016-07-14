@@ -43,6 +43,7 @@
                     <li class="waves-effect"><a data-toggle="tab" href="#thongTinGiaDinh">Thông tin gia đình</a></li>
                     <li class="waves-effect"><a data-toggle="tab" href="#quaTrinhLamViec">Quá trình làm việc</a></li>
                     <li class="waves-effect"><a data-toggle="tab" href="#thongTinPhongVan">Thông tin phỏng vấn</a></li>
+                    <li class="waves-effect"><a data-toggle="tab" href="#thongTinVeNuoc">Thông tin về nước</a></li>
                 </ul>
             </div>
 
@@ -206,6 +207,51 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Thông tin về nước -->
+                <div id="thongTinVeNuoc" class="tab-pane fade">
+                    @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon") || user.IsInRole("PhongXKLD"))
+                    {
+                        <div class="col-md-12">
+                            <button type="button" onclick="showCreateTTVN(@(this.Model.Id))" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</button>
+                        </div>
+                    }
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="thongTinVeNuocTable" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="">Ngày đi</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ngày về</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Lý do về</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Thanh lý hợp đồng</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Ngày thanh lý</label>
+                                            </th>
+                                            <th>
+                                                <label class="">Số hợp đồng thanh lý</label>
+                                            </th>
+                                            <th>
+                                                <label class=""></label>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -222,6 +268,10 @@
 <div id="editQTLVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 <div id="TTPVPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<div id="createTTVNPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editTTVNPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="detailTTVNPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 
 
 <script>
@@ -501,6 +551,64 @@
             ],
             "bAutoWidth": false
         }).fnSetFilteringDelay(delaySearchDb);
+
+        /** Load bảng dữ liệu thông tin về nước*/
+        $("#thongTinVeNuocTable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadThongTinVeNuoc", "ThongTinVeNuoc")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "fnServerParams": function (aoData) {
+                aoData.push({ "name": "userId", "value": "@this.Model.Id" });
+            },
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3, 4, 5],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [6],
+                    "mRender": function (data, type, o) {
+                        var data = o[6];
+                        var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showDetailTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD"))
+                        {
+                            <text>
+                        var edit = "";
+                            var del = "";
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
+                        }
+                        return detail + " " + edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+    }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function showCreateQTHT(idThongTinCaNhan) {
@@ -767,4 +875,76 @@
             });
         });
     }
+
+    /** Xử lý các button trong tab thông tin về nước*/
+    function showDetailTTVN(idTTVN) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Detail", "ThongTinVeNuoc")',
+            data: {
+                id: idTTVN,
+            },
+            success: function (result) {
+                $('#detailTTVNPanel').html(result);
+                $('#detailTTVNPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function deleteTTVN(idTTVN) {
+        if(confirm("Chắc chắn xóa dòng này?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Del", "ThongTinVeNuoc")',
+                data: {
+                    id: idTTVN,
+                },
+                success: function (result) {
+                    alert(result.message);
+                    RefreshTable('thongTinVeNuocTable');
+                },
+                error: function (error) {
+                    alert("Error Occured")
+                }
+            });
+        }
+    }
+
+    function showCreateTTVN(idThongTinCaNhan) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","ThongTinVeNuoc")',
+            data: {
+                idThongTinCaNhan: idThongTinCaNhan,
+            },
+            success: function (result) {
+                $('#createTTVNPanel').html(result);
+                $('#createTTVNPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
+    function showEditTTVN(idTTVN) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit", "ThongTinVeNuoc")',
+            data: {
+                id: idTTVN,
+            },
+            success: function (result) {
+                $('#editTTGDPanel').html(result);
+                $('#editTTGDPanel').modal('show');
+            },
+            error: function (error) {
+                alert("Error Occured")
+            }
+        });
+    }
+
 </script>

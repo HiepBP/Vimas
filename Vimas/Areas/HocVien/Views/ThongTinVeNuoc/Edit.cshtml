@@ -1,0 +1,374 @@
+﻿@model ThongTinVeNuocEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="editThongTinVeNuocForm" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.Id)
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thêm thông tin về nước</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ngày đi</label>
+                        <div class="col-md-5">
+                            <input class="form-control default-cursor" id="NgayDi" type="text" value="" required readonly style="background-color:white" />
+                            <input type="hidden" name="NgayDi" value="@this.Model.NgayDi" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ngày về</label>
+                        <div class="col-md-5">
+                            <input class="form-control default-cursor" id="NgayVe" type="text" value="" required readonly style="background-color:white" />
+                            <input type="hidden" name="NgayVe" value="@this.Model.NgayVe" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Lý do về</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.LyDoVe, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Thanh lý hợp đồng</label>
+                        <div class="col-md-5">
+                            <select id="thanhLy" name="ThanhLy" class="form-control col-sm-12">
+                                @if (this.Model.ThanhLyHopDong == true)
+                                {
+                                    <option value="1" selected>Đã xong</option>
+                                    <option value="0">Vẫn chưa</option>
+                                }
+                                @if (this.Model.ThanhLyHopDong != true)
+                                {
+                                    <option value="1">Đã xong</option>
+                                    <option value="0" selected>Vẫn chưa</option>
+                                }
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ngày thanh lý</label>
+                        <div class="col-md-5">
+                            <input class="form-control default-cursor" id="NgayThanhLy" type="text" value="" readonly style="background-color:white" />
+                            <input type="hidden" name="NgayThanhLy" value="@this.Model.NgayThanhLy" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Số hợp đồng thanh lý</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.SoHopDongThanhLy, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ngày trốn</label>
+                        <div class="col-md-5">
+                            <input class="form-control default-cursor" id="NgayTron" type="text" value="" readonly style="background-color:white" />
+                            <input type="hidden" name="NgayTron" value="@this.Model.NgayTron" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ngày bị trục xuất</label>
+                        <div class="col-md-5">
+                            <input class="form-control default-cursor" id="NgayBiTrucXuat" type="text" value="" readonly style="background-color:white" />
+                            <input type="hidden" name="NgayBiTrucXuat" value="@this.Model.NgayBiTrucXuat" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Ghi chú theo dõi</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.GhiChuTheoDoi, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="editTTVN()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#editThongTinVeNuocForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+        initializeDateRangePicker();
+    })
+
+    function editTTVN() {
+        var form = $('#editThongTinVeNuocForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = $('#editThongTinVeNuocForm').serialize();
+        if(form.valid()){
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Edit", "ThongTinVeNuoc")',
+            data: formData,
+            success: function (result) {
+                alert(result.message);
+                $('#editTTVNPanel').modal('hide');
+                $('#editTTVNPanel').html("");
+                RefreshTable('thongTinVeNuocTable');
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+        }
+    }
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+
+        $('input[name="NgayDi"]').val('@this.Model.NgayDi.Value.ToShortDateString()');
+        $('#NgayDi').val(moment('@this.Model.NgayDi.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayDi').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayDi').val(start.format('LL'));
+            $('input[name="NgayDi"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('input[name="NgayVe"]').val('@this.Model.NgayVe.Value.ToShortDateString()');
+        $('#NgayVe').val(moment('@this.Model.NgayVe.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+        $('#NgayVe').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayVe').val(start.format('LL'));
+            $('input[name="NgayVe"]').val(start.format("DD/MM/YYYY"));
+        });
+
+        $('input[name="NgayThanhLy"]').val('');
+        $('#NgayThanhLy').val('');
+        @if(this.Model.NgayThanhLy.HasValue)
+        {
+            <text>
+        $('input[name="NgayThanhLy"]').val('@this.Model.NgayThanhLy.Value.ToShortDateString()');
+        $('#NgayThanhLy').val(moment('@this.Model.NgayThanhLy.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+    </text>
+        }
+        $('#NgayThanhLy').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayThanhLy').val(start.format('LL'));
+            if($('#NgayThanhLy').val()) {
+                $('input[name="NgayThanhLy"]').val(start.format("DD/MM/YYYY"));
+            } else {
+                $('input[name="NgayThanhLy"]').val('');
+            }
+        });
+
+        $('input[name="NgayTron"]').val('');
+        $('#NgayTron').val('');
+        @if(this.Model.NgayTron.HasValue)
+        {
+            <text>
+        $('input[name="NgayTron"]').val('@this.Model.NgayTron.Value.ToShortDateString()');
+        $('#NgayTron').val(moment('@this.Model.NgayTron.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+            </text>
+        }
+        $('#NgayTron').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayTron').val(start.format('LL'));
+            if ($('#NgayTron').val()) {
+                $('input[name="NgayTron"]').val(start.format("DD/MM/YYYY"));
+            } else {
+                $('input[name="NgayTron"]').val('');
+            }
+        });
+
+        $('input[name="NgayBiTrucXuat"]').val('');
+        $('#NgayBiTrucXuat').val('');
+        @if(this.Model.NgayBiTrucXuat.HasValue)
+        {
+            <text>
+        $('input[name="NgayBiTrucXuat"]').val('@this.Model.NgayBiTrucXuat.Value.ToShortDateString()');
+        $('#NgayBiTrucXuat').val(moment('@this.Model.NgayBiTrucXuat.Value.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+            </text>
+        }
+        $('#NgayBiTrucXuat').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayBiTrucXuat').val(start.format('LL'));
+            if ($('#NgayBiTrucXuat').val()) {
+                $('input[name="NgayBiTrucXuat"]').val(start.format("DD/MM/YYYY"));
+            } else {
+                $('input[name="NgayBiTrucXuat"]').val('');
+            }
+        });
+    };
+</script>

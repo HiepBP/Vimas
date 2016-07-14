@@ -54,10 +54,6 @@
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -215,24 +211,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiEndpoint.cs" />
-    <Compile Include="App_GlobalResources\Messages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Messages.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\SystemLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\CongTyChungNgheController.cs" />
     <Compile Include="Areas\HeThong\Controllers\CongTyTiepNhanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\HopDongDOLABController.cs" />
     <Compile Include="Areas\HeThong\Controllers\NghiepDoanController.cs" />
-    <Compile Include="Areas\HocVien\Controllers\BienBanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
     <Compile Include="Areas\HeThong\Controllers\TrungTamGTVLController.cs" />
@@ -243,6 +232,7 @@
     <Compile Include="Areas\HocVien\Controllers\ThongTinGiaDinhController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinNopTienController.cs" />
     <Compile Include="Areas\HocVien\Controllers\ThongTinPhongVanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\ThongTinVeNuocController.cs" />
     <Compile Include="Areas\HocVien\HocVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -253,28 +243,28 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\MP5Hasher.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Entities\AspNetRoles.cs">
+    <Compile Include="Models\Entities\AspNetRole.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetRolesRefined.cs">
+    <Compile Include="Models\Entities\AspNetRoleRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserClaims.cs">
+    <Compile Include="Models\Entities\AspNetUser.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserClaimsRefined.cs">
+    <Compile Include="Models\Entities\AspNetUserClaim.cs">
+      <DependentUpon>VimasEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\AspNetUserClaimRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserLogins.cs">
+    <Compile Include="Models\Entities\AspNetUserLogin.cs">
       <DependentUpon>VimasEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUserLoginsRefined.cs">
+    <Compile Include="Models\Entities\AspNetUserLoginRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\AspNetUsers.cs">
-      <DependentUpon>VimasEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entities\AspNetUsersRefined.cs">
+    <Compile Include="Models\Entities\AspNetUserRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\BangCap.cs">
@@ -348,16 +338,16 @@
     <Compile Include="Models\Entities\QuaTrinhLamViecRefined.cs">
       <DependentUpon>EntityRefinery.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetRolesRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetRoleRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetUserClaimsRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetUserClaimRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetUserLoginsRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetUserLoginRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Repositories\AspNetUsersRepositoryGen.cs">
+    <Compile Include="Models\Entities\Repositories\AspNetUserRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Repositories\BangCapRepositoryGen.cs">
@@ -425,16 +415,16 @@
     <Compile Include="Models\Entities\Repositories\TrungTamGTVLRepositoryGen.cs">
       <DependentUpon>Repositories.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetRolesServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetRoleServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetUserClaimsServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetUserClaimServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetUserLoginsServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetUserLoginServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Services\AspNetUsersServiceGen.cs">
+    <Compile Include="Models\Entities\Services\AspNetUserServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Services\BangCapServiceGen.cs">
@@ -502,6 +492,7 @@
     <Compile Include="Models\Entities\Services\ThongTinPhongVanServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Services\ThongTinVeNuocService.cs" />
     <Compile Include="Models\Entities\Services\ThongTinVeNuocServiceGen.cs">
       <DependentUpon>Services.tt</DependentUpon>
     </Compile>
@@ -590,23 +581,22 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AspNetRolesViewModelGen.cs">
+    <Compile Include="ViewModels\AspNetRoleViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AspNetUserClaimsViewModelGen.cs">
+    <Compile Include="ViewModels\AspNetUserClaimViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AspNetUserLoginsViewModelGen.cs">
-      <DependentUpon>ViewModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\AspNetUsersViewModelGen.cs">
+    <Compile Include="ViewModels\AspNetUserLoginViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AspNetUserViewModel.cs" />
+    <Compile Include="ViewModels\AspNetUserViewModelGen.cs">
+      <DependentUpon>ViewModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BangCapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\BienBanEditViewModel.cs" />
     <Compile Include="ViewModels\BienBanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -672,6 +662,7 @@
     <Compile Include="ViewModels\ThongTinPhongVanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ThongTinVeNuocEditViewModel.cs" />
     <Compile Include="ViewModels\ThongTinVeNuocViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -2997,11 +2988,9 @@
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Create.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Edit.cshtml" />
     <Content Include="Areas\HeThong\Views\HopDongDOLAB\Detail.cshtml" />
-    <Content Include="Areas\HocVien\Views\BienBan\Index.cshtml" />
-    <Content Include="Areas\HocVien\Views\BienBan\Create.cshtml" />
-    <Content Include="Areas\HocVien\Views\BienBan\Edit.cshtml" />
-    <Content Include="Areas\HocVien\Views\BienBan\Detail.cshtml" />
-    <None Include="Properties\PublishProfiles\VimasAdmin - Web Deploy.pubxml" />
+    <Content Include="Areas\HocVien\Views\ThongTinVeNuoc\Detail.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinVeNuoc\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinVeNuoc\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -3136,7 +3125,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Admin\Views\SystemLog\" />
     <Folder Include="Areas\HeThong\Models\" />
     <Folder Include="Areas\HeThong\Views\Shared\" />
     <Folder Include="Areas\HocVien\Models\" />
@@ -3153,10 +3141,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Messages.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-    </Content>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>

@@ -15,7 +15,7 @@
             {
                 <div class="col-md-5">
                     <div class="col-md-6">
-                        <button class ="btn btn-primary pull-right" type="submit" id="btnExport">
+                        <button class="btn btn-primary pull-right" type="submit" id="btnExport">
                             <i class="left-icon fa fa-download"></i>   Xuất ra Excel
                         </button>
                     </div>
@@ -56,9 +56,7 @@
             </table>
         </div>
     </div>
-    <form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "SucKhoe")">
-
-    </form>
+    <form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "SucKhoe")"></form>
 </div>
 
 <script>
@@ -143,15 +141,15 @@
                 type: "POST",
                 url: '@this.Url.Action("Delete")',
                 data: { id },
-                method: "POST",
+                        method: "POST",
                 success: function (result) {
                     swal("Xoá", result.message, "success");
                     window.location.href = "@this.Url.Action("Index")";
                 },
                 error: function (error) {
-                    swal('Lỗi',error.message,'error');
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        })
     }
 </script>

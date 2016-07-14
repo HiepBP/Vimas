@@ -3004,6 +3004,7 @@
     <Content Include="Areas\HocVien\Views\BienBan\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\BienBan\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemLog\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

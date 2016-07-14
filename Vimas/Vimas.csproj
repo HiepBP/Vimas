@@ -229,6 +229,7 @@
     <Compile Include="Areas\HeThong\Controllers\CongTyTiepNhanController.cs" />
     <Compile Include="Areas\HeThong\Controllers\HopDongDOLABController.cs" />
     <Compile Include="Areas\HeThong\Controllers\NghiepDoanController.cs" />
+    <Compile Include="Areas\HocVien\Controllers\BangCapController.cs" />
     <Compile Include="Areas\HocVien\Controllers\BienBanController.cs" />
     <Compile Include="Areas\HocVien\Controllers\KyTucXaController.cs" />
     <Compile Include="Areas\HocVien\Controllers\QuaTrinhHocTapController.cs" />
@@ -603,6 +604,7 @@
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AspNetUserViewModel.cs" />
+    <Compile Include="ViewModels\BangCapEditViewModel.cs" />
     <Compile Include="ViewModels\BangCapViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -3007,6 +3009,8 @@
     <Content Include="Areas\HocVien\Views\BienBan\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SystemLog\Index.cshtml" />
+    <Content Include="Areas\HocVien\Views\BangCap\Create.cshtml" />
+    <Content Include="Areas\HocVien\Views\BangCap\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

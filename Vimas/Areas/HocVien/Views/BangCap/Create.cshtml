@@ -1,0 +1,89 @@
+﻿@model BangCapEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="bangCapForm" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.IdThongTinDuTuyen)
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thêm QTHT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Tên bằng</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.BangCap1, new { @class = "form-control col-sm-12" })
+                            @Html.ValidationMessageFor(q => q.BangCap1)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Tháng</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.Thang, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Năm</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.Nam, new { @class = " form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Trình độ</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(q => q.TrinhDo, new { @class = "form-control col-sm-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">Đã nộp</label>
+                        <div class="col-md-5">
+                            <input type="checkbox" name="DaNop" id="DaNop" value="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="createBC()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#bangCapForm')
+        .removeData("validator") /* added by the raw jquery.validate plugin */
+        .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+    });
+
+    function createBC() {
+        var form = $('#bangCapForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = $('#bangCapForm').serialize();
+        if (form.valid()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Create","BangCap")',
+                data: formData,
+                success: function (result) {
+                    swal("Tạo mới", result.message, "success");
+                    $('#createBCPanel').modal('hide');
+                    $('#createBCPanel').html("");
+                    RefreshTTNTTable();
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        }
+    }
+</script>

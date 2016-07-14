@@ -11,8 +11,10 @@ using Vimas.Models.Entities.Services;
 
 namespace Vimas.Areas.Admin.Controllers
 {
+    [Authorize]
     public class SystemLogController : BaseController
     {
+        [Authorize(Roles ="Admin")]
         // GET: Admin/SystemLog
         public ActionResult Index()
         {
@@ -42,6 +44,7 @@ namespace Vimas.Areas.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public JsonResult LoadDanhSachLog(JQueryDataTableParamModel param)
         {
             var systemLogService = this.Service<ISystemLogService>();

@@ -49,7 +49,7 @@ namespace Vimas.ViewModels
         [Display(Name = "Ghi chú phái cử")]
         public string GhiChuPhaiCu { get; set; }
         [Display(Name = "Hợp đồng TTS")]
-        public Nullable<int> HopDongTTS { get; set; }
+        public string HopDongTTS { get; set; }
         [Display(Name = "Ngày ký hợp đồng")]
         public Nullable<System.DateTime> NgayKyHopDong { get; set; }
         [Display(Name = "Hình ảnh")]

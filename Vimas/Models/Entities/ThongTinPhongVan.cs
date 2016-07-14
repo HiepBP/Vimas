@@ -33,7 +33,7 @@ namespace Vimas.Models.Entities
         public Nullable<int> IdCongTyChungNghe { get; set; }
         public string SoPhieuTiepNhan { get; set; }
         public string GhiChuPhaiCu { get; set; }
-        public Nullable<int> HopDongTTS { get; set; }
+        public string HopDongTTS { get; set; }
         public Nullable<System.DateTime> NgayKyHopDong { get; set; }
         public string HinhAnh { get; set; }
         public Nullable<System.DateTime> NgayHuySauKhiTrungTuyen { get; set; }

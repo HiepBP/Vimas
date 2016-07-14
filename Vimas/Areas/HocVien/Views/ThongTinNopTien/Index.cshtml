@@ -13,15 +13,22 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h3>Lịch sử thu/chi tiền</h3>
             </div>
             @if (user.IsInRole("Admin") || user.IsInRole("PhongKeToan"))
             {
-                <div class="col-md-4">
-                    <button onclick="showCreateTTNT()" class="btn btn-primary pull-right ">
-                        <i class="left-icon glyphicon glyphicon-plus"></i> Thêm phiếu thu/chi
-                    </button>
+                <div class="col-md-5">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" type="submit" id="btnExport">
+                            <i class="left-icon fa fa-download"></i>   Xuất ra Excel
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right">
+                            <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm phiếu thu/chi
+                        </a>
+                    </div>
                 </div>
             }
         </div>
@@ -64,8 +71,14 @@
 
 <div id="createTTNTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
 <div id="editTTNTPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "ThongTinNopTien")"></form>
 
 <script>
+
+    $('#btnExport').on('click', null, function () {
+        $('#exportForm').submit();
+    });
+
     $(document).ready(function () {
         InitOrderDatatable();
         //$('#hocVienDatatable_length, #hocVienDatatable_filter, #hocVienDatatable_info, hocVienDatatable_paginate').addClass('display-initial');

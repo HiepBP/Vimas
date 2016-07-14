@@ -1,5 +1,6 @@
 ﻿
 @{
+    var user = HttpContext.Current.User;
     ViewBag.Title = "Trung Tâm Giới Thiệu Việc Làm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,14 +8,24 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h3>Danh sách Trung tâm giới thiệu việc làm</h3>
             </div>
-            <div class="col-md-4">
-                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm trung tâm
-                </a>
-            </div>
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
+            {
+                <div class="col-md-5">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary pull-right" type="submit" id="btnExport">
+                            <i class="left-icon fa fa-download"></i>   Xuất ra Excel
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right">
+                            <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm Trung Tâm
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
         <hr />
     </div>
@@ -50,8 +61,12 @@
             </table>
         </div>
     </div>
+    <form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "TrungTamGTVL")"></form>
 </div>
 <script>
+    $('#btnExport').on('click', null, function () {
+        $('#exportForm').submit();
+    });
     $(document).ready(function () {
         InitOrderDatatable();
     });
@@ -88,9 +103,9 @@
                     "mRender": function (data, type, o) {
                         var data = o[6];
                         var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
-                        var del = "<a id='deleteTrungTam' class='btn btn-sm btn-danger' onClick='Delete("+data+")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        var del = "<a id='deleteTrungTam' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
                         var edit = "<a id='editTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        return detail +" "+edit +" "+ del;
+                        return detail + " " + edit + " " + del;
                     }
                 }
 
@@ -122,7 +137,7 @@
                     RefreshTrungTamGTVLTable();
                 },
                 error: function (error) {
-                    swal('Lỗi',error.message,'error');
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         });
@@ -135,4 +150,3 @@
     }
 
 </script>
-

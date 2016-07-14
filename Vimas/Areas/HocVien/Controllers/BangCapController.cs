@@ -35,7 +35,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     .Select(q => new IConvertible[]
                     {
                         q.BangCap1,
-                        q.Thang + "/" q.Nam,
+                        q.Thang + "/" + q.Nam,
                         q.TrinhDo,
                         q.DaNop.GetValueOrDefault()?"Rồi":"Chưa",
                         q.Id,

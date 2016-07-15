@@ -131,30 +131,22 @@
                             <li>
                                 <a href="@Url.Action("Index", "TrungTamGTVL", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách trung tâm</a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Index","CongTyTiepNhan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty tiếp nhận</a>
-                            </li>
                         </ul>
                     </li>
                 }
                 @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
                 {
                     <li class="sub-menu submenu-style">
-                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý nghiệp đoàn</a>
+                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý nghiệp đoàn và các công ty</a>
                         <ul>
                             <li>
                                 <a href="@Url.Action("Index", "NghiepDoan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách nghiệp đoàn</a>
                             </li>
-                        </ul>
-                    </li>
-                }
-                @if (user.IsInRole("Admin") || (user.IsInRole("PhongXKLD")))
-                {
-                    <li class="sub-menu submenu-style">
-                        <a href="#"><i class="zmdi zmdi-globe"></i>Quản lý công ty chứng nghề</a>
-                        <ul>
                             <li>
                                 <a href="@Url.Action("Index", "CongTyChungNghe", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty chứng nghề</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","CongTyTiepNhan", new { area = "HeThong" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách công ty tiếp nhận</a>
                             </li>
                         </ul>
                     </li>
@@ -166,6 +158,9 @@
                         <ul>
                             <li>
                                 <a href="@Url.Action("Index","TaiKhoan", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách tài khoản</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","SystemLog", new { area = "Admin" })"><i class="sub-menu zmdi zmdi-trending-up"></i> Danh sách log</a>
                             </li>
                         </ul>
                     </li>

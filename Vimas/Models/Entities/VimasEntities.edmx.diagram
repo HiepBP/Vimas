@@ -6,28 +6,28 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4b1913e25cc94e7ba37b576ff493f9af" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="VimasModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="VimasModel.AspNetRoles" Width="1.5" PointX="8.75" PointY="2.5" />
-        <EntityTypeShape EntityType="VimasModel.AspNetUserClaims" Width="1.5" PointX="13.25" PointY="1" />
-        <EntityTypeShape EntityType="VimasModel.AspNetUserLogins" Width="1.5" PointX="13.25" PointY="3.75" />
-        <EntityTypeShape EntityType="VimasModel.AspNetUsers" Width="1.5" PointX="11" PointY="1.375" />
-        <EntityTypeShape EntityType="VimasModel.BangCap" Width="1.5" PointX="7.5" PointY="20.25" />
-        <EntityTypeShape EntityType="VimasModel.BienBan" Width="1.5" PointX="5.25" PointY="34.875" />
-        <EntityTypeShape EntityType="VimasModel.CongTyChungNghe" Width="1.5" PointX="3" PointY="36.5" />
-        <EntityTypeShape EntityType="VimasModel.CongTyTiepNhan" Width="1.5" PointX="3" PointY="32" />
-        <EntityTypeShape EntityType="VimasModel.HopDongDOLAB" Width="1.5" PointX="6" PointY="4.5" />
-        <EntityTypeShape EntityType="VimasModel.HopDongDOLABHocVienMapping" Width="1.5" PointX="8.25" PointY="24.75" />
-        <EntityTypeShape EntityType="VimasModel.KyTucXa" Width="1.5" PointX="5.25" PointY="15.75" />
-        <EntityTypeShape EntityType="VimasModel.NghiepDoan" Width="1.5" PointX="0.75" PointY="31.625" />
-        <EntityTypeShape EntityType="VimasModel.QuaTrinhHocTap" Width="1.5" PointX="5.25" PointY="8.125" />
-        <EntityTypeShape EntityType="VimasModel.QuaTrinhLamViec" Width="1.5" PointX="5.25" PointY="11.875" />
-        <EntityTypeShape EntityType="VimasModel.SucKhoe" Width="1.5" PointX="5.25" PointY="45.375" />
+        <EntityTypeShape EntityType="VimasModel.AspNetRoles" Width="1.5" PointX="7.75" PointY="9.5" />
+        <EntityTypeShape EntityType="VimasModel.AspNetUserClaims" Width="1.5" PointX="12.25" PointY="8" />
+        <EntityTypeShape EntityType="VimasModel.AspNetUserLogins" Width="1.5" PointX="12.25" PointY="10.75" />
+        <EntityTypeShape EntityType="VimasModel.AspNetUsers" Width="1.5" PointX="10" PointY="8.375" />
+        <EntityTypeShape EntityType="VimasModel.BangCap" Width="1.5" PointX="7.5" PointY="45.875" />
+        <EntityTypeShape EntityType="VimasModel.BienBan" Width="1.5" PointX="5.25" PointY="41.875" />
+        <EntityTypeShape EntityType="VimasModel.CongTyChungNghe" Width="1.5" PointX="6" PointY="3.5" />
+        <EntityTypeShape EntityType="VimasModel.CongTyTiepNhan" Width="1.5" PointX="6" PointY="32" />
+        <EntityTypeShape EntityType="VimasModel.HopDongDOLAB" Width="1.5" PointX="3" PointY="36.5" />
+        <EntityTypeShape EntityType="VimasModel.HopDongDOLABHocVienMapping" Width="1.5" PointX="5.25" PointY="27.75" />
+        <EntityTypeShape EntityType="VimasModel.KyTucXa" Width="1.5" PointX="5.25" PointY="24" />
+        <EntityTypeShape EntityType="VimasModel.NghiepDoan" Width="1.5" PointX="3.75" PointY="31.625" />
+        <EntityTypeShape EntityType="VimasModel.QuaTrinhHocTap" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="VimasModel.QuaTrinhLamViec" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="VimasModel.SucKhoe" Width="1.5" PointX="5.25" PointY="19.375" />
         <EntityTypeShape EntityType="VimasModel.SystemLog" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="VimasModel.ThongTinCaNhan" Width="1.5" PointX="3" PointY="21.5" />
-        <EntityTypeShape EntityType="VimasModel.ThongTinDuTuyen" Width="1.5" PointX="5.25" PointY="19.25" />
-        <EntityTypeShape EntityType="VimasModel.ThongTinGiaDinh" Width="1.5" PointX="5.25" PointY="37.875" />
-        <EntityTypeShape EntityType="VimasModel.ThongTinNopTien" Width="1.5" PointX="5.25" PointY="41.75" />
-        <EntityTypeShape EntityType="VimasModel.ThongTinPhongVan" Width="1.5" PointX="5.25" PointY="25.625" />
-        <EntityTypeShape EntityType="VimasModel.ThongTinVeNuoc" Width="1.5" PointX="5.25" PointY="50" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinDuTuyen" Width="1.5" PointX="5.25" PointY="44.875" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinGiaDinh" Width="1.5" PointX="5.25" PointY="50.375" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinNopTien" Width="1.5" PointX="5.25" PointY="12" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinPhongVan" Width="1.5" PointX="8.25" PointY="22.625" />
+        <EntityTypeShape EntityType="VimasModel.ThongTinVeNuoc" Width="1.5" PointX="5.25" PointY="37.625" />
         <EntityTypeShape EntityType="VimasModel.TrungTamGTVL" Width="1.5" PointX="0.75" PointY="24" />
         <AssociationConnector Association="VimasModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="VimasModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />

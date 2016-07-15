@@ -1,14 +1,19 @@
 ﻿using AutoMapper.QueryableExtensions;
+using Microsoft.Office.Interop.Excel;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using SkyWeb.DatVM.Mvc;
 using SkyWeb.DatVM.Mvc.Autofac;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -160,7 +165,7 @@ namespace Vimas.Areas.HocVien.Controllers
             model.Name = TTCNService.Get(model.IdThongTinCaNhan).HoTen;
 
             return this.View(model);
-        } 
+        }
         #endregion
 
         #region Delete
@@ -238,9 +243,17 @@ namespace Vimas.Areas.HocVien.Controllers
             {
                 ExcelWorksheet ws = package.Workbook.Worksheets.Add("Báo Cáo Sức Khỏe");
                 char StartHeaderChar = 'A';
-                int StartHeaderNumber = 1;
+                int StartHeaderNumber = 2;
                 var listDT = GetDataList();
                 #region Headers
+
+                ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
+                ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
+                ws.Cells["" + (StartHeaderChar) + (1)].Value = "BÁO CÁO SỨC KHỎE - Ngày " + DateTime.Now.ToShortDateString();
+                ws.Cells["A1:N1"].Merge = true;
+                ws.Cells["A1:N1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                StartHeaderChar = 'A';
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "ID Cá Nhân";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Tên";
@@ -258,19 +271,32 @@ namespace Vimas.Areas.HocVien.Controllers
                 var EndHeaderChar = StartHeaderChar;
                 var EndHeaderNumber = StartHeaderNumber;
                 StartHeaderChar = 'A';
-                StartHeaderNumber = 1;
                 #endregion
                 #region Set style for rows and columns
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Font.Bold = true;
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()].AutoFitColumns();
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()]
                     .Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()]
                     .Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.GreenYellow);
+
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Top.Style = ExcelBorderStyle.Thick;
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Left.Style = ExcelBorderStyle.Thick;
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+
                 ws.View.FreezePanes(2, 1);
                 #endregion
                 #region Set values for cells                
@@ -293,16 +319,25 @@ namespace Vimas.Areas.HocVien.Controllers
 
                     StartHeaderChar = 'A';
                 }
+
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+                ws.Cells[ws.Dimension.Address].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                ws.Cells[ws.Dimension.Address].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                ws.Cells[ws.Dimension.Address].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                ws.Cells[ws.Dimension.Address].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+
                 #endregion
                 package.SaveAs(ms);
                 ms.Seek(0, SeekOrigin.Begin);
 
-                var fileDownloadName = "Báo Cáo Sức Khỏe.xlsx";
+                var fileDownloadName = "Báo Cáo Sức Khỏe - "+DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx";
                 var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 return this.File(ms, contentType, fileDownloadName);
             }
         }
         #endregion
+
         public void PrepareEdit(SucKhoeEditViewModel model)
         {
             //thong tin ca nhan service
@@ -311,11 +346,86 @@ namespace Vimas.Areas.HocVien.Controllers
             model.AvailableIDs = TTCNSerice.Get()
                 .Where(q => q.Active == true)
                 .Select(q => new SelectListItem()
+                {
+                    Selected = false,
+                    Text = q.HoTen,
+                    Value = q.Id.ToString(),
+                });
+        }
+
+
+        //Testing
+        public ActionResult ListToExcel()
+        {
+            //start excel
+            Microsoft.Office.Interop.Excel.Application excapp;
+            Workbook excelworkBook;
+            Worksheet sheet;
+
+            MemoryStream ms = new MemoryStream();
+
+            excapp = new Microsoft.Office.Interop.Excel.Application();
+
+            excapp.Visible = false;
+            excapp.DisplayAlerts = false;
+
+            //create a blank workbook
+            excelworkBook = excapp.Workbooks.Add(Type.Missing);
+
+            sheet = (Worksheet)excelworkBook.ActiveSheet;
+            sheet.Name = "BaoCao";
+
+            #region Set Header
+            int headerCol = 1;
+            sheet.Cells[1, headerCol] = "STT";
+            sheet.Cells[1, ++headerCol] = "ID Cá Nhân";
+            sheet.Cells[1, ++headerCol] = "Tên";
+            sheet.Cells[1, ++headerCol] = "Chiều Cao";
+            sheet.Cells[1, ++headerCol] = "Cân Nặng";
+            sheet.Cells[1, ++headerCol] = "Nhóm Máu";
+            sheet.Cells[1, ++headerCol] = "Tay Thuận";
+            sheet.Cells[1, ++headerCol] = "Hình Xăm";
+            sheet.Cells[1, ++headerCol] = "Thị Lực Mắt Trái";
+            sheet.Cells[1, ++headerCol] = "Thị Lực Mắt Phải";
+            sheet.Cells[1, ++headerCol] = "Ngày Khám Đợt 1";
+            sheet.Cells[1, ++headerCol] = "Ghi Chú Đợt 1";
+            sheet.Cells[1, ++headerCol] = "Ngày Khám Đợt 2";
+            sheet.Cells[1, ++headerCol] = "Ghi Chú Đợt 2";
+            #endregion
+
+            #region Parse Data from List to Excel
+            int row = 2, col = 1;
+            foreach (var item in this.GetDataList())
             {
-                Selected = false,
-                Text = q.HoTen,
-                Value = q.Id.ToString(),
-            });
+                sheet.Cells[row, col] = item.stt;
+                sheet.Cells[row, ++col] = item.idTTCN;
+                sheet.Cells[row, ++col] = item.Name;
+                sheet.Cells[row, ++col] = item.Height;
+                sheet.Cells[row, ++col] = item.Weight;
+                sheet.Cells[row, ++col] = item.BloodType;
+                sheet.Cells[row, ++col] = item.Hand;
+                sheet.Cells[row, ++col] = item.Tattoo;
+                sheet.Cells[row, ++col] = item.LeftEye;
+                sheet.Cells[row, ++col] = item.RightEye;
+                sheet.Cells[row, ++col] = item.FirstTime;
+                sheet.Cells[row, ++col] = item.FirstTimeNote;
+                sheet.Cells[row, ++col] = item.SecondTime;
+                sheet.Cells[row, ++col] = item.SecondTimeNote;
+
+                col = 1;
+                row++;
+            }
+            #endregion
+
+            excelworkBook.SaveAs(ms);
+            excelworkBook.Close();
+            excapp.Quit();
+
+            ms.Seek(0, SeekOrigin.Begin);
+
+            var fileDownloadName = "Báo Cáo Sức Khỏe.xlsx";
+            var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            return this.File(ms, contentType, fileDownloadName);
         }
     }
 }

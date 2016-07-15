@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trường {0} phải là ngày.
+        ///   Looks up a localized string similar to Trường {0} phải là ngay tháng.
         /// </summary>
         internal static string FieldMustBeDate {
             get {
@@ -79,20 +79,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bắt buộc nhập trường này.
-        /// </summary>
-        internal static string PrepertyValueRequired {
-            get {
-                return ResourceManager.GetString("PrepertyValueRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Giá trị {0} không phù hợp cho {1}.
         /// </summary>
         internal static string PropertyValueInvalid {
             get {
                 return ResourceManager.GetString("PropertyValueInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trường phải nhập.
+        /// </summary>
+        internal static string PropertyValueRequired {
+            get {
+                return ResourceManager.GetString("PropertyValueRequired", resourceCulture);
             }
         }
     }

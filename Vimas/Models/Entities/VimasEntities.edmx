@@ -342,7 +342,7 @@
           <Property Name="IdCongTyChungNghe" Type="int" />
           <Property Name="SoPhieuTiepNhan" Type="nvarchar" MaxLength="50" />
           <Property Name="GhiChuPhaiCu" Type="nvarchar" MaxLength="500" />
-          <Property Name="HopDongTTS" Type="int" />
+          <Property Name="HopDongTTS" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayKyHopDong" Type="datetime" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="2083" />
           <Property Name="NgayHuySauKhiTrungTuyen" Type="datetime" />
@@ -1228,7 +1228,7 @@
           <Property Name="IdCongTyChungNghe" Type="Int32" />
           <Property Name="SoPhieuTiepNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GhiChuPhaiCu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="HopDongTTS" Type="Int32" />
+          <Property Name="HopDongTTS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayKyHopDong" Type="DateTime" Precision="3" />
           <Property Name="HinhAnh" Type="String" MaxLength="2083" FixedLength="false" Unicode="true" />
           <Property Name="NgayHuySauKhiTrungTuyen" Type="DateTime" Precision="3" />

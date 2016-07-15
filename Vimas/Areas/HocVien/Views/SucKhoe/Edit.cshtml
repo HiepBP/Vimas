@@ -49,6 +49,7 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.NhomMau, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.NhomMau)
                                 </div>
                             </div>
                         </div>
@@ -71,6 +72,7 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.ThiLucMatTrai, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.ThiLucMatTrai)
                                 </div>
                             </div>
                         </div>
@@ -79,6 +81,7 @@
                             <div class="col-md-6">
                                 <div class="fg-line">
                                     @Html.TextBoxFor(q => q.ThiLucMatPhai, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(q => q.ThiLucMatPhai)
                                 </div>
                             </div>
                         </div>
@@ -135,7 +138,7 @@
         <div class="modal-footer">
             @Html.HiddenFor(q => q.Active)
             <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
-            <button type="button" onclick="Update();" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+            <button type="button" onclick="Update()" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
         </div>
     </form>
 </div>
@@ -147,17 +150,17 @@
 
         @if(this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
             @:$('#NgayKhamDot1').val("");
-        }else{
+                }else{
             @:$('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-            @:$('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
-        }
+                    @:$('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+                }
 
         @if(this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
             @:$('#NgayKhamDot2').val("");
-        }else{
+                }else{
             @:$('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-            @:$('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
-        }
+                    @:$('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+                }
     });
 
     function initializeDateRangePicker() {
@@ -240,19 +243,22 @@
     }
 
     function Update() {
+        var form = $('#editSucKhoeForm')
+        $.validator.unobtrusive.parse(form);
         var formData = $('#editSuckhoeForm').serialize();
-
-        $.ajax({
-            url: '@this.Url.Action("Edit")',
-            data: formData,
-            method: 'POST',
-            success: function (result) {
-                swal("Chỉnh sửa", result.message, "success");
-                window.location.href = "@this.Url.Action("Index")";
-            },
-            error: function (error) {
-                swal('Lỗi', error.message, 'error');
-            }
-        });
+        if (form.valid()) {
+            $.ajax({
+                url: '@this.Url.Action("Edit")',
+                data: formData,
+                method: 'POST',
+                success: function (result) {
+                    swal("Chỉnh sửa", result.message, "success");
+                    window.location.href = "@this.Url.Action("Index")";
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        }
     }
 </script>

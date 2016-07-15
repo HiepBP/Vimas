@@ -160,6 +160,10 @@ $(document).ready(function(){
         //Submenu
         $('body').on('click', '.sub-menu > a', function(e){
             e.preventDefault();
+            $('.sub-menu.toggled').not($(this).parent()).each(function () {
+                $(this).removeClass('toggled');
+                $(this).find('ul').hide();
+            });
             $(this).next().slideToggle(200);
             $(this).parent().toggleClass('toggled');
         });

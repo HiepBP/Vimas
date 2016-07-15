@@ -901,3 +901,7 @@ m-t-10{
 .myGroup-radio-buttons-Five{
     top: -1px;
 }
+
+.form-control{
+    padding: 5px 10px !important;
+}

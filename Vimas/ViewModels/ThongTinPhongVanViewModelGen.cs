@@ -34,7 +34,7 @@ namespace Vimas.ViewModels
     			public virtual Nullable<int> IdCongTyChungNghe { get; set; }
     			public virtual string SoPhieuTiepNhan { get; set; }
     			public virtual string GhiChuPhaiCu { get; set; }
-    			public virtual Nullable<int> HopDongTTS { get; set; }
+    			public virtual string HopDongTTS { get; set; }
     			public virtual Nullable<System.DateTime> NgayKyHopDong { get; set; }
     			public virtual string HinhAnh { get; set; }
     			public virtual Nullable<System.DateTime> NgayHuySauKhiTrungTuyen { get; set; }

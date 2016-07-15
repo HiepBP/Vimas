@@ -6,11 +6,13 @@
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <form id="createThongTinDuTuyenForm" method="post">
+        <form id="editThongTinDuTuyenForm" method="post">
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(q => q.Id)
+            @Html.HiddenFor(q => q.IdThongTinCaNhan)
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Thêm thông tin dự tuyển</h4>
+                <h4 class="modal-title">Sửa thông tin dự tuyển</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
@@ -18,14 +20,14 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Họ tên</label>
                             <div class="col-md-8">
-                                @Html.DropDownListFor(q => q.IdThongTinCaNhan, this.Model.AvailableThongTinCaNhan, new { @class = "form-control col-sm-12", @id = "select2ThongTinCaNhan", @style = "width: 100%;" })
+                                @Html.DisplayFor(q => q.HoTen)
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4">Ngày đăng ký</label>
                             <div class="col-md-8">
                                 <input class="form-control default-cursor" id="NgayDangKy" type="text" value="" required readonly style="background-color:white" />
-                                <input type="hidden" name="NgayDangKy" value="" />
+                                <input type="hidden" name="NgayDangKy" value="@this.Model.NgayDangKy" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,28 +89,52 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Anh chị đăng ký ở Vimas</label>
                             <div class="col-md-8">
-                                @Html.TextBoxFor(q => q.AnhChiDangKyOVimas, new { @class = " form-control col-sm-12", @placeholder ="Chỉ chấp nhận số" })
+                                @Html.TextBoxFor(q => q.AnhChiDangKyOVimas, new { @class = " form-control col-sm-12", @placeholder = "Chỉ chấp nhận số" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4">Đã ĐK đi Nhật ở công ty khác</label>
                             <div class="col-md-8">
-                                <input type="radio" name="DaDKDiNhatOCongtyKhac" value="true" /> Rồi
-                                <input type="radio" name="DaDKDiNhatOCongtyKhac" value="false" checked="checked" /> Chưa
+                                @if (this.Model.DaDKDiNhatOCongtyKhac == true)
+                                {
+                                    <input type="radio" name="DaDKDiNhatOCongtyKhac" value="true" checked= "checked" /> <text> Rồi</text>
+                                    <input type = "radio" name = "DaDKDiNhatOCongtyKhac" value = "false" /> <text> Chưa</text>
+                                }
+                                @if (this.Model.DaDKDiNhatOCongtyKhac != true)
+                                {
+                                    <input type="radio" name="DaDKDiNhatOCongtyKhac" value="true" /> <text> Rồi</text>
+                                    <input type="radio" name="DaDKDiNhatOCongtyKhac" value="false" checked="checked" /> <text> Chưa</text>
+                                }
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4">Đã đi nước ngoài</label>
                             <div class="col-md-8">
-                                <input type="radio" name="DaDiNuocNgoai" value="true" /> Rồi
-                                <input type="radio" name="DaDiNuocNgoai" value="false" checked="checked" /> Chưa
+                                @if (this.Model.DaDiNuocNgoai == true)
+                                {
+                                    <input type="radio" name="DaDiNuocNgoai" value="true" checked="checked" /> <text> Rồi</text>
+                                    <input type="radio" name="DaDiNuocNgoai" value="false" /> <text> Chưa</text>
+                                }
+                                @if (this.Model.DaDiNuocNgoai != true)
+                                {
+                                    <input type="radio" name="DaDiNuocNgoai" value="true" /> <text> Rồi</text>
+                                    <input type="radio" name="DaDiNuocNgoai" value="false" checked="checked" /> <text> Chưa</text>
+                                }
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-4">Đã đi Nhật</label>
                             <div class="col-md-8">
-                                <input type="radio" name="DaDiNhat" value="true" /> Rồi
-                                <input type="radio" name="DaDiNhat" value="false" checked="checked" /> Chưa
+                                @if (this.Model.DaDiNhat == true)
+                                {
+                                    <input type="radio" name="DaDiNhat" value="true" checked="checked" /> <text> Rồi</text>
+                                    <input type="radio" name="DaDiNhat" value="false" /> <text> Chưa</text>
+                                }
+                                @if (this.Model.DaDiNhat != true)
+                                {
+                                    <input type="radio" name="DaDiNhat" value="true" /> <text> Rồi</text>
+                                    <input type="radio" name="DaDiNhat" value="false" checked="checked" /> <text> Chưa</text>
+                                }
                             </div>
                         </div>
                         <div class="form-group">
@@ -122,7 +148,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="createTTDT()" value="Thêm" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="editTTDT()" value="Thêm" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -130,15 +156,13 @@
 
 <script>
     $(document).ready(function () {
-        var form = $('#createThongTinDuTuyenForm')
+        var form = $('#editThongTinDuTuyenForm')
             .removeData("validator") /* added by the raw jquery.validate plugin */
             .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
 
         $.validator.unobtrusive.parse(form);
         initializeDateRangePicker();
 
-        $('#select2ThongTinCaNhan').select2();
-        
         $('input[name="AnhChiDangKyOVimas"]').keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
@@ -156,19 +180,19 @@
         });
     })
 
-    function createTTDT() {
-        var form = $('#createThongTinDuTuyenForm');
+    function editTTDT() {
+        var form = $('#editThongTinDuTuyenForm');
         $.validator.unobtrusive.parse(form);
-        var formData = $('#createThongTinDuTuyenForm').serialize();
+        var formData = $('#editThongTinDuTuyenForm').serialize();
         if(form.valid()){
         $.ajax({
             type: "POST",
-            url: '@Url.Action("Create", "ThongTinDuTuyen")',
+            url: '@Url.Action("Edit", "ThongTinDuTuyen")',
             data: formData,
             success: function (result) {
                 alert(result.message);
-                $('#createTTDTPanel').modal('hide');
-                $('#createTTDTPanel').html("");
+                $('#editTTDTPanel').modal('hide');
+                $('#editTTDTPanel').html("");
                 RefreshTable('thongTinDuTuyenDatatable');
             },
             error: function (error) {
@@ -181,8 +205,8 @@
     function initializeDateRangePicker() {
         moment.locale('vi');
         var now = moment().format("LL");
-        $('input[name="NgayDangKy"]').val(moment().format("L"));
-        $('#NgayDangKy').val(now);
+        $('input[name="NgayDangKy"]').val('@this.Model.NgayDangKy.ToShortDateString()');
+        $('#NgayDangKy').val(moment('@this.Model.NgayDangKy.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
         $('#NgayDangKy').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -223,4 +247,6 @@
         });
     };
 </script>
+
+
 

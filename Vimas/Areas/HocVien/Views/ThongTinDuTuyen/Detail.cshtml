@@ -1,4 +1,4 @@
-﻿@model ThongTinDuTuyenViewModel
+﻿@model ThongTinDuTuyenEditViewModel
 @{
     var user = HttpContext.Current.User;
     ViewBag.Title = "Thông tin dự tuyển";
@@ -9,7 +9,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12">
-                <h3>Thông tin dự tuyển của: <strong>Chưa biết lấy giá trị Họ tên</strong></h3>
+                <h3>Thông tin dự tuyển của: <strong>@Html.DisplayFor(q => q.HoTen)</strong></h3>
             </div>
         </div>
         <hr />

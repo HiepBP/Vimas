@@ -59,7 +59,9 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
+        #endregion
 
+        #region Create
         [Authorize(Roles ="Admin, PhongNguon")]
         public ActionResult Create()
         {
@@ -74,6 +76,68 @@ namespace Vimas.Areas.HocVien.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> Create(ThongTinDuTuyenEditViewModel model)
+        {
+            try
+            {
+                var thongTinDuTuyenService = this.Service<IThongTinDuTuyenService>();
+                model.Active = true;
+                await thongTinDuTuyenService.CreateAsync(model.ToEntity());
+                return Json(new { success = true, message = "Tạo thành công" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+        #endregion
+
+        #region Edit
+        [Authorize(Roles = "Admin, PhongNguon")]
+        public async Task<ActionResult> Edit(int id)
+        {
+            var thongTinDuTuyenService = this.Service<IThongTinDuTuyenService>();
+            var model = new ThongTinDuTuyenEditViewModel(await thongTinDuTuyenService.GetAsync(id));
+            if (model == null || model.Active == false)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var thongTinCaNhan = await thongTinCaNhanService.GetAsync(model.IdThongTinCaNhan);
+            model.HoTen = thongTinCaNhan.HoTen;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ThongTinDuTuyenEditViewModel model)
+        {
+            try
+            {
+                var thongTinDuTuyenService = this.Service<IThongTinDuTuyenService>();
+                var entity = await thongTinDuTuyenService.GetAsync(model.Id);
+                if (entity == null || entity.Active == false)
+                {
+                    return Json(new { success = false, message = Resource.ErrorMessage });
+                }
+                model.CopyToEntity(entity);
+                entity.Active = true;
+                entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+                await thongTinDuTuyenService.UpdateAsync(entity);
+                return Json(new { success = true, message = "Sửa thành công!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, message = Resource.ErrorMessage });
+            }
+        }
+
         #endregion
 
         #region Detail
@@ -85,8 +149,10 @@ namespace Vimas.Areas.HocVien.Controllers
             {
                 return HttpNotFound();
             }
-            var model = Mapper.Map<ThongTinDuTuyenViewModel>(entity);
-
+            var model = Mapper.Map<ThongTinDuTuyenEditViewModel>(entity);
+            var TTCNService = this.Service<IThongTinCaNhanService>();
+            var TTCN = TTCNService.Get(model.IdThongTinCaNhan);
+            model.HoTen = TTCN.HoTen;
             return this.View(model);
         }
         #endregion

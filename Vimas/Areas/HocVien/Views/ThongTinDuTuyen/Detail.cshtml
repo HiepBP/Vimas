@@ -1,0 +1,160 @@
+﻿@model ThongTinDuTuyenViewModel
+@{
+    ViewBag.Title = "Thông tin dự tuyển";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Thông tin dự tuyển của: <strong>Chưa biết lấy giá trị Họ tên</strong></h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayDangKy">Ngày đăng ký</label>
+                        <div class="col-md-6">
+                            <input class="form-control default-cursor" id="NgayDangKy" type="text" value="" readonly style="background-color:white" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="UuDiem">Ưu điểm</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.UuDiem)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NhuocDiem">Nhược điểm</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NhuocDiem)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="KyNangKhac">Kỹ năng khác</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.KyNangKhac)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="SoThich">Sở thích</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.SoThich)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="LyDoDiNhat">Lí do đi Nhật</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.LyDoDiNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="VeNuocLamGi">Về nước làm gì</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.VeNuocLamGi)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="BanBeBenNhat">Bạn bè bên Nhật</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.BanBeBenNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="AnhChiBenNhat">Anh chị bên Nhật</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.AnhChiBenNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="AnhChiDangKyOVimas">Anh chị đăng ký ở Vimas</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.AnhChiDangKyOVimas)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DaDKDiNhatOCongtyKhac">Đã đi Nhật ở công ty khác</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.DaDKDiNhatOCongtyKhac == true)
+                                {
+                                    <text>
+                                        Rồi
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        Chưa
+                                    </text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DaDiNuocNgoai">Đã đi nước ngoài</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.DaDiNuocNgoai == true)
+                                {
+                                    <text>
+                                        Rồi
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        Chưa
+                                    </text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DaDiNhat">Đã đi Nhật</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.DaDiNhat == true)
+                                {
+                                    <text>
+                                        Rồi
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        Chưa
+                                    </text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Index")" class="btn btn-danger">Quay lại</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgayDangKy').val(moment('@this.Model.NgayDangKy.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+
+        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayDangKy.ToShortDateString()')
+    });
+
+</script>
+
+s

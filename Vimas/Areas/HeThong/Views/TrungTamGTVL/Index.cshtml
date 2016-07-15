@@ -102,7 +102,7 @@
                     "aTargets": [6],
                     "mRender": function (data, type, o) {
                         var data = o[6];
-                        var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
+                        var detail = "<a id='detailTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon  glyphicon-info-sign'></i> Detail</a>";
                         var del = "<a id='deleteTrungTam' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
                         var edit = "<a id='editTrungTam' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "TrungTamGTVL")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                         return detail + " " + edit + " " + del;

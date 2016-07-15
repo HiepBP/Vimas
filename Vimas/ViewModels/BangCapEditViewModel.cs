@@ -20,13 +20,14 @@ namespace Vimas.ViewModels
         }
         [Display(Name = "Tháng")]
         [IsNumeric(ErrorMessage = "Vui lòng nhập số")]
-        [MaxLength(2, ErrorMessage = "Tối đa 2 kí tự")]
+        [Range(1,12, ErrorMessage = "Tháng từ 1 đến 12")]
         public override Nullable<int> Thang { get; set; }
         [Display(Name = "Năm")]
         [IsNumeric(ErrorMessage = "Vui lòng nhập số")]
-        [MaxLength(4, ErrorMessage = "Tối đa 4 kí tự")]
+        [Range(1000,9999, ErrorMessage = "Năm có 4 số")]
         public override Nullable<int> Nam { get; set; }
-        [Display(Name = "Bằng cấp")]
+        [Display(Name = "Bằng cấp/Giấy tờ")]
+        [Required(ErrorMessage = "Vui lòng nhập tên bằng/giấy tờ")]
         public override string BangCap1 { get; set; }
         [Display(Name = "Đã nộp")]
         public override Nullable<bool> DaNop { get; set; }

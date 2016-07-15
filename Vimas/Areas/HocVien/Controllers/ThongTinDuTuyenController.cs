@@ -56,5 +56,20 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
+
+        [Authorize(Roles ="Admin, PhongNguon")]
+        public ActionResult Create()
+        {
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
+            var model = new ThongTinDuTuyenEditViewModel();
+            model.AvailableThongTinCaNhan = thongTinCaNhanService.GetActive().Select(q => new SelectListItem()
+            {
+                Text = q.HoTen + "[CMND: " + q.CMND + "]",
+                Value = q.Id.ToString(),
+                Selected = false,
+            });
+            return View(model);
+        }
+
     }
 }

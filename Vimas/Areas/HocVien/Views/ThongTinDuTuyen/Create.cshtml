@@ -1,0 +1,210 @@
+﻿@model ThongTinDuTuyenEditViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <form id="createThongTinDuTuyenForm" method="post">
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Thêm thông tin dự tuyển</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Họ tên</label>
+                            <div class="col-md-5">
+                                @Html.DropDownListFor(q => q.IdThongTinCaNhan, this.Model.AvailableThongTinCaNhan, new { @class = "form-control col-sm-12", @id = "select2ThongTinCaNhan" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Ngày đăng ký</label>
+                            <div class="col-md-5">
+                                <input class="form-control default-cursor" id="NgayDangKy" type="text" value="" required readonly style="background-color:white" />
+                                <input type="hidden" name="NgayDangKy" value="@this.Model.NgayDangKy" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Ưu điểm</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.UuDiem, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Nhược điểm</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.NhuocDiem, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Kỹ năng khác</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.KyNangKhac, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Sở thích</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.SoThich, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Lý do đi Nhật</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.LyDoDiNhat, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Về nước làm gì</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.VeNuocLamGi, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Người giới thiệu</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.NguoiGioiThieu, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Bạn bè bên Nhật</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.BanBeBenNhat, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Anh chị bên Nhật</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.AnhChiBenNhat, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Anh chị đăng ký ở Vimas</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.AnhChiDangKyOVimas, new { @class = " form-control col-sm-12", @placeholder ="Chỉ chấp nhận số" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Đã ĐK đi Nhật ở công ty khác</label>
+                            <div class="col-md-5">
+                                <input type="radio" name="DaDKDiNhatOCongtyKhac" value="true" /> Rồi
+                                <input type="radio" name="DaDKDiNhatOCongtyKhac" value="false" /> Chưa
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Đã đi nước ngoài</label>
+                            <div class="col-md-5">
+                                <input type="radio" name="DaDiNuocNgoai" value="true" /> Rồi
+                                <input type="radio" name="DaDiNuocNgoai" value="false" /> Chưa
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Đã đi Nhật</label>
+                            <div class="col-md-5">
+                                <input type="radio" name="DaDiNhat" value="true" /> Rồi
+                                <input type="radio" name="DaDiNhat" value="false" /> Chưa
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Ghi chú sơ vấn</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(q => q.GhiChuSoVan, new { @class = " form-control col-sm-12" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <input type="button" id="btnSubmit" onclick="createTTDT()" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var form = $('#createThongTinDuTuyenForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+        initializeDateRangePicker();
+
+        $('#select2ThongTinCaNhan').select2();
+    })
+
+    function createTTDT() {
+        var form = $('#createThongTinDuTuyenForm');
+        $.validator.unobtrusive.parse(form);
+        var formData = $('#createThongTinDuTuyenForm').serialize();
+        if(form.valid()){
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Create", "ThongTinDuTuyen")',
+            data: formData,
+            success: function (result) {
+                alert(result.message);
+                $('#createTTDTPanel').modal('hide');
+                $('#createTTDTPanel').html("");
+                RefreshTable('thongTinDuTuyenDatatable');
+            },
+            error: function (error) {
+                alert(result.message);
+            }
+        });
+        }
+    }
+
+    function initializeDateRangePicker() {
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('input[name="NgayDangKy"]').val(moment().format("L"));
+        $('#NgayDangKy').val(now);
+        $('#NgayDangKy').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            minDate: moment().add(-50, 'y'),
+            maxDate: moment().add(10, 'y'),
+            locale: {
+                format: "LL",
+                daysOfWeek: [
+                    "Chủ Nhật",
+                    "Thứ 2",
+                    "Thứ 3",
+                    "Thứ 4",
+                    "Thứ 5",
+                    "Thứ 6",
+                    "Thứ 7"
+                ],
+                monthNames: [
+                    "Tháng 1",
+                    "Tháng 2",
+                    "Tháng 3",
+                    "Tháng 4",
+                    "Tháng 5",
+                    "Tháng 6",
+                    "Tháng 7",
+                    "Tháng 8",
+                    "Tháng 9",
+                    "Tháng 10",
+                    "Tháng 11",
+                    "Tháng 12"
+                ],
+                firstDay: 1,
+            }
+        },
+        function (start, end, label) {
+            $('#NgayDangKy').val(start.format('LL'));
+            $('input[name="NgayDangKy"]').val(start.format("DD/MM/YYYY"));
+        });
+    };
+</script>
+

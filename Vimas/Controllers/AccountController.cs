@@ -156,13 +156,13 @@ namespace Vimas.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        ////
+        //// GET: /Account/Register
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
 
         ////
         //// POST: /Account/Register
@@ -173,6 +173,7 @@ namespace Vimas.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
+        //        UserManager.PasswordHasher = new MP5Hasher(FormsAuthPasswordFormat.MD5);
         //        var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
         //        var result = await UserManager.CreateAsync(user, model.Password);
         //        if (result.Succeeded)

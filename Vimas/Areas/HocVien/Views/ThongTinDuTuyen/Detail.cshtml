@@ -1,0 +1,314 @@
+﻿@model ThongTinDuTuyenViewModel
+@{
+    var user = HttpContext.Current.User;
+    ViewBag.Title = "Thông tin dự tuyển";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Thông tin dự tuyển của: <strong>Chưa biết lấy giá trị Họ tên</strong></h3>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div class="row group-info" style="margin-left:-2px; margin-right:-2px; margin-top:12px; padding-top:20px; padding-bottom:22px;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NgayDangKy">Ngày đăng ký</label>
+                        <div class="col-md-6">
+                            <input class="form-control default-cursor" id="NgayDangKy" type="text" value="" readonly style="background-color:white" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="UuDiem">Ưu điểm</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.UuDiem)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="NhuocDiem">Nhược điểm</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.NhuocDiem)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="KyNangKhac">Kỹ năng khác</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.KyNangKhac)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="SoThich">Sở thích</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.SoThich)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="LyDoDiNhat">Lí do đi Nhật</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.LyDoDiNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="VeNuocLamGi">Về nước làm gì</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.VeNuocLamGi)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="BanBeBenNhat">Bạn bè bên Nhật</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.BanBeBenNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="AnhChiBenNhat">Anh chị bên Nhật</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.AnhChiBenNhat)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="AnhChiDangKyOVimas">Anh chị đăng ký ở Vimas</label>
+                        <div class="col-md-6">
+                            @Html.DisplayTextFor(q => q.AnhChiDangKyOVimas)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DaDKDiNhatOCongtyKhac">Đã đi Nhật ở công ty khác</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.DaDKDiNhatOCongtyKhac == true)
+                                {
+                                    <text>
+                                        Rồi
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        Chưa
+                                    </text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DaDiNuocNgoai">Đã đi nước ngoài</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.DaDiNuocNgoai == true)
+                                {
+                                    <text>
+                                        Rồi
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        Chưa
+                                    </text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="DaDiNhat">Đã đi Nhật</label>
+                        <div class="col-md-6">
+                            <div class="fg-line">
+                                @if (this.Model.DaDiNhat == true)
+                                {
+                                    <text>
+                                        Rồi
+                                    </text>
+                                }
+                                else
+                                {
+                                    <text>
+                                        Chưa
+                                    </text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-left:20px">
+        <button class="btn btn-sm btn-primary" onclick="showCreateBC('@this.Model.Id')">Thêm bằng cấp</button>
+    </div>
+    <div id="datatable">
+        <table id="bangCapDatatable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
+            <thead style="white-space: nowrap; text-overflow: ellipsis;">
+                <tr>
+                    <th>
+                        <label class="">Bằng/Giấy tờ</label>
+                    </th>
+                    <th>
+                        <label class="">Thời gian</label>
+                    </th>
+                    <th>
+                        <label class="">Trình độ</label>
+                    </th>
+                    <th>
+                        <label class="">Đã nộp</label>
+                    </th>
+                    <th>
+                        <label class=""></label>
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("Index")" class="btn btn-danger">Quay lại</a>
+    </div>
+</div>
+
+<div id="createBCPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+<div id="editBCPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
+
+<script>
+    $(document).ready(function () {
+        InitDatatable();
+        moment.locale('vi');
+        var now = moment().format("LL");
+        $('#NgayDangKy').val(moment('@this.Model.NgayDangKy.ToShortDateString()', 'DD/MM/YYYY').format('LL'));
+
+        $('input[name="NgayKyHopDong"]').val('@this.Model.NgayDangKy.ToShortDateString()')
+    });
+
+    function InitDatatable() {
+        $("#bangCapDatatable").dataTable({
+            "bSort": false,
+            "bRetrieve": true,
+            "bServerSide": true,
+            "bScrollCollapse": true,
+            "sAjaxSource": "@Url.Action("LoadDanhSachBangCap","BangCap")",
+            "bProcessing": true,
+            "iDisplayLength": 10,
+            "aLengthMenu": [10, 25, 50],
+            "oLanguage": {
+                "sSearch": "Tìm kiếm:",
+                "sZeroRecords": "Không có dữ liệu phù hợp",
+                "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
+                "sEmptyTable": "Không có dữ liệu",
+                "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
+                "sLengthMenu": "Hiển thị _MENU_ dòng",
+                "sProcessing": "Đang xử lý...",
+                "oPaginate": {
+                    "sNext": "<i class='fa fa-chevron-right'></i>",
+                    "sPrevious": "<i class='fa fa-chevron-left'></i>"
+                }
+            },
+            "aoColumnDefs": [
+                {
+                    "aTargets": [0, 1, 2, 3],
+                    "bSortable": false
+                },
+                {
+                    "aTargets": [4],
+                    "mRender": function (data, type, o) {
+                        var data = o[4];
+                        //var detail = "<button type='button' id='detailTTNT' class='btn btn-sm btn-primary' onclick='showDetailTTNT(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+
+
+                        @if(!user.IsInRole("Admin"))
+                        {
+                            <text>
+                        var edit = "";
+                        var del = "";
+                        </text>
+                        }
+                        else
+                        {
+                            <text>
+                        var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditBC(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteBC(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                        </text>
+                        }
+
+                        return edit + " " + del;
+                    }
+                }
+
+            ],
+            "bAutoWidth": false
+        }).fnSetFilteringDelay(delaySearchDb);
+    }
+
+    function showCreateBC(idTTDT) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Create","BangCap")',
+            data: {
+                idThongTinDuTuyen: idTTDT,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#createBCPanel').html(result);
+                $('#createBCPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+
+    function showEditBC(idBC) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Edit","BangCap")',
+            data: {
+                id: idBC,
+            },
+            success: function (result) {
+                //$('#myModal').modal('show');
+                $('#editBCPanel').html(result);
+                $('#editBCPanel').modal('show');
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
+
+    function deleteBC(idBC) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Delete", "BangCap")',
+                data: {
+                    id: idBC,
+                },
+                success: function (result) {
+                    swal("Xoá", result.message, "success");
+                    RefreshTable('bangCapDatatable');
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        });
+    }
+
+</script>

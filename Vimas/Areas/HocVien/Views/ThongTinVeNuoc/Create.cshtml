@@ -107,13 +107,13 @@
             url: '@Url.Action("Create", "ThongTinVeNuoc")',
             data: formData,
             success: function (result) {
-                alert(result.message);
+                swal("Thêm mới", result.message, "success");
                 $('#createTTVNPanel').modal('hide');
                 $('#createTTVNPanel').html("");
                 RefreshTable('thongTinVeNuocTable');
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
         }

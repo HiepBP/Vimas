@@ -36,7 +36,7 @@
             </div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 587px; top: 0px; display: block; max-height: 695px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div><div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div>
         </div>
 
-        <div class="pm-body clearfix" style="padding-left: 235px;">
+        <div class="pm-body clearfix" style="padding-left: 220px;">
             <div class="col-md-12">
                 <ul class="tab-nav tn-justified">
                     <li class="active waves-effect"><a data-toggle="tab" href="#quaTrinhHocTap">Quá trình học tập</a></li>
@@ -592,15 +592,15 @@
                         {
                             <text>
                         var edit = "";
-                            var del = "";
-                            </text>
+                        var del = "";
+                        </text>
                         }
                         else
                         {
                             <text>
                         var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                         var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                            </text>
+                        </text>
                         }
                         return detail + " " + edit + " " + del;
                     }
@@ -608,7 +608,7 @@
 
             ],
             "bAutoWidth": false
-    }).fnSetFilteringDelay(delaySearchDb);
+        }).fnSetFilteringDelay(delaySearchDb);
     }
 
     function showCreateQTHT(idThongTinCaNhan) {
@@ -624,7 +624,7 @@
                 $('#createQTHTPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -641,7 +641,7 @@
                 $('#createQTLVPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -658,7 +658,7 @@
                 $('#editQTHTPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -676,7 +676,7 @@
                 $('#createTTGDPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -694,7 +694,7 @@
                 $('#editTTGDPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -712,7 +712,7 @@
                 $('#detailTTGDPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -730,7 +730,7 @@
                 $('#editQTLVPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -842,7 +842,7 @@
                 $('#TTPVPanel').modal('show');
             },
             error: function (error) {
-                swal('Lỗi',error.message,'error');
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -870,7 +870,7 @@
                     RefreshTable('thongTinPhongVanTable');
                 },
                 error: function (error) {
-                    swal('Lỗi',error.message,'error');
+                    swal('Lỗi', error.message, 'error');
                 }
             });
         });
@@ -889,13 +889,23 @@
                 $('#detailTTVNPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
 
     function deleteTTVN(idTTVN) {
-        if(confirm("Chắc chắn xóa dòng này?")) {
+        swal({
+            title: "Bạn có chắc xóa dòng này?",
+            type: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Vâng, chắc chắn Xoá",
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonText: "Không",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Del", "ThongTinVeNuoc")',
@@ -903,14 +913,14 @@
                     id: idTTVN,
                 },
                 success: function (result) {
-                    alert(result.message);
+                    swal("Xoá", result.message, "success");
                     RefreshTable('thongTinVeNuocTable');
                 },
                 error: function (error) {
-                    alert("Error Occured")
+                    swal('Lỗi', error.message, 'error');
                 }
             });
-        }
+        });
     }
 
     function showCreateTTVN(idThongTinCaNhan) {
@@ -925,7 +935,7 @@
                 $('#createTTVNPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }
@@ -938,11 +948,11 @@
                 id: idTTVN,
             },
             success: function (result) {
-                $('#editTTVNPanel').html(result);
-                $('#editTTVNPanel').modal('show');
+                $('#editTTGDPanel').html(result);
+                $('#editTTGDPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }

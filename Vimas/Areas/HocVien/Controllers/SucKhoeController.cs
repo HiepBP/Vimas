@@ -243,9 +243,17 @@ namespace Vimas.Areas.HocVien.Controllers
             {
                 ExcelWorksheet ws = package.Workbook.Worksheets.Add("Báo Cáo Sức Khỏe");
                 char StartHeaderChar = 'A';
-                int StartHeaderNumber = 1;
+                int StartHeaderNumber = 2;
                 var listDT = GetDataList();
                 #region Headers
+
+                ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
+                ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
+                ws.Cells["" + (StartHeaderChar) + (1)].Value = "BÁO CÁO SỨC KHỎE - Ngày " + DateTime.Now.ToShortDateString();
+                ws.Cells["A1:N1"].Merge = true;
+                ws.Cells["A1:N1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                StartHeaderChar = 'A';
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "ID Cá Nhân";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Tên";
@@ -263,16 +271,19 @@ namespace Vimas.Areas.HocVien.Controllers
                 var EndHeaderChar = StartHeaderChar;
                 var EndHeaderNumber = StartHeaderNumber;
                 StartHeaderChar = 'A';
-                StartHeaderNumber = 1;
                 #endregion
                 #region Set style for rows and columns
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Font.Bold = true;
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()].AutoFitColumns();
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()]
                     .Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+
                 ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
                     ":" + EndHeaderChar + EndHeaderNumber.ToString()]
                     .Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.GreenYellow);
@@ -320,7 +331,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 package.SaveAs(ms);
                 ms.Seek(0, SeekOrigin.Begin);
 
-                var fileDownloadName = "Báo Cáo Sức Khỏe.xlsx";
+                var fileDownloadName = "Báo Cáo Sức Khỏe - "+DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx";
                 var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 return this.File(ms, contentType, fileDownloadName);
             }

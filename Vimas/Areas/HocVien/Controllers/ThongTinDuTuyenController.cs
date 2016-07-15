@@ -4,6 +4,7 @@ using SkyWeb.DatVM.Mvc.Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Vimas.Models;
@@ -15,6 +16,8 @@ namespace Vimas.Areas.HocVien.Controllers
     public class ThongTinDuTuyenController : BaseController
     {
         // GET: HocVien/ThongTinDuTuyen
+
+        #region Index
         public ActionResult Index()
         {
             return View();
@@ -56,5 +59,51 @@ namespace Vimas.Areas.HocVien.Controllers
                 return Json(new { success = false, message = Resource.ErrorMessage });
             }
         }
+
+        #endregion
+
+        #region Detail
+        public ActionResult Detail(int id)
+        {
+            var service = this.Service<IThongTinDuTuyenService>();
+            var entity = service.Get(id);
+            if (entity == null)
+            {
+                return HttpNotFound();
+            }
+            var model = Mapper.Map<ThongTinDuTuyenViewModel>(entity);
+
+            return this.View(model);
+        }
+        #endregion
+
+        #region Delete
+        [HttpPost]
+        [Authorize(Roles = "Admin, PhongNguon")]
+        public async Task<JsonResult> Delete(int id)
+        {
+            var thongTinDuTuyenService = this.Service<IThongTinDuTuyenService>();
+
+            var entity = thongTinDuTuyenService.Get(id);
+
+            if (entity == null)
+            {
+                return Json(new { success = false, message = "Không tồn tại dữ liệu thông tin dự tuyển này, xin vui lòng thử lại." });
+            }
+            else
+            {
+                try
+                {
+                    entity.Active = false;
+                    await thongTinDuTuyenService.UpdateAsync(entity);
+                }
+                catch (Exception e)
+                {
+                    return Json(new { success = false, message = "Xóa thông tin dự tuyển thất bại, xin vui lòng thử lại." });
+                };
+            }
+            return Json(new { success = true, message = "Xóa thông tin dự tuyển." });
+        }
+        #endregion
     }
 }

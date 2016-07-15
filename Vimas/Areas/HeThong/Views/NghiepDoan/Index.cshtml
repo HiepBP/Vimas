@@ -105,7 +105,7 @@
                         @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
                         {
                             <text>
-                            var detail = "<a id='detailNghiepDoan' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "NghiepDoan")\/" + data + "\'><i class='fa fa-eye'></i> Detail</a>";
+                            var detail = "<a id='detailNghiepDoan' class='btn btn-sm btn-primary' href='@Url.Action("Detail", "NghiepDoan")\/" + data + "\'><i class='glyphicon  glyphicon-info-sign'></i> Detail</a>";
                             var del = "<a id='deleteNghiepDoan' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
                             var edit = "<a id='editNghiepDoan' class='btn btn-sm btn-primary' href='@Url.Action("Edit", "NghiepDoan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                             </text>

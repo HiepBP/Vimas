@@ -95,19 +95,19 @@
                         var data = o[5];
                         @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
                         {
-                                <text>
-                        var detail = "<button id='detailDOLAB' class='btn btn-sm btn-primary' onclick='showDetailDOLAB(" + data + ")'><i class='fa fa-eye'></i> Detail</button>";
-                        var del = "<button id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                        var edit = "<button id='editDOLAB' class='btn btn-sm btn-primary' onclick='showEditDOLAB(" + data + ")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                        </text>
+                            <text>
+                            var detail = "<button id='detailDOLAB' class='btn btn-sm btn-primary' onclick='showDetailDOLAB(" + data + ")'><i class='glyphicon  glyphicon-info-sign'></i> Detail</button>";
+                            var del = "<button id='deleteDOLAB' class='btn btn-sm btn-danger' onClick='Delete(" + data + ")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            var edit = "<button id='editDOLAB' class='btn btn-sm btn-primary' onclick='showEditDOLAB(" + data + ")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            </text>
                          }
                         else
                         {
                             <text>
-                        var detail = "";
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            var detail = "";
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         return detail + " " + edit + " " + del;
                     }

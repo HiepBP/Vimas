@@ -154,7 +154,7 @@
                             <text>
                             var edit = "<button type='button' id='editTTDT' class='btn btn-sm btn-primary' onclick='showEditTTDT(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                             var del = "<button type='button' id='deleteTTDT' class='btn btn-sm btn-danger' onclick='deleteTTDT(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                            var detail = "<button type='button' id='detailTTDT' class='btn btn-sm btn-primary' onclick='detailTTDT(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                            var detail = "<a class='btn btn-sm btn-primary' href='@Url.Action("Detail", "ThongTinDuTuyen")\/" + data + "\'><i class='glyphicon  glyphicon-info-sign'></i> Detail</a>";
                             </text>
                         }
                         else
@@ -224,7 +224,7 @@
         }, function () {
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("Delete", "ThongTinNopTien")',
+                url: '@Url.Action("Delete", "ThongTinDuTuyen")',
                 data: {
                     id: idTTDT,
                 },

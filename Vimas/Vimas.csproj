@@ -3015,6 +3015,7 @@
     <Content Include="Areas\Admin\Views\SystemLog\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\BangCap\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\BangCap\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />

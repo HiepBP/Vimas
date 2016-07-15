@@ -94,6 +94,8 @@ namespace Vimas.Areas.HocVien.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async System.Threading.Tasks.Task<JsonResult> Edit(BangCapEditViewModel model)
         {
             try

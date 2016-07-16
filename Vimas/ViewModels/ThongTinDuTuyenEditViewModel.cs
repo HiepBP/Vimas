@@ -27,7 +27,7 @@ namespace Vimas.ViewModels
 
         [Display(Name = "Anh chị Đăng ký ở Vimas")]
         [IsNumeric]
-        public override Nullable<int> AnhChiDangKyOVimas { get; set; }
+        public override string AnhChiDangKyOVimas { get; set; }
 
         [Display(Name = "Đã đăng kí đi Nhật ở công ty khác")]
         [Required(ErrorMessage = "Vui lòng cho biết thông tin này!!!")]

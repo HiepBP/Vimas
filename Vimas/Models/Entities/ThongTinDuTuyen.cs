@@ -32,7 +32,7 @@ namespace Vimas.Models.Entities
         public string NguoiGioiThieu { get; set; }
         public string BanBeBenNhat { get; set; }
         public string AnhChiBenNhat { get; set; }
-        public Nullable<int> AnhChiDangKyOVimas { get; set; }
+        public string AnhChiDangKyOVimas { get; set; }
         public bool DaDKDiNhatOCongtyKhac { get; set; }
         public bool DaDiNuocNgoai { get; set; }
         public bool DaDiNhat { get; set; }

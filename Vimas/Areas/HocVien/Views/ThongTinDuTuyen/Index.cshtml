@@ -68,8 +68,6 @@
 <script>
     $(document).ready(function () {
         InitOrderDatatable();
-        //$('#hocVienDatatable_length, #hocVienDatatable_filter, #hocVienDatatable_info, hocVienDatatable_paginate').addClass('display-initial');
-        //$('#hocVienDatatable_filter, #hocVienDatatable_paginate').addClass('pull-right');
     });
 
     function InitOrderDatatable() {
@@ -104,7 +102,7 @@
                     "aTargets": [2],
                     "mRender": function (data, type, o) {
                         var status = "";
-                        var data = o[3];
+                        var data = o[2];
                         status += ($('<span/>', {
                             'class': 'badge',
                             'style': 'background-color: #009FFF!important;',
@@ -132,7 +130,7 @@
                     "aTargets": [4],
                     "mRender": function (data, type, o) {
                         var status = "";
-                        var data = o[3];
+                        var data = o[4];
                         status += ($('<span/>', {
                             'class': 'badge',
                             'style': 'background-color: #009FFF!important;',

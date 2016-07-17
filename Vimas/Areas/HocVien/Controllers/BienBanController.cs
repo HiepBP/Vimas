@@ -130,6 +130,7 @@ namespace Vimas.Areas.HocVien.Controllers
         public async System.Threading.Tasks.Task<JsonResult> Edit(BienBanEditViewModel model)
         {
             var bienBanService = this.Service<IBienBanService>();
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             var entity = await bienBanService.GetAsync(model.id);
             try
             {
@@ -161,6 +162,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 #endregion
                 model.CopyToEntity(entity);
                 entity.Active = true;
+                entity.ThongTinCaNhan = await thongTinCaNhanService.GetAsync(entity.idThongTinCaNhan);
                 await bienBanService.UpdateAsync(entity);
                 return Json(new { success = true, message = "Lưu biên bản thành công!" });
             }

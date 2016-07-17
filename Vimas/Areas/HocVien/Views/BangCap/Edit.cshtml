@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-4">Đã nộp</label>
                         <div class="col-md-5">
-                            <input type="checkbox" name="DaNop" id="DaNop" value="true" />
+                            <input type="checkbox" name="DaNop" id="DaNop" value="true" checked="@(this.Model.DaNop.GetValueOrDefault()?"":null)"/>
                         </div>
                     </div>
                 </div>

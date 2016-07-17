@@ -178,7 +178,7 @@
                 },
                 success: function (result) {
                     swal("Xoá.", result.message, "success");
-                    RefreshTTCNTable();
+                    RefreshTable('bienBanDataTable');
                 },
                 error: function (error) {
                     swal('Lỗi', error.message, 'error');

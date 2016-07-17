@@ -193,6 +193,16 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
+                #region Delete old file
+                string strPhysicalFolder = Server.MapPath("~/");
+
+                string strFileFullPath = strPhysicalFolder + entity.HinhAnh;
+
+                if (System.IO.File.Exists(strFileFullPath))
+                {
+                    System.IO.File.Delete(strFileFullPath);
+                }
+                #endregion
                 await bienBanService.DeactivateAsync(entity);
                 return Json(new { success = false, message = "Xóa thành công" });
             }

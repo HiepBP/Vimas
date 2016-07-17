@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -85,7 +86,12 @@ namespace Vimas.Areas.HocVien.Controllers
             {
                 var thongTinDuTuyenService = this.Service<IThongTinDuTuyenService>();
                 model.Active = true;
-                await thongTinDuTuyenService.CreateAsync(model.ToEntity());
+
+                var entity = model.ToEntity();
+                await thongTinDuTuyenService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
+
                 return Json(new { success = true, message = "Tạo thành công" });
             }
             catch (Exception e)
@@ -129,7 +135,11 @@ namespace Vimas.Areas.HocVien.Controllers
                 model.CopyToEntity(entity);
                 entity.Active = true;
                 entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+
                 await thongTinDuTuyenService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
+
                 return Json(new { success = true, message = "Sửa thành công!" });
             }
             catch (Exception e)
@@ -176,6 +186,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     entity.Active = false;
                     await thongTinDuTuyenService.UpdateAsync(entity);
+                    string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                    var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
                 }
                 catch (Exception e)
                 {

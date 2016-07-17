@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -92,7 +93,11 @@ namespace Vimas.Areas.HocVien.Controllers
                 model.GioiTinh = (int)model.Gender;
                 model.TrinhDoVanHoa = (int)model.EducationLevel;
                 model.TinhTrangGiaDinh = (int)model.FamilyStatus;
-                await thongTinCaNhanService.CreateAsync(model.ToEntity());
+
+                var entity = model.ToEntity();
+                await thongTinCaNhanService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
             }
             catch (Exception e)
             {
@@ -135,7 +140,11 @@ namespace Vimas.Areas.HocVien.Controllers
             entity.GioiTinh = (int)model.Gender;
             entity.TrinhDoVanHoa = (int)model.EducationLevel;
             entity.TinhTrangGiaDinh = (int)model.FamilyStatus;
+
             await thongTinCaNhanService.UpdateAsync(entity);
+            string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+            var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
+
             return RedirectToAction("Index");
         }
 
@@ -160,6 +169,9 @@ namespace Vimas.Areas.HocVien.Controllers
                 }
                 //entity.Active = false;
                 await thongTinCaNhanService.DeactivateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
+
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

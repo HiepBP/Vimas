@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -88,6 +89,9 @@ namespace Vimas.Areas.HocVien.Controllers
                 }
                 entity.Active = false;
                 await thongTinVeNuocService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
+
                 return Json(new { success = true, message = "Xóa thành công" });
             }
             catch (Exception e)
@@ -114,7 +118,12 @@ namespace Vimas.Areas.HocVien.Controllers
                 var thongTinVeNuocService = this.Service<IThongTinVeNuocService>();
                 model.ThanhLyHopDong = (int)model.ThanhLy == 1 ? true : false;
                 model.Active = true;
-                await thongTinVeNuocService.CreateAsync(model.ToEntity());
+
+                var entity = model.ToEntity();
+                await thongTinVeNuocService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
+
                 return Json(new { success = true, message = "Tạo thành công" });
             }
             catch (Exception e)
@@ -153,7 +162,11 @@ namespace Vimas.Areas.HocVien.Controllers
                 entity.Active = true;
                 entity.ThanhLyHopDong = (int)model.ThanhLy == 1 ? true : false;
                 entity.IdThongTinCaNhan = model.IdThongTinCaNhan;
+
                 await thongTinVeNuocService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
+
                 return Json(new { success = true, message = "Sửa thành công!" });
             }
             catch (Exception e)

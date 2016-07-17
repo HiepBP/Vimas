@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -123,7 +124,12 @@ namespace Vimas.Areas.HocVien.Controllers
                 model.HinhAnh = hinhAnhPath;
                 model.Active = true;
                 model.ThoiHanHopDong = (int)model.ThoiHanHopDongEnum;
-                await thongTinPhongVanService.CreateAsync(model.ToEntity());
+
+                var entity = model.ToEntity();
+                await thongTinPhongVanService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
+
                 return RedirectToAction("Detail", "ThongTinCaNhan", new { id = model.IdThongTinCaNhan });
             }
             catch (Exception e)
@@ -216,7 +222,11 @@ namespace Vimas.Areas.HocVien.Controllers
                 entity.ThongTinCaNhan = await thongTinCaNhanService.GetAsync(entity.IdThongTinCaNhan);
                 entity.IdCongTyChungNghe = model.IdCongTyChungNghe;
                 entity.IdCongTyTiepNhan = model.IdCongTyTiepNhan;
+
                 await thongTinPhongVanService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
+
                 return RedirectToAction("Detail", "ThongTinCaNhan", new { id = model.IdThongTinCaNhan });
             }
             catch (Exception e)
@@ -254,6 +264,9 @@ namespace Vimas.Areas.HocVien.Controllers
                 }
                 #endregion
                 await thongTinPhongVanService.DeactivateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
+
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

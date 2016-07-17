@@ -169,7 +169,7 @@
                     @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
                     {
                         <div class="col-md-12">
-                            <a href="@Url.Action("Create","ThongTinPhongVan", new { idThongTinCaNhan=this.Model.Id})" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</a>
+                            <a href="@Url.Action("Create", "ThongTinPhongVan", new { idThongTinCaNhan = this.Model.Id })" class="btn btn-sm btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Thêm</a>
                         </div>
                     }
                     <div class="col-md-12">
@@ -288,7 +288,7 @@
             "bRetrieve": true,
             "bServerSide": true,
             "bScrollCollapse": true,
-            "sAjaxSource": "@Url.Action("LoadQuaTrinhHocTap","QuaTrinhHocTap")",
+            "sAjaxSource": "@Url.Action("LoadQuaTrinhHocTap", "QuaTrinhHocTap")",
             "bProcessing": true,
             "iDisplayLength": 10,
             "aLengthMenu": [10, 25, 50],
@@ -540,7 +540,7 @@
                         else
                         {
                             <text>
-                        var edit = "<a class='btn btn-sm btn-primary' href='@Url.Action("Edit","ThongTinPhongVan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                        var edit = "<a class='btn btn-sm btn-primary' href='@Url.Action("Edit", "ThongTinPhongVan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                         var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTPV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
                         </text>
                         }
@@ -587,20 +587,22 @@
                     "aTargets": [6],
                     "mRender": function (data, type, o) {
                         var data = o[6];
-                        var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showDetailTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
-                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD"))
+                        
+                        @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD") || user.IsInRole("PhongNguon"))
                         {
                             <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showDetailTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
+                            var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
                         }
                         else
                         {
                             <text>
-                        var edit = "<button type='button' class='btn btn-sm btn-primary' onclick='showEditTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
-                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTVN(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                        </text>
+                            var detail = "";
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         return detail + " " + edit + " " + del;
                     }

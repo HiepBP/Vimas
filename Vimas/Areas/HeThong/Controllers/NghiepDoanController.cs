@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -98,7 +99,10 @@ namespace Vimas.Areas.HeThong.Controllers
             model.Active = true;
             try
             {
-                await service.CreateAsync(model.ToEntity());
+                var entity = model.ToEntity();
+                await service.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
             }
             catch (Exception e)
             {
@@ -139,7 +143,10 @@ namespace Vimas.Areas.HeThong.Controllers
 
             try
             {
-                await service.UpdateAsync(model.ToEntity());
+                var entity = model.ToEntity();
+                await service.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
             }
             catch (Exception e)
             {
@@ -170,6 +177,8 @@ namespace Vimas.Areas.HeThong.Controllers
                 {
                     entity.Active = false;
                     await nghiepDoanService.UpdateAsync(entity);
+                    string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                    var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
                 }
                 catch (Exception e)
                 {

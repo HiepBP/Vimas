@@ -661,6 +661,7 @@
     <Compile Include="ViewModels\ThongTinCaNhanViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ThongTinDuTuyenEditViewModel.cs" />
     <Compile Include="ViewModels\ThongTinDuTuyenViewModelGen.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
     </Compile>
@@ -3015,6 +3016,8 @@
     <Content Include="Areas\Admin\Views\SystemLog\Index.cshtml" />
     <Content Include="Areas\HocVien\Views\BangCap\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\BangCap\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Edit.cshtml" />
+    <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
@@ -3145,6 +3148,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

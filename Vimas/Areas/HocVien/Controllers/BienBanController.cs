@@ -130,6 +130,7 @@ namespace Vimas.Areas.HocVien.Controllers
         public async System.Threading.Tasks.Task<JsonResult> Edit(BienBanEditViewModel model)
         {
             var bienBanService = this.Service<IBienBanService>();
+            var thongTinCaNhanService = this.Service<IThongTinCaNhanService>();
             var entity = await bienBanService.GetAsync(model.id);
             try
             {
@@ -152,6 +153,16 @@ namespace Vimas.Areas.HocVien.Controllers
                     //temp
                     model.SelectedHinhAnh.SaveAs(HttpContext.Server.MapPath("~/BienBan/") + hinhAnhFileName);
                     hinhAnhPath = "/BienBan/" + hinhAnhFileName;
+                    #region Delete old file
+                    string strPhysicalFolder = Server.MapPath("~/");
+
+                    string strFileFullPath = strPhysicalFolder + entity.HinhAnh;
+
+                    if (System.IO.File.Exists(strFileFullPath))
+                    {
+                        System.IO.File.Delete(strFileFullPath);
+                    }
+                    #endregion
                 }
                 else
                 {
@@ -161,6 +172,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 #endregion
                 model.CopyToEntity(entity);
                 entity.Active = true;
+                entity.ThongTinCaNhan = await thongTinCaNhanService.GetAsync(entity.idThongTinCaNhan);
                 await bienBanService.UpdateAsync(entity);
                 return Json(new { success = true, message = "Lưu biên bản thành công!" });
             }
@@ -181,6 +193,16 @@ namespace Vimas.Areas.HocVien.Controllers
                 {
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
+                #region Delete old file
+                string strPhysicalFolder = Server.MapPath("~/");
+
+                string strFileFullPath = strPhysicalFolder + entity.HinhAnh;
+
+                if (System.IO.File.Exists(strFileFullPath))
+                {
+                    System.IO.File.Delete(strFileFullPath);
+                }
+                #endregion
                 await bienBanService.DeactivateAsync(entity);
                 return Json(new { success = false, message = "Xóa thành công" });
             }

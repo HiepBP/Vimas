@@ -283,7 +283,7 @@
           <Property Name="NguoiGioiThieu" Type="nvarchar" MaxLength="50" />
           <Property Name="BanBeBenNhat" Type="nvarchar" MaxLength="50" />
           <Property Name="AnhChiBenNhat" Type="nvarchar" MaxLength="50" />
-          <Property Name="AnhChiDangKyOVimas" Type="int" />
+          <Property Name="AnhChiDangKyOVimas" Type="nvarchar" MaxLength="50" />
           <Property Name="DaDKDiNhatOCongtyKhac" Type="bit" Nullable="false" />
           <Property Name="DaDiNuocNgoai" Type="bit" Nullable="false" />
           <Property Name="DaDiNhat" Type="bit" Nullable="false" />
@@ -1165,7 +1165,7 @@
           <Property Name="NguoiGioiThieu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BanBeBenNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnhChiBenNhat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AnhChiDangKyOVimas" Type="Int32" />
+          <Property Name="AnhChiDangKyOVimas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DaDKDiNhatOCongtyKhac" Type="Boolean" Nullable="false" />
           <Property Name="DaDiNuocNgoai" Type="Boolean" Nullable="false" />
           <Property Name="DaDiNhat" Type="Boolean" Nullable="false" />

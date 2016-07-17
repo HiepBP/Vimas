@@ -11,11 +11,14 @@ using Microsoft.Owin.Security;
 using Vimas.Models;
 using Vimas.Helpers;
 using System.Web.Configuration;
+using SkyWeb.DatVM.Mvc;
+using Vimas.Models.Entities.Services;
+using SkyWeb.DatVM.Mvc.Autofac;
 
 namespace Vimas.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -111,6 +114,59 @@ namespace Vimas.Controllers
                 ModelState.AddModelError("", "Invalid login attempt.");
                 return View(model);
             }
+        }
+
+        public async Task<ActionResult> ChangePassword()
+        {
+            var userIdentity = System.Web.HttpContext.Current.User.Identity;
+            var aspNetUserService = this.Service<IAspNetUsersService>();
+            var aspNetRoleService = this.Service<IAspNetRolesService>();
+            var user = await aspNetUserService.GetAsync(userIdentity.GetUserId());
+            RegisterViewModel model = new RegisterViewModel()
+            {
+                Email = user.Email,
+                Username = user.UserName,
+                Password = user.PasswordHash,
+                RoleName = user.AspNetRoles.FirstOrDefault().Name,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> ChangePassword(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(
+                    new
+                    {
+                        success = false,
+                        message = "Sửa không thành công, xin liên hệ admin"
+                    });
+            }
+            var user = UserManager.Users.FirstOrDefault(q => q.UserName.Equals(model.Username));
+
+            if (user == null)
+            {
+                return Json(new { success = false, message = "Người dùng không tồn tại trong hệ thống, cập nhật thất bại." });
+            }
+            user.Email = model.Email;
+
+            if (!model.Password.Equals(user.PasswordHash))
+            {
+                UserManager.PasswordHasher = new MP5Hasher(FormsAuthPasswordFormat.MD5);
+                user.PasswordHash = UserManager.PasswordHasher.HashPassword(model.Password);
+                //MembershipUser mu = Membership.GetUser(user.UserName);
+                //mu.ChangePassword(mu.ResetPassword(), model.Password);
+            }
+
+            var result = await UserManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                return Json(new { success = false, message = "Cập nhật thất bại, vui lòng thử lại." });
+            }
+            return Json(new { success = true, message = "Cập nhật thành công" });
         }
 
         //

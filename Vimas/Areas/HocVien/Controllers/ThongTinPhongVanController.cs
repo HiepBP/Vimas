@@ -193,6 +193,16 @@ namespace Vimas.Areas.HocVien.Controllers
                     //temp
                     model.HinhAnhLogo.SaveAs(HttpContext.Server.MapPath("~/UploadedImageData/") + hinhAnhFileName);
                     hinhAnhPath = "/UploadedImageData/" + hinhAnhFileName;
+                    #region Delete old image
+                    string strPhysicalFolder = Server.MapPath("~/");
+
+                    string strFileFullPath = strPhysicalFolder + entity.HinhAnh;
+
+                    if (System.IO.File.Exists(strFileFullPath))
+                    {
+                        System.IO.File.Delete(strFileFullPath);
+                    }
+                    #endregion
                 }
                 else
                 {

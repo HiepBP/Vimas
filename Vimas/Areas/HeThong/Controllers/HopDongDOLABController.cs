@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -75,6 +76,8 @@ namespace Vimas.Areas.HeThong.Controllers
                 var entity = model.ToEntity();
                 entity.Active = true;
                 await hopDongDOLABService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo hợp đồng", controllerName, entity.Id);
                 var idHopDongDOLAB = entity.Id;
                 try
                 {
@@ -129,6 +132,8 @@ namespace Vimas.Areas.HeThong.Controllers
                 var entity = model.ToEntity();
                 entity.Active = true;
                 await hopDongDOLABService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa hợp đồng", controllerName, entity.Id);
                 return Json(new { success = true, message = "Sửa thành công" });
             }
             catch (Exception e)
@@ -150,12 +155,14 @@ namespace Vimas.Areas.HeThong.Controllers
             {
                 if (entity.Active == true)
                 {
-                    return Json(new { success = false, message = "Đã tồn tại nhà cung cấp này!" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "Đã tồn tại học viên này!" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     entity.Active = true;
                     await hopDongDOLABHocVienMappingService.UpdateAsync(entity);
+                    string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                    var result = await new SystemLogController().Create("Thêm học viên vào HĐ", controllerName, entity.Id);
                     return Json(new { success = true, message = "Thêm thành công!" }, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -172,6 +179,8 @@ namespace Vimas.Areas.HeThong.Controllers
             {
                 var entity = await hopDongDOLABHocVienMappingService.GetAsync(id);
                 await hopDongDOLABHocVienMappingService.DeactivateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa học viên khỏi HĐ", controllerName, entity.Id);
                 return Json(new { success = true, message = "Xóa thành công" });
             }
             catch (Exception e)
@@ -194,10 +203,13 @@ namespace Vimas.Areas.HeThong.Controllers
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }
                 await hopDongDOLABService.DeactivateAsync(dolabEntity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa hợp đồng", controllerName, dolabEntity.Id);
                 var listMapping = hopDongDOLABHocVienMappingService.GetByIdHopDongDOLAB(id).ToList();
                 foreach (var item in listMapping)
                 {
                     await hopDongDOLABHocVienMappingService.DeactivateAsync(item);
+
                 }
                 return Json(new { success = true, message = "Xóa thành công" });
             }

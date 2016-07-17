@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -73,6 +74,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 var entity = model.ToEntity();
                 entity.Active = true;
                 await bangCapService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.Id);
                 return Json(new { success = true, message = "Tạo thành công" });
             }
             catch (Exception e)
@@ -110,6 +113,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 entity.TrinhDo = model.TrinhDo;
 
                 await bangCapService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
                 return Json(new { success = true, message = "Sửa thành công!" });
             }
             catch (Exception e)
@@ -133,6 +138,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 }
                 entity.Active = false;
                 await bangCapService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

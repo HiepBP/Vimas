@@ -93,7 +93,7 @@
 
                 <ul class="main-menu">
                     <li>
-                        <a href="#"><i class="fa fa-users"></i>Đổi mật khẩu</a>
+                        <a id="changePassword" href="#"><i class="fa fa-users"></i>Đổi mật khẩu</a>
                     </li>
                     <li>
                         <form id="logOffForm" action="@Url.Action("LogOff","Account", new { area = "" })" method="post">
@@ -182,6 +182,8 @@
                 </div>
             </div>
         </section>
+
+        <div id="changePasswordPanel" class="modal fade" data-backdrop="static" data-keyboard="true"></div>
     </section>
 
     <footer id="footer">
@@ -263,6 +265,25 @@
                   $(this).trigger('onFadeOutComplete');
               });
           });
+
+        $('#changePassword').on('click', function () {
+            showChangePassword();
+        })
+
+        function showChangePassword() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("ChangePassword","Account",new { area = "" })',
+                success: function (result) {
+                    //$('#myModal').modal('show');
+                    $('#changePasswordPanel').html(result);
+                    $('#changePasswordPanel').modal('show');
+                },
+                error: function (error) {
+                    swal('Lỗi', error.message, 'error');
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -136,7 +136,7 @@
                 type: "POST",
                 url: '@Url.Action("Del", "KyTucXa")',
                 data: {
-                    id: idktx,
+                    idktx: idktx,
                 },
                 success: function (result) {
                     swal("Xoá", result.message, "success");

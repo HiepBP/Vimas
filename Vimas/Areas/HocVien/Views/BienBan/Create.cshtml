@@ -8,6 +8,7 @@
     <div class="modal-content">
         <form id="bienBanForm" method="post" enctype="multipart/form-data" action="@Url.Action("Create","BienBan")">
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Thêm biên bản</h4>
@@ -33,7 +34,7 @@
                                 <span class="btn btn-primary btn-file m-r-10 waves-effect">
                                     <span class="fileinput-new">Lựa hình</span>
                                     <span class="fileinput-exists">Đổi</span>
-                                    <input type="hidden"><input type="file" name="SelectedHinhAnh" id="SelectedHinhAnh" accept="image/x-png, image/jpeg">
+                                    <input type="hidden"><input type="file" name="SelectedHinhAnh" id="SelectedHinhAnh" />
                                 </span>
                             </div>
                         </div>

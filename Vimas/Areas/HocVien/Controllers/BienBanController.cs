@@ -153,6 +153,16 @@ namespace Vimas.Areas.HocVien.Controllers
                     //temp
                     model.SelectedHinhAnh.SaveAs(HttpContext.Server.MapPath("~/BienBan/") + hinhAnhFileName);
                     hinhAnhPath = "/BienBan/" + hinhAnhFileName;
+                    #region Delete old file
+                    string strPhysicalFolder = Server.MapPath("~/");
+
+                    string strFileFullPath = strPhysicalFolder + entity.HinhAnh;
+
+                    if (System.IO.File.Exists(strFileFullPath))
+                    {
+                        System.IO.File.Delete(strFileFullPath);
+                    }
+                    #endregion
                 }
                 else
                 {

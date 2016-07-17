@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vimas.Areas.Admin.Controllers;
 using Vimas.Models;
 using Vimas.Models.Entities.Services;
 using Vimas.ViewModels;
@@ -100,7 +101,10 @@ namespace Vimas.Areas.HocVien.Controllers
                 #endregion
                 model.HinhAnh = hinhAnhPath;
                 model.Active = true;
-                await bienBanService.CreateAsync(model.ToEntity());
+                var entity = model.ToEntity();
+                await bienBanService.CreateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Tạo", controllerName, entity.id);
                 return Json(new { success = true, message = "Tạo biên bản thành công!" });
             }
             catch (Exception e)
@@ -174,6 +178,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 entity.Active = true;
                 entity.ThongTinCaNhan = await thongTinCaNhanService.GetAsync(entity.idThongTinCaNhan);
                 await bienBanService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.id);
                 return Json(new { success = true, message = "Lưu biên bản thành công!" });
             }
             catch (Exception e)
@@ -204,6 +210,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 }
                 #endregion
                 await bienBanService.DeactivateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa", controllerName, entity.id);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

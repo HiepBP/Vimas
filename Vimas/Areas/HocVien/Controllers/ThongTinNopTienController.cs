@@ -136,6 +136,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 entity.ThuHayChi = (int)model.ThuChi;
 
                 await thongTinNopTienService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
                 return Json(new { success = true, message = "Sửa thành công!" });
             }
             catch (Exception e)
@@ -158,6 +160,8 @@ namespace Vimas.Areas.HocVien.Controllers
                 }
                 entity.Active = false;
                 await thongTinNopTienService.UpdateAsync(entity);
+                string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
+                var result = await new SystemLogController().Create("Xóa", controllerName, entity.Id);
                 return Json(new { success = false, message = "Xóa thành công" });
             }
             catch (Exception e)

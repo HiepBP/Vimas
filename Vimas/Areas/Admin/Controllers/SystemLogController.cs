@@ -62,7 +62,7 @@ namespace Vimas.Areas.Admin.Controllers
                     {
                         q.TenBang,
                         q.HanhDong,
-                        q.NgayThucHien.Value.ToShortDateString(),
+                        q.NgayThucHien.Value.ToString(),
                         q.ThucHienBoi,
                     });
                 var totalRecords = listSystemLog.Count();

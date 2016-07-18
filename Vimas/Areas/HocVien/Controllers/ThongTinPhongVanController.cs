@@ -123,7 +123,7 @@ namespace Vimas.Areas.HocVien.Controllers
                 #endregion
                 model.HinhAnh = hinhAnhPath;
                 model.Active = true;
-                model.ThoiHanHopDong = (int)model.ThoiHanHopDongEnum;
+                model.ThoiHanHopDong = model.ThoiHanHopDongEnum.HasValue ? (int?)model.ThoiHanHopDongEnum.Value : null;
 
                 var entity = model.ToEntity();
                 await thongTinPhongVanService.CreateAsync(entity);

@@ -38,7 +38,7 @@
         </div>
         <hr />
     </div>
-    <form id="createProductItemForm" method="post" enctype="multipart/form-data">
+    <form id="createProductItemForm" method="post" action="@Url.Action("Create","ThongTinPhongVan")" enctype="multipart/form-data">
         <div class="modal-body">
             @Html.AntiForgeryToken()
             @Html.HiddenFor(q => q.IdThongTinCaNhan)

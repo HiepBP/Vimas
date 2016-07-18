@@ -143,6 +143,7 @@ namespace Vimas.Areas.HocVien.Controllers
             {
                 var entity = model.ToEntity();
                 await service.UpdateAsync(entity);
+
                 string controllerName = this.ControllerContext.RouteData.Values["controller"].ToString();
                 var result = await new SystemLogController().Create("Sửa", controllerName, entity.Id);
             }
@@ -360,81 +361,6 @@ namespace Vimas.Areas.HocVien.Controllers
                     Text = q.HoTen,
                     Value = q.Id.ToString(),
                 });
-        }
-
-
-        //Testing
-        public ActionResult ListToExcel()
-        {
-            //start excel
-            Microsoft.Office.Interop.Excel.Application excapp;
-            Workbook excelworkBook;
-            Worksheet sheet;
-
-            MemoryStream ms = new MemoryStream();
-
-            excapp = new Microsoft.Office.Interop.Excel.Application();
-
-            excapp.Visible = false;
-            excapp.DisplayAlerts = false;
-
-            //create a blank workbook
-            excelworkBook = excapp.Workbooks.Add(Type.Missing);
-
-            sheet = (Worksheet)excelworkBook.ActiveSheet;
-            sheet.Name = "BaoCao";
-
-            #region Set Header
-            int headerCol = 1;
-            sheet.Cells[1, headerCol] = "STT";
-            sheet.Cells[1, ++headerCol] = "ID Cá Nhân";
-            sheet.Cells[1, ++headerCol] = "Tên";
-            sheet.Cells[1, ++headerCol] = "Chiều Cao";
-            sheet.Cells[1, ++headerCol] = "Cân Nặng";
-            sheet.Cells[1, ++headerCol] = "Nhóm Máu";
-            sheet.Cells[1, ++headerCol] = "Tay Thuận";
-            sheet.Cells[1, ++headerCol] = "Hình Xăm";
-            sheet.Cells[1, ++headerCol] = "Thị Lực Mắt Trái";
-            sheet.Cells[1, ++headerCol] = "Thị Lực Mắt Phải";
-            sheet.Cells[1, ++headerCol] = "Ngày Khám Đợt 1";
-            sheet.Cells[1, ++headerCol] = "Ghi Chú Đợt 1";
-            sheet.Cells[1, ++headerCol] = "Ngày Khám Đợt 2";
-            sheet.Cells[1, ++headerCol] = "Ghi Chú Đợt 2";
-            #endregion
-
-            #region Parse Data from List to Excel
-            int row = 2, col = 1;
-            foreach (var item in this.GetDataList())
-            {
-                sheet.Cells[row, col] = item.stt;
-                sheet.Cells[row, ++col] = item.idTTCN;
-                sheet.Cells[row, ++col] = item.Name;
-                sheet.Cells[row, ++col] = item.Height;
-                sheet.Cells[row, ++col] = item.Weight;
-                sheet.Cells[row, ++col] = item.BloodType;
-                sheet.Cells[row, ++col] = item.Hand;
-                sheet.Cells[row, ++col] = item.Tattoo;
-                sheet.Cells[row, ++col] = item.LeftEye;
-                sheet.Cells[row, ++col] = item.RightEye;
-                sheet.Cells[row, ++col] = item.FirstTime;
-                sheet.Cells[row, ++col] = item.FirstTimeNote;
-                sheet.Cells[row, ++col] = item.SecondTime;
-                sheet.Cells[row, ++col] = item.SecondTimeNote;
-
-                col = 1;
-                row++;
-            }
-            #endregion
-
-            excelworkBook.SaveAs(ms);
-            excelworkBook.Close();
-            excapp.Quit();
-
-            ms.Seek(0, SeekOrigin.Begin);
-
-            var fileDownloadName = "Báo Cáo Sức Khỏe.xlsx";
-            var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            return this.File(ms, contentType, fileDownloadName);
         }
     }
 }

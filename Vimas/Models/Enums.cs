@@ -41,6 +41,8 @@ namespace Vimas.Models
         CaoDang = 4,
         [Display(Name = "Đại học")]
         DaiHoc = 5,
+        [Display(Name = "")]
+        NotAvailable = 6,
     }
 
     public enum Relation

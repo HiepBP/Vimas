@@ -530,19 +530,19 @@
                     "mRender": function (data, type, o) {
                         var data = o[6];
                         var detail = "<button type='button' class='btn btn-sm btn-primary' onclick='showTTPVModal(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
-                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD"))
+                        @if (!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD") && !user.IsInRole("PhongNguon"))
                         {
                             <text>
-                        var edit = "";
-                        var del = "";
-                        </text>
+                            var edit = "";
+                            var del = "";
+                            </text>
                         }
                         else
                         {
                             <text>
-                        var edit = "<a class='btn btn-sm btn-primary' href='@Url.Action("Edit", "ThongTinPhongVan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTPV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
-                        </text>
+                            var edit = "<a class='btn btn-sm btn-primary' href='@Url.Action("Edit", "ThongTinPhongVan")\/" + data + "\'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                            var del = "<button type='button' class='btn btn-sm btn-danger' onclick='deleteTTPV(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
+                            </text>
                         }
                         return detail + " " + edit + " " + del;
                     }

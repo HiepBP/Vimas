@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <h3>Danh sách biên bản</h3>
             </div>
-            @if (user.IsInRole("Admin"))
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongXKLD"))
             {
                 <div class="col-md-4">
                     <button onclick="showCreateBB()" class="btn btn-primary pull-right ">
@@ -99,17 +99,17 @@
                         var detail = "<button type='button' id='detailBB' class='btn btn-sm btn-primary' onclick='showDetailBB(\"" + data + "\")'><i class='glyphicon glyphicon-info-sign'></i> Detail</button>";
 
 
-                        @if(!user.IsInRole("Admin"))
+                        @if(!user.IsInRole("Admin") && !user.IsInRole("PhongXKLD") )
                         {
                             <text>
-                        var edit = "";
+                            var edit = "";
                             var del = "";
                             </text>
                         }
                         else
                         {
                             <text>
-                        var edit = "<button type='button' id='editBB' class='btn btn-sm btn-primary' onclick='showEditBB(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
+                            var edit = "<button type='button' id='editBB' class='btn btn-sm btn-primary' onclick='showEditBB(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</button>";
                             var del = "<button type='button' id='deleteBB' class='btn btn-sm btn-danger' onclick='deleteBB(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</button>";
                             </text>
                         }

@@ -32,8 +32,8 @@ namespace Vimas.Areas.Admin.Controllers
 
         public async System.Threading.Tasks.Task<JsonResult> LoadDanhSachTaiKhoan(JQueryDataTableParamModel param)
         {
-            try
-            {
+            //try
+            //{
                 var aspNetUserService = this.Service<IAspNetUsersService>();
                 var listThongTinCaNhan = aspNetUserService.Get()
                     .Where(q => q.AspNetRoles.FirstOrDefault().Name!="Admin" && q.AspNetRoles.FirstOrDefault().Name != "SysAdmin")
@@ -60,11 +60,11 @@ namespace Vimas.Areas.Admin.Controllers
                     iTotalDisplayRecords = totalRecords,
                     aaData = rs
                 }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                return Json(new { success = false, message = "Error" }, JsonRequestBehavior.AllowGet);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    return Json(new { success = false, message = "Error" }, JsonRequestBehavior.AllowGet);
+            //}
         }
 
         public ApplicationUserManager UserManager
@@ -106,8 +106,8 @@ namespace Vimas.Areas.Admin.Controllers
             {
                 return View(model);
             }
-            try
-            {
+            //try
+            //{
                 UserManager.PasswordHasher = new MP5Hasher(FormsAuthPasswordFormat.MD5);
                 var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -125,11 +125,11 @@ namespace Vimas.Areas.Admin.Controllers
                 }
 
                 return Json(new { success = true, message = "Tạo người dùng thành công" });
-            }
-            catch (Exception e)
-            {
-                return Json(new { success = false, message = "Tạo người dùng thất bại" });
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    return Json(new { success = false, message = "Tạo người dùng thất bại" });
+            //}
         }
 
         #endregion
@@ -147,15 +147,15 @@ namespace Vimas.Areas.Admin.Controllers
 
             var currentRole = UserManager.GetRoles(id);
 
-            try
-            {
+            //try
+            //{
                 var b = await UserManager.RemoveFromRolesAsync(id, currentRole.ToArray());
                 var rs = await UserManager.DeleteAsync(user);
-            }
-            catch (Exception)
-            {
-                return Json(new { success = false, message = "Đã có lỗi xảy ra, vui lòng thử lại." });
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    return Json(new { success = false, message = "Đã có lỗi xảy ra, vui lòng thử lại." });
+            //}
 
             return Json(new { success = true, message = "Xóa người dùng thành công" });
 

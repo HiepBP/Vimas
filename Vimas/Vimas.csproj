@@ -693,16 +693,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BienBan\BienBan_74fe3eef39d44c8ca9ec112270977c43.jpg" />
+    <Content Include="BienBan\BienBan_ca6125ca19484142a6a4027326e92863.jpg" />
     <Content Include="Content\bootstrap-select.css" />
     <Content Include="Content\bootstrap-select.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\material-design-iconic-font.css" />
     <Content Include="Content\css\material-design-iconic-font.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\sweetalert.css" />
     <Content Include="Content\css\theme.css" />
+    <Content Include="Content\elegant-icons-style1.css" />
+    <Content Include="Content\fonts\ElegantIcons.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Content\img\bg-3.jpg" />
     <Content Include="Content\js\common.js" />
     <Content Include="Content\js\upload-image.js" />
     <Content Include="Content\plugins\bootstrap-daterangepicker-master\daterangepicker.css" />
@@ -1571,6 +1578,7 @@
     <Content Include="Content\plugins\select2-4.0.3\dist\js\select2.full.min.js" />
     <Content Include="Content\plugins\select2-4.0.3\dist\js\select2.js" />
     <Content Include="Content\plugins\select2-4.0.3\dist\js\select2.min.js" />
+    <Content Include="Content\style-responsive.css" />
     <Content Include="Content\template\template-biz\css\bootstrap.css" />
     <Content Include="Content\template\template-biz\css\color_scheme.css" />
     <Content Include="Content\template\template-biz\css\custom.css" />
@@ -3019,6 +3027,9 @@
     <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Edit.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Create.cshtml" />
     <Content Include="Areas\HocVien\Views\ThongTinDuTuyen\Detail.cshtml" />
+    <Content Include="Content\fonts\ElegantIcons.eot" />
+    <Content Include="Content\fonts\ElegantIcons.ttf" />
+    <Content Include="Content\fonts\ElegantIcons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -3110,6 +3121,13 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UploadedImageData\HinhAnh_0fb490216ede451c9eff274fbc1886e3.png" />
+    <Content Include="UploadedImageData\HinhAnh_3f870890287b42b5ac8ca94ed5c7c187.png" />
+    <Content Include="UploadedImageData\HinhAnh_59dbfa25d84c41bc963c19bb8c3a0e92.jpg" />
+    <Content Include="UploadedImageData\HinhAnh_5b27b3cf7ef74c65a6db8071d4011159.jpg" />
+    <Content Include="UploadedImageData\HinhAnh_60b9b31e493c449ea964d676e040f768.png" />
+    <Content Include="UploadedImageData\HinhAnh_7c041c7820564c1390bc12267e8113f2.jpg" />
+    <Content Include="UploadedImageData\HinhAnh_c6450cb8e13340d78ef1fef3bea869ab.jpg" />
     <Content Include="ViewModels\ViewModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ViewModel.cs</LastGenOutput>

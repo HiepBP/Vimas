@@ -863,45 +863,61 @@ table thead th {
     text-align: right;
     padding-top: 20px;
 }
-#providerListTableModal td:first-child,#providerListTableModal td:last-child{
+
+#providerListTableModal td:first-child, #providerListTableModal td:last-child {
     padding: 10px 0px;
     text-align: center;
 }
+
 .getimagefromelfinder {
     margin-top: 5px;
 }
-.btn-inverse{
+
+.btn-inverse {
     border-color: #454545;
 }
-#tableChooseItem .span2{
+
+#tableChooseItem .span2 {
     font-size: 14px;
     text-align: center;
 }
-#tableChooseItem thead td:first-child{
-    padding-left: 0px!important;
+
+#tableChooseItem thead td:first-child {
+    padding-left: 0px !important;
 }
-#tableChooseItem thead td:last-child{
-    padding-right: 0px!important;
+
+#tableChooseItem thead td:last-child {
+    padding-right: 0px !important;
 }
-#divLoadItem #searchProduct{
+
+#divLoadItem #searchProduct {
     padding-top: 11.5px;
 }
-.myGroup-radio-buttons{
+
+.myGroup-radio-buttons {
     right: 225px;
 }
-.myStatuses{
+
+.myStatuses {
     width: 125px;
 }
-.table > thead > tr > th{
-    text-transform:none;
+
+.table > thead > tr > th {
+    text-transform: none;
 }
-m-t-10{
+
+m-t-10 {
     margin-top: 10px;
 }
-.myGroup-radio-buttons-Five{
+
+.myGroup-radio-buttons-Five {
     top: -1px;
 }
 
-.form-control{
+.form-control {
     padding: 5px 10px !important;
+}
+
+.select2-container {
+    width: 100% !important;
 }

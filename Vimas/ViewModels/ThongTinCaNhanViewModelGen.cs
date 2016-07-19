@@ -32,12 +32,9 @@ namespace Vimas.ViewModels
     			public virtual Nullable<System.DateTime> NgayCapHC { get; set; }
     			public virtual string NoiCapHC { get; set; }
     			public virtual Nullable<System.DateTime> NgayHetHan { get; set; }
-    			public virtual string SoNha { get; set; }
-    			public virtual string PhuongXa { get; set; }
-    			public virtual string QuanHuyen { get; set; }
-    			public virtual string Tinh { get; set; }
-    			public virtual string DiaChiTiengAnh { get; set; }
+    			public virtual string HoKhau { get; set; }
     			public virtual string DiaChiLienLac { get; set; }
+    			public virtual string DiaChiTiengAnh { get; set; }
     			public virtual string DienThoaiDiDong { get; set; }
     			public virtual string DienThoaiNha { get; set; }
     			public virtual Nullable<int> CoGiay { get; set; }

@@ -54,6 +54,14 @@
         body {
             font-family: 'OpenSans';
         }
+        /* Override bootstrap chữ không bị đè lên dấu + */
+        .main-menu > li > a, .main-menu > li > form > a {
+            padding: 14px 50px 14px 52px;
+        }
+        /* Override boostrap khoảng cách sub-menu cân đối*/
+        .sub-menu ul > li > a {
+            padding: 8px 20px 8px 20px;
+        }
     </style>
 </head>
 <body class="toggled sw-toggled">
@@ -75,7 +83,6 @@
             </li>
         </ul>
     </header>
-
     <section id="main" data-layout="layout-1">
         <aside id="sidebar" class="sidebar c-overflow">
             <div class="profile-menu">

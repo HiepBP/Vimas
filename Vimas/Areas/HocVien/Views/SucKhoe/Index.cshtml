@@ -8,13 +8,13 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <h3>Sức Khỏe</h3>
             </div>
             @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
             {
-                <div class="col-md-5">
-                    <div class="col-md-6">
+                <div class="col-md-6">
+                    <div class="col-md-5 col-md-offset-1">
                         <button class="btn btn-primary" type="submit" id="btnExport">
                             <i class="left-icon fa fa-download"></i>   Xuất ra Excel
                         </button>
@@ -82,7 +82,10 @@
                 "sSearch": "Tìm kiếm:",
                 "sZeroRecords": "Không có dữ liệu phù hợp",
                 "sInfo": "Hiển thị từ _START_ đến _END_ trên tổng số _TOTAL_ dòng",
-                "sEmptyTable": "Không có dữ liệu",
+                "sEmptyTable": function () {
+                    $('button[id="btnExport"]').prop('disabled', true);
+                    return "Không có dữ liệu";
+                },
                 "sInfoFiltered": " - lọc ra từ _MAX_ dòng",
                 "sLengthMenu": "Hiển thị _MENU_ dòng",
                 "sProcessing": "Đang xử lý...",

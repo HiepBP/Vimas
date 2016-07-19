@@ -8,17 +8,24 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h3>Thông tin ký túc xá</h3>
             </div>
-@if (user.IsInRole("Admin") || user.IsInRole("PhongQuanLyKTX"))
-{
-            <div class="col-md-4">
-                <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                    <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin ký túc xá
-                </a>
-            </div>
-}
+            @if (user.IsInRole("Admin") || user.IsInRole("PhongQuanLyKTX"))
+            {
+                <div class="col-md-5">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" type="submit" id="btnExport">
+                            <i class="left-icon fa fa-download"></i>   Xuất ra Excel
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right">
+                            <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin ký túc xá
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
         <hr />
     </div>
@@ -61,9 +68,13 @@
             </table>
         </div>
     </div>
+    <form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "KyTucXa")"></form>
 </div>
 
 <script>
+    $('#btnExport').on('click', null, function () {
+        $('#exportForm').submit();
+    });
     $(document).ready(function () {
         InitOrderDatatable();
     });

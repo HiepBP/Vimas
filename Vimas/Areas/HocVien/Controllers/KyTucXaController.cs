@@ -1,8 +1,12 @@
 ﻿using AutoMapper.QueryableExtensions;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using SkyWeb.DatVM.Mvc;
 using SkyWeb.DatVM.Mvc.Autofac;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -155,25 +159,6 @@ namespace Vimas.Areas.HocVien.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Authorize(Roles = "Admin, PhongQuanLyKTX")]
-        //public async Task<JsonResult> Add(int idttcn)
-        //{
-        //    try
-        //    {
-        //        var kyTucXaService = this.Service<IKyTucXaService>();
-        //        var model = new KyTucXaEditViewModel();
-        //        model.IdThongTinCaNhan = idttcn;
-        //        model.Active = true;
-        //        await kyTucXaService.CreateAsync(model.ToEntity());
-        //        return Json(new { success = true, message = "Thêm thành công" });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return Json(new { success = false, message = Resource.ErrorMessage });
-        //    }
-        //}
-
         [Authorize(Roles = "Admin, PhongQuanLyKTX")]
         public async Task<ActionResult> Edit(int idktx)
         {
@@ -212,6 +197,143 @@ namespace Vimas.Areas.HocVien.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        #region Export Excel
+        public List<dynamic> GetDataList()
+        {
+            var KTXService = this.Service<IKyTucXaService>();
+            var TTCNService = this.Service<IThongTinCaNhanService>();
+
+            var resultLst = KTXService.Get()
+                .Where(q => q.Active == true)
+                .ProjectTo<KyTucXaEditViewModel>(this.MapperConfig).ToList();
+
+            foreach (var item in resultLst)
+            {
+                item.ThongTinCaNhan = Mapper.Map<ThongTinCaNhanEditViewModel>(TTCNService.Get(item.IdThongTinCaNhan));
+            }
+
+            var dynamicList = new List<dynamic>();
+            DateTime? nullTime = null;
+            var count = 0;
+            foreach (var item in resultLst)
+            {
+                dynamicList.Add(new
+                {
+                    stt = ++count,
+                    ten = item.ThongTinCaNhan.HoTen,
+                    japName = item.ThongTinCaNhan.TenPhienAmNhat,
+                    sex = ((Gender)item.ThongTinCaNhan.GioiTinh).GetAttribute<DisplayAttribute>().Name,
+                    birthdate = item.ThongTinCaNhan.NgaySinh.ToShortDateString(),
+                    address = item.ThongTinCaNhan.DiaChiLienLac,
+                    home = item.ThongTinCaNhan.HoKhau,
+                    dayIn = item.NgayVao.HasValue ? item.NgayVao.Value.ToShortDateString() : "",
+                    dayOut = item.NgayRa.HasValue ? item.NgayRa.Value.ToShortDateString() : "",
+                    roomNo = item.SoPhong,
+                    lockerNo = item.SoHocTuDo,
+                });
+            }
+
+            return dynamicList;
+        }
+        public ActionResult ExportExcel()
+        {
+            MemoryStream ms = new MemoryStream();
+            using (ExcelPackage package = new ExcelPackage(ms))
+            {
+                ExcelWorksheet ws = package.Workbook.Worksheets.Add("Ký túc xá");
+                char StartHeaderChar = 'A';
+                int StartHeaderNumber = 2;
+                var listDT = GetDataList();
+                #region Headers
+
+                ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
+                ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
+                ws.Cells["" + (StartHeaderChar) + (1)].Value = "BÁO CÁO KÝ TÚC XÁ - Ngày " + DateTime.Now.ToShortDateString();
+                ws.Cells["A1:K1"].Merge = true;
+                ws.Cells["A1:K1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                StartHeaderChar = 'A';
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Họ và tên tiếng Việt";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Họ và tên tiếng Nhật";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Giới tính";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Ngày tháng năm sinh";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Địa chỉ liên lạc";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Quê quán";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Ngày vào";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Ngày ra";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Số phòng";
+                ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Value = "Số hộc tủ đồ";
+                var EndHeaderChar = StartHeaderChar;
+                var EndHeaderNumber = StartHeaderNumber;
+                StartHeaderChar = 'A';
+                #endregion
+                #region Set style for rows and columns
+
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Font.Bold = true;
+
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].AutoFitColumns();
+
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()]
+                    .Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()]
+                    .Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.GreenYellow);
+
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Top.Style = ExcelBorderStyle.Thick;
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Left.Style = ExcelBorderStyle.Thick;
+                ws.Cells["" + StartHeaderChar + StartHeaderNumber.ToString() +
+                    ":" + EndHeaderChar + EndHeaderNumber.ToString()].Style.Border.Right.Style = ExcelBorderStyle.Thick;
+
+                ws.View.FreezePanes(2, 1);
+                #endregion
+                #region Set values for cells                
+                foreach (var data in listDT)
+                {
+                    ws.Cells["" + (StartHeaderChar++) + (++StartHeaderNumber)].Value = data.stt;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.ten;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.japName;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.sex;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.birthdate;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.address;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.home;
+                    ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Style.Numberformat.Format = "dd-mm-yyyy";
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.dayIn;
+                    ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Style.Numberformat.Format = "dd-mm-yyyy";
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.dayOut;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.roomNo;
+                    ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Value = data.lockerNo;
+
+                    StartHeaderChar = 'A';
+                }
+
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+                ws.Cells[ws.Dimension.Address].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                ws.Cells[ws.Dimension.Address].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                ws.Cells[ws.Dimension.Address].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                ws.Cells[ws.Dimension.Address].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+
+                #endregion
+                package.SaveAs(ms);
+                ms.Seek(0, SeekOrigin.Begin);
+
+                var fileDownloadName = "Báo cáo Ký túc xá - " + DateTime.Now.ToShortDateString().Replace("/", "-") + ".xlsx";
+                var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                return this.File(ms, contentType, fileDownloadName);
+            }
+        }
+        #endregion
+
 
     }
 }

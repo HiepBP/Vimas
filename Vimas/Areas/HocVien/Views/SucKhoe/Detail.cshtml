@@ -150,6 +150,8 @@
 
 <script>
     $(document).ready(function () {
+        moment.locale('vi');
+
         @if(this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
             @:$('#NgayKhamDot1').val("");
         }else{

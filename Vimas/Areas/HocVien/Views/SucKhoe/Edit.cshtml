@@ -146,21 +146,28 @@
 <script>
 
     $(function () {
+
+        var form = $('#editSuckhoeForm')
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin */
+
+        $.validator.unobtrusive.parse(form);
+
         initializeDateRangePicker();
 
         @if(this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
             @:$('#NgayKhamDot1').val("");
-                }else{
+                        }else{
             @:$('#NgayKhamDot1').val(moment('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-                    @:$('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
-                }
+                            @:$('input[name="NgayKhamDot1"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+                        }
 
         @if(this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
             @:$('#NgayKhamDot2').val("");
-                }else{
+                        }else{
             @:$('#NgayKhamDot2').val(moment('@this.Model.NgayKhamDot2.GetValueOrDefault().ToShortDateString()', 'DD/MM/YYYY').format('LL'));
-                    @:$('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
-                }
+                            @:$('input[name="NgayKhamDot2"]').val('@this.Model.NgayKhamDot1.GetValueOrDefault().ToShortDateString()');
+                        }
     });
 
     function initializeDateRangePicker() {
@@ -243,8 +250,9 @@
     }
 
     function Update() {
-        var form = $('#editSucKhoeForm')
+        var form = $('#editSuckhoeForm')
         $.validator.unobtrusive.parse(form);
+
         var formData = $('#editSuckhoeForm').serialize();
         if (form.valid()) {
             $.ajax({
@@ -252,8 +260,14 @@
                 data: formData,
                 method: 'POST',
                 success: function (result) {
-                    swal("Chỉnh sửa", result.message, "success");
-                    window.location.href = "@this.Url.Action("Index")";
+                    swal({
+                        title: "Chỉnh sửa",
+                        text: result.message,
+                        type: "success"
+                    },
+                    function () {
+                        window.location.href = "@this.Url.Action("Index")";
+                    });
                 },
                 error: function (error) {
                     swal('Lỗi', error.message, 'error');

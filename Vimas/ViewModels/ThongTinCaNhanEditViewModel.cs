@@ -115,6 +115,7 @@ namespace Vimas.ViewModels
         public FamilyStatus FamilyStatus { get; set; }
         public EducationLevel EducationLevel { get; set; }
         public IEnumerable<SelectListItem> AvailableMaNguon { get; set; }
+        public string TenTrungTam { get; set; }
         #endregion
     }
 

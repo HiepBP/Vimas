@@ -182,14 +182,31 @@ namespace Vimas.Areas.HocVien.Controllers
 
             var dynamicList = new List<dynamic>();
             var count = 0;
+            string loaiTien = "";
             foreach (var item in resultLst)
             {
+                switch (item.LoaiTien)
+                {
+                    case 0:
+                        loaiTien = "Tiền dự tuyển";
+                        break;
+                    case 1:
+                        loaiTien = "Tiền đảm bảo khóa học";
+                        break;
+                    case 2:
+                        loaiTien = "Phí dịch vụ thu hộ";
+                        break;
+                    default:
+                        break;
+                }
+
                 dynamicList.Add(new
                 {
                     stt = ++count,
                     idCaNhan = item.IdThongTinCaNhan,
                     NgNop = TTCNService.Get(item.IdThongTinCaNhan).HoTen,
-                    loaiTien = item.LoaiTien,
+                    //loaiTien = Enum.GetName(typeof(TypeOfMoney), item.LoaiTien),
+                    loaiTien = loaiTien,
                     soPhieu = item.SoPhieu,
                     ngayLapPhieu = item.NgayLapPhieu.ToShortDateString(),
                     thuOrchi = item.ThuHayChi == 0 ? "Thu":"Chi",

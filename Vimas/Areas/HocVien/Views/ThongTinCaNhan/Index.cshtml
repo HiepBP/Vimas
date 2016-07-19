@@ -13,15 +13,22 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <h3>Danh sách học viên</h3>
             </div>
             @if (user.IsInRole("Admin") || user.IsInRole("PhongNguon"))
             {
-                <div class="col-md-4">
-                    <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right ">
-                        <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin cá nhân
-                    </a>
+                <div class="col-md-5">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary" type="submit" id="btnExport">
+                            <i class="left-icon fa fa-download"></i>   Xuất ra Excel
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="@this.Url.Action("Create")" class="btn btn-primary pull-right">
+                            <i class="left-icon glyphicon glyphicon-plus"></i>   Thêm thông tin cá nhân
+                        </a>
+                    </div>
                 </div>
             }
         </div>
@@ -57,9 +64,15 @@
             </table>
         </div>
     </div>
+    <form class="hidden" id="exportForm" action="@Url.Action("ExportExcel", "ThongTinCaNhan")"></form>
 </div>
 
 <script>
+
+    $('#btnExport').on('click', null, function () {
+        $('#exportForm').submit();
+    });
+
     $(document).ready(function () {
         InitOrderDatatable();
         $('#hocVienDatatable_length, #hocVienDatatable_filter, #hocVienDatatable_info, hocVienDatatable_paginate').addClass('display-initial');

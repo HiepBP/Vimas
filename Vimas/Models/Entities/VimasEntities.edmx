@@ -255,12 +255,9 @@
           <Property Name="NgayCapHC" Type="date" />
           <Property Name="NoiCapHC" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayHetHan" Type="date" />
-          <Property Name="SoNha" Type="nvarchar" MaxLength="25" />
-          <Property Name="PhuongXa" Type="nvarchar" MaxLength="30" />
-          <Property Name="QuanHuyen" Type="nvarchar" MaxLength="50" />
-          <Property Name="Tinh" Type="nvarchar" MaxLength="500" />
-          <Property Name="DiaChiTiengAnh" Type="nvarchar" MaxLength="300" />
+          <Property Name="HoKhau" Type="nvarchar" MaxLength="300" />
           <Property Name="DiaChiLienLac" Type="nvarchar" MaxLength="300" />
+          <Property Name="DiaChiTiengAnh" Type="nvarchar" MaxLength="300" />
           <Property Name="DienThoaiDiDong" Type="varchar" MaxLength="12" />
           <Property Name="DienThoaiNha" Type="varchar" MaxLength="20" />
           <Property Name="CoGiay" Type="int" />
@@ -1125,12 +1122,9 @@
           <Property Name="NgayCapHC" Type="DateTime" Precision="0" />
           <Property Name="NoiCapHC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayHetHan" Type="DateTime" Precision="0" />
-          <Property Name="SoNha" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="PhuongXa" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="QuanHuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tinh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChiTiengAnh" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HoKhau" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="DiaChiLienLac" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChiTiengAnh" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="DienThoaiDiDong" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="DienThoaiNha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CoGiay" Type="Int32" />
@@ -1759,12 +1753,9 @@
                 <ScalarProperty Name="CoGiay" ColumnName="CoGiay" />
                 <ScalarProperty Name="DienThoaiNha" ColumnName="DienThoaiNha" />
                 <ScalarProperty Name="DienThoaiDiDong" ColumnName="DienThoaiDiDong" />
-                <ScalarProperty Name="DiaChiLienLac" ColumnName="DiaChiLienLac" />
                 <ScalarProperty Name="DiaChiTiengAnh" ColumnName="DiaChiTiengAnh" />
-                <ScalarProperty Name="Tinh" ColumnName="Tinh" />
-                <ScalarProperty Name="QuanHuyen" ColumnName="QuanHuyen" />
-                <ScalarProperty Name="PhuongXa" ColumnName="PhuongXa" />
-                <ScalarProperty Name="SoNha" ColumnName="SoNha" />
+                <ScalarProperty Name="DiaChiLienLac" ColumnName="DiaChiLienLac" />
+                <ScalarProperty Name="HoKhau" ColumnName="HoKhau" />
                 <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
                 <ScalarProperty Name="NoiCapHC" ColumnName="NoiCapHC" />
                 <ScalarProperty Name="NgayCapHC" ColumnName="NgayCapHC" />

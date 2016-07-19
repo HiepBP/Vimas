@@ -47,12 +47,9 @@ namespace Vimas.Models.Entities
         public Nullable<System.DateTime> NgayCapHC { get; set; }
         public string NoiCapHC { get; set; }
         public Nullable<System.DateTime> NgayHetHan { get; set; }
-        public string SoNha { get; set; }
-        public string PhuongXa { get; set; }
-        public string QuanHuyen { get; set; }
-        public string Tinh { get; set; }
-        public string DiaChiTiengAnh { get; set; }
+        public string HoKhau { get; set; }
         public string DiaChiLienLac { get; set; }
+        public string DiaChiTiengAnh { get; set; }
         public string DienThoaiDiDong { get; set; }
         public string DienThoaiNha { get; set; }
         public Nullable<int> CoGiay { get; set; }

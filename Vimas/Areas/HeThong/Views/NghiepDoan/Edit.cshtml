@@ -199,8 +199,12 @@
             data: formData,
             method: 'POST',
             success: function (result) {
-                swal("Chỉnh sửa", result.message, "success");
-                window.location.href = "@this.Url.Action("Index")";
+                swal({title:"Chỉnh sửa",
+                   text: result.message,
+                   type: "success"
+               }, function () {
+                   window.location.href = "@this.Url.Action("Index")";
+               });
             },
             error: function (error) {
                 swal('Lỗi', error.message, 'error');

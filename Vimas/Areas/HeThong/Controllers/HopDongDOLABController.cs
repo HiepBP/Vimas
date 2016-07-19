@@ -94,11 +94,11 @@ namespace Vimas.Areas.HeThong.Controllers
                 }
                 catch (Exception e)
                 {
-                    //await hopDongDOLABService.DeleteAsync(entity);
+                    await hopDongDOLABService.DeleteAsync(entity);
                     var listMapping = hopDongDOLABHocVienMappingService.GetByIdHopDongDOLAB(idHopDongDOLAB).ToList();
                     foreach (var item in listMapping)
                     {
-                        //await hopDongDOLABHocVienMappingService.DeleteAsync(item);
+                        await hopDongDOLABHocVienMappingService.DeleteAsync(item);
                     }
                     return Json(new { success = false, message = Resource.ErrorMessage });
                 }

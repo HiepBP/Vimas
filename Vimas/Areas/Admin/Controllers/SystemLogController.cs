@@ -25,8 +25,8 @@ namespace Vimas.Areas.Admin.Controllers
         {
             var systemLogService = this.Service<ISystemLogService>();
             var user = System.Web.HttpContext.Current.User;
-            try
-            {
+            //try
+            //{
                 var entity = new SystemLog()
                 {
                     NgayThucHien = DateTime.Now,
@@ -37,11 +37,11 @@ namespace Vimas.Areas.Admin.Controllers
                 };
                 await systemLogService.CreateAsync(entity);
                 return Json(new { success = true });
-            }
-            catch (Exception e)
-            {
-                return Json(new { success = false });
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    return Json(new { success = false });
+            //}
         }
 
         [Authorize(Roles = "Admin")]
@@ -49,8 +49,8 @@ namespace Vimas.Areas.Admin.Controllers
         {
             var systemLogService = this.Service<ISystemLogService>();
             var listSystemLog = systemLogService.GetActive().ToList();
-            try
-            {
+            //try
+            //{
                 var rs = listSystemLog
                     .Where(q => string.IsNullOrEmpty(param.sSearch)
                         || q.HanhDong.ToLower().Contains(param.sSearch.ToLower())
@@ -73,11 +73,11 @@ namespace Vimas.Areas.Admin.Controllers
                     iTotalDisplayRecords = totalRecords,
                     aaData = rs
                 }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                return Json(new { success = false, message = Resource.ErrorMessage });
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    return Json(new { success = false, message = Resource.ErrorMessage });
+            //}
         }
     }
 }

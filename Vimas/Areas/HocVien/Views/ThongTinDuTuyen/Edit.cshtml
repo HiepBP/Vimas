@@ -148,7 +148,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                <input type="button" id="btnSubmit" onclick="editTTDT()" value="Thêm" class="btn btn-primary" />
+                <input type="button" id="btnSubmit" onclick="editTTDT()" value="Lưu" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -175,13 +175,13 @@
             url: '@Url.Action("Edit", "ThongTinDuTuyen")',
             data: formData,
             success: function (result) {
-                alert(result.message);
+                swal("Chỉnh sửa", result.message, "success");
                 $('#editTTDTPanel').modal('hide');
                 $('#editTTDTPanel').html("");
                 RefreshTable('thongTinDuTuyenDatatable');
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
         }

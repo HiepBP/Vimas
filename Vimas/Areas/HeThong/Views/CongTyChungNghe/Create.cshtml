@@ -112,7 +112,7 @@
         </div>
         <div class="modal-footer">
             <a href="@Url.Action("Index")" class="btn btn-danger">Huỷ</a>
-            <button type="submit" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
+            <button type="button" onclick="Create()" class="btn btn-primary"><i class="left-icon fa fa-check"></i>Hoàn tất</button>
         </div>
     </form>
 </div>
@@ -123,5 +123,26 @@
             $('#SoTienVonDieuLe').append('Giá trị: ' + toMoney($('#VonDieuLe').val(), '.', ' đ'));
         });
     });
+
+    function Create() {
+        var formData = $('#createTrungTamForm').serialize();
+
+        $.ajax({
+            url: '@this.Url.Action("Create")',
+            data: formData,
+            method: 'POST',
+            success: function (result) {
+                swal({title:"Tạo",
+                    text: result.message,
+                    type: "success"
+                }, function () {
+                    window.location.href = "@this.Url.Action("Index")";
+                });
+            },
+            error: function (error) {
+                swal('Lỗi', error.message, 'error');
+            }
+        });
+    }
 </script>
 

@@ -150,13 +150,13 @@
             url: '@Url.Action("Create", "ThongTinDuTuyen")',
             data: formData,
             success: function (result) {
-                alert(result.message);
+                swal("Tạo mới", result.message, "success");
                 $('#createTTDTPanel').modal('hide');
                 $('#createTTDTPanel').html("");
                 RefreshTable('thongTinDuTuyenDatatable');
             },
             error: function (error) {
-                alert(result.message);
+                swal('Lỗi', error.message, 'error');
             }
         });
         }

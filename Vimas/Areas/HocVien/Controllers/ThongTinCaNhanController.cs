@@ -267,7 +267,7 @@ namespace Vimas.Areas.HocVien.Controllers
                     trinhDo = ((EducationLevel)(item.TrinhDoVanHoa.HasValue ? item.TrinhDoVanHoa.Value : 6)).GetAttribute<DisplayAttribute>().Name,
                     family = ((FamilyStatus)item.TinhTrangGiaDinh).GetAttribute<DisplayAttribute>().Name,
                     cmnd = item.CMND,
-                    ngayCap = item.NgayCap,
+                    ngayCap = item.NgayCap.ToShortDateString(),
                     noiCap = item.NoiCap,
                     hoChieu = item.SoHoChieu,
                     ngayCapHC = item.NgayCapHC.HasValue ? item.NgayCapHC.Value.ToShortDateString() : "",

@@ -228,7 +228,6 @@ namespace Vimas.Areas.HocVien.Controllers
                 dynamicList.Add(new
                 {
                     stt = ++count,
-                    idTTCN = item.IdThongTinCaNhan,
                     Name = item.Name,
                     Height = item.ChieuCao,
                     Weight = item.CanNang,
@@ -260,12 +259,11 @@ namespace Vimas.Areas.HocVien.Controllers
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
                 ws.Cells["" + (StartHeaderChar) + (1)].Value = "BÁO CÁO SỨC KHỎE - Ngày " + DateTime.Now.ToShortDateString();
-                ws.Cells["A1:N1"].Merge = true;
-                ws.Cells["A1:N1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells["A1:M1"].Merge = true;
+                ws.Cells["A1:M1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 StartHeaderChar = 'A';
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
-                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "ID Cá Nhân";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Tên";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Chiều Cao";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Cân Nặng";
@@ -313,7 +311,6 @@ namespace Vimas.Areas.HocVien.Controllers
                 foreach (var data in listDT)
                 {
                     ws.Cells["" + (StartHeaderChar++) + (++StartHeaderNumber)].Value = data.stt;
-                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.idTTCN;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.Name;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.Height;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.Weight;

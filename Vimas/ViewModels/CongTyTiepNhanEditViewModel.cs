@@ -39,5 +39,6 @@ namespace Vimas.ViewModels
 
         [Display(Name = "Nghiệp đoàn")]
         public IEnumerable<SelectListItem> AvailableNghiepDoan { get; set; }
+        public string nghiepDoanName { get; set; }
     }
 }

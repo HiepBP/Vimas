@@ -4,7 +4,11 @@
     ViewBag.Title = "Hợp đồng DOLAB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    td, th {
+        word-wrap: break-word !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">
         <div class="row">
@@ -24,26 +28,26 @@
     </div>
     <div class="card-padding">
         <div id="datatable">
-            <table id="DOLABDatatable" class="table table-striped table-bordered table-hover" style="width: 100% !important">
-                <thead style="white-space: nowrap; text-overflow: ellipsis;">
+            <table id="DOLABDatatable" class="table table-striped table-bordered table-hover" style="table-layout: fixed;  width: 100% !important">
+                <thead style="white-space: nowrap; text-overflow: ellipsis; ">
                     <tr>
                         <th>
-                            <label>Số đăng ký hợp đồng</label>
+                            Số đăng ký hợp đồng
                         </th>
                         <th>
-                            <label class="">Số công văn</label>
+                            Số công văn
                         </th>
                         <th>
-                            <label class="">Số phiếu tiếp nhận</label>
+                            Số phiếu tiếp nhận
                         </th>
                         <th>
-                            <label class="">Ngày đăng ký</label>
+                            Ngày đăng ký
                         </th>
                         <th>
-                            <label class="">Ngày nhận</label>
+                            Ngày nhận
                         </th>
                         <th>
-                            <label class=""></label>
+                            
                         </th>
                     </tr>
                 </thead>
@@ -131,7 +135,7 @@
                 $('#detailDOLABPanel').modal('show');
             },
             error: function (error) {
-                alert("Error Occured")
+                swal('Lỗi', error.message, 'error');
             }
         });
     }

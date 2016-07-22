@@ -34,7 +34,7 @@
                         @Html.LabelFor(q => q.NganhHoc, new { @class = "control-label col-md-4" })
                         <div class="col-md-5">
                             @Html.TextBoxFor(q => q.NganhHoc, new { @class = " form-control col-sm-12" })
-                            @Html.ValidationMessageFor(q => q.NganhHoc)
+                            <!-- Ngành học cho phép null -->
                         </div>
                     </div>
                     <div class="form-group">

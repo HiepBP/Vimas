@@ -84,6 +84,7 @@
 
 <script>
     $(document).ready(function () {
+        moment.locale('vi');
         @if(this.Model.NgayKyHopDong.GetValueOrDefault().ToShortDateString().Equals("01/01/0001")){
             @:$('#NgayKyHopDong').val("");
         }else{

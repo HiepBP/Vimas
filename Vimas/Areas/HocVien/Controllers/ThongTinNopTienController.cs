@@ -5,6 +5,7 @@ using SkyWeb.DatVM.Mvc;
 using SkyWeb.DatVM.Mvc.Autofac;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -203,10 +204,9 @@ namespace Vimas.Areas.HocVien.Controllers
                 dynamicList.Add(new
                 {
                     stt = ++count,
-                    idCaNhan = item.IdThongTinCaNhan,
                     NgNop = TTCNService.Get(item.IdThongTinCaNhan).HoTen,
                     //loaiTien = Enum.GetName(typeof(TypeOfMoney), item.LoaiTien),
-                    loaiTien = loaiTien,
+                    loaiTien = ((TypeOfMoney)(item.LoaiTien)).GetAttribute<DisplayAttribute>().Name,
                     soPhieu = item.SoPhieu,
                     ngayLapPhieu = item.NgayLapPhieu.ToShortDateString(),
                     thuOrchi = item.ThuHayChi == 0 ? "Thu":"Chi",
@@ -231,12 +231,11 @@ namespace Vimas.Areas.HocVien.Controllers
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
                 ws.Cells["" + (StartHeaderChar) + (1)].Value = "Lịch sử thu chi tiền - Ngày " + DateTime.Now.ToShortDateString();
-                ws.Cells["A1:I1"].Merge = true;
-                ws.Cells["A1:I1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells["A1:H1"].Merge = true;
+                ws.Cells["A1:H1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 StartHeaderChar = 'A';
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
-                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "ID Cá Nhân";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Người Nộp";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Loại Tiền";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Số Phiếu";
@@ -279,7 +278,6 @@ namespace Vimas.Areas.HocVien.Controllers
                 foreach (var data in listDT)
                 {
                     ws.Cells["" + (StartHeaderChar++) + (++StartHeaderNumber)].Value = data.stt;
-                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.idCaNhan;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.NgNop;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.loaiTien;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.soPhieu;

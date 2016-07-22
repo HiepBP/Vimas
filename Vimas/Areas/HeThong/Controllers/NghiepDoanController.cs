@@ -206,6 +206,7 @@ namespace Vimas.Areas.HeThong.Controllers
                 dynamicList.Add(new
                 {
                     stt = ++count,
+                    ma = item.MaNghiepDoan,
                     name = item.TenNghiepDoan,
                     shortName = item.TenVietTat,
                     daiDien = item.NguoiDaiDien,
@@ -237,11 +238,12 @@ namespace Vimas.Areas.HeThong.Controllers
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
                 ws.Cells["" + (StartHeaderChar) + (1)].Value = "DANH SÁCH NGHIỆP ĐOÀN - Ngày " + DateTime.Now.ToShortDateString();
-                ws.Cells["A1:M1"].Merge = true;
-                ws.Cells["A1:M1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells["A1:N1"].Merge = true;
+                ws.Cells["A1:N1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 StartHeaderChar = 'A';
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Mã Nghiệp Đoàn";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Tên Nghiệp Đoàn";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Tên Viết Tắt";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Người Đại Diện";
@@ -289,6 +291,7 @@ namespace Vimas.Areas.HeThong.Controllers
                 foreach (var data in listDT)
                 {
                     ws.Cells["" + (StartHeaderChar++) + (++StartHeaderNumber)].Value = data.stt;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.ma;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.name;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.shortName;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.daiDien;

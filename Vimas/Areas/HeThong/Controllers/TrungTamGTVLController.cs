@@ -220,6 +220,7 @@ namespace Vimas.Areas.HeThong.Controllers
                     NgayKi = item.NgayKyHopDong.Value.ToShortDateString(),
                     NgayHet = item.NgayHetHan.Value.ToShortDateString(),
                     NgDaiDien = item.NguoiDaiDien,
+                    chucDanh = item.ChucDanh,
                 });
             }
 
@@ -239,8 +240,8 @@ namespace Vimas.Areas.HeThong.Controllers
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Bold = true;
                 ws.Cells["" + (StartHeaderChar) + (1)].Style.Font.Size = 16;
                 ws.Cells["" + (StartHeaderChar) + (1)].Value = "Danh sách trung tâm GTVL - Ngày " + DateTime.Now.ToShortDateString();
-                ws.Cells["A1:J1"].Merge = true;
-                ws.Cells["A1:J1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                ws.Cells["A1:K1"].Merge = true;
+                ws.Cells["A1:K1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 StartHeaderChar = 'A';
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "STT";
@@ -252,7 +253,8 @@ namespace Vimas.Areas.HeThong.Controllers
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Số HDLK";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Ngày kí hợp đồng";
                 ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Ngày hết hạn";
-                ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Value = "Người đại diện";
+                ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = "Người đại diện";
+                ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Value = "Chức Danh";
                 var EndHeaderChar = StartHeaderChar;
                 var EndHeaderNumber = StartHeaderNumber;
                 StartHeaderChar = 'A';
@@ -292,7 +294,8 @@ namespace Vimas.Areas.HeThong.Controllers
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.HDLK;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.NgayKi;
                     ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.NgayHet;
-                    ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Value = data.NgDaiDien;
+                    ws.Cells["" + (StartHeaderChar++) + (StartHeaderNumber)].Value = data.NgDaiDien;
+                    ws.Cells["" + (StartHeaderChar) + (StartHeaderNumber)].Value = data.chucDanh;
 
                     StartHeaderChar = 'A';
                 }

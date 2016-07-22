@@ -8,6 +8,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Vimas.Models.Entities;
 using Vimas.ViewModels;
+using System.Web.Http;
+using Newtonsoft.Json;
+using System.Globalization;
+using System.Threading;
 
 namespace Vimas
 {
@@ -23,6 +27,16 @@ namespace Vimas
             DefaultModelBinder.ResourceClassKey = "Messages";
 
             Vimas.ApiEndpoint.Entry(this.AdditionalMapperConfig);
+
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings =
+          new JsonSerializerSettings
+          {
+              DateFormatHandling = DateFormatHandling.IsoDateFormat,
+              DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+              Culture = CultureInfo.GetCultureInfo("vi-VN")
+          };
+
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("vi-VN");
         }
 
         public void AdditionalMapperConfig(IMapperConfiguration config)

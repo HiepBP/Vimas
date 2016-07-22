@@ -136,7 +136,7 @@
                     "mRender": function (data, type, o) {
                         var data = o[2];
                         var edit = "<a class='btn btn-sm btn-primary' onclick='showEditAccount(\"" + data + "\")'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                        var del = "<a class='btn btn-sm btn-primary' onclick='deleteAccount(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
+                        var del = "<a class='btn btn-sm btn-danger' onclick='deleteAccount(\"" + data + "\")'><i class='glyphicon glyphicon-trash'></i> Delete</a>";
                         return edit + " " + del;
                     }
                 }

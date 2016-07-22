@@ -31,7 +31,7 @@ namespace Vimas.ViewModels
         public override string TenTruong { get; set; }
         [Display(Name = "Loại trường")]
         public override Nullable<int> LoaiTruong { get; set; }
-        [Required(ErrorMessage = "Yêu cầu nhập ngành học")]
+        /*[Required(ErrorMessage = "Yêu cầu nhập ngành học")]*/
         [Display(Name = "Ngành học")]
         public override string NganhHoc { get; set; }
         [Display(Name = "Đã tốt nghiệp")]

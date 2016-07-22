@@ -115,10 +115,14 @@
                     "mRender": function (data, type, o) {
                         var roleTag = "";
                         var data = o[1];
+                        var color = '#ff001f!important;';   //color red
+                        if (data == 'Rồi') {
+                            color = '#7fcc00!important;';  //color green
+                        }
                         for (var i = 0; i < data.length; i++) {
                             roleTag += ($('<span/>', {
                                 'class': 'badge',
-                                'style': 'background-color: #009FFF!important;',
+                                'style': 'background-color:' + color,
                                 html: data[i].Name,
                                 'data-id': data[i].Id
                             })[0].outerHTML);

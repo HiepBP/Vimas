@@ -318,9 +318,13 @@
                     "mRender": function (data, type, o) {
                         var status = "";
                         var data = o[3];
+                        var color = '#ff001f!important;';   //color red
+                        if (data == 'Rồi') {
+                            color = '#7fcc00!important;';  //color green
+                        }
                         status += ($('<span/>', {
                             'class': 'badge',
-                            'style': 'background-color: #009FFF!important;',
+                            'style': 'background-color: ' + color,
                             html: data,
                             'data-id': data
                         })[0].outerHTML);
@@ -452,9 +456,13 @@
                     "mRender": function (data, type, o) {
                         var status = "";
                         var data = o[4];
+                        var color = '#ff001f!important;';   //color red
+                        if (data != 'Không') {
+                            color = '#7fcc00!important;';  //color green
+                        }
                         status += ($('<span/>', {
                             'class': 'badge',
-                            'style': 'background-color: #009FFF!important;',
+                            'style': 'background-color: ' + color,
                             html: data,
                             'data-id': data
                         })[0].outerHTML);
